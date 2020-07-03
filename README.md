@@ -30,41 +30,4 @@ Web UI для управления телефонами Grandstream
 * Поддержка получения логов с аппаратов посредством ActionURL
 
 ## Процесс установки и настройки
-* application\config\config.php
-  ```php
-  // Указать URL адрес
-  $config['base_url'] = "http://www.example.com/";
-  // Указать язык (на данный момент доступен только russian)
-  $config['language'] = "russian";
-  ```
-* application\config\grcentral.php
-```php
-// Автоматическое добавление аппаратов в базу данных при обращении к серверу (TRUE или FALSE)
-$config['provisioning']['auto_add_devices'] = TRUE;
-```
-* application\config\database.php
-```php
-// Настройки базы данных, указать hostname, username, password, database.
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => '',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
-	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8mb4_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
-```
-* Залить дамп из директории sql\install.sql в базу данных
+Описан в [wiki](https://github.com/lumian/grcentral/wiki/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-GRCentral)
