@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><?=lang('settings_params_btn_new');?></button>
 <? if ($need_apply == '1'):?>
-<a href="http://grcentral.aot.local/cron/webcron/gencfg" target="_blank" type="button" class="btn btn-danger btn-sm mt-2">Применить настройки (FIXME!!!)</a>
+<a href="/cron/webcron/gencfg" target="_blank" type="button" class="btn btn-danger btn-sm mt-2">Apply settings (FIXME!!!)</a>
 <? endif; ?>
 
 <? if ($this->session->flashdata('success_result')): ?>
