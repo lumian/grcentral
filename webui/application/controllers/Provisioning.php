@@ -44,7 +44,14 @@ class Provisioning extends CI_Controller {
 						if ($phone_info_db['status_active'] == '1')
 						{
 							$this->phones_model->edit($phone_info_db['id'], array('fw_version' => $phone_info['version']));
-							$this->forcedownload->start($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
+							if (is_readable($this->config->item('storage_path', 'grcentral').'cfg/'.$get_file))
+							{
+								$this->forcedownload->start($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
+							}
+							else
+							{
+								show_404();
+							}
 						}
 						else
 						{
@@ -124,9 +131,13 @@ class Provisioning extends CI_Controller {
 				{
 					$file_path = $this->config->item('storage_path', 'grcentral').'rings/'.$get_file;
 			
-					if (is_readable($file_path)
+					if (is_readable($file_path))
 					{
 						$this->forcedownload->start($get_file, $file_path);
+					}
+					else
+					{
+						show_404();
 					}
 				}
 				else
@@ -246,7 +257,14 @@ class Provisioning extends CI_Controller {
 							// If the information for the device upgrade is received correctly, then we give the file to download
 							if (isset($put_firmware) AND $put_firmware != FALSE AND isset($put_firmware['file_name']) AND isset($put_firmware['file_name_real']))
 							{
-								$this->forcedownload->start($put_firmware['file_name'],$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']);
+								if (is_readable($this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']))
+								{
+									$this->forcedownload->start($put_firmware['file_name'],$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']);
+								}
+								else
+								{
+									show_404();
+								}
 							}
 							else
 							{
