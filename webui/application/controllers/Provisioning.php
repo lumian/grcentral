@@ -38,7 +38,7 @@ class Provisioning extends CI_Controller {
 				if ($phone_info_db != FALSE)
 				{
 					// If the requested file matches the configuration file template, then continue
-					if ($get_file = 'cfg'.$phone_info_db['mac_addr'].'.xml')
+					if ($get_file == 'cfg'.$phone_info_db['mac_addr'].'.xml')
 					{
 						// 
 						if ($phone_info_db['status_active'] == '1')
