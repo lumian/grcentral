@@ -6,7 +6,7 @@ Web UI для управления телефонами Grandstream
 * PHP framework: Codeigniter 3.1.11
 * WebUI: Bootstrap 4.5
 
-## Описание функционала (реализованный):
+## Описание текущего функционала:
 * Управление прошивками телефонов: 
   * Загрузка бинарных файлов через web-интерфейс
   * Возможность активации/деактивации прошивок
@@ -21,13 +21,7 @@ Web UI для управления телефонами Grandstream
   * Возможность указания до четырех SIP аккаунтов (каждый аккаунт может быть привязан к разным VoIP серверам)
   
 ## Планируемый функционал:
-* Добавление авторизации в панели
-* Реализация телефонной книги
-* Управление рингтонами (перекодирование в нужный формат средствами GRCentral)
-* Оптимизация юзабилити
-* Полный перевод на английский язык
-* Поддержка работы с аппаратами через CTI (Computer Telephony Integration) Grandstream
-* Поддержка получения логов с аппаратов посредством ActionURL
+[см. Issues](https://github.com/lumian/grcentral/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
 
 ## Процесс установки и настройки
-Описан в [wiki](https://github.com/lumian/grcentral/wiki/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-GRCentral)
+[см. в wiki](https://github.com/lumian/grcentral/wiki/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-GRCentral)
