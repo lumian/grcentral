@@ -18,12 +18,13 @@ $lang['phones_table_descr']					= "Описание";
 $lang['phones_table_mac_addr']				= "MAC адрес";
 $lang['phones_table_ip_addr']				= "IP адрес";
 $lang['phones_table_ip_addr_linktitle']		= "Перейти в WEB интерфейс аппарата";
-$lang['phones_table_model']					= "Модель аппарата";
+$lang['phones_table_model']					= "Модель";
 $lang['phones_table_model_na']				= "Не определена";
 $lang['phones_table_accounts']				= "Аккаунты";
 $lang['phones_table_accounts_na']			= "N/A";
-$lang['phones_table_fwversion']				= "Версия ПО";
+$lang['phones_table_fwversion']				= "Версия FW";
 $lang['phones_table_fwversion_na']			= "N/A";
+$lang['phones_table_fwversionpinned_help']	= "Прошивка закреплена";
 
 // Модальные окна
 $lang['phones_modal_title_add']				= "Создание нового телефона";

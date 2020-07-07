@@ -69,6 +69,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<? else: ?>
 				<?=lang('phones_table_fwversion_na');?>
 				<? endif; ?>
+				<? if (isset($phone['fw_version_pinned']) AND $phone['fw_version_pinned'] != '0'): ?>
+					<span data-toggle="tooltip" data-html="true" title="<?=lang('phones_table_fwversionpinned_help');?>: <?=$phone['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
+				<? endif; ?>
 			</td>
 			<td>
 				<div class="btn-group" role="group">
@@ -227,4 +230,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var modal = $(this)
 		modal.find('.modal-footer a').attr('href', '/phones/actions/del/' + phoneid)
 	})
+</script>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
