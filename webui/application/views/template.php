@@ -66,9 +66,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</form>
 		</div>
 	</nav>
-
 	<main role="main" class="container">
 		<?=$content;?>
+		<hr class="my-2">
+		<footer class="mb-4">
+			<small class="text-muted">2020 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank">GRCentral</a></small>
+		</footer>
 	</main>
 </body>
 </html>
