@@ -208,11 +208,9 @@ class Settings_model extends CI_Model {
 				$this->db->where('status', $params['status']);
 			}
 			$result_db = $this->db->get()->result_array();
-
 			if (count($result_db) > 0)
 			{
-				//$result = $result_db;
-				// Natural sorting in array. key = version.
+				// Natural sorting
 				foreach ($result_db as $key=>$value)
 				{
 					$tmp_array[$key] = $value['version'];

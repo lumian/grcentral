@@ -43,6 +43,9 @@ $lang['phones_modal_status_active']			= "Активность";
 $lang['phones_modal_status_active_help']	= "Включить или выключить работу с указанным аппаратом.";
 $lang['phones_modal_status_active_on']		= "Активирован";
 $lang['phones_modal_status_active_off']		= "Не активирован";
+$lang['phones_modal_fwversionpinned']		= "Закрепить прошивку";
+$lang['phones_modal_fwversionpinned_help']	= "Укажите прошивку, которую необходимо закрепить за данным аппаратом";
+$lang['phones_modal_fwversionpinned_off']	= "Без закрепления - на общих условиях";
 $lang['phones_modal_confirm_del']			= "Вы действительно хотите удалить телефон?";
 
 // Сообщения

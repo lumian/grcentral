@@ -74,10 +74,24 @@ class Phones extends CI_Controller {
 	{
 		$phones_list = $this->phones_model->getlist();
 		$models_list = $this->settings_model->models_getlist();
+		$groups_list = $this->settings_model->models_group_getlist();
+		$fw_list = array();
+		
+		if ($groups_list != FALSE)
+		{
+			foreach ($groups_list as $group)
+			{
+				$fw_list[$group['id']] = array(
+					'group_info'	=> $group,
+					'items'			=> $this->settings_model->fw_getlist(array('group_id' => $group['id']))
+				);
+			}
+		}
 		
 		$page_data = array(
 			'phones_list'		=> $phones_list,
-			'models_list'		=> $models_list
+			'models_list'		=> $models_list,
+			'fw_list'			=> $fw_list
 		);
 		$this->title = '- '.lang('phones_title');
 		$this->content = $this->load->view('phones/phones_list', $page_data, TRUE);
@@ -131,13 +145,14 @@ class Phones extends CI_Controller {
 		if ($action == 'add' AND is_null($param))
 		{
 			// Add new phone
-			if (!is_null($this->input->post('mac_addr')) AND !is_null($this->input->post('ip_addr')) AND !is_null($this->input->post('model_id')) AND !is_null($this->input->post('status_active')))
+			if (!is_null($this->input->post('mac_addr')) AND !is_null($this->input->post('ip_addr')) AND !is_null($this->input->post('model_id')) AND !is_null($this->input->post('status_active')) AND !is_null($this->input->post('fw_version_pinned')))
 			{
 				$post_data = array(
-					'mac_addr'		=> mb_strtolower(htmlspecialchars(trim($this->input->post('mac_addr')))),
-					'ip_addr'		=> htmlspecialchars(trim($this->input->post('ip_addr'))),
-					'model_id'		=> htmlspecialchars(trim($this->input->post('model_id'))),
-					'status_active'	=> htmlspecialchars(trim($this->input->post('status_active')))
+					'mac_addr'			=> mb_strtolower(htmlspecialchars(trim($this->input->post('mac_addr')))),
+					'ip_addr'			=> htmlspecialchars(trim($this->input->post('ip_addr'))),
+					'model_id'			=> htmlspecialchars(trim($this->input->post('model_id'))),
+					'status_active'		=> htmlspecialchars(trim($this->input->post('status_active'))),
+					'fw_version_pinned'	=> htmlspecialchars(trim($this->input->post('fw_version_pinned')))
 				);
 				if (!is_null($this->input->post('descr'))) { $post_data['descr'] = htmlspecialchars(trim($this->input->post('descr'))); }
 				
@@ -161,13 +176,14 @@ class Phones extends CI_Controller {
 		elseif ($action == 'edit' AND !is_null($param) AND is_numeric($param))
 		{
 			// Edit phone
-			if (!is_null($this->input->post('mac_addr')) AND !is_null($this->input->post('ip_addr')) AND !is_null($this->input->post('model_id')) AND !is_null($this->input->post('status_active')))
+			if (!is_null($this->input->post('mac_addr')) AND !is_null($this->input->post('ip_addr')) AND !is_null($this->input->post('model_id')) AND !is_null($this->input->post('status_active')) AND !is_null($this->input->post('fw_version_pinned')))
 			{
 				$post_data = array(
-					'mac_addr'		=> mb_strtolower(htmlspecialchars(trim($this->input->post('mac_addr')))),
-					'ip_addr'		=> htmlspecialchars(trim($this->input->post('ip_addr'))),
-					'model_id'		=> htmlspecialchars(trim($this->input->post('model_id'))),
-					'status_active'	=> htmlspecialchars(trim($this->input->post('status_active')))
+					'mac_addr'			=> mb_strtolower(htmlspecialchars(trim($this->input->post('mac_addr')))),
+					'ip_addr'			=> htmlspecialchars(trim($this->input->post('ip_addr'))),
+					'model_id'			=> htmlspecialchars(trim($this->input->post('model_id'))),
+					'status_active'		=> htmlspecialchars(trim($this->input->post('status_active'))),
+					'fw_version_pinned'	=> htmlspecialchars(trim($this->input->post('fw_version_pinned')))
 				);
 				if (!is_null($this->input->post('descr'))) { $post_data['descr'] = htmlspecialchars(trim($this->input->post('descr'))); }
 				

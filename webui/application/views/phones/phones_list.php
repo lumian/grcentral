@@ -140,6 +140,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</select>
 						<small id="ModalAddEditForm_StatusActiveHelp" class="form-text text-muted"><?=lang('phones_modal_status_active_help');?></small>
 					</div>
+					<div class="form-group">
+						<label for="ModalAddEditForm_FWVersionPinned"><?=lang('phones_modal_fwversionpinned');?></label>
+						<select class="form-control" name="fw_version_pinned" id="ModalAddEditForm_FWVersionPinned" required>
+							<option value='0'>--- <?=lang('phones_modal_fwversionpinned_off');?> ---</option>
+							<? if ($fw_list != FALSE): ?>
+								<? foreach($fw_list as $row): ?>
+									<? if ($row['items'] != FALSE): ?>
+										<? foreach ($row['items'] as $fw): ?>
+											<option value='<?=$fw['version'];?>'><?=$row['group_info']['name'];?>: <?=$fw['version'];?></option>
+										<? endforeach;?>
+									<? endif; ?>
+								<? endforeach; ?>
+							<? endif; ?>
+						</select>
+						<small id="ModalAddEditForm_FWVersionPinnedHelp" class="form-text text-muted"><?=lang('phones_modal_fwversionpinned_help');?></small>
+					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -173,6 +189,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						modal.find('.modal-body input[name=descr]').val(data.data.descr)
 						modal.find('.modal-body select[name=model_id]').val(data.data.model_id)
 						modal.find('.modal-body select[name=status_active]').val(data.data.status_active)
+						modal.find('.modal-body select[name=fw_version_pinned]').val(data.data.fw_version_pinned)
 						modal.find('.modal-body form').attr('action', '/phones/actions/edit/' + phoneid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')

@@ -57,6 +57,7 @@ class Phones_model extends CI_Model {
 			);
 			if (isset($data['descr'])) { $add_data['descr'] = $data['descr']; }
 			if (isset($data['fw_version'])) { $add_data['fw_version'] = $data['fw_version']; }
+			if (isset($data['fw_version_pinned'])) { $add_data['fw_version_pinned'] = $data['fw_version_pinned']; }
 			
 			$this->db->insert('phones_data', $add_data);
 			$insert_id = $this->db->insert_id();
@@ -70,12 +71,13 @@ class Phones_model extends CI_Model {
 		if (is_numeric($id) AND !is_null($data) AND is_array($data))
 		{
 			$update_data = array();
-			if (isset($data['mac_addr']))		{ $update_data['mac_addr']		= $data['mac_addr']; }
-			if (isset($data['ip_addr']))		{ $update_data['ip_addr']		= $data['ip_addr']; }
-			if (isset($data['model_id']))		{ $update_data['model_id']		= $data['model_id']; }
-			if (isset($data['status_active']))	{ $update_data['status_active']	= $data['status_active']; }
-			if (isset($data['descr']))			{ $update_data['descr']			= $data['descr']; }
-			if (isset($data['fw_version']))		{ $update_data['fw_version']	= $data['fw_version']; }
+			if (isset($data['mac_addr']))			{ $update_data['mac_addr']			= $data['mac_addr']; }
+			if (isset($data['ip_addr']))			{ $update_data['ip_addr']			= $data['ip_addr']; }
+			if (isset($data['model_id']))			{ $update_data['model_id']			= $data['model_id']; }
+			if (isset($data['status_active']))		{ $update_data['status_active']		= $data['status_active']; }
+			if (isset($data['descr']))				{ $update_data['descr']				= $data['descr']; }
+			if (isset($data['fw_version']))			{ $update_data['fw_version']		= $data['fw_version']; }
+			if (isset($data['fw_version_pinned']))	{ $update_data['fw_version_pinned']	= $data['fw_version_pinned']; }
 			
 			$this->db->where('id', $id);
 			$query = $this->db->update('phones_data', $update_data);
