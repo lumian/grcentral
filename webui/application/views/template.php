@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?=$content;?>
 		<hr class="my-2">
 		<footer class="mb-4">
-			<small class="text-muted">2020 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank">GRCentral</a></small>
+			<small class="text-muted">2020 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank">GRCentral</a> v.<?=$this->config->item('version', 'grcentral');?></small>
 		</footer>
 	</main>
 </body>

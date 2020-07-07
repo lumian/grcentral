@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // ENG: The main title that will be added to all pages
 // RUS: Главный тайтл который будет добавляться ко всем страницам
 $config['grcentral']['site_title'] 				= 'GRCentral';
+$config['grcentral']['version'] 				= '0.1';
 
 // ENG: Path to the file storage
 // RUS: Путь к хранилищу файлов
