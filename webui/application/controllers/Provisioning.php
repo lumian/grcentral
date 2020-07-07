@@ -180,7 +180,7 @@ class Provisioning extends CI_Controller {
 			if ($model_info != FALSE AND isset($model_info['group_id']))
 			{
 				// Getting a list of updates for the selected phone group.
-				$fw_list = $this->settings_model->fw_getlist(array('group_id' => $model_info['group_id'], 'status' => '1'));
+				$fw_list = $this->settings_model->fw_getlist(array('group_id' => $model_info['group_id']));
 				
 				// If the update file names is found in the database, we continue
 				if ($fw_list != FALSE AND is_array($fw_list))
@@ -206,12 +206,12 @@ class Provisioning extends CI_Controller {
 								$update_firmware['current'] = $fw;
 							}
 							// Storing information about the initial update
-							if ($fw['previous_version'] == '0')
+							if ($fw['previous_version'] == '0' AND $fw['status'] == '1')
 							{
 								$update_firmware['starting'] = $fw;
 							}
 							// If the previous version corresponds to the device version, then we record information about the necessary update
-							if ($fw['previous_version'] == $phone_info['version'])
+							if ($fw['previous_version'] == $phone_info['version'] AND $fw['status'] == '1')
 							{
 								$update_firmware['upgrade'] = $fw;
 							}
