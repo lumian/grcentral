@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `phones_data` (
   `descr` varchar(250) DEFAULT NULL,
   `accounts_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `fw_version` varchar(50) DEFAULT NULL,
+  `fw_version_pinned` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `mac_addr` (`mac_addr`)
