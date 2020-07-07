@@ -28,11 +28,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</tr>
 			<tr>
 				<td><strong><?=lang('phones_info_statusonline');?>:</strong></td>
-				<td><?=$phone_info['status_online']; ?></td>
+				<td>
+					<? if ($phone_info['status_online'] == '1'): ?>
+						<div class="badge badge-success text-wrap"><?=lang('phones_info_statusonline_on'); ?></div>
+					<? else: ?>
+						<div class="badge badge-danger text-wrap"><?=lang('phones_info_statusonline_off'); ?></div>
+					<? endif;?>
+				</td>
 			</tr>
 			<tr>
 				<td><strong><?=lang('phones_info_statusactive');?>:</strong></td>
-				<td><?=$phone_info['status_active']; ?></td>
+				<td>
+					<? if ($phone_info['status_active'] == '1'): ?>
+						<div class="badge badge-success text-wrap"><?=lang('phones_info_statusactive_on'); ?></div>
+					<? else: ?>
+						<div class="badge badge-danger text-wrap"><?=lang('phones_info_statusactive_off'); ?></div>
+					<? endif;?>
+				</td>
 			</tr>
 			<tr>
 				<td><strong><?=lang('phones_info_descr');?>:</strong></td>
