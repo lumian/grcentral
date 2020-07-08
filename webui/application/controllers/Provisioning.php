@@ -29,7 +29,7 @@ class Provisioning extends CI_Controller {
 			$phone_info = $this->_useragent2phonedata($_SERVER['HTTP_USER_AGENT']);
 			
 			// If the phone information is received, we continue
-			if ($phone_info != FALSE AND isset($phone_info['model']) AND isset($phone_info['version']) AND isset($phone_info['mac']))
+			if ($phone_info != FALSE AND isset($phone_info['model']) AND isset($phone_info['version']) AND isset($phone_info['mac']) AND (mb_strlen($phone_info['mac']) == '12'))
 			{
 				// Searching for the device in the database
 				$phone_info_db = $this->phones_model->get(array('mac_addr' => $phone_info['mac']));
@@ -119,7 +119,7 @@ class Provisioning extends CI_Controller {
 			$phone_info = $this->_useragent2phonedata($_SERVER['HTTP_USER_AGENT']);
 			
 			// If the phone information is received, we continue
-			if ($phone_info != FALSE AND isset($phone_info['model']) AND isset($phone_info['version']) AND isset($phone_info['mac']))
+			if ($phone_info != FALSE AND isset($phone_info['model']) AND isset($phone_info['version']) AND isset($phone_info['mac']) AND (mb_strlen($phone_info['mac']) == '12'))
 			{
 				// Get the language.txt file
 				if ($get_file == 'language.txt')
@@ -140,9 +140,13 @@ class Provisioning extends CI_Controller {
 						show_404();
 					}
 				}
-				else
+				elseif (mb_stripos($get_file, '.bin' != FALSE))
 				{
 					$this->_fw_download_update($phone_info, $get_file);
+				}
+				else
+				{
+					show_404();
 				}
 			}
 			else
@@ -173,6 +177,21 @@ class Provisioning extends CI_Controller {
 		// Checking the input data
 		if (!is_null($phone_info) AND is_array($phone_info) AND isset($phone_info['model']) AND isset($phone_info['version']) AND isset($phone_info['mac']) AND !is_null($get_file) AND is_string($get_file))
 		{
+			// Checking the phone in the database
+			$phone_info_db = $this->phones_model->get(array('mac_addr' => $phone_info['mac']));
+			
+			// If the device is not found in the database, then check the settings
+			if ($phone_info_db == FALSE OR $phone_info_db['status_active'] == '0')
+			{
+				$friendly_update = $this->config->item('fw_update_only_friend', 'provisioning');
+				
+				// If the "update only for friends" setting is enabled, we display a 404 error.
+				if ($friendly_update == TRUE)
+				{
+					show_404();
+				}
+			}
+			
 			// Checking the phone model in the database
 			$model_info = $this->settings_model->models_get(array('tech_name' => $phone_info['model']));
 			
@@ -240,6 +259,7 @@ class Provisioning extends CI_Controller {
 						if ($this->testmode === TRUE)
 						{
 							echo "Get file: ".$get_file.PHP_EOL;
+							if ($phone_info_db == FALSE) { echo "Friendly phone: No".PHP_EOL; } else { echo "Friendly phone: Yes".PHP_EOL; }
 							echo "Phone model: ".$model_info['friendly_name'].PHP_EOL;
 							echo "Phone sw version: ".$phone_info['version'].PHP_EOL;
 							if (isset($put_firmware) AND $put_firmware != FALSE)
