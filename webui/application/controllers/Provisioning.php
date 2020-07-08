@@ -230,15 +230,47 @@ class Provisioning extends CI_Controller {
 								$update_firmware['starting'] = $fw;
 							}
 							// If the previous version corresponds to the device version, then we record information about the necessary update
-							if ($fw['previous_version'] == $phone_info['version'] AND $fw['status'] == '1')
+							if ($fw['previous_version'] == $phone_info['version'])
 							{
 								$update_firmware['upgrade'] = $fw;
+							}
+							// If the device is in the database and firmware pinning is enabled
+							if ($phone_info_db != FALSE AND $phone_info_db['fw_version_pinned'] != '0')
+							{
+								// If the firmware version corresponds to the version of pinned firmware
+								if ($fw['version'] == $phone_info_db['fw_version_pinned'])
+								{
+									$update_firmware['pinned'] = $fw;
+								}
 							}
 						}
 						// If a recent update is found, we will initiate an upgrade
 						if (isset($update_firmware['upgrade']))
 						{
-							$put_firmware = $update_firmware['upgrade'];
+							// If there is a pinned firmware, then continue checking
+							if (isset($update_firmware['pinned']))
+							{
+								// If the pinned version is not equal to the previous version, we update it
+								if ($update_firmware['pinned']['version'] != $update_firmware['upgrade']['previous_version'])
+								{
+									$put_firmware = $update_firmware['upgrade'];
+								}
+								// We have reached the pinned version. Stop updating.
+								else
+								{
+									show_404();
+								}
+							}
+							// If there is no pinned firmware and the firmware for updating is active, then we update it
+							elseif ($update_firmware['upgrade']['status'] == '1')
+							{
+								$put_firmware = $update_firmware['upgrade'];
+							}
+							else
+							{
+								// Else displaying 404 error
+								show_404();
+							}
 						}
 						// If information about the current version is found and information about the upgrade is not found, we do not upgrade it. Device with the latest firmware version.
 						elseif (isset($update_firmware['current']) AND !isset($update_firmware['upgrade']))
@@ -277,6 +309,7 @@ class Provisioning extends CI_Controller {
 							// If the information for the device upgrade is received correctly, then we give the file to download
 							if (isset($put_firmware) AND $put_firmware != FALSE AND isset($put_firmware['file_name']) AND isset($put_firmware['file_name_real']))
 							{
+								// If firmware file is readable...
 								if (is_readable($this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']))
 								{
 									$this->forcedownload->start($put_firmware['file_name'],$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']);
