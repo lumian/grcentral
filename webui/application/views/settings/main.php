@@ -4,9 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="card mt-2">
 	<div class="card-body">
-		<img src="/style/img/grandstream_logo.png" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
 		<h1><?=lang('settings_main_head');?></h1>
-		<p class="lead"><?=lang('settings_main_text');?></p>
+		<p><?=lang('settings_main_text');?></p>
 		<hr class="hr">
 		<div class="row">
 			<div class="col-3">
