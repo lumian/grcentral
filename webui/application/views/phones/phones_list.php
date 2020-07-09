@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <table class="table table-hover table-sm mt-2">
 	<thead>
+		<th>#</th>
 		<th><?=lang('phones_table_descr');?></th>
 		<th><?=lang('phones_table_mac_addr');?></th>
 		<th><?=lang('phones_table_ip_addr');?></th>
@@ -31,12 +32,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<tbody>
 		<? if ($phones_list != FALSE): ?>
+		<? $device_count = 0; ?>
 		<? foreach($phones_list as $phone): ?>
+		<? $device_count = $device_count +1; ?>
 		<? if ($phone['status_active'] === '0'): ?>
 		<tr class="table-active">
 		<? else: ?>
 		<tr>
 		<? endif;?>
+			<td><?=$device_count;?></td>
 			<td><?=$phone['descr'];?></td>
 			<td><?=$phone['mac_addr'];?></td>
 			<? if ($phone['status_online'] === '1'): ?>
