@@ -73,7 +73,7 @@ $lang['phones_info_statusactive_off']		= "Не активирован";
 $lang['phones_info_descr']					= "Описание";
 $lang['phones_accounts_title']				= "Аккаунты";
 $lang['phones_accounts_description']		= "Кол-во аккаунтов ограничено 4 штуками, в зависимости от модели аппарата будет использоваться от 1 до 4 штук.";
-$lang['phones_actions_title']				= "Действия";
+$lang['phones_actions_cti']					= "CTI интеграция";
 
 // Кнопки
 $lang['phones_accounts_btn_edit']			= "Редактировать аккаунты";
@@ -88,6 +88,9 @@ $lang['phones_accounts_table_voipsrv_na']	= "N/A";
 $lang['phones_accounts_table_userid']		= "UserID";
 $lang['phones_accounts_table_authid']		= "AuthID";
 $lang['phones_accounts_table_password']		= "Пароль";
+$lang['phones_accounts_table_status']		= "Статус";
+$lang['phones_accounts_table_status_on']	= "Включен";
+$lang['phones_accounts_table_status_off']	= "Отключен";
 
 // Модальные окна
 $lang['phones_accounts_modal_title_edit']	= "Редактирование аккаунтов";

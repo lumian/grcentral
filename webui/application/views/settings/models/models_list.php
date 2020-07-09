@@ -8,9 +8,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <? if ($group_list != FALSE): ?>
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalModelAddEdit" data-actiontype="new"><?=lang('settings_models_btn_new');?></button>
+<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalModelAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_models_btn_new');?></button>
 <? endif; ?>
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalGroupAddEdit" data-actiontype="new"><?=lang('settings_modelsgroup_btn_new');?></button>
+<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalGroupAddEdit" data-actiontype="new"><i class="fa fa-folder-plus"></i> <?=lang('settings_modelsgroup_btn_new');?></button>
 
 <? if ($this->session->flashdata('success_result')): ?>
 <div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
-<table class="table table-hover table-sm mt-2">
+<table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
 		<th><?=lang('settings_models_table_techname');?></th>
 		<th><?=lang('settings_models_table_friendlyname');?></th>
@@ -33,16 +33,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<thead>
 		<tr>
 			<th colspan="2">
-				<?=lang('settings_models_table_group');?>: <?=$row['group_info']['name'];?> 
+				<i class="fa fa-folder-open"></i> <?=$row['group_info']['name'];?> 
 				(<?=lang('settings_models_table_params');?>: <? if ($row['group_info']['params_group_id'] != '0') { echo $params_group[$row['group_info']['params_group_id']]['name']; } else { echo lang('settings_modelsgroup_modal_paramgroup_no'); }?>)
 			</th>
 			<th>
-				<div class="btn-group" role="group">
+				<div class="btn-group btn-block" role="group">
 					<button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalGroupAddEdit" data-actiontype="edit" data-id="<?=$row['group_info']['id'];?>">
-						<?=lang('main_btn_edit');?>
+						<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 					</button>
 					<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalGroupDelete" data-id="<?=$row['group_info']['id'];?>">
-						<?=lang('main_btn_del');?>
+						<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 					</button>
 				</div>
 			</th>
@@ -54,12 +54,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$model['tech_name'];?></td>
 					<td><?=$model['friendly_name'];?></td>
 					<td>
-						<div class="btn-group" role="group">
+						<div class="btn-group btn-block" role="group">
 							<button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalModelAddEdit" data-actiontype="edit" data-id="<?=$model['id'];?>">
-								<?=lang('main_btn_edit');?>
+								<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 							</button>
 							<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalModelDelete" data-id="<?=$model['id'];?>">
-								<?=lang('main_btn_del');?>
+								<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 							</button>
 						</div>
 					</td>

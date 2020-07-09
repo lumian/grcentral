@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><?=lang('settings_servers_btn_new');?></button>
+<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_servers_btn_new');?></button>
 
 <? if ($this->session->flashdata('success_result')): ?>
 <div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
-<table class="table table-hover table-sm mt-2">
+<table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
 		<th><?=lang('settings_servers_table_name');?></th>
 		<th><?=lang('settings_servers_table_description');?></th>
@@ -33,12 +33,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<td><?=$server['description'];?></td>
 			<td><?=$server['server'];?></td>
 			<td>
-				<div class="btn-group" role="group">
+				<div class="btn-group btn-block" role="group">
 					<button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$server['id'];?>">
-						<?=lang('main_btn_edit');?>
+						<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 					</button>
 					<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$server['id'];?>">
-						<?=lang('main_btn_del');?>
+						<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 					</button>
 				</div>
 			</td>

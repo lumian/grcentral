@@ -9,6 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 <div class="jumbotron">
-	<h1>Home Page</h1>
-	<p class="lead">This is a home page of this site</p>
+	<h1><?=lang('main_page_title');?></h1>
+	<p class="lead"><?=lang('main_page_text');?></p>
+	<? if (!$this->grcentral->is_user()):?>
+	<small><?=lang('main_page_nonauth_text');?></small>
+	<? else: ?>
+	<small><?=lang('main_page_auth_text');?></small>
+	<hr class="hr">
+	<a href="/phones/" type="button" class="btn btn-primary"><i class="fa fa-phone-square-alt"></i> Управление телефонами</a>
+	<a href="/settings/" type="button" class="btn btn-primary"><i class="fa fa-cog"></i> Настроить сервер</a>
+	<? endif;?>
 </div>

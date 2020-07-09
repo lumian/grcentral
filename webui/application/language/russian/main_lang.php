@@ -29,5 +29,11 @@ $lang['main_auth_message_logout']	= "Вы успешно выйшли из си�
 
 // Auth
 $lang['main_auth_modal_title']		= "Авторизация";
-$lang['main_auth_modal_login']		= "Имя пользователя";
+$lang['main_auth_modal_login']		= "Пользователь";
 $lang['main_auth_modal_passwd']		= "Пароль";
+
+// Main page
+$lang['main_page_title']			= "GRCentral";
+$lang['main_page_text']				= "Web UI для управления телефонами Grandstream.";
+$lang['main_page_nonauth_text']		= "Авторизуйтесь, для получения доступа к системе.";
+$lang['main_page_auth_text']		= "Удачной работы!";

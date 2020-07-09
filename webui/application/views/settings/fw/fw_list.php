@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 <? if ($group_list != FALSE): ?>
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><?=lang('settings_fw_btn_new');?></button>
+<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_fw_btn_new');?></button>
 <? endif; ?>
 
 <? if ($this->session->flashdata('success_result')): ?>
@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
-<table class="table table-hover table-sm mt-2">
+<table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
 		<th><?=lang('settings_fw_table_previousversion');?></th>
 		<th><?=lang('settings_fw_table_version');?></th>
@@ -33,27 +33,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? foreach($fw_list as $row): ?>
 		<thead>
 		<tr>
-			<th colspan="5"><?=lang('settings_models_table_group');?>: <?=$row['group_info']['name'];?></th>
+			<th colspan="6"><i class="fa fa-folder-open"></i> <?=$row['group_info']['name'];?></th>
 		</tr>
 		</thead>
 		<? if ($row['items'] != FALSE): ?>
 			<? foreach($row['items'] as $fw): ?>
 				<tr>
-					<td><?=$fw['previous_version'];?></td>
+					<td>
+						<? if ($fw['previous_version'] == "0"): ?>
+							<?=lang('settings_fw_table_startversion');?>
+						<? else: ?>
+							<?=$fw['previous_version'];?>
+						<? endif; ?>
+					</td>
 					<td><?=$fw['version'];?></td>
 					<td><?=$fw['file_name'];?></td>
 					<td><?=$fw['file_name_real'];?></td>
 					<td>
 						<? if ($fw['status'] == '1'): ?>
-							<a href="#" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_descr');?>"><?=lang('settings_fw_table_status_on');?></a>
+							<button type="button" class="btn btn-outline-success btn-sm btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
 						<? else: ?>
-							<a href="#" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_descr');?>"><?=lang('settings_fw_table_status_off');?></a>
+							<button type="button" class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
 						<? endif; ?>
 					</td>
 					<td>
-						<div class="btn-group" role="group">
+						<div class="btn-group btn-block" role="group">
 							<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$fw['id'];?>">
-								<?=lang('main_btn_del');?>
+								<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 							</button>
 						</div>
 					</td>

@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><?=lang('phones_btn_new');?></button>
+<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('phones_btn_new');?></button>
 
 <? if ($this->session->flashdata('success_result')): ?>
 <div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
-<table class="table table-hover table-sm mt-2">
+<table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
 		<th>#</th>
 		<th><?=lang('phones_table_descr');?></th>
@@ -65,19 +65,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?=lang('phones_table_fwversion_na');?>
 						<? endif; ?>
 						<? if (isset($phone['fw_version_pinned']) AND $phone['fw_version_pinned'] != '0'): ?>
-							<span data-toggle="tooltip" data-html="true" title="<?=lang('phones_table_fwversionpinned_help');?>: <?=$phone['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
+							<span data-toggle="tooltip" title="<?=lang('phones_table_fwversionpinned_help');?>: <?=$phone['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
 						<? endif; ?>
 					</td>
 					<td>
-						<div class="btn-group" role="group">
-							<a href="/phones/info/<?=$phone['id'];?>" type="button" class="btn btn-outline-info btn-sm">
-								<?=lang('phones_btn_info');?>
+						<div class="btn-group btn-block" role="group">
+							<a href="/phones/info/<?=$phone['id'];?>" type="button" class="btn btn-outline-info btn-xs" title="<?=lang('phones_btn_info');?>">
+								<i class="fa fa-info"></i>
 							</a>
-							<button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$phone['id'];?>">
-								<?=lang('main_btn_edit');?>
+							<button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$phone['id'];?>" title="<?=lang('main_btn_edit');?>">
+								<i class="fa fa-edit"></i>
 							</button>
-							<button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$phone['id'];?>">
-								<?=lang('main_btn_del');?>
+							<button type="button" class="btn btn-outline-danger btn-xs" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$phone['id'];?>" title="<?=lang('main_btn_del');?>">
+								<i class="fa fa-trash-alt"></i>
 							</button>
 						</div>
 					</td>
@@ -225,10 +225,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var modal = $(this)
 		modal.find('.modal-footer a').attr('href', '/phones/actions/del/' + phoneid)
 	})
-</script>
-
-<script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
 </script>

@@ -9,13 +9,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li class="nav-item">
 					<? if ($current_tab == ''): ?><a class="nav-link active" href=""><?else:?>
 					<a class="nav-link" href="/phones/"><?endif;?>
-						<?=lang('phones_title');?>
+						<i class="fa fa-phone-square-alt"></i> <?=lang('phones_title');?>
 					</a>
 				</li>
 				<? if ($current_tab == 'info'): ?>
 				<li class="nav-item">
 					<a class="nav-link active" href="">
-						<?=lang('phones_info_title');?>
+						<i class="fa fa-info"></i> <?=lang('phones_info_title');?>
 					</a>
 				</li>
 				<? endif; ?>

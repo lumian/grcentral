@@ -78,6 +78,7 @@ class Phones extends CI_Controller {
 	public function index()
 	{
 		$phones_list = $this->phones_model->getlist();
+		$models_list = $this->settings_model->models_getlist();
 		$groups_list = $this->settings_model->models_group_getlist();
 		$fw_list = array();
 		
@@ -94,6 +95,7 @@ class Phones extends CI_Controller {
 		
 		$page_data = array(
 			'phones_list'		=> $phones_list,
+			'models_list'		=> $models_list,
 			'fw_list'			=> $fw_list
 		);
 		$this->title = '- '.lang('phones_title');

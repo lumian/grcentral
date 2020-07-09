@@ -7,9 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><?=lang('settings_params_btn_new');?></button>
+<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_params_btn_new');?></button>
 <? if ($need_apply == '1'):?>
-<a href="/cron/webcron/gencfg" target="_blank" type="button" class="btn btn-danger btn-sm mt-2">Apply settings (FIXME!!!)</a>
+<a href="/cron/webcron/gencfg" target="_blank" type="button" class="btn btn-danger btn-sm mt-2"><i class="fa fa-exclamation-circle"></i> Apply settings (FIXME!!!)</a>
 <? endif; ?>
 
 <? if ($this->session->flashdata('success_result')): ?>
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
-<table class="table table-sm mt-2">
+<table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
 		<th><?=lang('settings_params_table_group');?></th>
 		<th><?=lang('settings_params_table_description');?></th>
@@ -31,15 +31,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? if ($group_list != FALSE): ?>
 		<? foreach($group_list as $group): ?>
 		<tr>
-			<td><?=$group['name'];?> (<a data-toggle="collapse" href="#TableGroup<?=$group['id'];?>" aria-expanded="false" aria-controls="TableGroup<?=$group['id'];?>"><?=lang('settings_params_btn_hideshow');?></a>)</td>
+			<td><?=$group['name'];?></td>
 			<td><?=$group['description'];?></td>
 			<td>
-				<div class="btn-group" role="group">
+				<div class="btn-group btn-block" role="group">
+					<a class="btn btn-outline-info btn-sm" data-toggle="collapse" href="#TableGroup<?=$group['id'];?>" aria-expanded="false" aria-controls="TableGroup<?=$group['id'];?>">
+						<i class="fa fa-compress-alt"></i>
+					</a>
 					<button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$group['id'];?>">
-						<?=lang('main_btn_edit');?>
+						<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 					</button>
 					<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$group['id'];?>">
-						<?=lang('main_btn_del');?>
+						<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 					</button>
 				</div>
 			</td>
@@ -51,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="card-body">
 					<?=nl2br($group['params_source_data']);?>
 					<hr class="hr">
-					<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#TableGroup<?=$group['id'];?>" aria-expanded="false" aria-controls="TableGroup<?=$group['id'];?>"><?=lang('settings_params_btn_hide');?></button>
+					<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#TableGroup<?=$group['id'];?>" aria-expanded="false" aria-controls="TableGroup<?=$group['id'];?>"><i class="fa fa-chevron-up"></i> <?=lang('settings_params_btn_hide');?></button>
 				</div>
 			</div>
 		</td>

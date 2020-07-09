@@ -24,8 +24,7 @@ $lang['settings_modelsgroup_btn_new']				= "Добавить группу";
 // Заголовки таблицы
 $lang['settings_models_table_techname']				= "Техническое имя";
 $lang['settings_models_table_friendlyname']			= "Дружественное имя";
-$lang['settings_models_table_params']				= "Шаблон настроек";
-$lang['settings_models_table_group']				= "Группа";
+$lang['settings_models_table_params']				= "Шаблон параметров";
 // Элементы модальных окон (редактирование/создание/удаление)
 $lang['settings_models_modal_title_add']			= "Создание новой модели телефона";
 $lang['settings_models_modal_title_edit']			= "Редактирование модели телефона";
@@ -72,11 +71,10 @@ $lang['settings_fw_btn_new']						= "Новая прошивка";
 // Заголовки таблицы
 $lang['settings_fw_table_version']					= "Новая версия";
 $lang['settings_fw_table_previousversion']			= "Пред. версия";
+$lang['settings_fw_table_startversion']				= "Стартовая";
 $lang['settings_fw_table_filename']					= "Имя файла";
 $lang['settings_fw_table_filename_real']			= "Реальное имя файла";
 $lang['settings_fw_table_status']					= "Статус";
-$lang['settings_fw_table_status_on']				= "Активна";
-$lang['settings_fw_table_status_off']				= "Не активна";
 $lang['settings_fw_table_status_descr']				= "Нажмите для изменения текущего статуса";
 // Элементы модальных окон (редактирование/создание/удаление)
 $lang['settings_fw_modal_title_add']				= "Создание новой прошивки";

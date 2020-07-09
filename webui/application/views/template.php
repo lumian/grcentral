@@ -50,23 +50,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- Main menu -->
 				<? $current = $this->uri->segment('1'); ?>
 				<? if ($current === FALSE OR $current == ''): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-					<a class="nav-link" href="/"><?=lang('main_menu_home');?></a>
+					<a class="nav-link" href="/"><i class="fa fa-home"></i> <?=lang('main_menu_home');?></a>
 				</li>
 				<? if ($this->grcentral->is_user()): ?>
 					<? if ($current == 'phones'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-						<a class="nav-link" href="/phones/"><?=lang('main_menu_phones');?></a>
+						<a class="nav-link" href="/phones/"><i class="fa fa-phone-square-alt"></i> <?=lang('main_menu_phones');?></a>
 					</li>
 					<? if ($current == 'settings'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-						<a class="nav-link" href="/settings/"><?=lang('main_menu_settings');?></a>
+						<a class="nav-link" href="/settings/"><i class="fa fa-cog"></i> <?=lang('main_menu_settings');?></a>
 					</li>
 				<? endif; ?>
 				<!-- End Main menu -->
 			</ul>
 			<!--<form class="form-inline mt-2 mt-md-0">-->
 			<? if (!$this->grcentral->is_user()): ?>
-				<button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalAuth"><?=lang('main_btn_login');?></button>
+				<button type="button" class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalAuth"><i class="fa fa-sign-in-alt"></i> <?=lang('main_btn_login');?></button>
 			<? else: ?>
-				<a href="/auth/logout" type="button" class="btn btn-outline-danger my-2 my-sm-0" ><?=lang('main_btn_logout');?></a>
+				<a href="/auth/logout" type="button" class="btn btn-danger my-2 my-sm-0" ><i class="fa fa-sign-out-alt"></i> <?=lang('main_btn_logout');?></a>
 			<? endif; ?>
 		</div>
 	</nav>
@@ -80,5 +80,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? if (!$this->grcentral->is_user()): ?>
 		<?=$this->load->view('auth', NULL, TRUE); ?>
 	<? endif;?>
+	<script>
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
 </body>
 </html>

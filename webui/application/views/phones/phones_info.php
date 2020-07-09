@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif;?>
 
 <div class="card mt-2">
-	<div class="card-header"><?=lang('phones_info_title')?></div>
+	<div class="card-header"><i class="fa fa-info"></i> <?=lang('phones_info_title')?></div>
 	<div class="card-body">
 		<img src="/style/img/grandstream_logo.png" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
 		<table>
@@ -54,17 +54,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <div class="card mt-2">
-	<div class="card-header"><?=lang('phones_actions_title')?></div>
+	<div class="card-header"><i class="fa fa-network-wired"></i> <?=lang('phones_actions_cti')?></div>
 	<div class="card-body">
-		<button type="button" class="btn btn-primary btn-sm" disabled><?=lang('phones_actions_btn_reboot');?></button>
+		<button type="button" class="btn btn-primary btn-sm" disabled><i class="fa fa-sync"></i> <?=lang('phones_actions_btn_reboot');?></button>
 	</div>
 </div>
 
 <div class="card mt-2">
-	<div class="card-header"><?=lang('phones_accounts_title')?></div>
+	<div class="card-header"><i class="fa fa-users"></i> <?=lang('phones_accounts_title')?></div>
 	<div class="card-body">
 		<p><?=lang('phones_accounts_description');?></p>
-		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalAccountsEdit"><?=lang('phones_accounts_btn_edit');?></button>
+		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('phones_accounts_btn_edit');?></button>
 		<table class="table table-hover table-sm mt-2">
 			<thead>
 				<th><?=lang('phones_accounts_table_position');?></th>
@@ -74,15 +74,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<th><?=lang('phones_accounts_table_password');?></th>
 				<th><?=lang('phones_accounts_table_voipsrv1');?></th>
 				<th><?=lang('phones_accounts_table_voipsrv2');?></th>
+				<th><?=lang('phones_accounts_table_status');?></th>
 			</thead>
 			<tbody>
 				<? if ($accounts_list != FALSE): ?>
 				<? foreach($accounts_list as $pos => $account): ?>
-				<? if ($account['active'] === "1"):?>
-				<tr class="table-success">
-				<? else: ?>
-				<tr class="table-secondary">
-				<? endif; ?>
+				<tr>
 					<td><?=$pos;?></td>
 					<td><?=$account['name'];?></td>
 					<td><?=$account['userid'];?></td>
@@ -103,6 +100,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<? else: ?>
 						<?=lang('phones_accounts_table_voipsrv_na');?>
 						<? endif; ?>
+					</td>
+					<td>
+						<? if ($account['active'] === "1"): ?>
+							<div class="badge badge-success text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('phones_accounts_table_status_on');?>"><i class="fa fa-phone"></i></div>
+						<? else: ?>
+							<div class="badge badge-danger text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('phones_accounts_table_status_off');?>"><i class="fa fa-phone-slash"></i></div>
+						<? endif;?>
 					</td>
 				</tr>
 				<? endforeach; ?>
