@@ -12,7 +12,6 @@ class Provisioning extends CI_Controller {
 		// Loading:
 		$this->load->model('settings_model'); // Model for working with a database
 		$this->load->model('phones_model'); // Model for working with a database
-		$this->load->library('forcedownload'); // Library for giving files to the client
 	}
 	
 	//
@@ -46,7 +45,7 @@ class Provisioning extends CI_Controller {
 							$this->phones_model->edit($phone_info_db['id'], array('fw_version' => $phone_info['version']));
 							if (is_readable($this->config->item('storage_path', 'grcentral').'cfg/'.$get_file))
 							{
-								$this->forcedownload->start($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
+								$this->grcentral->forcedownload($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
 							}
 							else
 							{
@@ -133,7 +132,7 @@ class Provisioning extends CI_Controller {
 			
 					if (is_readable($file_path))
 					{
-						$this->forcedownload->start($get_file, $file_path);
+						$this->grcentral->forcedownload($get_file, $file_path);
 					}
 					else
 					{
@@ -312,7 +311,7 @@ class Provisioning extends CI_Controller {
 								// If firmware file is readable...
 								if (is_readable($this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']))
 								{
-									$this->forcedownload->start($put_firmware['file_name'],$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']);
+									$this->grcentral->forcedownload($put_firmware['file_name'],$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']);
 								}
 								else
 								{
