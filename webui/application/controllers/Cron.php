@@ -7,9 +7,9 @@ class Cron extends CI_Controller {
 	{
 		parent::__construct();
 		
-		// Loading:
-		$this->load->model('settings_model'); // Model for working with a database
-		$this->load->model('phones_model'); // Model for working with a database
+		// Loading models:
+		$this->load->model('settings_model');
+		$this->load->model('phones_model');
 	}
 	
 	public function webcron($type=NULL)
@@ -31,13 +31,29 @@ class Cron extends CI_Controller {
 		
 		if ($result == TRUE)
 		{
-			echo "Generate complete: ".$type.PHP_EOL;
+			echo "Task completed: ".$type.PHP_EOL;
 		}
 	}
 	
 	public function clicron($type=NULL)
 	{
+		$result = FALSE;
 		
+		if ($this->input->is_cli_request())
+		{
+			if ($type == 'gencfg')
+			{
+				$result = $this->generate_cfg();
+			}
+		}
+		else
+		{
+			echo "Error: Only CLI requests are allowed.";
+		}
+		if ($result == TRUE)
+		{
+			echo "Task completed: ".$type.PHP_EOL;
+		}
 	}
 	
 	//
@@ -151,6 +167,7 @@ class Cron extends CI_Controller {
 					
 					$xml_path = $this->config->item('storage_path', 'grcentral').'cfg/cfg'.$xml['mac'].'.xml';
 					file_put_contents($xml_path, $put_data);
+					chmod($xml_path, 0666);
 				}
 				return TRUE;
 			}
