@@ -14,6 +14,10 @@ class Cron extends CI_Controller {
 	
 	public function webcron($type=NULL)
 	{
+		if (!$this->grcentral->is_user())
+		{
+			redirect(index_page());
+		}
 		$result = FALSE;
 		
 		if ($type == 'gencfg')

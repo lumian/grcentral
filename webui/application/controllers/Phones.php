@@ -9,6 +9,11 @@ class Phones extends CI_Controller {
 	{
 		parent::__construct();
 		
+		if (!$this->grcentral->is_user())
+		{
+			redirect(index_page());
+		}
+		
 		$this->lang->load('phones');
 		$this->load->model('phones_model');
 		$this->load->model('settings_model');

@@ -9,6 +9,11 @@ class Settings extends CI_Controller {
 	{
 		parent::__construct();
 		
+		if (!$this->grcentral->is_user())
+		{
+			redirect(index_page());
+		}
+		
 		$this->lang->load('settings');
 		$this->load->model('settings_model');
 		$this->load->model('tempdata_model');

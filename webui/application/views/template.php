@@ -49,21 +49,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<ul class="navbar-nav mr-auto">
 				<!-- Main menu -->
 				<? $current = $this->uri->segment('1'); ?>
-				<? if ($current === FALSE): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
+				<? if ($current === FALSE OR $current == ''): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
 					<a class="nav-link" href="/"><?=lang('main_menu_home');?></a>
 				</li>
-				<? if ($current == 'phones'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-					<a class="nav-link" href="/phones/"><?=lang('main_menu_phones');?></a>
-				</li>
-				<? if ($current == 'settings'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-					<a class="nav-link" href="/settings/"><?=lang('main_menu_settings');?></a>
-				</li>
+				<? if ($this->grcentral->is_user()): ?>
+					<? if ($current == 'phones'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
+						<a class="nav-link" href="/phones/"><?=lang('main_menu_phones');?></a>
+					</li>
+					<? if ($current == 'settings'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
+						<a class="nav-link" href="/settings/"><?=lang('main_menu_settings');?></a>
+					</li>
+				<? endif; ?>
 				<!-- End Main menu -->
 			</ul>
-			<form class="form-inline mt-2 mt-md-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+			<!--<form class="form-inline mt-2 mt-md-0">-->
+			<? if (!$this->grcentral->is_user()): ?>
+				<button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalAuth"><?=lang('main_btn_login');?></button>
+			<? else: ?>
+				<a href="/auth/logout" type="button" class="btn btn-outline-danger my-2 my-sm-0" ><?=lang('main_btn_logout');?></a>
+			<? endif; ?>
 		</div>
 	</nav>
 	<main role="main" class="container">
@@ -73,5 +77,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<small class="text-muted">2020 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank">GRCentral</a> v.<?=$this->config->item('version', 'grcentral');?></small>
 		</footer>
 	</main>
+	<? if (!$this->grcentral->is_user()): ?>
+		<?=$this->load->view('auth', NULL, TRUE); ?>
+	<? endif;?>
 </body>
 </html>

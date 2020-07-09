@@ -1,0 +1,31 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+<div class="modal fade" id="ModalAuth" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAuthLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalAuthLabel"><?=lang('main_auth_modal_title');?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="ModalAuthForm" method="post" action="/auth/login">
+					<div class="form-group">
+						<label for="ModalAuthForm_Login"><?=lang('main_auth_modal_login');?></label>
+						<input type="text" name="login" class="form-control" id="ModalAuthForm_Login" required>
+					</div>
+					<div class="form-group">
+						<label for="ModalAuthForm_Password"><?=lang('main_auth_modal_passwd');?></label>
+						<input type="text" name="password" class="form-control" id="ModalAuthForm_Password" required>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="submit" class="btn btn-success btn-sm" form="ModalAuthForm"><?=lang('main_btn_login');?></button>
+			</div>
+		</div>
+	</div>
+</div>

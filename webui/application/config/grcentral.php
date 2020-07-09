@@ -28,3 +28,8 @@ $config['provisioning']['auto_add_devices']		= TRUE; // TRUE or FALSE
 // ENG: Update devices only if they are present in the database and activated
 // RUS: Обновлять аппараты только если они присутствуют в БД и активированы
 $config['provisioning']['fw_update_only_friend']	= TRUE; // TRUE or FALSE
+
+// ENG: Authorization
+// RUS: Авторизация
+$config['auth']['login']		= 'admin';
+$config['auth']['password'] 	= 'admin';
