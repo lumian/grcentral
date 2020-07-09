@@ -36,7 +36,10 @@ class Phones_model extends CI_Model {
 	
 	function getlist()
 	{
-		$this->db->select('*')->from('phones_data')->order_by('descr', 'ASC');
+		$this->db->select('phones_data.*, settings_models.tech_name AS model_tech_name, settings_models.friendly_name AS model_friendly_name, settings_models.group_id AS model_group_id');
+		$this->db->from('phones_data');
+		$this->db->join('settings_models', 'settings_models.id=phones_data.model_id');
+		$this->db->order_by('descr', 'ASC');
 		$result = $this->db->get()->result_array();
 		if (count($result) > 0)
 		{

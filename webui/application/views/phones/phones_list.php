@@ -32,70 +32,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<tbody>
 		<? if ($phones_list != FALSE): ?>
-		<? $device_count = 0; ?>
-		<? foreach($phones_list as $phone): ?>
-		<? $device_count = $device_count +1; ?>
-		<? if ($phone['status_active'] === '0'): ?>
-		<tr class="table-active">
+			<? $device_count = 0; ?>
+			<? foreach($phones_list as $phone): ?>
+				<? $device_count = $device_count +1; ?>
+				<? if ($phone['status_active'] === '0'): ?><tr class="table-active"><? else: ?><tr><? endif;?>
+					<td><?=$device_count;?></td>
+					<td><?=$phone['descr'];?></td>
+					<td><?=$phone['mac_addr'];?></td>
+					<? if ($phone['status_online'] === '1'): ?><td><? else: ?><td class="table-warning"><? endif; ?>
+						<a href="http://<?=$phone['ip_addr'];?>/" target="_blank" title="<?=lang('phones_table_ip_addr_linktitle');?>"><?=$phone['ip_addr'];?></a>
+					</td>
+					<td>
+						<? if ($phone['model_id'] != '0'): ?>
+							<?=$phone['model_friendly_name'];?>
+						<? else: ?>
+							<?=lang('phones_table_model_na');?>
+						<? endif; ?>
+					</td>
+					<td>
+						<? if (isset($phone['accounts_data']) AND json_decode($phone['accounts_data']) != NULL): ?>
+							<? foreach(json_decode($phone['accounts_data'], TRUE) as $account): ?>
+								<?=$account['userid'];?>&nbsp;
+							<? endforeach; ?>
+						<? else: ?>
+							<?=lang('phones_table_accounts_na');?>
+						<? endif;?>
+					</td>
+					<td>
+						<? if (isset($phone['fw_version']) AND $phone['fw_version'] != ''): ?>
+							<?=$phone['fw_version'];?>
+						<? else: ?>
+							<?=lang('phones_table_fwversion_na');?>
+						<? endif; ?>
+						<? if (isset($phone['fw_version_pinned']) AND $phone['fw_version_pinned'] != '0'): ?>
+							<span data-toggle="tooltip" data-html="true" title="<?=lang('phones_table_fwversionpinned_help');?>: <?=$phone['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
+						<? endif; ?>
+					</td>
+					<td>
+						<div class="btn-group" role="group">
+							<a href="/phones/info/<?=$phone['id'];?>" type="button" class="btn btn-outline-info btn-sm">
+								<?=lang('phones_btn_info');?>
+							</a>
+							<button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$phone['id'];?>">
+								<?=lang('main_btn_edit');?>
+							</button>
+							<button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$phone['id'];?>">
+								<?=lang('main_btn_del');?>
+							</button>
+						</div>
+					</td>
+				</tr>
+			<? endforeach; ?>
 		<? else: ?>
-		<tr>
-		<? endif;?>
-			<td><?=$device_count;?></td>
-			<td><?=$phone['descr'];?></td>
-			<td><?=$phone['mac_addr'];?></td>
-			<? if ($phone['status_online'] === '1'): ?>
-			<td>
-			<? else: ?>
-			<td class="table-warning">
-			<? endif; ?>
-				<a href="http://<?=$phone['ip_addr'];?>/" target="_blank" title="<?=lang('phones_table_ip_addr_linktitle');?>"><?=$phone['ip_addr'];?></a>
-			</td>
-			<td>
-				<? if ($phone['model_id'] != '0' AND isset($models_list[$phone['model_id']])): ?>
-					<?=$models_list[$phone['model_id']]['friendly_name'];?>
-				<? else: ?>
-					<?=lang('phones_table_model_na');?>
-				<? endif; ?>
-			</td>
-			<td>
-				<? if (isset($phone['accounts_data']) AND json_decode($phone['accounts_data']) != NULL): ?>
-				
-				<? foreach(json_decode($phone['accounts_data'], TRUE) as $account): ?>
-					<?=$account['userid'];?>&nbsp;
-				<? endforeach; ?>
-				<? else: ?>
-				<?=lang('phones_table_accounts_na');?>
-				<? endif;?>
-			</td>
-			<td>
-				<? if (isset($phone['fw_version']) AND $phone['fw_version'] != ''): ?>
-				<?=$phone['fw_version'];?>
-				<? else: ?>
-				<?=lang('phones_table_fwversion_na');?>
-				<? endif; ?>
-				<? if (isset($phone['fw_version_pinned']) AND $phone['fw_version_pinned'] != '0'): ?>
-					<span data-toggle="tooltip" data-html="true" title="<?=lang('phones_table_fwversionpinned_help');?>: <?=$phone['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
-				<? endif; ?>
-			</td>
-			<td>
-				<div class="btn-group" role="group">
-					<a href="/phones/info/<?=$phone['id'];?>" type="button" class="btn btn-outline-info btn-sm">
-						<?=lang('phones_btn_info');?>
-					</a>
-					<button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$phone['id'];?>">
-						<?=lang('main_btn_edit');?>
-					</button>
-					<button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$phone['id'];?>">
-						<?=lang('main_btn_del');?>
-					</button>
-				</div>
-			</td>
-		</tr>
-		<? endforeach; ?>
-		<? else: ?>
-		<tr class="table-primary">
-			<td colspan="6"><?=lang('main_message_nodata');?></td>
-		</tr>
+			<tr class="table-primary">
+				<td colspan="6"><?=lang('main_message_nodata');?></td>
+			</tr>
 		<? endif; ?>
 	</tbody>
 </table>
