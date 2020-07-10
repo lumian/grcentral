@@ -76,11 +76,13 @@ class Provisioning extends CI_Controller {
 						$model_info = $this->settings_model->models_get(array('tech_name' => $phone_info['model']));
 						
 						// Forming an array with data
-						$add_data['mac_addr']		= $phone_info['mac'];
-						$add_data['ip_addr']		= $_SERVER['REMOTE_ADDR'];
-						$add_data['status_active']	= '0';
-						$add_data['descr']			= "AutoAdd";
-						$add_data['fw_version']		= $phone_info['version'];
+						$add_data['mac_addr']			= $phone_info['mac'];
+						$add_data['ip_addr']			= $_SERVER['REMOTE_ADDR'];
+						$add_data['status_active']		= '0';
+						$add_data['descr']				= "AutoAdd";
+						$add_data['fw_version']			= $phone_info['version'];
+						$add_data['fw_version_pinned']	= '0';
+						
 						if ($model_info === FALSE)
 						{
 							$add_data['model_id'] = '0';
