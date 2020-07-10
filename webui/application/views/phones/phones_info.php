@@ -56,7 +56,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="card mt-2">
 	<div class="card-header"><i class="fa fa-network-wired"></i> <?=lang('phones_actions_cti')?></div>
 	<div class="card-body">
-		<button type="button" class="btn btn-primary btn-sm" disabled><i class="fa fa-sync"></i> <?=lang('phones_actions_btn_reboot');?></button>
+		<? if ($phone_info['admin_password'] != ""): ?>
+			<a href="http://<?=$phone_info['ip_addr'];?>/cgi-bin/api-sys_operation?passcode=<?=$phone_info['admin_password'];?>&request=REBOOT" target="_blank" type="button" class="btn btn-outline-primary btn-sm" disabled>
+				<i class="fa fa-sync"></i> <?=lang('phones_cti_btn_reboot');?>
+			</a>
+		<? else: ?>
+			<div class="alert alert-info" role="alert"><?=lang('phones_actions_cti_off');?></div>
+		<? endif;?>
 	</div>
 </div>
 
