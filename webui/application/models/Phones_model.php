@@ -81,6 +81,7 @@ class Phones_model extends CI_Model {
 			if (isset($data['descr']))				{ $update_data['descr']				= $data['descr']; }
 			if (isset($data['fw_version']))			{ $update_data['fw_version']		= $data['fw_version']; }
 			if (isset($data['fw_version_pinned']))	{ $update_data['fw_version_pinned']	= $data['fw_version_pinned']; }
+			if (isset($data['admin_password']))		{ $update_data['admin_password']	= $data['admin_password']; }
 			
 			$this->db->where('id', $id);
 			$query = $this->db->update('phones_data', $update_data);

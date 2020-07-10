@@ -74,10 +74,11 @@ $lang['phones_info_descr']					= "Описание";
 $lang['phones_accounts_title']				= "Аккаунты";
 $lang['phones_accounts_description']		= "Кол-во аккаунтов ограничено 4 штуками, в зависимости от модели аппарата будет использоваться от 1 до 4 штук.";
 $lang['phones_actions_cti']					= "CTI интеграция";
+$lang['phones_actions_cti_off']				= "CTI интеграция недоступна. В шаблоне настроек для данного аппарата, не найден пароль администратора (P2 value)";
 
 // Кнопки
 $lang['phones_accounts_btn_edit']			= "Редактировать аккаунты";
-$lang['phones_actions_btn_reboot']			= "Перезагрузка";
+$lang['phones_cti_btn_reboot']				= "Перезагрузка";
 
 // Таблица (аккаунты)
 $lang['phones_accounts_table_name']			= "Наименование";

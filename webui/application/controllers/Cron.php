@@ -81,8 +81,21 @@ class Cron extends CI_Controller {
 					if (mb_stripos($param_string, "=") != FALSE)
 					{
 						$string_array = explode("=", $param_string);
-						$params_array[trim($string_array[0])] = trim($string_array[1]);
+						$key = trim($string_array[0]);
+						$param = trim($string_array[1]);
+						$params_array[$key] = $param;
 					}
+				}
+				
+				if (isset($params_array['P2']))
+				{
+					// Update admin password in DB for CTI
+					$this->phones_model->edit($phone['id'], array('admin_password' => $params_array['P2']));
+				}
+				else
+				{
+					// Clear admin password in DB.
+					$this->phones_model->edit($phone['id'], array('admin_password' => ''));
 				}
 				
 				$accounts_array = json_decode($phone['accounts_data'], TRUE);
