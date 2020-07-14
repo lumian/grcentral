@@ -62,11 +62,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<? endif; ?>
 				<!-- End Main menu -->
 			</ul>
-			<!--<form class="form-inline mt-2 mt-md-0">-->
 			<? if (!$this->grcentral->is_user()): ?>
 				<button type="button" class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalAuth"><i class="fa fa-sign-in-alt"></i> <?=lang('main_btn_login');?></button>
 			<? else: ?>
-				<a href="/auth/logout" type="button" class="btn btn-danger my-2 my-sm-0" ><i class="fa fa-sign-out-alt"></i> <?=lang('main_btn_logout');?></a>
+				<? if ($this->grcentral->cfg_need_apply()):?>
+					<a href="/cron/webcron/gencfg" target="_blank" type="button" class="btn btn-warning my-2 my-sm-0"><i class="fa fa-exclamation-circle"></i> <?=lang('main_btn_cfg_apply');?></a>
+				<? endif; ?>
+				<a href="/auth/logout" type="button" class="btn btn-danger my-2 mx-2 my-sm-0" ><i class="fa fa-sign-out-alt"></i> <?=lang('main_btn_logout');?></a>
 			<? endif; ?>
 		</div>
 	</nav>
@@ -79,6 +81,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</main>
 	<? if (!$this->grcentral->is_user()): ?>
 		<?=$this->load->view('auth', NULL, TRUE); ?>
+	<? endif;?>
+	<? if ($this->grcentral->cfg_need_apply()):?>
+		<?=$this->load->view('need_apply', NULL, TRUE); ?>
 	<? endif;?>
 	<script>
 		$(function () {

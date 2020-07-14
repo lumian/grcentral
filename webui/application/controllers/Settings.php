@@ -491,8 +491,7 @@ class Settings extends CI_Controller {
 			
 			$page_data = array(
 				'group_list'		=> $group_list,
-				'group_list_main'	=> $group_list_main,
-				'need_apply'		=> $this->tempdata_model->get_value('settings_need_apply')
+				'group_list_main'	=> $group_list_main
 			);
 		}
 		elseif ($action == 'add' AND is_null($param))

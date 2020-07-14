@@ -12,16 +12,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="modal-body">
 				<form id="ModalAuthForm" method="post" action="/auth/login">
-					<!--<div class="form-group">
-						<label for="ModalAuthForm_Login"><?=lang('main_auth_modal_login');?></label>
-						<input type="text" name="login" class="form-control" id="ModalAuthForm_Login" required>
-					</div>-->
-					<!--<div class="form-group">
-						<label for="ModalAuthForm_Password"><?=lang('main_auth_modal_passwd');?></label>
-						<div class="input-group">
-						<input type="password" name="password" class="form-control" id="ModalAuthForm_Password" required>
-					</div>-->
-					
 					<div class="form-group row">
 						<label for="ModalAuthForm_Login" class="col-sm-3 col-form-label"><?=lang('main_auth_modal_login');?></label>
 						<div class="col-sm-9">

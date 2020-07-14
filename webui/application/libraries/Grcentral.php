@@ -21,6 +21,19 @@ class Grcentral {
 		return FALSE;
 	}
 	
+	public function cfg_need_apply()
+	{
+		$this->CI->load->model('tempdata_model');
+		$need_apply_db = $this->CI->tempdata_model->get_value('settings_need_apply');
+		
+		if ($need_apply_db == '1')
+		{
+			return TRUE;
+		}
+		
+		return FALSE;
+	}
+	
 	// Function for giving files to devices. Change as you like.
 	public function forcedownload($file_name=NULL, $file_path=NULL)
 	{

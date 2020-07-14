@@ -8,9 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_params_btn_new');?></button>
-<? if ($need_apply == '1'):?>
-<a href="/cron/webcron/gencfg" target="_blank" type="button" class="btn btn-danger btn-sm mt-2"><i class="fa fa-exclamation-circle"></i> Apply settings (FIXME!!!)</a>
-<? endif; ?>
 
 <? if ($this->session->flashdata('success_result')): ?>
 <div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>

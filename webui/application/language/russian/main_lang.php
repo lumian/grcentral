@@ -17,6 +17,7 @@ $lang['main_btn_cancel']			= "Отмена";
 $lang['main_btn_del']				= "Удалить";
 $lang['main_btn_login']				= "Войти";
 $lang['main_btn_logout']			= "Выйти";
+$lang['main_btn_cfg_apply']			= "Применить настройки";
 
 // Classic name of table head
 $lang['main_table_actions']			= "Действия";
