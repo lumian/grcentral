@@ -17,6 +17,7 @@ class Phones extends CI_Controller {
 		$this->lang->load('phones');
 		$this->load->model('phones_model');
 		$this->load->model('settings_model');
+		$this->load->model('tempdata_model');
 	}
 	
 	private function _RenderPage()
@@ -165,6 +166,7 @@ class Phones extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
+					$this->tempdata_model->put_value('settings_need_apply', '1');
 					$this->session->set_flashdata('success_result', lang('phones_flashdata_addsuccess'));
 				}
 				else
@@ -196,6 +198,7 @@ class Phones extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
+					$this->tempdata_model->put_value('settings_need_apply', '1');
 					$this->session->set_flashdata('success_result', lang('phones_flashdata_editsuccess'));
 				}
 				else
@@ -220,6 +223,7 @@ class Phones extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
+					$this->tempdata_model->put_value('settings_need_apply', '1');
 					$this->session->set_flashdata('success_result', lang('phones_flashdata_delsuccess'));
 				}
 				else
@@ -325,6 +329,7 @@ class Phones extends CI_Controller {
 				
 			if ($query != FALSE)
 			{
+				$this->tempdata_model->put_value('settings_need_apply', '1');
 				$this->session->set_flashdata('success_result', lang('phones_flashdata_account_editsuccess'));
 			}
 			else

@@ -662,6 +662,7 @@ class Settings extends CI_Controller {
 				
 				if (isset($query) AND $query != FALSE)
 				{
+					$this->tempdata_model->put_value('settings_need_apply', '1');
 					$this->session->set_flashdata('success_result', lang('settings_servers_flashdata_addsuccess'));
 				}
 				else
@@ -693,6 +694,7 @@ class Settings extends CI_Controller {
 					
 					if (isset($query) AND $query != FALSE)
 					{
+						$this->tempdata_model->put_value('settings_need_apply', '1');
 						$this->session->set_flashdata('success_result', lang('settings_servers_flashdata_editsuccess'));
 					}
 					else
@@ -718,7 +720,6 @@ class Settings extends CI_Controller {
 			
 			if ($server_info != FALSE)
 			{
-				//$phones_list = $this->settings_model->phone_getlist(array('server_id'=>$group_info['id']));
 				$phones_list = FALSE;
 				
 				if ($phones_list === FALSE)
@@ -727,6 +728,7 @@ class Settings extends CI_Controller {
 					
 					if ($query != FALSE)
 					{
+						$this->tempdata_model->put_value('settings_need_apply', '1');
 						$this->session->set_flashdata('success_result', lang('settings_servers_flashdata_delsuccess'));
 					}
 					else
