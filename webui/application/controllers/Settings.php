@@ -241,6 +241,7 @@ class Settings extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
+					$this->tempdata_model->put_value('settings_need_apply', '1');
 					$this->session->set_flashdata('success_result', lang('settings_modelsgroup_flashdata_addsuccess'));
 				}
 				else
@@ -272,6 +273,7 @@ class Settings extends CI_Controller {
 					
 					if ($query != FALSE)
 					{
+						$this->tempdata_model->put_value('settings_need_apply', '1');
 						$this->session->set_flashdata('success_result', lang('settings_modelsgroup_flashdata_editsuccess'));
 					}
 					else
@@ -306,6 +308,7 @@ class Settings extends CI_Controller {
 					
 					if ($query != FALSE)
 					{
+						$this->tempdata_model->put_value('settings_need_apply', '1');
 						$this->session->set_flashdata('success_result', lang('settings_modelsgroup_flashdata_delsuccess'));
 					}
 					else
