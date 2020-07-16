@@ -74,93 +74,96 @@ class Cron extends CI_Controller {
 			
 			foreach ($phones_list as $phone)
 			{
-				$params_id = $models_list[$phone['model_id']]['params_group_id'];
-				$params_array_src = json_decode($params_list[$params_id]['params_json_data'], TRUE);
-				$params_array = array();
-				
-				foreach($params_array_src as $param_string)
+				if ($models_list[$phone['model_id']]['params_group_id'] != '0' AND $phone['status_active'] == '1')
 				{
-					if (mb_stripos($param_string, "=") != FALSE)
+					$params_id = $models_list[$phone['model_id']]['params_group_id'];
+					$params_array_src = json_decode($params_list[$params_id]['params_json_data'], TRUE);
+					$params_array = array();
+					
+					foreach($params_array_src as $param_string)
 					{
-						$string_array = explode("=", $param_string);
-						$key = trim($string_array[0]);
-						$param = trim($string_array[1]);
-						$params_array[$key] = $param;
-					}
-				}
-				
-				if (isset($params_array['P2']))
-				{
-					// Update admin password in DB for CTI
-					$this->phones_model->edit($phone['id'], array('admin_password' => $params_array['P2']));
-				}
-				else
-				{
-					// Clear admin password in DB.
-					$this->phones_model->edit($phone['id'], array('admin_password' => ''));
-				}
-				
-				$accounts_array = json_decode($phone['accounts_data'], TRUE);
-				
-				if ($accounts_array != NULL)
-				{
-					foreach($accounts_array as $acc_num=>$acc_info)
-					{
-						if ($acc_num == '1')
+						if (mb_stripos($param_string, "=") != FALSE)
 						{
-							$params_array['P271']	= $acc_info['active'];
-							$params_array['P270']	= $acc_info['name'];
-							$params_array['P47']	= $servers_list[$acc_info['voipsrv1']]['server'];
-							$params_array['P2312']	= $servers_list[$acc_info['voipsrv2']]['server'];
-							$params_array['P35']	= $acc_info['userid'];
-							$params_array['P36']	= $acc_info['authid'];
-							$params_array['P34']	= $acc_info['password'];
-							$params_array['P3']		= $acc_info['name'];
-							$params_array['P2380']	= '1';
-						}
-						if ($acc_num == '2')
-						{
-							$params_array['P401'] 	= $acc_info['active'];
-							$params_array['P417']	= $acc_info['name'];
-							$params_array['P402']	= $servers_list[$acc_info['voipsrv1']]['server'];
-							$params_array['P2412']	= $servers_list[$acc_info['voipsrv2']]['server'];
-							$params_array['P404']	= $acc_info['userid'];
-							$params_array['P405']	= $acc_info['authid'];
-							$params_array['P406']	= $acc_info['password'];
-							$params_array['P407']	= $acc_info['name'];
-							$params_array['P2480']	= '1';
-						}
-						if ($acc_num == '3')
-						{
-							$params_array['P501'] 	= $acc_info['active'];
-							$params_array['P517']	= $acc_info['name'];
-							$params_array['P502']	= $servers_list[$acc_info['voipsrv1']]['server'];
-							$params_array['P2512']	= $servers_list[$acc_info['voipsrv2']]['server'];
-							$params_array['P504']	= $acc_info['userid'];
-							$params_array['P505']	= $acc_info['authid'];
-							$params_array['P506']	= $acc_info['password'];
-							$params_array['P507']	= $acc_info['name'];
-							$params_array['P2580']	= '1';
-						}
-						if ($acc_num == '4')
-						{
-							$params_array['P601'] 	= $acc_info['active'];
-							$params_array['P617']	= $acc_info['name'];
-							$params_array['P602']	= $servers_list[$acc_info['voipsrv1']]['server'];
-							$params_array['P2612']	= $servers_list[$acc_info['voipsrv2']]['server'];
-							$params_array['P604']	= $acc_info['userid'];
-							$params_array['P605']	= $acc_info['authid'];
-							$params_array['P606']	= $acc_info['password'];
-							$params_array['P607']	= $acc_info['name'];
-							$params_array['P2680']	= '1';
+							$string_array = explode("=", $param_string);
+							$key = trim($string_array[0]);
+							$param = trim($string_array[1]);
+							$params_array[$key] = $param;
 						}
 					}
+					
+					if (isset($params_array['P2']))
+					{
+						// Update admin password in DB for CTI
+						$this->phones_model->edit($phone['id'], array('admin_password' => $params_array['P2']));
+					}
+					else
+					{
+						// Clear admin password in DB.
+						$this->phones_model->edit($phone['id'], array('admin_password' => ''));
+					}
+					
+					$accounts_array = json_decode($phone['accounts_data'], TRUE);
+					
+					if ($accounts_array != NULL)
+					{
+						foreach($accounts_array as $acc_num=>$acc_info)
+						{
+							if ($acc_num == '1')
+							{
+								$params_array['P271']	= $acc_info['active'];
+								$params_array['P270']	= $acc_info['name'];
+								$params_array['P47']	= $servers_list[$acc_info['voipsrv1']]['server'];
+								$params_array['P2312']	= $servers_list[$acc_info['voipsrv2']]['server'];
+								$params_array['P35']	= $acc_info['userid'];
+								$params_array['P36']	= $acc_info['authid'];
+								$params_array['P34']	= $acc_info['password'];
+								$params_array['P3']		= $acc_info['name'];
+								$params_array['P2380']	= '1';
+							}
+							if ($acc_num == '2')
+							{
+								$params_array['P401'] 	= $acc_info['active'];
+								$params_array['P417']	= $acc_info['name'];
+								$params_array['P402']	= $servers_list[$acc_info['voipsrv1']]['server'];
+								$params_array['P2412']	= $servers_list[$acc_info['voipsrv2']]['server'];
+								$params_array['P404']	= $acc_info['userid'];
+								$params_array['P405']	= $acc_info['authid'];
+								$params_array['P406']	= $acc_info['password'];
+								$params_array['P407']	= $acc_info['name'];
+								$params_array['P2480']	= '1';
+							}
+							if ($acc_num == '3')
+							{
+								$params_array['P501'] 	= $acc_info['active'];
+								$params_array['P517']	= $acc_info['name'];
+								$params_array['P502']	= $servers_list[$acc_info['voipsrv1']]['server'];
+								$params_array['P2512']	= $servers_list[$acc_info['voipsrv2']]['server'];
+								$params_array['P504']	= $acc_info['userid'];
+								$params_array['P505']	= $acc_info['authid'];
+								$params_array['P506']	= $acc_info['password'];
+								$params_array['P507']	= $acc_info['name'];
+								$params_array['P2580']	= '1';
+							}
+							if ($acc_num == '4')
+							{
+								$params_array['P601'] 	= $acc_info['active'];
+								$params_array['P617']	= $acc_info['name'];
+								$params_array['P602']	= $servers_list[$acc_info['voipsrv1']]['server'];
+								$params_array['P2612']	= $servers_list[$acc_info['voipsrv2']]['server'];
+								$params_array['P604']	= $acc_info['userid'];
+								$params_array['P605']	= $acc_info['authid'];
+								$params_array['P606']	= $acc_info['password'];
+								$params_array['P607']	= $acc_info['name'];
+								$params_array['P2680']	= '1';
+							}
+						}
+					}
+					
+					$xml_data[] = array(
+						'mac'				=> $phone['mac_addr'],
+						'params'			=> $params_array
+					);
 				}
-				
-				$xml_data[] = array(
-					'mac'				=> $phone['mac_addr'],
-					'params'			=> $params_array
-				);
 			}
 			
 			if (is_array($xml_data))
