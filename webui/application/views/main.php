@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? else: ?>
 	<small><?=lang('main_page_auth_text');?></small>
 	<hr class="hr">
-	<a href="<?=site_url('devices');?>" type="button" class="btn btn-primary"><i class="fa fa-phone-square-alt"></i> Управление телефонами</a>
-	<a href="<?=site_url('settings');?>" type="button" class="btn btn-primary"><i class="fa fa-cog"></i> Настроить сервер</a>
+	<a href="<?=site_url('devices');?>" type="button" class="btn btn-primary"><i class="fa fa-phone-square-alt"></i> <?=lang('main_page_btn_devices');?></a>
+	<a href="<?=site_url('settings');?>" type="button" class="btn btn-primary"><i class="fa fa-cog"></i> <?=lang('main_page_btn_settings');?></a>
 	<? endif;?>
 </div>

@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$device['descr'];?></td>
 					<td><?=$device['mac_addr'];?></td>
 					<? if ($device['status_online'] === '1'): ?><td><? else: ?><td class="table-warning"><? endif; ?>
-						<a href="<?=prep_url($device['ip_addr']);?>/" target="_blank" title="<?=lang('devices_index_table_ipaddr_linktitle');?>"><?=$device['ip_addr'];?></a>
+						<a href="<?=prep_url($device['ip_addr']);?>" target="_blank" title="<?=lang('devices_index_table_ipaddr_linktitle');?>"><?=$device['ip_addr'];?></a>
 					</td>
 					<td>
 						<? if ($device['model_id'] != '0' AND isset($models_list[$device['model_id']])): ?>

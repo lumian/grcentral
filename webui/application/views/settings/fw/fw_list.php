@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="card mt-2">
   <div class="card-body">
-    <?=lang('settings_fw_description');?>
+    <?=lang('settings_fw_description_text');?>
   </div>
 </div>
 <? if ($group_list != FALSE): ?>
@@ -94,36 +94,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="modal-body">
 				<form id="ModalAddEditForm" method="post" action="" enctype="multipart/form-data">
 					<div class="form-group">
-						<label for="ModalAddEditForm_Version"><?=lang('settings_fw_modal_version');?></label>
+						<label for="ModalAddEditForm_Version"><?=lang('settings_fw_modal_addedit_version');?></label>
 						<input type="text" name="version" class="form-control" id="ModalAddEditForm_Version" required>
-						<small id="ModalAddEditForm_VersionHelp" class="form-text text-muted"><?=lang('settings_fw_modal_version_help');?></small>
+						<small id="ModalAddEditForm_VersionHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_version_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_PreviousVersion"><?=lang('settings_fw_modal_previous_version');?></label>
+						<label for="ModalAddEditForm_PreviousVersion"><?=lang('settings_fw_modal_addedit_previous_version');?></label>
 						<input type="text" name="previous_version" class="form-control" id="ModalAddEditForm_PreviousVersion" required>
-						<small id="ModalAddEditForm_PreviousVersionHelp" class="form-text text-muted"><?=lang('settings_fw_modal_previous_version_help');?></small>
+						<small id="ModalAddEditForm_PreviousVersionHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_previous_version_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_Group"><?=lang('settings_fw_modal_group');?></label>
+						<label for="ModalAddEditForm_Group"><?=lang('settings_fw_modal_addedit_group');?></label>
 						<select class="form-control" name="group_id" id="ModalAddEditForm_Group" required>
 							<? foreach($group_list as $group): ?>
 							<option value='<?=$group['id'];?>'><?=$group['name'];?></option>
 							<? endforeach; ?>
 						</select>
-						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_group_help');?></small>
+						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_group_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_Status"><?=lang('settings_fw_modal_status');?></label>
+						<label for="ModalAddEditForm_Status"><?=lang('settings_fw_modal_addedit_status');?></label>
 						<select class="form-control" name="status" id="ModalAddEditForm_Status" required>
-							<option value='0'><?=lang('settings_fw_modal_status_off');?></option>
-							<option value='1'><?=lang('settings_fw_modal_status_on');?></option>
+							<option value='0'><?=lang('settings_fw_modal_addedit_status_off');?></option>
+							<option value='1'><?=lang('settings_fw_modal_addedit_status_on');?></option>
 						</select>
-						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_status_descr');?></small>
+						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_status_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_File"><?=lang('settings_fw_modal_file');?></label>
+						<label for="ModalAddEditForm_File"><?=lang('settings_fw_modal_addedit_file');?></label>
 						<input type="file" class="form-control-file" id="ModalAddEditForm_File" name="userfile" required>
-						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_file_help');?></small>
+						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_file_help');?></small>
 					</div>
 				</form>
 			</div>
@@ -141,9 +141,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var fwid = button.data('id')
 		var modal = $(this)
 		if (actiontype == "new") {
-			modal.find('.modal-title').text('<?=lang("settings_fw_modal_title_add");?>')
+			modal.find('.modal-title').text('<?=lang("settings_fw_modal_addedit_title_add");?>')
 			modal.find('.modal-body input').val('')
-			modal.find('.modal-body form').attr('action', '/settings/fw/add/')
+			modal.find('.modal-body form').attr('action', '<?=site_url("settings/fw/add/");?>')
 		}
 	})
 </script>
@@ -153,13 +153,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('settings_fw_modal_title_del');?></h5>
+				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('settings_fw_modal_del_title');?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<?=lang('settings_fw_modal_confirm_del');?>
+				<?=lang('settings_fw_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
@@ -173,7 +173,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var fwid = button.data('id')
 		var modal = $(this)
-		modal.find('.modal-footer a').attr('href', '/settings/fw/del/' + fwid)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("settings/fw/del/");?>' + fwid)
 	})
 </script>
 
@@ -182,13 +182,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalChangeStatusLabel"><?=lang('settings_fw_modal_title_changestatus');?></h5>
+				<h5 class="modal-title" id="ModalChangeStatusLabel"><?=lang('settings_fw_modal_changestatus_title');?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<?=lang('settings_fw_modal_confirm_changestatus');?>
+				<?=lang('settings_fw_modal_changestatus_confirm');?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
@@ -202,7 +202,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var fwid = button.data('id')
 		var modal = $(this)
-		modal.find('.modal-footer a').attr('href', '/settings/fw/change_status/' + fwid)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("settings/fw/change_status/");?>' + fwid)
 	})
 </script>
 <? endif;?>

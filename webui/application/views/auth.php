@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="ModalAuthForm" method="post" action="/auth/login">
+				<form id="ModalAuthForm" method="post" action="<?=site_url('auth/login');?>">
 					<div class="form-group row">
 						<label for="ModalAuthForm_Login" class="col-sm-3 col-form-label"><?=lang('main_auth_modal_login');?></label>
 						<div class="col-sm-9">

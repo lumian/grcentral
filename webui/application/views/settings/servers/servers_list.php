@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="card mt-2">
   <div class="card-body">
-    <?=lang('settings_servers_description');?>
+    <?=lang('settings_servers_description_text');?>
   </div>
 </div>
 
@@ -65,19 +65,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="modal-body">
 				<form id="ModalAddEditForm" method="post" action="">
 					<div class="form-group">
-						<label for="ModalAddEditForm_Name"><?=lang('settings_servers_modal_name');?></label>
+						<label for="ModalAddEditForm_Name"><?=lang('settings_servers_modal_addedit_name');?></label>
 						<input type="text" name="name" class="form-control" id="ModalAddEditForm_Name" required>
-						<small id="ModalAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_servers_modal_name_help');?></small>
+						<small id="ModalAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_servers_modal_addedit_name_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_Description"><?=lang('settings_servers_modal_description');?></label>
+						<label for="ModalAddEditForm_Description"><?=lang('settings_servers_modal_addedit_description');?></label>
 						<input type="text" name="description" class="form-control" id="ModalAddEditForm_Description" required>
-						<small id="ModalAddEditForm_DescriptionHelp" class="form-text text-muted"><?=lang('settings_servers_modal_description_help');?></small>
+						<small id="ModalAddEditForm_DescriptionHelp" class="form-text text-muted"><?=lang('settings_servers_modal_addedit_description_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_Server"><?=lang('settings_servers_modal_server');?></label>
+						<label for="ModalAddEditForm_Server"><?=lang('settings_servers_modal_addedit_server');?></label>
 						<input type="text" name="server" class="form-control" id="ModalAddEditForm_Server" required>
-						<small id="ModalAddEditForm_ServerHelp" class="form-text text-muted"><?=lang('settings_servers_modal_server_help');?></small>
+						<small id="ModalAddEditForm_ServerHelp" class="form-text text-muted"><?=lang('settings_servers_modal_addedit_server_help');?></small>
 					</div>
 				</form>
 			</div>
@@ -95,21 +95,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var serverid = button.data('id')
 		var modal = $(this)
 		if (actiontype == "new") {
-			modal.find('.modal-title').text('<?=lang("settings_servers_modal_title_add");?>')
+			modal.find('.modal-title').text('<?=lang("settings_servers_modal_addedit_title_add");?>')
 			modal.find('.modal-body input').val('')
-			modal.find('.modal-body form').attr('action', '/settings/servers/add/')
+			modal.find('.modal-body form').attr('action', '<?=site_url("settings/servers/add");?>')
 		}
 		if (actiontype == "edit") {
-			modal.find('.modal-title').text('<?=lang("settings_servers_modal_title_edit");?>')
+			modal.find('.modal-title').text('<?=lang("settings_servers_modal_addedit_title_edit");?>')
 			$.ajax({
-				url: '/settings/ajax/servers/get/' + serverid,
+				url: '<?=site_url("settings/ajax/servers/get/");?>' + serverid,
 				dataType: 'json',
 				success: function(responce) {
 					if (responce.result == 'success') {
 						modal.find('.modal-body input[name=name]').val(responce.data.name)
 						modal.find('.modal-body input[name=description]').val(responce.data.description)
 						modal.find('.modal-body input[name=server]').val(responce.data.server)
-						modal.find('.modal-body form').attr('action', '/settings/servers/edit/' + serverid)
+						modal.find('.modal-body form').attr('action', '<?=site_url("settings/servers/edit/");?>' + serverid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')
 					}
@@ -124,13 +124,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('settings_servers_modal_title_del');?></h5>
+				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('settings_servers_modal_del_title');?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<?=lang('settings_servers_modal_confirm_del');?>
+				<?=lang('settings_servers_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
@@ -144,6 +144,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var serverid = button.data('id')
 		var modal = $(this)
-		modal.find('.modal-footer a').attr('href', '/settings/servers/del/' + serverid)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("settings/servers/del/");?>' + serverid)
 	})
 </script>

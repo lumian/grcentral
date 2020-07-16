@@ -111,7 +111,6 @@ class Settings extends CI_Controller {
 	// Settings index page
 	public function index()
 	{
-		$this->title = " - ".lang('settings_main_title');
 		$this->content = $this->load->view('settings/main', NULL, TRUE);
 		$this->_RenderPage();
 	}
@@ -251,11 +250,11 @@ class Settings extends CI_Controller {
 				if ($query != FALSE)
 				{
 					$this->tempdata_model->put_value('settings_need_apply', '1');
-					$this->session->set_flashdata('success_result', lang('settings_modelsgroup_flashdata_addsuccess'));
+					$this->session->set_flashdata('success_result', lang('settings_models_flashdata_addgroupsuccess'));
 				}
 				else
 				{
-					$this->session->set_flashdata('error_result', lang('settings_modelsgroup_flashdata_adderror'));
+					$this->session->set_flashdata('error_result', lang('settings_models_flashdata_addgrouperror'));
 				}
 				redirect('/settings/models/list');
 			}
@@ -283,11 +282,11 @@ class Settings extends CI_Controller {
 					if ($query != FALSE)
 					{
 						$this->tempdata_model->put_value('settings_need_apply', '1');
-						$this->session->set_flashdata('success_result', lang('settings_modelsgroup_flashdata_editsuccess'));
+						$this->session->set_flashdata('success_result', lang('settings_models_flashdata_editgroupsuccess'));
 					}
 					else
 					{
-						$this->session->set_flashdata('error_result', lang('settings_modelsgroup_flashdata_editerror'));
+						$this->session->set_flashdata('error_result', lang('settings_models_flashdata_editgrouperror'));
 					}
 				}
 				else
@@ -318,7 +317,7 @@ class Settings extends CI_Controller {
 					if ($query != FALSE)
 					{
 						$this->tempdata_model->put_value('settings_need_apply', '1');
-						$this->session->set_flashdata('success_result', lang('settings_modelsgroup_flashdata_delsuccess'));
+						$this->session->set_flashdata('success_result', lang('settings_models_flashdata_delgroupsuccess'));
 					}
 					else
 					{
@@ -327,7 +326,7 @@ class Settings extends CI_Controller {
 				}
 				else
 				{
-					$this->session->set_flashdata('error_result', lang('settings_modelsgroup_flashdata_delerror'));
+					$this->session->set_flashdata('error_result', lang('settings_models_flashdata_delgrouperror'));
 				}
 			}
 			else
@@ -341,7 +340,7 @@ class Settings extends CI_Controller {
 			show_404(current_url());
 		}
 		
-		$this->title = " - ".lang('settings_models_title');
+		$this->title = " - ".lang('settings_models_pagetitle');
 		$this->content = $this->load->view('settings/models/models_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
@@ -482,7 +481,7 @@ class Settings extends CI_Controller {
 			show_404(current_url());
 		}
 		
-		$this->title = " - ".lang('settings_fw_title');
+		$this->title = " - ".lang('settings_fw_pagetitle');
 		$this->content = $this->load->view('settings/fw/fw_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
@@ -637,7 +636,7 @@ class Settings extends CI_Controller {
 		{
 			show_404(current_url());
 		}
-		$this->title = " - ".lang('settings_params_title');
+		$this->title = " - ".lang('settings_params_pagetitle');
 		$this->content = $this->load->view('settings/params/params_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
@@ -763,7 +762,7 @@ class Settings extends CI_Controller {
 		{
 			show_404(current_url());
 		}
-		$this->title = " - ".lang('settings_servers_title');
+		$this->title = " - ".lang('settings_servers_pagetitle');
 		$this->content = $this->load->view('settings/servers/servers_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}

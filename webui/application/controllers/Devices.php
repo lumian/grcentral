@@ -118,7 +118,6 @@ class Devices extends CI_Controller {
 			'fw_list'			=> $fw_list
 		);
 		
-		$this->title = ' - '.lang('devices_index_pagetitle');
 		$this->content = $this->load->view('devices/devices_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
@@ -160,7 +159,7 @@ class Devices extends CI_Controller {
 			show_404();
 		}
 		
-		$this->title = ' - '.lang('devices_page_info_title');
+		$this->title = ' - '.lang('devices_info_pagetitle');
 		$this->content = $this->load->view('devices/devices_info', $page_data, TRUE);
 		$this->_RenderPage();
 	}

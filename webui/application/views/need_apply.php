@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="modal-body text-center">
 				<div class="spinner-border text-warning" role="status">
-					<span class="sr-only">Loading...</span>
+					<span class="sr-only"><?=lang('main_message_loading');?></span>
 				</div>
 			</div>
 		</div>

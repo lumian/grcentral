@@ -30,9 +30,10 @@ $lang['main_btn_cfg_apply']						= "Применить настройки";
 $lang['main_table_actions']						= "Действия";
 // Стандартные сообщения
 $lang['main_message_nodata']					= "Нет данных для отображения.";
-$lang['main_auth_message_success']				= "Вы успешно авторизовались";
-$lang['main_auth_message_error']				= "Авторизация не удалась";
-$lang['main_auth_message_logout']				= "Вы успешно выйшли из системы";
+$lang['main_message_loading']					= "Загрузка данных...";
+$lang['main_message_authsuccess']				= "Вы успешно авторизовались";
+$lang['main_message_autherror']					= "Авторизация не удалась";
+$lang['main_message_authlogout']				= "Вы успешно выйшли из системы";
 // Окно авторизации
 $lang['main_auth_modal_title']					= "Авторизация";
 $lang['main_auth_modal_login']					= "Пользователь";
@@ -46,3 +47,5 @@ $lang['main_page_title']						= "GRCentral";
 $lang['main_page_text']							= "Web UI для управления телефонами Grandstream.";
 $lang['main_page_nonauth_text']					= "Авторизуйтесь, для получения доступа к системе.";
 $lang['main_page_auth_text']					= "Удачной работы!";
+$lang['main_page_btn_devices']					= "Управление устройствами";
+$lang['main_page_btn_settings']					= "Настроить сервер";

@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="card mt-2">
   <div class="card-body">
-    <?=lang('settings_params_description');?>
+    <?=lang('settings_params_description_text');?>
   </div>
 </div>
 
@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
-		<th><?=lang('settings_params_table_group');?></th>
+		<th><?=lang('settings_params_table_name');?></th>
 		<th><?=lang('settings_params_table_description');?></th>
 		<th><?=lang('main_table_actions');?></th>
 	</thead>
@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<td><?=$group['description'];?></td>
 			<td>
 				<div class="btn-group btn-block" role="group">
-					<a class="btn btn-outline-info btn-sm" data-toggle="collapse" href="#TableGroup<?=$group['id'];?>" aria-expanded="false" aria-controls="TableGroup<?=$group['id'];?>">
+					<a class="btn btn-outline-info btn-sm" data-toggle="collapse" href="#TableGroup<?=$group['id'];?>" aria-expanded="false" aria-controls="TableGroup<?=$group['id'];?>" title="<?=lang('settings_params_btn_hideshow');?>">
 						<i class="fa fa-compress-alt"></i>
 					</a>
 					<button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$group['id'];?>">
@@ -78,19 +78,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="modal-body">
 				<form id="ModalAddEditForm" method="post" action="">
 					<div class="form-group">
-						<label for="ModalAddEditForm_Name"><?=lang('settings_params_modal_groupname');?></label>
+						<label for="ModalAddEditForm_Name"><?=lang('settings_params_modal_eddedit_groupname');?></label>
 						<input type="text" name="name" class="form-control" id="ModalAddEditForm_Name" required>
-						<small id="ModalAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_params_modal_groupname_help');?></small>
+						<small id="ModalAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_params_modal_eddedit_groupname_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_Description"><?=lang('settings_params_modal_description');?></label>
+						<label for="ModalAddEditForm_Description"><?=lang('settings_params_modal_eddedit_description');?></label>
 						<input type="text" name="description" class="form-control" id="ModalAddEditForm_Description" required>
-						<small id="ModalAddEditForm_DescriptionHelp" class="form-text text-muted"><?=lang('settings_params_modal_description_help');?></small>
+						<small id="ModalAddEditForm_DescriptionHelp" class="form-text text-muted"><?=lang('settings_params_modal_eddedit_description_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_Params"><?=lang('settings_params_modal_params');?></label>
+						<label for="ModalAddEditForm_Params"><?=lang('settings_params_modal_eddedit_params');?></label>
 						<textarea name="params_source_data" class="form-control" id="ModalAddEditForm_Name" rows="10" required></textarea>
-						<small id="ModalAddEditForm_ParamsHelp" class="form-text text-muted"><?=lang('settings_params_modal_params_help');?></small>
+						<small id="ModalAddEditForm_ParamsHelp" class="form-text text-muted"><?=lang('settings_params_modal_eddedit_params_help');?></small>
 					</div>
 				</form>
 			</div>
@@ -108,23 +108,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var paramid = button.data('id')
 		var modal = $(this)
 		if (actiontype == "new") {
-			modal.find('.modal-title').text('<?=lang("settings_params_modal_title_add");?>')
+			modal.find('.modal-title').text('<?=lang("settings_params_modal_eddedit_title_add");?>')
 			modal.find('.modal-body input').val('')
 			modal.find('.modal-body textarea').val('')
 			modal.find('.modal-body select').val('')
-			modal.find('.modal-body form').attr('action', '/settings/params/add/')
+			modal.find('.modal-body form').attr('action', '<?=site_url("settings/params/add/");?>')
 		}
 		if (actiontype == "edit") {
-			modal.find('.modal-title').text('<?=lang("settings_params_modal_title_edit");?>')
+			modal.find('.modal-title').text('<?=lang("settings_params_modal_eddedit_title_edit");?>')
 			$.ajax({
-				url: '/settings/ajax/params/get/' + paramid,
+				url: '<?=site_url("settings/ajax/params/get/");?>' + paramid,
 				dataType: 'json',
 				success: function(responce) {
 					if (responce.result == 'success') {
 						modal.find('.modal-body input[name=name]').val(responce.data.name)
 						modal.find('.modal-body input[name=description]').val(responce.data.description)
 						modal.find('.modal-body textarea[name=params_source_data]').val(responce.data.params_source_data)
-						modal.find('.modal-body form').attr('action', '/settings/params/edit/' + paramid)
+						modal.find('.modal-body form').attr('action', '<?=site_url("settings/params/edit/");?>' + paramid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')
 					}
@@ -139,13 +139,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('settings_params_modal_title_del');?></h5>
+				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('settings_params_modal_del_title');?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<?=lang('settings_params_modal_confirm_del');?>
+				<?=lang('settings_params_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
@@ -159,6 +159,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var paramid = button.data('id')
 		var modal = $(this)
-		modal.find('.modal-footer a').attr('href', '/settings/params/del/' + paramid)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("settings/params/del/");?>' + paramid)
 	})
 </script>

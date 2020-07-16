@@ -38,11 +38,11 @@ class Auth extends CI_Controller {
 			
 			if ($this->_check_credentials($login, $password))
 			{
-				$this->session->set_flashdata('success_result', lang('main_auth_message_success'));
+				$this->session->set_flashdata('success_result', lang('main_message_authsuccess'));
 			}
 			else
 			{
-				$this->session->set_flashdata('error_result', lang('main_auth_message_error'));
+				$this->session->set_flashdata('error_result', lang('main_message_autherror'));
 			}
 			
 			$this->_back_redirect();
@@ -56,7 +56,7 @@ class Auth extends CI_Controller {
 	public function logout()
 	{
 		$this->session->unset_userdata('logged_in');
-		$this->session->set_flashdata('success_result', lang('main_auth_message_logout'));
+		$this->session->set_flashdata('success_result', lang('main_message_authlogout'));
 		$this->_back_redirect();
 	}
 	

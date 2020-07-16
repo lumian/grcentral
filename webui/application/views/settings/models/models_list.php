@@ -3,21 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="card mt-2">
   <div class="card-body">
-    <?=lang('settings_models_description');?>
+    <?=lang('settings_models_description_text');?>
   </div>
 </div>
 
 <? if ($group_list != FALSE): ?>
 <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalModelAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_models_btn_new');?></button>
 <? endif; ?>
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalGroupAddEdit" data-actiontype="new"><i class="fa fa-folder-plus"></i> <?=lang('settings_modelsgroup_btn_new');?></button>
+<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalGroupAddEdit" data-actiontype="new"><i class="fa fa-folder-plus"></i> <?=lang('settings_models_btn_newgroup');?></button>
 
 <? if ($this->session->flashdata('success_result')): ?>
-<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
+	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
 
 <? if ($this->session->flashdata('error_result')): ?>
-<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
+	<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
 <table class="table table-hover table-bordered table-sm mt-2">
@@ -92,19 +92,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="modal-body">
 				<form id="ModalGroupAddEditForm" method="post" action="">
 					<div class="form-group">
-						<label for="ModalGroupAddEditForm_Name"><?=lang('settings_modelsgroup_modal_groupname');?></label>
+						<label for="ModalGroupAddEditForm_Name"><?=lang('settings_models_modal_addeditgroup_groupname');?></label>
 						<input type="text" name="name" class="form-control" id="ModalGroupAddEditForm_Name" required>
-						<small id="ModalGroupAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_modelsgroup_modal_groupname_help');?></small>
+						<small id="ModalGroupAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_models_modal_addeditgroup_groupname_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalGroupAddEditForm_ParamGroup"><?=lang('settings_modelsgroup_modal_paramgroup');?></label>
+						<label for="ModalGroupAddEditForm_ParamGroup"><?=lang('settings_models_modal_addeditgroup_paramgroup');?></label>
 						<select class="form-control" name="params_group_id" id="ModalGroupAddEditForm_ParamGroup" required>
-							<option value='0'>--- <?=lang('settings_modelsgroup_modal_paramgroup_no');?> ---</option>
+							<option value='0'>--- <?=lang('settings_models_modal_addeditgroup_paramgroup_no');?> ---</option>
 							<? foreach($params_group as $param_group): ?>
 							<option value='<?=$param_group['id'];?>'><?=$param_group['name'];?></option>
 							<? endforeach; ?>
 						</select>
-						<small id="ModalGroupAddEditForm_ParamGroupHelp" class="form-text text-muted"><?=lang('settings_modelsgroup_modal_paramgroup_help');?></small>
+						<small id="ModalGroupAddEditForm_ParamGroupHelp" class="form-text text-muted"><?=lang('settings_models_modal_addeditgroup_paramgroup_help');?></small>
 					</div>
 				</form>
 			</div>
@@ -122,20 +122,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var groupid = button.data('id')
 		var modal = $(this)
 		if (actiontype == "new") {
-			modal.find('.modal-title').text('<?=lang("settings_modelsgroup_modal_title_add");?>')
+			modal.find('.modal-title').text('<?=lang("settings_models_modal_addeditgroup_titleadd");?>')
 			modal.find('.modal-body input').val('')
-			modal.find('.modal-body form').attr('action', '/settings/models/add_group/')
+			modal.find('.modal-body form').attr('action', '<?=site_url("settings/models/add_group/");?>')
 		} 
 		if (actiontype == "edit") {
-			modal.find('.modal-title').text('<?=lang("settings_modelsgroup_modal_title_edit");?>')
+			modal.find('.modal-title').text('<?=lang("settings_models_modal_addeditgroup_titleedit");?>')
 			$.ajax({
-				url: '/settings/ajax/models/get_group/' + groupid,
+				url: '<?=site_url("settings/ajax/models/get_group/");?>' + groupid,
 				dataType: 'json',
 				success: function(data) {
 					if (data.result == 'success') {
 						modal.find('.modal-body input[name=name]').val(data.data.name)
 						modal.find('.modal-body select[name=params_group_id]').val(data.data.params_group_id)
-						modal.find('.modal-body form').attr('action', '/settings/models/edit_group/' + groupid)
+						modal.find('.modal-body form').attr('action', '<?=site_url("settings/models/edit_group/");?>' + groupid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')
 					}
@@ -150,13 +150,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalGroupDeleteLabel"><?=lang('settings_modelsgroup_modal_title_del');?></h5>
+				<h5 class="modal-title" id="ModalGroupDeleteLabel"><?=lang('settings_models_modal_delgroup_title');?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<?=lang('settings_modelsgroup_modal_confirm_del');?>
+				<?=lang('settings_models_modal_delgroup_confirm');?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
@@ -170,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var groupid = button.data('id')
 		var modal = $(this)
-		modal.find('.modal-footer a').attr('href', '/settings/models/del_group/' + groupid)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("settings/models/del_group/");?>' + groupid)
 	})
 </script>
 
@@ -189,23 +189,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="modal-body">
 				<form id="ModalModelAddEditForm" method="post" action="">
 					<div class="form-group">
-						<label for="ModalModelAddEditForm_TechName"><?=lang('settings_models_modal_techname');?></label>
+						<label for="ModalModelAddEditForm_TechName"><?=lang('settings_models_modal_addedit_techname');?></label>
 						<input type="text" name="tech_name" class="form-control" id="ModalModelAddEditForm_TechName" required>
-						<small id="ModalModelAddEditForm_TechNameHelp" class="form-text text-muted"><?=lang('settings_models_modal_techname_help');?></small>
+						<small id="ModalModelAddEditForm_TechNameHelp" class="form-text text-muted"><?=lang('settings_models_modal_addedit_techname_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalModelAddEditForm_FriendlyName"><?=lang('settings_models_modal_friendlyname');?></label>
+						<label for="ModalModelAddEditForm_FriendlyName"><?=lang('settings_models_modal_addedit_friendlyname');?></label>
 						<input type="text" name="friendly_name" class="form-control" id="ModalModelAddEditForm_FriendlyName" required>
-						<small id="ModalModelAddEditForm_FriendlyNameHelp" class="form-text text-muted"><?=lang('settings_models_modal_friendlyname_help');?></small>
+						<small id="ModalModelAddEditForm_FriendlyNameHelp" class="form-text text-muted"><?=lang('settings_models_modal_addedit_friendlyname_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalModelAddEditForm_Group"><?=lang('settings_models_modal_group');?></label>
+						<label for="ModalModelAddEditForm_Group"><?=lang('settings_models_modal_addedit_group');?></label>
 						<select class="form-control" name="group_id" id="ModalModelAddEditForm_Group" required>
 							<? foreach($group_list as $group): ?>
 							<option value='<?=$group['id'];?>'><?=$group['name'];?></option>
 							<? endforeach; ?>
 						</select>
-						<small id="ModalModelAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_models_modal_group_help');?></small>
+						<small id="ModalModelAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_models_modal_addedit_group_help');?></small>
 					</div>
 				</form>
 			</div>
@@ -224,21 +224,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var modelid = button.data('id')
 		var modal = $(this)
 		if (actiontype == "new") {
-			modal.find('.modal-title').text('<?=lang("settings_models_modal_title_add");?>')
+			modal.find('.modal-title').text('<?=lang("settings_models_modal_addedit_titleadd");?>')
 			modal.find('.modal-body input').val('')
-			modal.find('.modal-body form').attr('action', '/settings/models/add/')
+			modal.find('.modal-body form').attr('action', '<?=site_url("settings/models/add/");?>')
 		} 
 		if (actiontype == "edit") {
-			modal.find('.modal-title').text('<?=lang("settings_models_modal_title_edit");?>')
+			modal.find('.modal-title').text('<?=lang("settings_models_modal_addedit_titleedit");?>')
 			$.ajax({
-				url: '/settings/ajax/models/get/' + modelid,
+				url: '<?=site_url("settings/ajax/models/get/");?>' + modelid,
 				dataType: 'json',
 				success: function(responce) {
 					if (responce.result == 'success') {
 						modal.find('.modal-body input[name=tech_name]').val(responce.data.tech_name)
 						modal.find('.modal-body input[name=friendly_name]').val(responce.data.friendly_name)
 						modal.find('.modal-body select[name=group_id]').val(responce.data.group_id)
-						modal.find('.modal-body form').attr('action', '/settings/models/edit/' + modelid)
+						modal.find('.modal-body form').attr('action', '<?=site_url("settings/models/edit/");?>' + modelid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')
 					}
@@ -253,13 +253,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalModelDeleteLabel"><?=lang('settings_models_modal_title_del');?></h5>
+				<h5 class="modal-title" id="ModalModelDeleteLabel"><?=lang('settings_models_modal_del_title');?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<?=lang('settings_models_modal_confirm_del');?>
+				<?=lang('settings_models_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
@@ -273,7 +273,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var modelid = button.data('id')
 		var modal = $(this)
-		modal.find('.modal-footer a').attr('href', '/settings/models/del/' + modelid)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("settings/models/del/");?>' + modelid)
 	})
 </script>
 <? endif;?>
