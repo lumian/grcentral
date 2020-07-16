@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<button type="button" class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalAuth"><i class="fa fa-sign-in-alt"></i> <?=lang('main_btn_login');?></button>
 			<? else: ?>
 				<? if ($this->grcentral->cfg_need_apply()):?>
-					<a href="/cron/webcron/gencfg" target="_blank" type="button" class="btn btn-warning my-2 my-sm-0"><i class="fa fa-exclamation-circle"></i> <?=lang('main_btn_cfg_apply');?></a>
+					<button type="button" class="btn btn-warning my-2 my-sm-0" data-toggle="modal" data-target="#ModalNeedApply"><i class="fa fa-exclamation-circle"></i> <?=lang('main_btn_cfg_apply');?></button>
 				<? endif; ?>
 				<a href="/auth/logout" type="button" class="btn btn-danger my-2 mx-2 my-sm-0" ><i class="fa fa-sign-out-alt"></i> <?=lang('main_btn_logout');?></a>
 			<? endif; ?>

@@ -22,30 +22,41 @@ class Cron extends CI_Controller {
 		$this->load->model('tempdata_model');
 	}
 	
-	public function webcron($type=NULL)
+	public function webcron($query=NULL)
 	{
+		
 		if (!$this->grcentral->is_user())
 		{
 			redirect(index_page());
 		}
 		$result = FALSE;
 		
-		if ($type == 'gencfg')
+		if (!is_null($query))
 		{
-			$result = $this->generate_cfg();
+			$json_data['query'] = $query;
+			if ($query == 'gencfg')
+			{
+				$result = $this->generate_cfg();
+			}
+			else
+			{
+				show_404();
+			}
+			
+			if ($result == TRUE)
+			{
+				$json_data['result'] = 'success';
+				
+			}
+			else
+			{
+				$json_data['result'] = 'error';
+			}
+			echo json_encode($json_data);
 		}
 		else
 		{
 			show_404();
-		}
-		
-		if ($result == TRUE)
-		{
-			echo "Task completed: ".$type.PHP_EOL;
-		}
-		else
-		{
-			echo "Error";
 		}
 	}
 	
