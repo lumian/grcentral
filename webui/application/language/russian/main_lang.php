@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Main menu (top)
 $lang['main_menu_home']				= "Главная";
-$lang['main_menu_phones']			= "Устройства";
+$lang['main_menu_devices']			= "Устройства";
 $lang['main_menu_settings']			= "Настройки";
 
 // Classic rrror messages

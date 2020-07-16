@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</li>
 				<? if ($this->grcentral->is_user()): ?>
 					<? if ($current == 'phones'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-						<a class="nav-link" href="/phones/"><i class="fa fa-phone-square-alt"></i> <?=lang('main_menu_phones');?></a>
+						<a class="nav-link" href="/phones/"><i class="fa fa-phone-square-alt"></i> <?=lang('main_menu_devices');?></a>
 					</li>
 					<? if ($current == 'settings'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
 						<a class="nav-link" href="/settings/"><i class="fa fa-cog"></i> <?=lang('main_menu_settings');?></a>

@@ -10,77 +10,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif;?>
 
 <div class="card mt-2">
-	<div class="card-header"><i class="fa fa-info"></i> <?=lang('phones_info_title')?></div>
+	<div class="card-header"><i class="fa fa-info"></i> <?=lang('devices_info_panel_about_title')?></div>
 	<div class="card-body">
 		<img src="/style/img/grandstream_logo.png" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
 		<table>
 			<tr>
-				<td><strong><?=lang('phones_info_model');?>:</strong></td>
-				<td><?=$phone_info['model_info']['friendly_name']; ?></td>
+				<td><strong><?=lang('devices_info_panel_about_model');?>:</strong></td>
+				<td><?=$device_info['model_info']['friendly_name']; ?></td>
 			</tr>
 			<tr>
-				<td><strong><?=lang('phones_info_ipaddr');?>:</strong></td>
-				<td><a href="http://<?=$phone_info['ip_addr']; ?>"  target="_blank" title="<?=lang('phones_table_ip_addr_linktitle');?>"><?=$phone_info['ip_addr']; ?></a></td>
+				<td><strong><?=lang('devices_info_panel_about_ipaddr');?>:</strong></td>
+				<td><a href="http://<?=$device_info['ip_addr']; ?>"  target="_blank" title="<?=lang('phones_table_ip_addr_linktitle');?>"><?=$device_info['ip_addr']; ?></a></td>
 			</tr>
 			<tr>
-				<td><strong><?=lang('phones_info_macaddr');?>:</strong></td>
-				<td><?=$phone_info['mac_addr']; ?></td>
+				<td><strong><?=lang('devices_info_panel_about_macaddr');?>:</strong></td>
+				<td><?=$device_info['mac_addr']; ?></td>
 			</tr>
 			<tr>
-				<td><strong><?=lang('phones_info_statusonline');?>:</strong></td>
+				<td><strong><?=lang('devices_info_panel_about_statusonline');?>:</strong></td>
 				<td>
-					<? if ($phone_info['status_online'] == '1'): ?>
-						<div class="badge badge-success text-wrap"><?=lang('phones_info_statusonline_on'); ?></div>
+					<? if ($device_info['status_online'] == '1'): ?>
+						<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusonline_on'); ?></div>
 					<? else: ?>
-						<div class="badge badge-danger text-wrap"><?=lang('phones_info_statusonline_off'); ?></div>
+						<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusonline_off'); ?></div>
 					<? endif;?>
 				</td>
 			</tr>
 			<tr>
-				<td><strong><?=lang('phones_info_statusactive');?>:</strong></td>
+				<td><strong><?=lang('devices_info_panel_about_statusactive');?>:</strong></td>
 				<td>
-					<? if ($phone_info['status_active'] == '1'): ?>
-						<div class="badge badge-success text-wrap"><?=lang('phones_info_statusactive_on'); ?></div>
+					<? if ($device_info['status_active'] == '1'): ?>
+						<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusactive_on'); ?></div>
 					<? else: ?>
-						<div class="badge badge-danger text-wrap"><?=lang('phones_info_statusactive_off'); ?></div>
+						<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusactive_off'); ?></div>
 					<? endif;?>
 				</td>
 			</tr>
 			<tr>
-				<td><strong><?=lang('phones_info_descr');?>:</strong></td>
-				<td><?=$phone_info['descr']; ?></td>
+				<td><strong><?=lang('devices_info_panel_about_descr');?>:</strong></td>
+				<td><?=$device_info['descr']; ?></td>
 			</tr>
 		</table>
 	</div>
 </div>
 <div class="card mt-2">
-	<div class="card-header"><i class="fa fa-network-wired"></i> <?=lang('phones_actions_cti')?></div>
+	<div class="card-header"><i class="fa fa-network-wired"></i> <?=lang('devices_info_panel_cti_title')?></div>
 	<div class="card-body">
-		<? if ($phone_info['admin_password'] != ""): ?>
-			<a href="http://<?=$phone_info['ip_addr'];?>/cgi-bin/api-sys_operation?passcode=<?=$phone_info['admin_password'];?>&request=REBOOT" target="_blank" type="button" class="btn btn-outline-primary btn-sm" disabled>
-				<i class="fa fa-sync"></i> <?=lang('phones_cti_btn_reboot');?>
+		<? if ($device_info['admin_password'] != ""): ?>
+			<a href="http://<?=$device_info['ip_addr'];?>/cgi-bin/api-sys_operation?passcode=<?=$device_info['admin_password'];?>&request=REBOOT" target="_blank" type="button" class="btn btn-outline-primary btn-sm" disabled>
+				<i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?>
 			</a>
 		<? else: ?>
-			<div class="alert alert-info" role="alert"><?=lang('phones_actions_cti_off');?></div>
+			<div class="alert alert-info" role="alert"><?=lang('devices_info_panel_cti_notavailable');?></div>
 		<? endif;?>
 	</div>
 </div>
 
 <div class="card mt-2">
-	<div class="card-header"><i class="fa fa-users"></i> <?=lang('phones_accounts_title')?></div>
+	<div class="card-header"><i class="fa fa-users"></i> <?=lang('devices_info_panel_accounts_title')?></div>
 	<div class="card-body">
-		<p><?=lang('phones_accounts_description');?></p>
-		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('phones_accounts_btn_edit');?></button>
+		<p><?=lang('devices_info_panel_accounts_description');?></p>
+		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
 		<table class="table table-hover table-sm mt-2">
 			<thead>
-				<th><?=lang('phones_accounts_table_position');?></th>
-				<th><?=lang('phones_accounts_table_name');?></th>
-				<th><?=lang('phones_accounts_table_userid');?></th>
-				<th><?=lang('phones_accounts_table_authid');?></th>
-				<th><?=lang('phones_accounts_table_password');?></th>
-				<th><?=lang('phones_accounts_table_voipsrv1');?></th>
-				<th><?=lang('phones_accounts_table_voipsrv2');?></th>
-				<th><?=lang('phones_accounts_table_status');?></th>
+				<th><?=lang('devices_info_table_accounts_position');?></th>
+				<th><?=lang('devices_info_table_accounts_name');?></th>
+				<th><?=lang('devices_info_table_accounts_userid');?></th>
+				<th><?=lang('devices_info_table_accounts_authid');?></th>
+				<th><?=lang('devices_info_table_accounts_password');?></th>
+				<th><?=lang('devices_info_table_accounts_voipsrv1');?></th>
+				<th><?=lang('devices_info_table_accounts_voipsrv2');?></th>
+				<th><?=lang('devices_info_table_accounts_status');?></th>
 			</thead>
 			<tbody>
 				<? if ($accounts_list != FALSE): ?>
@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<? if (isset($servers_list[$account['voipsrv1']])): ?>
 							<?=$servers_list[$account['voipsrv1']]['name'];?>
 						<? else: ?>
-						<?=lang('phones_accounts_table_voipsrv_na');?>
+						<?=lang('devices_info_table_accounts_voipsrv_na');?>
 						<? endif; ?>
 					</td>
 					<td>
@@ -104,14 +104,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<? if (isset($servers_list[$account['voipsrv2']])): ?>
 							<?=$servers_list[$account['voipsrv2']]['name'];?>
 						<? else: ?>
-						<?=lang('phones_accounts_table_voipsrv_na');?>
+						<?=lang('devices_info_table_accounts_voipsrv_na');?>
 						<? endif; ?>
 					</td>
 					<td>
 						<? if ($account['active'] === "1"): ?>
-							<div class="badge badge-success text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('phones_accounts_table_status_on');?>"><i class="fa fa-phone"></i></div>
+							<div class="badge badge-success text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_on');?>"><i class="fa fa-phone"></i></div>
 						<? else: ?>
-							<div class="badge badge-danger text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('phones_accounts_table_status_off');?>"><i class="fa fa-phone-slash"></i></div>
+							<div class="badge badge-danger text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_off');?>"><i class="fa fa-phone-slash"></i></div>
 						<? endif;?>
 					</td>
 				</tr>
@@ -131,36 +131,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalAccountsEditLabel">ModalTitle</h5>
+				<h5 class="modal-title" id="ModalAccountsEditLabel"><?=lang('devices_info_modal_accounts_title');?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="ModalAccountsEditForm" method="post" action="/phones/actions/edit_accounts/<?=$phone_info['id'];?>">
+				<form id="ModalAccountsEditForm" method="post" action="/phones/actions/edit_accounts/<?=$device_info['id'];?>">
 					<!-- Account #1 -->
 					<div class="row">
 						<div class="col">
-							<strong><?=lang('phones_accounts_modal_account');?> #1 (<?=lang('phones_accounts_modal_mustbefilled')?>)</strong>
+							<strong><?=lang('devices_info_modal_accounts_account');?> #1 (<?=lang('devices_info_modal_accounts_mustbefilled')?>)</strong>
 						</div>
 						<div class="col">
 							&nbsp;
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc1_active" required>
-								<option value="">-- <?=lang('phones_accounts_modal_active');?> --</option>
-								<option value='0'><?=lang('phones_accounts_modal_active_off');?></option>
-								<option value='1'><?=lang('phones_accounts_modal_active_on');?></option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
+								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
+								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
 							</select>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_name');?>" name="acc1_name" required>
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc1_name" required>
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc1_voipsrv1" required>
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv1');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -170,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc1_voipsrv2" required>
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv2');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -181,39 +181,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_userid');?>" name="acc1_userid" required>
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_userid');?>" name="acc1_userid" required>
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_authid');?>" name="acc1_authid" required>
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_authid');?>" name="acc1_authid" required>
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_password');?>" name="acc1_password" required>
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_password');?>" name="acc1_password" required>
 						</div>
 					</div>
 					<hr class="hr">
 					<!-- Account #2 -->
 					<div class="row">
 						<div class="col">
-							<strong><?=lang('phones_accounts_modal_account');?> #2</strong>
+							<strong><?=lang('devices_info_modal_accounts_account');?> #2</strong>
 						</div>
 						<div class="col">
 							&nbsp;
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc2_active">
-								<option value="">-- <?=lang('phones_accounts_modal_active');?> --</option>
-								<option value='0'><?=lang('phones_accounts_modal_active_off');?></option>
-								<option value='1'><?=lang('phones_accounts_modal_active_on');?></option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
+								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
+								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
 							</select>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_name');?>" name="acc2_name">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc2_name">
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc2_voipsrv1">
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv1');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -223,7 +223,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc2_voipsrv2">
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv2');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -234,39 +234,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_userid');?>" name="acc2_userid">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_userid');?>" name="acc2_userid">
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_authid');?>" name="acc2_authid">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_authid');?>" name="acc2_authid">
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_password');?>" name="acc2_password">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_password');?>" name="acc2_password">
 						</div>
 					</div>
 					<hr class="hr">
 					<!-- Account #3 -->
 					<div class="row">
 						<div class="col">
-							<strong><?=lang('phones_accounts_modal_account');?> #3</strong>
+							<strong><?=lang('devices_info_modal_accounts_account');?> #3</strong>
 						</div>
 						<div class="col">
 							&nbsp;
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc3_active">
-								<option value="">-- <?=lang('phones_accounts_modal_active');?> --</option>
-								<option value='0'><?=lang('phones_accounts_modal_active_off');?></option>
-								<option value='1'><?=lang('phones_accounts_modal_active_on');?></option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
+								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
+								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
 							</select>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_name');?>" name="acc3_name">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc3_name">
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc3_voipsrv1">
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv1');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -276,7 +276,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc3_voipsrv2">
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv2');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -287,39 +287,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_userid');?>" name="acc3_userid">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_userid');?>" name="acc3_userid">
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_authid');?>" name="acc3_authid">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_authid');?>" name="acc3_authid">
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_password');?>" name="acc3_password">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_password');?>" name="acc3_password">
 						</div>
 					</div>
 					<hr class="hr">
 					<!-- Account #4 -->
 					<div class="row">
 						<div class="col">
-							<strong><?=lang('phones_accounts_modal_account');?> #4</strong>
+							<strong><?=lang('devices_info_modal_accounts_account');?> #4</strong>
 						</div>
 						<div class="col">
 							&nbsp;
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc4_active">
-								<option value="">-- <?=lang('phones_accounts_modal_active');?> --</option>
-								<option value='0'><?=lang('phones_accounts_modal_active_off');?></option>
-								<option value='1'><?=lang('phones_accounts_modal_active_on');?></option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
+								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
+								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
 							</select>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_name');?>" name="acc4_name">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc4_name">
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc4_voipsrv1">
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv1');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -329,7 +329,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col">
 							<select class="form-control form-control-sm" name="acc4_voipsrv2">
-								<option value="">-- <?=lang('phones_accounts_modal_voipsrv2');?> --</option>
+								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
 								<option value='<?=$server['id'];?>'><?=$server['name'];?></option>
@@ -340,13 +340,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="row mt-2">
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_userid');?>" name="acc4_userid">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_userid');?>" name="acc4_userid">
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_authid');?>" name="acc4_authid">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_authid');?>" name="acc4_authid">
 						</div>
 						<div class="col">
-							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('phones_accounts_modal_password');?>" name="acc4_password">
+							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_password');?>" name="acc4_password">
 						</div>
 					</div>
 				</form>
@@ -362,9 +362,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$('#ModalAccountsEdit').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget)
 		var modal = $(this)
-		modal.find('.modal-title').text('<?=lang("phones_accounts_modal_title_edit");?>')
 		$.ajax({
-			url: '/phones/ajax/get_accounts/<?=$phone_info["id"];?>',
+			url: '/phones/ajax/get_accounts/<?=$device_info["id"];?>',
 			dataType: 'json',
 			success: function(data) {
 				if (data.result == 'success') {

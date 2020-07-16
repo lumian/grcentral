@@ -14,7 +14,7 @@ class Phones extends CI_Controller {
 			redirect(index_page());
 		}
 		
-		$this->lang->load('phones');
+		$this->lang->load('devices');
 		$this->load->model('phones_model');
 		$this->load->model('settings_model');
 		$this->load->model('tempdata_model');
@@ -27,8 +27,8 @@ class Phones extends CI_Controller {
 		);
 		
 		$full_page_data = array(
-			'title'			=> $this->config->item('site_title', 'grcentral')." - ".lang('main_menu_phones').$this->title,
-			'content'		=> $this->load->view('phones/template', $template_page_data, TRUE),
+			'title'			=> $this->config->item('site_title', 'grcentral')." - ".lang('main_menu_devices').$this->title,
+			'content'		=> $this->load->view('devices/template', $template_page_data, TRUE),
 		);
 		
 		$this->load->view('template', $full_page_data);
@@ -40,7 +40,7 @@ class Phones extends CI_Controller {
 		if (!$this->input->is_ajax_request()) { show_404(current_url()); }
 		$result_data['result'] = 'error';
 		
-		// Phones ajax query
+		// Devices ajax query
 		if (!is_null($func) AND !is_null($param))
 		{
 			if ($func == 'get' AND is_numeric($param))
@@ -78,7 +78,7 @@ class Phones extends CI_Controller {
 	// Controller index page
 	public function index()
 	{
-		$phones_list = $this->phones_model->getlist();
+		$devices_list = $this->phones_model->getlist();
 		$models_list = $this->settings_model->models_getlist();
 		$groups_list = $this->settings_model->models_group_getlist();
 		$fw_list = array();
@@ -95,12 +95,13 @@ class Phones extends CI_Controller {
 		}
 		
 		$page_data = array(
-			'phones_list'		=> $phones_list,
+			'devices_list'		=> $devices_list,
 			'models_list'		=> $models_list,
 			'fw_list'			=> $fw_list
 		);
-		$this->title = '- '.lang('phones_title');
-		$this->content = $this->load->view('phones/phones_list', $page_data, TRUE);
+		
+		$this->title = ' - '.lang('devices_index_pagetitle');
+		$this->content = $this->load->view('devices/devices_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
 	
@@ -108,17 +109,17 @@ class Phones extends CI_Controller {
 	{
 		if (!is_null($param) AND is_numeric($param))
 		{
-			$phone_info = $this->phones_model->get(array('id' => $param));
+			$device_info = $this->phones_model->get(array('id' => $param));
 			
-			if ($phone_info != FALSE)
+			if ($device_info != FALSE)
 			{
 				$servers_list = $this->settings_model->servers_getlist();
-				$phone_info['model_info'] = $this->settings_model->models_get(array('id'=>$phone_info['model_id']));
+				$device_info['model_info'] = $this->settings_model->models_get(array('id'=>$device_info['model_id']));
 				
 				// accounts:
-				if ($phone_info['accounts_data'] != NULL)
+				if ($device_info['accounts_data'] != NULL)
 				{
-					$accounts_list = json_decode($phone_info['accounts_data'], TRUE);
+					$accounts_list = json_decode($device_info['accounts_data'], TRUE);
 				}
 				else
 				{
@@ -126,7 +127,7 @@ class Phones extends CI_Controller {
 				}
 				
 				$page_data = array(
-					'phone_info'		=> $phone_info,
+					'device_info'		=> $device_info,
 					'accounts_list'		=> $accounts_list,
 					'servers_list'		=> $servers_list,
 				);
@@ -141,8 +142,8 @@ class Phones extends CI_Controller {
 			show_404();
 		}
 		
-		$this->title = '- '.lang('phones_info_title');
-		$this->content = $this->load->view('phones/phones_info', $page_data, TRUE);
+		$this->title = ' - '.lang('devices_page_info_title');
+		$this->content = $this->load->view('devices/devices_info', $page_data, TRUE);
 		$this->_RenderPage();
 	}
 	
@@ -150,7 +151,7 @@ class Phones extends CI_Controller {
 	{
 		if ($action == 'add' AND is_null($param))
 		{
-			// Add new phone
+			// Add new device
 			if (!is_null($this->input->post('mac_addr')) AND !is_null($this->input->post('ip_addr')) AND !is_null($this->input->post('model_id')) AND !is_null($this->input->post('status_active')) AND !is_null($this->input->post('fw_version_pinned')))
 			{
 				$post_data = array(
@@ -167,11 +168,11 @@ class Phones extends CI_Controller {
 				if ($query != FALSE)
 				{
 					$this->tempdata_model->put_value('settings_need_apply', '1');
-					$this->session->set_flashdata('success_result', lang('phones_flashdata_addsuccess'));
+					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_addsuccess'));
 				}
 				else
 				{
-					$this->session->set_flashdata('error_result', lang('phones_flashdata_adderror'));
+					$this->session->set_flashdata('error_result', lang('devices_index_flashdata_adderror'));
 				}
 				redirect('/phones/');
 			}
@@ -182,7 +183,7 @@ class Phones extends CI_Controller {
 		}
 		elseif ($action == 'edit' AND !is_null($param) AND is_numeric($param))
 		{
-			// Edit phone
+			// Edit device
 			if (!is_null($this->input->post('mac_addr')) AND !is_null($this->input->post('ip_addr')) AND !is_null($this->input->post('model_id')) AND !is_null($this->input->post('status_active')) AND !is_null($this->input->post('fw_version_pinned')))
 			{
 				$post_data = array(
@@ -199,11 +200,11 @@ class Phones extends CI_Controller {
 				if ($query != FALSE)
 				{
 					$this->tempdata_model->put_value('settings_need_apply', '1');
-					$this->session->set_flashdata('success_result', lang('phones_flashdata_editsuccess'));
+					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_editsuccess'));
 				}
 				else
 				{
-					$this->session->set_flashdata('error_result', lang('phones_flashdata_editerror'));
+					$this->session->set_flashdata('error_result', lang('devices_index_flashdata_editerror'));
 				}
 				redirect('/phones/');
 			}
@@ -214,17 +215,17 @@ class Phones extends CI_Controller {
 		}
 		elseif ($action == 'del' AND !is_null($param) AND is_numeric($param))
 		{
-			// Delete phone
-			$phone_info = $this->phones_model->get(array('id'=>$param));
+			// Delete device
+			$device_info = $this->phones_model->get(array('id'=>$param));
 			
-			if ($phone_info != FALSE)
+			if ($device_info != FALSE)
 			{
 				$query = $this->phones_model->del($param);
 				
 				if ($query != FALSE)
 				{
 					$this->tempdata_model->put_value('settings_need_apply', '1');
-					$this->session->set_flashdata('success_result', lang('phones_flashdata_delsuccess'));
+					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_delsuccess'));
 				}
 				else
 				{
@@ -330,11 +331,11 @@ class Phones extends CI_Controller {
 			if ($query != FALSE)
 			{
 				$this->tempdata_model->put_value('settings_need_apply', '1');
-				$this->session->set_flashdata('success_result', lang('phones_flashdata_account_editsuccess'));
+				$this->session->set_flashdata('success_result', lang('devices_info_flashdata_account_editsuccess'));
 			}
 			else
 			{
-				$this->session->set_flashdata('error_result', lang('phones_flashdata_account_editerror'));
+				$this->session->set_flashdata('error_result', lang('devices_info_flashdata_account_editerror'));
 			}
 			redirect('/phones/info/'.$param);
 		}
