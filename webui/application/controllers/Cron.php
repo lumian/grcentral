@@ -70,6 +70,9 @@ class Cron extends CI_Controller {
 		
 		if ($phones_list != FALSE AND $params_list != FALSE AND $models_list != FALSE AND $servers_list != FALSE)
 		{
+			$xml_path = $this->config->item('storage_path', 'grcentral').'cfg';
+			$this->_clean_dir($xml_path);
+			
 			$xml_data = FALSE;
 			
 			foreach ($phones_list as $phone)
@@ -183,13 +186,27 @@ class Cron extends CI_Controller {
 					$put_data .= '	</config>'.PHP_EOL;
 					$put_data .= '</gs_provision>'.PHP_EOL;
 					
-					$xml_path = $this->config->item('storage_path', 'grcentral').'cfg/cfg'.$xml['mac'].'.xml';
-					file_put_contents($xml_path, $put_data);
-					chmod($xml_path, 0666);
+					$xml_file = $xml_path.'/cfg'.$xml['mac'].'.xml';
+					file_put_contents($xml_file, $put_data);
+					chmod($xml_file, 0666);
 				}
 				return TRUE;
 			}
 		}
 		return FALSE;
+	}
+	
+	private function _clean_dir($dir) {
+		$files_list = glob($dir."/*");
+		if (count($files_list) > 0)
+		{
+			foreach ($files_list as $file)
+			{      
+				if (file_exists($file))
+				{
+					unlink($file);
+				}   
+			}
+		}
 	}
 }
