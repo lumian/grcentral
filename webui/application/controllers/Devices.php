@@ -69,7 +69,25 @@ class Devices extends CI_Controller {
 			}
 			if ($func == 'cti_reboot' AND is_numeric($param))
 			{
-				
+				$query = $this->devices_model->get(array('id' => $param));
+				if ($query != FALSE AND is_array($query))
+				{
+					if (isset($query['ip_addr']) AND isset($query['admin_password']) AND $query['admin_password'] != '')
+					{
+						$get_url = 'http://'.$query['ip_addr'].'/cgi-bin/api-sys_operation?passcode='.$query['admin_password'].'&request=REBOOT';
+						
+						$data = @file_get_contents($get_url);
+						$get_data = json_decode($data, TRUE);
+						
+						if ($get_data != NULL AND isset($get_data['response']) AND isset($get_data['body']) AND $get_data['response'] == 'success' AND $get_data['body'] == 'savereboot')
+						{
+							$result_data = array(
+								'result'	=> 'success',
+							);
+						}
+						
+					}
+				}
 			}
 		}
 		echo json_encode($result_data);

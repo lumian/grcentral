@@ -57,9 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="card-header"><i class="fa fa-network-wired"></i> <?=lang('devices_info_panel_cti_title')?></div>
 	<div class="card-body">
 		<? if ($device_info['admin_password'] != ""): ?>
-			<a href="http://<?=$device_info['ip_addr'];?>/cgi-bin/api-sys_operation?passcode=<?=$device_info['admin_password'];?>&request=REBOOT" target="_blank" type="button" class="btn btn-outline-primary btn-sm" disabled>
-				<i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?>
-			</a>
+			<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#ModalCTIQuery" data-action="cti_reboot"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
 		<? else: ?>
 			<div class="alert alert-info" role="alert"><?=lang('devices_info_panel_cti_notavailable');?></div>
 		<? endif;?>
@@ -402,3 +400,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		});
 	})
 </script>
+
+<? if ($device_info['admin_password'] != ""): ?>
+<div class="modal fade" id="ModalCTIQuery" tabindex="-1" role="dialog" aria-labelledby="ModalCTIQueryLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('devices_info_modal_cti_title');?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body text-center">
+				<div class="spinner-border text-warning" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('#ModalCTIQuery').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var modal = $(this)
+		var action = button.data('action')
+		if (action == 'cti_reboot') {
+			$.ajax({
+				url: '<?=site_url("devices/ajax/cti_reboot/".$device_info["id"]);?>',
+				dataType: 'json',
+				success: function(data) {
+					if (data.result == 'success') {
+						modal.find('.modal-body').html('<div class="alert alert-success" role="alert"><?=lang("devices_info_modal_cti_querysuccess");?></div>')
+						setTimeout(function() {
+							$('#ModalCTIQuery').modal('hide');
+						}, 3000);
+					} else {
+						modal.find('.modal-body').html('<div class="alert alert-danger" role="alert"><?=lang("devices_info_modal_cti_queryerror");?></div>')
+					}
+				},
+			});
+		}
+	})
+	
+	$('#ModalCTIQuery').on('hidden.bs.modal', function () {
+		location.reload();
+	})
+</script>
+<? endif;?>

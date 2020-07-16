@@ -116,6 +116,10 @@ $lang['devices_info_modal_accounts_voipsrv2']				= "Укажите дополн�
 $lang['devices_info_modal_accounts_userid']					= "UserID";
 $lang['devices_info_modal_accounts_authid']					= "AuthID";
 $lang['devices_info_modal_accounts_password']				= "Пароль";
+// Страница информации: Модальное окно "Выполнение CTI запроса"
+$lang['devices_info_modal_cti_title']						= "Выполнение CTI запроса";
+$lang['devices_info_modal_cti_querysuccess']				= "Запрос успешно выполнен.";
+$lang['devices_info_modal_cti_queryerror']					= "Произошла ошибка. Запрос не выполнен.";
 // Страница информации: Сообщения
 $lang['devices_info_flashdata_account_editsuccess']			= "Редактирование аккаунтов успешно выполнено.";
 $lang['devices_info_flashdata_account_editerror']			= "Редактирование аккаунтов не выполнено.";
