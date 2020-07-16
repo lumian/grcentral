@@ -9,7 +9,7 @@ class Cron extends CI_Controller {
 		
 		// Loading models:
 		$this->load->model('settings_model');
-		$this->load->model('phones_model');
+		$this->load->model('devices_model');
 		$this->load->model('tempdata_model');
 	}
 	
@@ -63,7 +63,7 @@ class Cron extends CI_Controller {
 	private function generate_cfg()
 	{
 		$this->tempdata_model->put_value('settings_need_apply', '0');
-		$phones_list = $this->phones_model->getlist();
+		$phones_list = $this->devices_model->getlist();
 		$params_list = $this->settings_model->params_getlist();
 		$models_list = $this->settings_model->models_getlist(array('group_data'=>TRUE));
 		$servers_list = $this->settings_model->servers_getlist();
@@ -94,12 +94,12 @@ class Cron extends CI_Controller {
 					if (isset($params_array['P2']))
 					{
 						// Update admin password in DB for CTI
-						$this->phones_model->edit($phone['id'], array('admin_password' => $params_array['P2']));
+						$this->devices_model->edit($phone['id'], array('admin_password' => $params_array['P2']));
 					}
 					else
 					{
 						// Clear admin password in DB.
-						$this->phones_model->edit($phone['id'], array('admin_password' => ''));
+						$this->devices_model->edit($phone['id'], array('admin_password' => ''));
 					}
 					
 					$accounts_array = json_decode($phone['accounts_data'], TRUE);

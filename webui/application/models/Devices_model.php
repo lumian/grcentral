@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Phones_model extends CI_Model {
+class Devices_model extends CI_Model {
 	
 	//
 	// Phones query

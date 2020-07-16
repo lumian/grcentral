@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div class="card mt-2">
 	<div class="card-body">
-		<img src="/style/img/grandstream_logo.png" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
+		<img src="<?=base_url('style/img/grandstream_logo.png');?>" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
 		<?=lang('devices_index_description_text');?>
 	</div>
 </div>
@@ -11,11 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('devices_index_btn_new');?></button>
 
 <? if ($this->session->flashdata('success_result')): ?>
-<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
+	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
 
 <? if ($this->session->flashdata('error_result')): ?>
-<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
+	<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
 <table class="table table-hover table-bordered table-sm mt-2">
@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$device['descr'];?></td>
 					<td><?=$device['mac_addr'];?></td>
 					<? if ($device['status_online'] === '1'): ?><td><? else: ?><td class="table-warning"><? endif; ?>
-						<a href="http://<?=$device['ip_addr'];?>/" target="_blank" title="<?=lang('devices_index_table_ipaddr_linktitle');?>"><?=$device['ip_addr'];?></a>
+						<a href="<?=prep_url($device['ip_addr']);?>/" target="_blank" title="<?=lang('devices_index_table_ipaddr_linktitle');?>"><?=$device['ip_addr'];?></a>
 					</td>
 					<td>
 						<? if ($device['model_id'] != '0' AND isset($models_list[$device['model_id']])): ?>
@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td>
 					<td>
 						<div class="btn-group btn-block" role="group">
-							<a href="/phones/info/<?=$device['id'];?>" type="button" class="btn btn-outline-info btn-xs" title="<?=lang('devices_index_btn_infotitle');?>">
+							<a href="<?=site_url('devices/info/'.$device['id']);?>" type="button" class="btn btn-outline-info btn-xs" title="<?=lang('devices_index_btn_infotitle');?>">
 								<i class="fa fa-info"></i>
 							</a>
 							<button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$device['id'];?>" title="<?=lang('main_btn_edit');?>">
@@ -173,12 +173,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			modal.find('.modal-title').text('<?=lang("devices_index_modaladdedit_titleadd");?>')
 			modal.find('.modal-body input').val('')
 			modal.find('.modal-body select').val('')
-			modal.find('.modal-body form').attr('action', '/phones/actions/add/')
+			modal.find('.modal-body form').attr('action', '<?=site_url("devices/actions/add/")?>')
 		} 
 		if (actiontype == "edit") {
 			modal.find('.modal-title').text('<?=lang("devices_index_modaladdedit_titleedit");?>')
 			$.ajax({
-				url: '/phones/ajax/get/' + phoneid,
+				url: '<?=site_url("devices/ajax/get/")?>' + phoneid,
 				dataType: 'json',
 				success: function(data) {
 					if (data.result == 'success') {
@@ -188,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						modal.find('.modal-body select[name=model_id]').val(data.data.model_id)
 						modal.find('.modal-body select[name=status_active]').val(data.data.status_active)
 						modal.find('.modal-body select[name=fw_version_pinned]').val(data.data.fw_version_pinned)
-						modal.find('.modal-body form').attr('action', '/phones/actions/edit/' + phoneid)
+						modal.find('.modal-body form').attr('action', '<?=site_url("devices/actions/edit/")?>' + phoneid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')
 					}
@@ -223,6 +223,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var phoneid = button.data('id')
 		var modal = $(this)
-		modal.find('.modal-footer a').attr('href', '/phones/actions/del/' + phoneid)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("devices/actions/del/")?>' + phoneid)
 	})
 </script>

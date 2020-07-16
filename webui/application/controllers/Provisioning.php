@@ -11,7 +11,7 @@ class Provisioning extends CI_Controller {
 		
 		// Loading:
 		$this->load->model('settings_model'); // Model for working with a database
-		$this->load->model('phones_model'); // Model for working with a database
+		$this->load->model('devices_model'); // Model for working with a database
 	}
 	
 	//
@@ -31,7 +31,7 @@ class Provisioning extends CI_Controller {
 			if ($phone_info != FALSE AND isset($phone_info['model']) AND isset($phone_info['version']) AND isset($phone_info['mac']) AND (mb_strlen($phone_info['mac']) == '12'))
 			{
 				// Searching for the device in the database
-				$phone_info_db = $this->phones_model->get(array('mac_addr' => $phone_info['mac']));
+				$phone_info_db = $this->devices_model->get(array('mac_addr' => $phone_info['mac']));
 				
 				// If the device is found in the database, we continue
 				if ($phone_info_db != FALSE)
@@ -42,7 +42,7 @@ class Provisioning extends CI_Controller {
 						// 
 						if ($phone_info_db['status_active'] == '1')
 						{
-							$this->phones_model->edit($phone_info_db['id'], array('fw_version' => $phone_info['version']));
+							$this->devices_model->edit($phone_info_db['id'], array('fw_version' => $phone_info['version']));
 							if (is_readable($this->config->item('storage_path', 'grcentral').'cfg/'.$get_file))
 							{
 								$this->grcentral->forcedownload($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
@@ -91,7 +91,7 @@ class Provisioning extends CI_Controller {
 						{
 							$add_data['model_id'] = $model_info['id'];
 						}
-						$this->phones_model->add($add_data);
+						$this->devices_model->add($add_data);
 					}
 					// Displaying the 404 error
 					show_404();
@@ -179,7 +179,7 @@ class Provisioning extends CI_Controller {
 		if (!is_null($phone_info) AND is_array($phone_info) AND isset($phone_info['model']) AND isset($phone_info['version']) AND isset($phone_info['mac']) AND !is_null($get_file) AND is_string($get_file))
 		{
 			// Checking the phone in the database
-			$phone_info_db = $this->phones_model->get(array('mac_addr' => $phone_info['mac']));
+			$phone_info_db = $this->devices_model->get(array('mac_addr' => $phone_info['mac']));
 			
 			// If the device is not found in the database, then check the settings
 			if ($phone_info_db == FALSE OR $phone_info_db['status_active'] == '0')

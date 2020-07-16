@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
 					<? if ($current_tab == ''): ?><a class="nav-link active" href=""><?else:?>
-					<a class="nav-link" href="/phones/"><?endif;?>
+					<a class="nav-link" href="<?=site_url('devices');?>"><?endif;?>
 						<i class="fa fa-phone-square-alt"></i> <?=lang('devices_tabs_title_main');?>
 					</a>
 				</li>

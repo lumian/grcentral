@@ -50,14 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- Main menu -->
 				<? $current = $this->uri->segment('1'); ?>
 				<? if ($current === FALSE OR $current == ''): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-					<a class="nav-link" href="/"><i class="fa fa-home"></i> <?=lang('main_menu_home');?></a>
+					<a class="nav-link" href="<?=site_url();?>"><i class="fa fa-home"></i> <?=lang('main_menu_home');?></a>
 				</li>
 				<? if ($this->grcentral->is_user()): ?>
-					<? if ($current == 'phones'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-						<a class="nav-link" href="/phones/"><i class="fa fa-phone-square-alt"></i> <?=lang('main_menu_devices');?></a>
+					<? if ($current == 'devices'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
+						<a class="nav-link" href="<?=site_url('devices');?>"><i class="fa fa-phone-square-alt"></i> <?=lang('main_menu_devices');?></a>
 					</li>
 					<? if ($current == 'settings'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
-						<a class="nav-link" href="/settings/"><i class="fa fa-cog"></i> <?=lang('main_menu_settings');?></a>
+						<a class="nav-link" href="<?=site_url('settings');?>"><i class="fa fa-cog"></i> <?=lang('main_menu_settings');?></a>
 					</li>
 				<? endif; ?>
 				<!-- End Main menu -->

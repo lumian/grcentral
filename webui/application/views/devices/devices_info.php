@@ -2,17 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <? if ($this->session->flashdata('success_result')): ?>
-<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
+	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
 
 <? if ($this->session->flashdata('error_result')): ?>
-<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
+	<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
 <div class="card mt-2">
 	<div class="card-header"><i class="fa fa-info"></i> <?=lang('devices_info_panel_about_title')?></div>
 	<div class="card-body">
-		<img src="/style/img/grandstream_logo.png" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
+		<img src="<?=base_url('style/img/grandstream_logo.png');?>" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
 		<table>
 			<tr>
 				<td><strong><?=lang('devices_info_panel_about_model');?>:</strong></td>
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</tr>
 			<tr>
 				<td><strong><?=lang('devices_info_panel_about_ipaddr');?>:</strong></td>
-				<td><a href="http://<?=$device_info['ip_addr']; ?>"  target="_blank" title="<?=lang('phones_table_ip_addr_linktitle');?>"><?=$device_info['ip_addr']; ?></a></td>
+				<td><a href="<?=prep_url($device_info['ip_addr']); ?>"  target="_blank"><?=$device_info['ip_addr']; ?></a></td>
 			</tr>
 			<tr>
 				<td><strong><?=lang('devices_info_panel_about_macaddr');?>:</strong></td>
@@ -137,7 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="ModalAccountsEditForm" method="post" action="/phones/actions/edit_accounts/<?=$device_info['id'];?>">
+				<form id="ModalAccountsEditForm" method="post" action="<?=site_url('devices/actions/edit_accounts/'.$device_info['id']);?>">
 					<!-- Account #1 -->
 					<div class="row">
 						<div class="col">
@@ -363,7 +363,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var button = $(event.relatedTarget)
 		var modal = $(this)
 		$.ajax({
-			url: '/phones/ajax/get_accounts/<?=$device_info["id"];?>',
+			url: '<?=site_url("devices/ajax/get_accounts/".$device_info["id"]);?>',
 			dataType: 'json',
 			success: function(data) {
 				if (data.result == 'success') {

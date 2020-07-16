@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Phones extends CI_Controller {
+class Devices extends CI_Controller {
 	
 	private $title = '';
 	
@@ -15,7 +15,7 @@ class Phones extends CI_Controller {
 		}
 		
 		$this->lang->load('devices');
-		$this->load->model('phones_model');
+		$this->load->model('devices_model');
 		$this->load->model('settings_model');
 		$this->load->model('tempdata_model');
 	}
@@ -45,7 +45,7 @@ class Phones extends CI_Controller {
 		{
 			if ($func == 'get' AND is_numeric($param))
 			{
-				$query = $this->phones_model->get(array('id'=>$param));
+				$query = $this->devices_model->get(array('id'=>$param));
 				
 				if ($query != FALSE)
 				{
@@ -57,7 +57,7 @@ class Phones extends CI_Controller {
 			}
 			if ($func == 'get_accounts' AND is_numeric($param))
 			{
-				$query = $this->phones_model->get(array('id'=>$param));
+				$query = $this->devices_model->get(array('id'=>$param));
 				
 				if ($query != FALSE)
 				{
@@ -78,7 +78,7 @@ class Phones extends CI_Controller {
 	// Controller index page
 	public function index()
 	{
-		$devices_list = $this->phones_model->getlist();
+		$devices_list = $this->devices_model->getlist();
 		$models_list = $this->settings_model->models_getlist();
 		$groups_list = $this->settings_model->models_group_getlist();
 		$fw_list = array();
@@ -109,7 +109,7 @@ class Phones extends CI_Controller {
 	{
 		if (!is_null($param) AND is_numeric($param))
 		{
-			$device_info = $this->phones_model->get(array('id' => $param));
+			$device_info = $this->devices_model->get(array('id' => $param));
 			
 			if ($device_info != FALSE)
 			{
@@ -163,7 +163,7 @@ class Phones extends CI_Controller {
 				);
 				if (!is_null($this->input->post('descr'))) { $post_data['descr'] = htmlspecialchars(trim($this->input->post('descr'))); }
 				
-				$query = $this->phones_model->add($post_data);
+				$query = $this->devices_model->add($post_data);
 				
 				if ($query != FALSE)
 				{
@@ -174,7 +174,7 @@ class Phones extends CI_Controller {
 				{
 					$this->session->set_flashdata('error_result', lang('devices_index_flashdata_adderror'));
 				}
-				redirect('/phones/');
+				redirect('/devices/');
 			}
 			else
 			{
@@ -195,7 +195,7 @@ class Phones extends CI_Controller {
 				);
 				if (!is_null($this->input->post('descr'))) { $post_data['descr'] = htmlspecialchars(trim($this->input->post('descr'))); }
 				
-				$query = $this->phones_model->edit($param, $post_data);
+				$query = $this->devices_model->edit($param, $post_data);
 				
 				if ($query != FALSE)
 				{
@@ -206,7 +206,7 @@ class Phones extends CI_Controller {
 				{
 					$this->session->set_flashdata('error_result', lang('devices_index_flashdata_editerror'));
 				}
-				redirect('/phones/');
+				redirect('/devices');
 			}
 			else
 			{
@@ -216,11 +216,11 @@ class Phones extends CI_Controller {
 		elseif ($action == 'del' AND !is_null($param) AND is_numeric($param))
 		{
 			// Delete device
-			$device_info = $this->phones_model->get(array('id'=>$param));
+			$device_info = $this->devices_model->get(array('id'=>$param));
 			
 			if ($device_info != FALSE)
 			{
-				$query = $this->phones_model->del($param);
+				$query = $this->devices_model->del($param);
 				
 				if ($query != FALSE)
 				{
@@ -236,7 +236,7 @@ class Phones extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/phones/');
+			redirect('/devices/');
 		}
 		elseif ($action == 'edit_accounts' AND !is_null($param) AND is_numeric($param))
 		{
@@ -326,7 +326,7 @@ class Phones extends CI_Controller {
 			$accounts_json = json_encode($accounts_data);
 			$post_data['accounts_data'] = $accounts_json;
 			
-			$query = $this->phones_model->edit_accounts($param, $post_data);
+			$query = $this->devices_model->edit_accounts($param, $post_data);
 				
 			if ($query != FALSE)
 			{
@@ -337,7 +337,7 @@ class Phones extends CI_Controller {
 			{
 				$this->session->set_flashdata('error_result', lang('devices_info_flashdata_account_editerror'));
 			}
-			redirect('/phones/info/'.$param);
+			redirect('/devices/info/'.$param);
 		}
 		else
 		{
