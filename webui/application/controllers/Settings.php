@@ -102,7 +102,7 @@ class Settings extends CI_Controller {
 	// Settings index page
 	public function index()
 	{
-		$this->title = "- ".lang('settings_main_title');
+		$this->title = " - ".lang('settings_main_title');
 		$this->content = $this->load->view('settings/main', NULL, TRUE);
 		$this->_RenderPage();
 	}
@@ -332,7 +332,7 @@ class Settings extends CI_Controller {
 			show_404(current_url());
 		}
 		
-		$this->title = "- ".lang('settings_models_title');
+		$this->title = " - ".lang('settings_models_title');
 		$this->content = $this->load->view('settings/models/models_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
@@ -473,7 +473,7 @@ class Settings extends CI_Controller {
 			show_404(current_url());
 		}
 		
-		$this->title = "- ".lang('settings_fw_title');
+		$this->title = " - ".lang('settings_fw_title');
 		$this->content = $this->load->view('settings/fw/fw_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
@@ -628,7 +628,7 @@ class Settings extends CI_Controller {
 		{
 			show_404(current_url());
 		}
-		$this->title = "- ".lang('settings_params_title');
+		$this->title = " - ".lang('settings_params_title');
 		$this->content = $this->load->view('settings/params/params_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
@@ -754,7 +754,7 @@ class Settings extends CI_Controller {
 		{
 			show_404(current_url());
 		}
-		$this->title = "- ".lang('settings_servers_title');
+		$this->title = " - ".lang('settings_servers_title');
 		$this->content = $this->load->view('settings/servers/servers_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}

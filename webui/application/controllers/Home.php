@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 	
-	private $title = '';
-	
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,7 +11,7 @@ class Home extends CI_Controller {
 	private function _RenderPage()
 	{
 		$full_page_data = array(
-			'title'			=> $this->config->item('site_title', 'grcentral')." - ".lang('main_menu_home').$this->title,
+			'title'			=> $this->config->item('site_title', 'grcentral')." - ".lang('main_menu_home'),
 			'content'		=> $this->content,
 		);
 		
