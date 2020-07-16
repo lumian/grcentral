@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/****************************************************************
+	GRCentral v0.1
+	File:			application\controllers\Settings.php
+	Description:	
+	
+	2020 (c) Copyright GRCentral
+	Get this on Github: http://github.com/lumian/grcentral
+****************************************************************/
+
 class Settings extends CI_Controller {
 	
 	private $title = '';
@@ -107,7 +116,7 @@ class Settings extends CI_Controller {
 		$this->_RenderPage();
 	}
 	
-	// Phone models
+	// Device models
 	public function models($action=NULL, $param=NULL)
 	{
 		if (is_null($action) AND is_null($param))

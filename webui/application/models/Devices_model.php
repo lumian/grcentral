@@ -1,16 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/****************************************************************
+	GRCentral v0.1
+	File:			application\models\Devices_model.php
+	Description:	Database queries for the Devices controller
+	
+	2020 (c) Copyright GRCentral
+	Get this on Github: http://github.com/lumian/grcentral
+****************************************************************/
+
 class Devices_model extends CI_Model {
 	
 	//
-	// Phones query
+	// Devices query
 	//
 	function get($params=NULL)
 	{
 		if (!is_null($params))
 		{
-			$this->db->select('*')->from('phones_data');
+			$this->db->select('*')->from('devices_data');
 			
 			if (isset($params['id']) AND is_numeric($params['id']))
 			{
@@ -36,7 +45,7 @@ class Devices_model extends CI_Model {
 	
 	function getlist()
 	{
-		$this->db->select()->from('phones_data')->order_by('descr', 'ASC');
+		$this->db->select()->from('devices_data')->order_by('descr', 'ASC');
 		$result = $this->db->get()->result_array();
 		if (count($result) > 0)
 		{
@@ -59,7 +68,7 @@ class Devices_model extends CI_Model {
 			if (isset($data['fw_version'])) { $add_data['fw_version'] = $data['fw_version']; }
 			if (isset($data['fw_version_pinned'])) { $add_data['fw_version_pinned'] = $data['fw_version_pinned']; }
 			
-			$this->db->insert('phones_data', $add_data);
+			$this->db->insert('devices_data', $add_data);
 			$insert_id = $this->db->insert_id();
 			return $insert_id;
 		}
@@ -81,7 +90,7 @@ class Devices_model extends CI_Model {
 			if (isset($data['admin_password']))		{ $update_data['admin_password']	= $data['admin_password']; }
 			
 			$this->db->where('id', $id);
-			$query = $this->db->update('phones_data', $update_data);
+			$query = $this->db->update('devices_data', $update_data);
 			return TRUE;
 		}
 		return FALSE;
@@ -96,7 +105,7 @@ class Devices_model extends CI_Model {
 			);
 			
 			$this->db->where('id', $id);
-			$query = $this->db->update('phones_data', $update_data);
+			$query = $this->db->update('devices_data', $update_data);
 			return TRUE;
 		}
 		return FALSE;
@@ -107,7 +116,7 @@ class Devices_model extends CI_Model {
 		if (!is_null($id) AND is_numeric($id['id']))
 		{
 			$this->db->where('id', $id);
-			$query = $this->db->delete('phones_data');
+			$query = $this->db->delete('devices_data');
 			return TRUE;
 		}
 		return FALSE;

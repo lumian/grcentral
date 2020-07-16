@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/****************************************************************
+	GRCentral v0.1
+	File:			application\controllers\Home.php
+	Description:	Home page
+	
+	2020 (c) Copyright GRCentral
+	Get this on Github: http://github.com/lumian/grcentral
+****************************************************************/
+
 class Home extends CI_Controller {
 	
 	public function __construct()

@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/****************************************************************
+	GRCentral v0.1
+	File:			application\controllers\Cron.php
+	Description:	Cron jabs for GRCentral.
+	
+	2020 (c) Copyright GRCentral
+	Get this on Github: http://github.com/lumian/grcentral
+****************************************************************/
+
 class Cron extends CI_Controller {
 	
 	public function __construct()
@@ -34,6 +43,10 @@ class Cron extends CI_Controller {
 		{
 			echo "Task completed: ".$type.PHP_EOL;
 		}
+		else
+		{
+			echo "Error";
+		}
 	}
 	
 	public function clicron($type=NULL)
@@ -46,6 +59,10 @@ class Cron extends CI_Controller {
 			{
 				$result = $this->generate_cfg();
 			}
+			else
+			{
+				echo "Error: Type not found";
+			}
 		}
 		else
 		{
@@ -54,6 +71,10 @@ class Cron extends CI_Controller {
 		if ($result == TRUE)
 		{
 			echo "Task completed: ".$type.PHP_EOL;
+		}
+		else
+		{
+			echo "Error";
 		}
 	}
 	

@@ -16,8 +16,8 @@
 CREATE DATABASE IF NOT EXISTS `grcentral_base` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `grcentral_base`;
 
--- Дамп структуры для таблица grcentral_base.phones_data
-CREATE TABLE IF NOT EXISTS `phones_data` (
+-- Дамп структуры для таблица grcentral_base.devices_data
+CREATE TABLE IF NOT EXISTS `devices_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mac_addr` varchar(12) DEFAULT NULL,
   `ip_addr` varchar(15) DEFAULT NULL,

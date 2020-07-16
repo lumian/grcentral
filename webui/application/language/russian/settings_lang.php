@@ -1,9 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-	Русский языковой файл для контроллера "Settings"
-*/
+/****************************************************************
+	GRCentral v0.1
+	File:			application\language\russian\settings_lang.php
+	Description:	Language file for "Settings" controller.
+	Laguage:		Russian
+	
+	2020 (c) Copyright GRCentral
+	Get this on Github: http://github.com/lumian/grcentral
+****************************************************************/
 
 //
 // Заглавная страница
@@ -59,7 +65,6 @@ $lang['settings_modelsgroup_flashdata_editsuccess']	= "Группа успешн
 $lang['settings_modelsgroup_flashdata_editerror']	= "Группа не отредактирована.";
 $lang['settings_modelsgroup_flashdata_delsuccess']	= "Группа успешно удалена.";
 $lang['settings_modelsgroup_flashdata_delerror']	= "Группа не удалена, т.к. используется в моделях телефонов или обновлениях.";
-
 //
 // Раздел "Обновление прошивки"
 //
@@ -132,7 +137,6 @@ $lang['settings_params_flashdata_editsuccess']		= "Шаблон успешно �
 $lang['settings_params_flashdata_editerror']		= "Шаблон не отредактирован.";
 $lang['settings_params_flashdata_delsuccess']		= "Шаблон успешно удален.";
 $lang['settings_params_flashdata_delerror']			= "Шаблон не удален, т.к. используется в моделях телефонов.";
-
 //
 // Раздел "Серверы"
 //

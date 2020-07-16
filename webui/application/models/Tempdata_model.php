@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/****************************************************************
+	GRCentral v0.1
+	File:			application\models\Tempdata_model.php
+	Description:	Database queries for tempdata table
+	
+	2020 (c) Copyright GRCentral
+	Get this on Github: http://github.com/lumian/grcentral
+****************************************************************/
+
 class Tempdata_model extends CI_Model {
 	
 	function get_value($variable=NULL)

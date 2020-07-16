@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/****************************************************************
+	GRCentral v0.1
+	File:			application\controllers\Auth.php
+	Description:	Controller for user authorization
+	
+	2020 (c) Copyright GRCentral
+	Get this on Github: http://github.com/lumian/grcentral
+****************************************************************/
+
 class Auth extends CI_Controller {
 	
 	public function __construct()
@@ -10,7 +19,7 @@ class Auth extends CI_Controller {
 	
 	public function Index()
 	{
-		show_404();
+		$this->_back_redirect();
 	}
 	
 	public function login()
