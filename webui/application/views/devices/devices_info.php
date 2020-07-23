@@ -68,7 +68,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="card-header"><i class="fa fa-users"></i> <?=lang('devices_info_panel_accounts_title')?></div>
 	<div class="card-body">
 		<p><?=lang('devices_info_panel_accounts_description');?></p>
-		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
+		
+		<div class="btn-group btn-group-sm" role="group">
+			<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
+			<a href="<?=lang('main_helpurl_devices_accounts');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+		</div>
+		
 		<table class="table table-hover table-sm mt-2">
 			<thead>
 				<th><?=lang('devices_info_table_accounts_position');?></th>
@@ -350,8 +355,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<button type="submit" class="btn btn-success btn-sm" form="ModalAccountsEditForm"><?=lang('main_btn_save');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalAccountsEditForm"><?=lang('main_btn_save');?></button>
 			</div>
 		</div>
 	</div>

@@ -6,9 +6,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?=lang('settings_fw_description_text');?>
   </div>
 </div>
-<? if ($group_list != FALSE): ?>
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_fw_btn_new');?></button>
-<? endif; ?>
+
+<div class="btn-group btn-group-sm mt-2" role="group">
+	<? if ($group_list != FALSE): ?>
+	<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_fw_btn_new');?></button>
+	<? endif; ?>
+	<a href="<?=lang('main_helpurl_settings_fw');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+</div>
+
 
 <? if ($this->session->flashdata('success_result')): ?>
 <div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
@@ -128,8 +133,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<button type="submit" class="btn btn-success btn-sm" form="ModalAddEditForm"><?=lang('main_btn_save');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalAddEditForm"><?=lang('main_btn_save');?></button>
 			</div>
 		</div>
 	</div>
@@ -162,8 +167,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?=lang('settings_fw_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<a type="button" class="btn btn-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<a type="button" class="btn btn-outline-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
 			</div>
 		</div>
 	</div>
@@ -191,8 +196,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?=lang('settings_fw_modal_changestatus_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<a type="button" class="btn btn-success btn-sm" href="#"><?=lang('main_btn_save');?></a>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<a type="button" class="btn btn-outline-success btn-sm" href="#"><?=lang('main_btn_save');?></a>
 			</div>
 		</div>
 	</div>

@@ -7,10 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 
-<? if ($group_list != FALSE): ?>
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalModelAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_models_btn_new');?></button>
-<? endif; ?>
-<button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#ModalGroupAddEdit" data-actiontype="new"><i class="fa fa-folder-plus"></i> <?=lang('settings_models_btn_newgroup');?></button>
+<div class="btn-group btn-group-sm mt-2" role="group">
+	<? if ($group_list != FALSE): ?>
+	<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalModelAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_models_btn_new');?></button>
+	<? endif; ?>
+	<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalGroupAddEdit" data-actiontype="new"><i class="fa fa-folder-plus"></i> <?=lang('settings_models_btn_newgroup');?></button>
+	<a href="<?=lang('main_helpurl_settings_models');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+</div>
 
 <? if ($this->session->flashdata('success_result')): ?>
 	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
@@ -109,8 +112,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<button type="submit" class="btn btn-success btn-sm" form="ModalGroupAddEditForm"><?=lang('main_btn_save');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalGroupAddEditForm"><?=lang('main_btn_save');?></button>
 			</div>
 		</div>
 	</div>
@@ -159,8 +162,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?=lang('settings_models_modal_delgroup_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<a type="button" class="btn btn-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<a type="button" class="btn btn-outline-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
 			</div>
 		</div>
 	</div>
@@ -210,8 +213,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<button type="submit" class="btn btn-success btn-sm" form="ModalModelAddEditForm"><?=lang('main_btn_save');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalModelAddEditForm"><?=lang('main_btn_save');?></button>
 			</div>
 		</div>
 	</div>
@@ -262,8 +265,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?=lang('settings_models_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<a type="button" class="btn btn-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<a type="button" class="btn btn-outline-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
 			</div>
 		</div>
 	</div>
