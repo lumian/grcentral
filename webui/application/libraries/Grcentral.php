@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral v0.1
+	GRCentral v0.2
 	File:			application\libraries\Grcentral.php
 	Description:	Small but necessary functions that are used in different system controllers.
 	

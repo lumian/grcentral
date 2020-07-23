@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral v0.1
+	GRCentral
 	File:			application\config\grcentral.php
 	Description:	System settings config
 	
@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['grcentral']['site_title'] 				= 'GRCentral';
 // ENG: GRCentral version
 // RUS: Версия GRCentral
-$config['grcentral']['version'] 				= '0.1';
+$config['grcentral']['version'] 				= '0.2';
 // ENG: Path to the file storage
 // RUS: Путь к хранилищу файлов
 $config['grcentral']['storage_path']			= $_SERVER['DOCUMENT_ROOT'].'storage/';
