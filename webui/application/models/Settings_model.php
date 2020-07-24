@@ -515,4 +515,18 @@ class Settings_model extends CI_Model {
 				}
 			}
 			
+			if (isset($update_data))
+			{
+				$this->db->update_batch('settings_system', $update_data, 'key');
+			}
+			if (isset($insert_data))
+			{
+				$this->db->insert_batch('settings_system', $insert_data);
+			}
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
+
 }

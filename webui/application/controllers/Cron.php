@@ -19,7 +19,6 @@ class Cron extends CI_Controller {
 		// Loading models:
 		$this->load->model('settings_model');
 		$this->load->model('devices_model');
-		$this->load->model('tempdata_model');
 	}
 	
 	public function webcron($query=NULL)
@@ -94,7 +93,7 @@ class Cron extends CI_Controller {
 	//
 	private function generate_cfg()
 	{
-		$this->tempdata_model->put_value('settings_need_apply', '0');
+		$this->settings_model->syssettings_update(array('cfg_need_apply' => 'off'));
 		$phones_list = $this->devices_model->getlist();
 		$params_list = $this->settings_model->params_getlist();
 		$models_list = $this->settings_model->models_getlist(array('group_data'=>TRUE));

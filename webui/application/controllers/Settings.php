@@ -25,7 +25,6 @@ class Settings extends CI_Controller {
 		
 		$this->lang->load('settings');
 		$this->load->model('settings_model');
-		$this->load->model('tempdata_model');
 	}
 	
 	private function _RenderPage()
@@ -244,7 +243,7 @@ class Settings extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
-					$this->tempdata_model->put_value('settings_need_apply', '1');
+					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('settings_models_flashdata_addgroupsuccess'));
 				}
 				else
@@ -276,7 +275,7 @@ class Settings extends CI_Controller {
 					
 					if ($query != FALSE)
 					{
-						$this->tempdata_model->put_value('settings_need_apply', '1');
+						$this->grcentral->set_cfg_need_apply();
 						$this->session->set_flashdata('success_result', lang('settings_models_flashdata_editgroupsuccess'));
 					}
 					else
@@ -311,7 +310,7 @@ class Settings extends CI_Controller {
 					
 					if ($query != FALSE)
 					{
-						$this->tempdata_model->put_value('settings_need_apply', '1');
+						$this->grcentral->set_cfg_need_apply();
 						$this->session->set_flashdata('success_result', lang('settings_models_flashdata_delgroupsuccess'));
 					}
 					else
@@ -518,7 +517,7 @@ class Settings extends CI_Controller {
 				
 				if (isset($query) AND $query != FALSE)
 				{
-					$this->tempdata_model->put_value('settings_need_apply', '1');
+					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('settings_params_flashdata_addsuccess'));
 				}
 				else
@@ -564,7 +563,7 @@ class Settings extends CI_Controller {
 					
 					if (isset($query) AND $query != FALSE)
 					{
-						$this->tempdata_model->put_value('settings_need_apply', '1');
+						$this->grcentral->set_cfg_need_apply();
 						$this->session->set_flashdata('success_result', lang('settings_params_flashdata_editsuccess'));
 					}
 					else
@@ -598,7 +597,7 @@ class Settings extends CI_Controller {
 					
 					if ($query != FALSE)
 					{
-						$this->tempdata_model->put_value('settings_need_apply', '1');
+						$this->grcentral->set_cfg_need_apply();
 						$this->session->set_flashdata('success_result', lang('settings_params_flashdata_delsuccess'));
 					}
 					else
@@ -653,7 +652,7 @@ class Settings extends CI_Controller {
 				
 				if (isset($query) AND $query != FALSE)
 				{
-					$this->tempdata_model->put_value('settings_need_apply', '1');
+					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('settings_servers_flashdata_addsuccess'));
 				}
 				else
@@ -685,7 +684,7 @@ class Settings extends CI_Controller {
 					
 					if (isset($query) AND $query != FALSE)
 					{
-						$this->tempdata_model->put_value('settings_need_apply', '1');
+						$this->grcentral->set_cfg_need_apply();
 						$this->session->set_flashdata('success_result', lang('settings_servers_flashdata_editsuccess'));
 					}
 					else
@@ -719,7 +718,7 @@ class Settings extends CI_Controller {
 					
 					if ($query != FALSE)
 					{
-						$this->tempdata_model->put_value('settings_need_apply', '1');
+						$this->grcentral->set_cfg_need_apply();
 						$this->session->set_flashdata('success_result', lang('settings_servers_flashdata_delsuccess'));
 					}
 					else

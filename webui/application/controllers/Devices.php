@@ -26,7 +26,6 @@ class Devices extends CI_Controller {
 		$this->lang->load('devices');
 		$this->load->model('devices_model');
 		$this->load->model('settings_model');
-		$this->load->model('tempdata_model');
 	}
 	
 	private function _RenderPage()
@@ -193,7 +192,7 @@ class Devices extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
-					$this->tempdata_model->put_value('settings_need_apply', '1');
+					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_addsuccess'));
 				}
 				else
@@ -225,7 +224,7 @@ class Devices extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
-					$this->tempdata_model->put_value('settings_need_apply', '1');
+					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_editsuccess'));
 				}
 				else
@@ -250,7 +249,7 @@ class Devices extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
-					$this->tempdata_model->put_value('settings_need_apply', '1');
+					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_delsuccess'));
 				}
 				else
@@ -356,7 +355,7 @@ class Devices extends CI_Controller {
 				
 			if ($query != FALSE)
 			{
-				$this->tempdata_model->put_value('settings_need_apply', '1');
+				$this->grcentral->set_cfg_need_apply();
 				$this->session->set_flashdata('success_result', lang('devices_info_flashdata_account_editsuccess'));
 			}
 			else

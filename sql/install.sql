@@ -109,15 +109,6 @@ CREATE TABLE IF NOT EXISTS `settings_system` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.temp_data
-CREATE TABLE IF NOT EXISTS `temp_data` (
-  `variable` varchar(250) DEFAULT NULL,
-  `value` varchar(250) DEFAULT NULL,
-  UNIQUE KEY `variable` (`variable`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Экспортируемые данные не выделены.
-
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

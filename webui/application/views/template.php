@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<? if (!$this->grcentral->is_user()): ?>
 				<button type="button" class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#ModalAuth"><i class="fa fa-sign-in-alt"></i> <?=lang('main_btn_login');?></button>
 			<? else: ?>
-				<? if ($this->grcentral->cfg_need_apply()):?>
+				<? if ($this->grcentral->check_cfg_need_apply()):?>
 					<button type="button" class="btn btn-warning my-2 my-sm-0" data-toggle="modal" data-target="#ModalNeedApply"><i class="fa fa-exclamation-circle"></i> <?=lang('main_btn_cfg_apply');?></button>
 				<? endif; ?>
 				<a href="/auth/logout" type="button" class="btn btn-danger my-2 mx-2 my-sm-0" ><i class="fa fa-sign-out-alt"></i> <?=lang('main_btn_logout');?></a>
@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? if (!$this->grcentral->is_user()): ?>
 		<?=$this->load->view('auth', NULL, TRUE); ?>
 	<? endif;?>
-	<? if ($this->grcentral->cfg_need_apply()):?>
+	<? if ($this->grcentral->check_cfg_need_apply()):?>
 		<?=$this->load->view('need_apply', NULL, TRUE); ?>
 	<? endif;?>
 	<script>

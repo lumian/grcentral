@@ -32,17 +32,26 @@ class Grcentral {
 	}
 	
 	// Function for determining whether settings should be applied.
-	public function cfg_need_apply()
+	public function check_cfg_need_apply()
 	{
-		$this->CI->load->model('tempdata_model');
-		$need_apply_db = $this->CI->tempdata_model->get_value('settings_need_apply');
+		$this->CI->load->model('settings_model');
+		$need_apply_db = $this->CI->settings_model->syssettings_get('cfg_need_apply');
 		
-		if ($need_apply_db == '1')
+		if ($need_apply_db == 'on')
 		{
 			return TRUE;
 		}
 		
 		return FALSE;
+	}
+	
+	// Function for setting the "need apply" flag
+	public function set_cfg_need_apply()
+	{
+		$this->CI->load->model('settings_model');
+		$need_apply_db = $this->CI->settings_model->syssettings_update(array('cfg_need_apply' => 'on'));
+		
+		return TRUE;
 	}
 	
 	// Function for giving files to devices.
