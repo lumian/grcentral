@@ -100,6 +100,15 @@ CREATE TABLE IF NOT EXISTS `settings_servers` (
 
 -- Экспортируемые данные не выделены.
 
+-- Дамп структуры для таблица grcentral_base.settings_system
+CREATE TABLE IF NOT EXISTS `settings_system` (
+  `key` varchar(250) DEFAULT NULL,
+  `value` varchar(250) DEFAULT NULL,
+  UNIQUE KEY `variable` (`key`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Экспортируемые данные не выделены.
+
 -- Дамп структуры для таблица grcentral_base.temp_data
 CREATE TABLE IF NOT EXISTS `temp_data` (
   `variable` varchar(250) DEFAULT NULL,
