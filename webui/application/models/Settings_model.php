@@ -456,4 +456,63 @@ class Settings_model extends CI_Model {
 		}
 		return FALSE;
 	}
+	
+	//
+	// System settings query
+	//
+	
+	function syssettings_get($key=NULL)
+	{
+		if (!is_null($key) AND is_string($key))
+		{
+			$this->db->select('*')->from('settings_system')->where('key', $key);
+			$result = $this->db->get()->result_array();
+			
+			if (count($result) === 1)
+			{
+				return $result[0]['value'];
+			}
+		}
+		return FALSE;
+	}
+	
+	function syssettings_getlist()
+	{
+		$this->db->select('*')->from('settings_system');
+		$result_query = $this->db->get()->result_array();
+		if (count($result_query) > 0)
+		{
+			foreach($result_query as $row)
+			{
+				$result[$row['key']] = $row['value'];
+			}
+			return $result;
+		}
+		return FALSE;
+	}
+	
+	function syssettings_update($put_data=NULL)
+	{
+		$settings_list = $this->syssettings_getlist();
+		
+		if (!is_null($put_data))
+		{
+			foreach($put_data as $key => $value)
+			{
+				if (isset($settings_list[$key]))
+				{
+					$update_data[] = array(
+						'key'		=> $key,
+						'value'		=> $value
+					);
+				}
+				else
+				{
+					$insert_data[] = array(
+						'key'		=> $key,
+						'value'		=> $value
+					);
+				}
+			}
+			
 }

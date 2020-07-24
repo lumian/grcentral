@@ -17,6 +17,7 @@ $lang['settings_tabs_title_models']							= "Модели";
 $lang['settings_tabs_title_fw']								= "Прошивки";
 $lang['settings_tabs_title_params']							= "Параметры";
 $lang['settings_tabs_title_servers']						= "VoIP серверы";
+$lang['settings_tabs_title_syssettings']							= "Система";
 //
 // Главная страница
 //
@@ -175,3 +176,18 @@ $lang['settings_servers_flashdata_editsuccess']				= "Сервер успешн�
 $lang['settings_servers_flashdata_editerror']				= "Сервер не отредактирован.";
 $lang['settings_servers_flashdata_delsuccess']				= "Сервер успешно удален.";
 $lang['settings_servers_flashdata_delerror']				= "Сервер не удален, т.к. указан в настройках устройств.";
+
+//
+// Раздел Системные настройки
+//
+$lang['settings_syssettings_pagetitle']						= "Системные настройки";
+$lang['settings_syssettings_description_text']				= "Описание для системных настроек";
+// Раздел "Системные настройки": Описание настроек
+$lang['settings_syssettings_title_provisioning']			= "Настройки распространения";
+$lang['settings_syssettings_auto_add_devices_name']			= "Автоматическое добавление устройств";
+$lang['settings_syssettings_auto_add_devices_help']			= "Автоматическое добавление девайсов в базу данных при обращении к серверу (CFG запрос)";
+$lang['settings_syssettings_fw_update_only_friend_name']	= "Обновление только дружественных устройств";
+$lang['settings_syssettings_fw_update_only_friend_help']	= "Обновлять аппараты только если они присутствуют в БД и активированы";
+// Раздел "Системные настройки": Сообщения
+$lang['settings_syssettings_flashdata_editsuccess']			= "Настройки успешно обновлены";
+$lang['settings_syssettings_flashdata_editerror']			= "Произошла ошибка. Настройки не обновлены.";

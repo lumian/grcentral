@@ -746,4 +746,48 @@ class Settings extends CI_Controller {
 		$this->content = $this->load->view('settings/servers/servers_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
+	
+	public function syssettings($action=NULL, $param=NULL)
+	{
+		if (is_null($action) AND is_null($param))
+		{
+			// List of system settings
+			$syssettings_list = $this->settings_model->syssettings_getlist();
+			
+			$page_data = array(
+				'syssettings_list'		=> $syssettings_list,
+			);
+		}
+		elseif ($action == 'edit')
+		{
+			// Edit system settings
+			$syssettings_list = $this->settings_model->syssettings_getlist();
+			
+			// Processing...
+			// auto_add_devices
+			if (!is_null($this->input->post('auto_add_devices'))) { $settings_data['auto_add_devices'] = 'on'; } else { $settings_data['auto_add_devices'] = 'off'; }
+			// fw_update_only_friend
+			if (!is_null($this->input->post('fw_update_only_friend'))) { $settings_data['fw_update_only_friend'] = 'on'; } else { $settings_data['fw_update_only_friend'] = 'off'; }
+			
+			// DB query for update settings
+			$query = $this->settings_model->syssettings_update($settings_data);
+			
+			if (isset($query) AND $query != FALSE)
+			{
+				$this->session->set_flashdata('success_result', lang('settings_syssettings_flashdata_editsuccess'));
+			}
+			else
+			{
+				$this->session->set_flashdata('error_result', lang('settings_syssettings_flashdata_editerror'));
+			}
+			redirect('/settings/syssettings');
+		}
+		else
+		{
+			show_404(current_url());
+		}
+		$this->title = " - ".lang('settings_syssettings_pagetitle');
+		$this->content = $this->load->view('settings/syssettings/syssettings_list', $page_data, TRUE);
+		$this->_RenderPage();
+	}
 }

@@ -36,6 +36,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-server"></i> <?=lang('settings_tabs_title_servers');?>
 					</a>
 				</li>
+				<li class="nav-item">
+					<? if ($current_tab == 'syssettings'): ?><a class="nav-link active" href=""><?else:?>
+					<a class="nav-link" href="<?=site_url('settings/syssettings');?>"><?endif;?>
+						<i class="fa fa-cogs"></i> <?=lang('settings_tabs_title_syssettings');?>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>
