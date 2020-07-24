@@ -120,11 +120,6 @@ class Settings extends CI_Controller {
 	{
 		if (is_null($action) AND is_null($param))
 		{
-			// Redirect to list page
-			redirect('/settings/models/list');
-		}
-		elseif ($action == 'list' AND is_null($param))
-		{
 			// List of models
 			$models_group = $this->settings_model->models_group_getlist();
 			$params_group = $this->settings_model->params_getlist();
@@ -167,7 +162,7 @@ class Settings extends CI_Controller {
 				{
 					$this->session->set_flashdata('error_result', lang('settings_models_flashdata_adderror'));
 				}
-				redirect('/settings/models/list');
+				redirect('/settings/models');
 			}
 			else
 			{
@@ -209,7 +204,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/models/list');
+			redirect('/settings/models');
 		}
 		elseif ($action == 'del' AND is_numeric($param))
 		{
@@ -233,7 +228,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/models/list');
+			redirect('/settings/models');
 		}
 		elseif ($action == 'add_group' AND is_null($param))
 		{
@@ -256,7 +251,7 @@ class Settings extends CI_Controller {
 				{
 					$this->session->set_flashdata('error_result', lang('settings_models_flashdata_addgrouperror'));
 				}
-				redirect('/settings/models/list');
+				redirect('/settings/models');
 			}
 			else
 			{
@@ -298,7 +293,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/models/list');
+			redirect('/settings/models');
 		}
 		elseif ($action == 'del_group' AND is_numeric($param))
 		{
@@ -333,7 +328,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/models/list');
+			redirect('/settings/models');
 		}
 		else
 		{
@@ -349,11 +344,6 @@ class Settings extends CI_Controller {
 	public function fw($action=NULL, $param=NULL)
 	{
 		if (is_null($action) AND is_null($param))
-		{
-			// Redirect to list page
-			redirect('/settings/fw/list');
-		}
-		elseif ($action == 'list' AND is_null($param))
 		{
 			// List of firmware
 			$group_list = $this->settings_model->models_group_getlist();
@@ -412,7 +402,7 @@ class Settings extends CI_Controller {
 					$this->session->set_flashdata('error_result', lang('settings_fw_flashdata_addsuccess').$this->upload->display_errors());
 				}
 				
-				redirect('/settings/fw/list');
+				redirect('/settings/fw');
 			}
 			else
 			{
@@ -442,7 +432,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/fw/list');
+			redirect('/settings/fw');
 		}
 		elseif ($action == 'change_status' AND is_numeric($param))
 		{
@@ -474,7 +464,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/fw/list');
+			redirect('/settings/fw');
 		}
 		else
 		{
@@ -490,11 +480,6 @@ class Settings extends CI_Controller {
 	public function params($action=NULL, $param=NULL)
 	{
 		if (is_null($action) AND is_null($param))
-		{
-			// Redirect to list page
-			redirect('/settings/params/list');
-		}
-		elseif ($action == 'list' AND is_null($param))
 		{
 			// List of templates
 			$group_list = $this->settings_model->params_getlist();
@@ -540,7 +525,7 @@ class Settings extends CI_Controller {
 				{
 					$this->session->set_flashdata('error_result', lang('settings_params_flashdata_adderror'));
 				}
-				redirect('/settings/params/list');
+				redirect('/settings/params');
 			}
 			else
 			{
@@ -596,7 +581,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/params/list');
+			redirect('/settings/params');
 		}
 		elseif ($action == 'del' AND is_numeric($param))
 		{
@@ -630,7 +615,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/params/list');
+			redirect('/settings/params');
 		}
 		else
 		{
@@ -645,11 +630,6 @@ class Settings extends CI_Controller {
 	public function servers($action=NULL, $param=NULL)
 	{
 		if (is_null($action) AND is_null($param))
-		{
-			// Redirect to list page
-			redirect('/settings/servers/list');
-		}
-		elseif ($action == 'list' AND is_null($param))
 		{
 			// List of servers
 			$servers_list = $this->settings_model->servers_getlist();
@@ -680,7 +660,7 @@ class Settings extends CI_Controller {
 				{
 					$this->session->set_flashdata('error_result', lang('settings_servers_flashdata_adderror'));
 				}
-				redirect('/settings/servers/list');
+				redirect('/settings/servers');
 			}
 			else
 			{
@@ -722,7 +702,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/servers/list');
+			redirect('/settings/servers');
 		}
 		elseif ($action == 'del' AND is_numeric($param))
 		{
@@ -756,7 +736,7 @@ class Settings extends CI_Controller {
 			{
 				show_404(current_url());
 			}
-			redirect('/settings/servers/list');
+			redirect('/settings/servers');
 		}
 		else
 		{
