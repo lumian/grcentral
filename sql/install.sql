@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `settings_servers` (
   `name` varchar(150) DEFAULT NULL,
   `description` varchar(250) DEFAULT NULL,
   `server` varchar(150) DEFAULT NULL,
+  `voicemail_number` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
