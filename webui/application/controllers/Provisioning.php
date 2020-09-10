@@ -191,7 +191,7 @@ class Provisioning extends CI_Controller {
 			$phone_info_db = $this->devices_model->get(array('mac_addr' => $phone_info['mac']));
 			
 			// If the device is not found in the database, then check the settings
-			if ($phone_info_db == FALSE OR $phone_info_db['status_active'] == '0')
+			if ($phone_info_db == FALSE)
 			{
 				$friendly_update = $this->config->item('fw_update_only_friend', 'provisioning');
 				
@@ -200,6 +200,12 @@ class Provisioning extends CI_Controller {
 				{
 					show_404();
 				}
+			}
+			
+			// If the device is not active, then we display a 404 error.
+			if ($phone_info_db['status_active'] == '0')
+			{
+				show_404();
 			}
 			
 			// Checking the phone model in the database
