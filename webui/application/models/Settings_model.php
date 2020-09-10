@@ -423,6 +423,12 @@ class Settings_model extends CI_Model {
 				'description'			=> $data['description'],
 				'server'				=> $data['server']
 			);
+			
+			if (isset($data['voicemail_number']))
+			{
+				$add_data['voicemail_number'] = $data['voicemail_number'];
+			}
+			
 			$this->db->insert('settings_servers', $add_data);
 			$insert_id = $this->db->insert_id();
 			return $insert_id;
@@ -439,6 +445,12 @@ class Settings_model extends CI_Model {
 				'description'			=> $data['description'],
 				'server'				=> $data['server']
 			);
+			
+			if (isset($data['voicemail_number']))
+			{
+				$update_data['voicemail_number'] = $data['voicemail_number'];
+			}
+			
 			$this->db->where('id', $id);
 			$query = $this->db->update('settings_servers', $update_data);
 			return TRUE;

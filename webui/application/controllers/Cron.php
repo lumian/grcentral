@@ -144,15 +144,20 @@ class Cron extends CI_Controller {
 						{
 							if ($acc_num == '1')
 							{
-								$params_array['P271']	= $acc_info['active'];
-								$params_array['P270']	= $acc_info['name'];
-								$params_array['P47']	= $servers_list[$acc_info['voipsrv1']]['server'];
-								$params_array['P2312']	= $servers_list[$acc_info['voipsrv2']]['server'];
-								$params_array['P35']	= $acc_info['userid'];
-								$params_array['P36']	= $acc_info['authid'];
-								$params_array['P34']	= $acc_info['password'];
-								$params_array['P3']		= $acc_info['name'];
-								$params_array['P2380']	= '1';
+								
+								$params_array['P271']	= $acc_info['active'];								// Account Active
+								$params_array['P270']	= $acc_info['name'];								// Account Name
+								$params_array['P47']	= $servers_list[$acc_info['voipsrv1']]['server'];	// SIP Server
+								$params_array['P2312']	= $servers_list[$acc_info['voipsrv2']]['server'];	// Secondary SIP Server
+								$params_array['P35']	= $acc_info['userid'];								// SIP User ID
+								$params_array['P36']	= $acc_info['authid'];								// Authenticate ID
+								$params_array['P34']	= $acc_info['password'];							// Authenticate Password
+								$params_array['P3']		= $acc_info['name'];								// Name
+								$params_array['P2380']	= '1';												// Account Display
+								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
+								{
+									$params_array['P33']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number']; // Voice Mail Access Number
+								}
 							}
 							if ($acc_num == '2')
 							{
@@ -165,6 +170,10 @@ class Cron extends CI_Controller {
 								$params_array['P406']	= $acc_info['password'];
 								$params_array['P407']	= $acc_info['name'];
 								$params_array['P2480']	= '1';
+								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
+								{
+									$params_array['P426']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
+								}
 							}
 							if ($acc_num == '3')
 							{
@@ -177,6 +186,10 @@ class Cron extends CI_Controller {
 								$params_array['P506']	= $acc_info['password'];
 								$params_array['P507']	= $acc_info['name'];
 								$params_array['P2580']	= '1';
+								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
+								{
+									$params_array['P526']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
+								}
 							}
 							if ($acc_num == '4')
 							{
@@ -189,6 +202,10 @@ class Cron extends CI_Controller {
 								$params_array['P606']	= $acc_info['password'];
 								$params_array['P607']	= $acc_info['name'];
 								$params_array['P2680']	= '1';
+								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
+								{
+									$params_array['P626']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
+								}
 							}
 						}
 					}

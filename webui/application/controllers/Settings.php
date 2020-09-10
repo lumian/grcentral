@@ -648,6 +648,11 @@ class Settings extends CI_Controller {
 					'server'				=> htmlspecialchars(trim($this->input->post('server')))
 				);
 				
+				if (!is_null($this->input->post('voicemail_number')))
+				{
+					$post_data['voicemail_number'] = htmlspecialchars(trim($this->input->post('voicemail_number')));
+				}
+				
 				$query = $this->settings_model->servers_add($post_data);
 				
 				if (isset($query) AND $query != FALSE)
@@ -680,6 +685,12 @@ class Settings extends CI_Controller {
 						'description'			=> htmlspecialchars(trim($this->input->post('description'))),
 						'server'				=> htmlspecialchars(trim($this->input->post('server')))
 					);
+					
+					if (!is_null($this->input->post('voicemail_number')))
+					{
+						$post_data['voicemail_number'] = htmlspecialchars(trim($this->input->post('voicemail_number')));
+					}
+					
 					$query = $this->settings_model->servers_edit($param, $post_data);
 					
 					if (isset($query) AND $query != FALSE)

@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<th><?=lang('settings_servers_table_name');?></th>
 		<th><?=lang('settings_servers_table_description');?></th>
 		<th><?=lang('settings_servers_table_server');?></th>
+		<th><?=lang('settings_servers_table_voicemailnumber');?></th>
 		<th><?=lang('main_table_actions');?></th>
 	</thead>
 	
@@ -35,6 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<td><?=$server['name'];?></td>
 			<td><?=$server['description'];?></td>
 			<td><?=$server['server'];?></td>
+			<td><?=$server['voicemail_number'];?></td>
 			<td>
 				<div class="btn-group btn-block" role="group">
 					<button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$server['id'];?>">
@@ -82,6 +84,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<input type="text" name="server" class="form-control" id="ModalAddEditForm_Server" required>
 						<small id="ModalAddEditForm_ServerHelp" class="form-text text-muted"><?=lang('settings_servers_modal_addedit_server_help');?></small>
 					</div>
+					<div class="form-group">
+						<label for="ModalAddEditForm_VoicemailNumber"><?=lang('settings_servers_modal_addedit_voicemailnumber');?></label>
+						<input type="text" name="voicemail_number" class="form-control" id="ModalAddEditForm_VoicemailNumber">
+						<small id="ModalAddEditForm_VoicemailNumberHelp" class="form-text text-muted"><?=lang('settings_servers_modal_addedit_voicemailnumber_help');?></small>
+					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -112,6 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						modal.find('.modal-body input[name=name]').val(responce.data.name)
 						modal.find('.modal-body input[name=description]').val(responce.data.description)
 						modal.find('.modal-body input[name=server]').val(responce.data.server)
+						modal.find('.modal-body input[name=voicemail_number]').val(responce.data.voicemail_number)
 						modal.find('.modal-body form').attr('action', '<?=site_url("settings/servers/edit/");?>' + serverid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')

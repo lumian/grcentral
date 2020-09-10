@@ -157,6 +157,7 @@ $lang['settings_servers_btn_new']							= "Новый сервер";
 $lang['settings_servers_table_name']						= "Имя сервера";
 $lang['settings_servers_table_description']					= "Описание";
 $lang['settings_servers_table_server']						= "Сервер";
+$lang['settings_servers_table_voicemailnumber']				= "Голосовая почта";
 // Раздел "Серверы": Модальное окно "Редактирование/создание сервера"
 $lang['settings_servers_modal_addedit_title_add']			= "Создание нового сервера";
 $lang['settings_servers_modal_addedit_title_edit']			= "Редактирование сервера";
@@ -166,6 +167,8 @@ $lang['settings_servers_modal_addedit_description']			= "Описание";
 $lang['settings_servers_modal_addedit_description_help']	= "Введите произвольное описание сервера";
 $lang['settings_servers_modal_addedit_server']				= "Адрес сервера";
 $lang['settings_servers_modal_addedit_server_help']			= "Введите hostname или IP адрес VoIP сервера";
+$lang['settings_servers_modal_addedit_voicemailnumber']		= "Номер голосовой почты";
+$lang['settings_servers_modal_addedit_voicemailnumber_help']	= "Введите номер голосовой почты, актуальный для данного VoIP сервера.";
 // Раздел "Серверы": Модальное окно "Удаление сервера"
 $lang['settings_servers_modal_del_title']					= "Удаление сервера";
 $lang['settings_servers_modal_del_confirm']					= "Действительно удалить указанный сервер?";
