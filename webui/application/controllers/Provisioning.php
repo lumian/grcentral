@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Provisioning extends CI_Controller {
 	
-	private $testmode = FALSE;
+	private $testmode = TRUE;
 	
 	public function __construct()
 	{
@@ -76,10 +76,10 @@ class Provisioning extends CI_Controller {
 				else
 				{
 					// Getting the value from the config
-					$auto_add = $this->config->item('auto_add_devices', 'provisioning');
+					$auto_add = $this->settings_model->syssettings_get('auto_add_devices');
 					
 					// If auto-adding devices is allowed, we continue
-					if ($auto_add === TRUE)
+					if ($auto_add == 'on')
 					{
 						// Getting model info from DB
 						$model_info = $this->settings_model->models_get(array('tech_name' => $phone_info['model']));
@@ -193,10 +193,10 @@ class Provisioning extends CI_Controller {
 			// If the device is not found in the database, then check the settings
 			if ($phone_info_db == FALSE)
 			{
-				$friendly_update = $this->config->item('fw_update_only_friend', 'provisioning');
+				$friendly_update = $this->settings_model->syssettings_get('fw_update_only_friend');
 				
 				// If the "update only for friends" setting is enabled, we display a 404 error.
-				if ($friendly_update == TRUE)
+				if ($friendly_update == 'on')
 				{
 					show_404();
 				}
