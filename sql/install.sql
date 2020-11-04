@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
--- Версия сервера:               10.3.22-MariaDB-0+deb10u1 - Debian 10
+-- Версия сервера:               10.3.25-MariaDB-0+deb10u1 - Debian 10
 -- Операционная система:         debian-linux-gnu
--- HeidiSQL Версия:              11.0.0.5919
+-- HeidiSQL Версия:              11.0.0.6100
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,6 +32,31 @@ CREATE TABLE IF NOT EXISTS `devices_data` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `mac_addr` (`mac_addr`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица grcentral_base.phonebook_data
+CREATE TABLE IF NOT EXISTS `phonebook_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `phone_work` varchar(50) DEFAULT NULL,
+  `group_id` int(5) DEFAULT NULL,
+  `data_source` varchar(50) DEFAULT NULL,
+  `external_id` varchar(50) DEFAULT NULL,
+  `status` int(5) DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица grcentral_base.phonebook_groups
+CREATE TABLE IF NOT EXISTS `phonebook_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `default` int(5) DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Экспортируемые данные не выделены.
