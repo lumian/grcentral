@@ -87,6 +87,8 @@ $lang['settings_fw_table_startversion']						= "Стартовая";
 $lang['settings_fw_table_filename']							= "Имя файла";
 $lang['settings_fw_table_filename_real']					= "Реальное имя файла";
 $lang['settings_fw_table_status']							= "Статус";
+$lang['settings_fw_table_status_on']						= "Активна";
+$lang['settings_fw_table_status_off']						= "Не активна";
 $lang['settings_fw_table_status_descr']						= "Нажмите для изменения текущего статуса";
 $lang['settings_fw_table_noitemsingroup']					= "Нет прошивок в данной группе.";
 // Страница "Обновление прошивки": Модальное окно "Редактирование/Создание прошивки"

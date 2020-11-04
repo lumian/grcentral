@@ -56,9 +56,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$fw['file_name_real'];?></td>
 					<td>
 						<? if ($fw['status'] == '1'): ?>
-							<button type="button" class="btn btn-outline-success btn-sm btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
+							<button type="button" class="btn btn-outline-success btn-sm btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_on');?>. <?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
 						<? else: ?>
-							<button type="button" class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
+							<button type="button" class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_off');?>. <?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
 						<? endif; ?>
 					</td>
 					<td>
