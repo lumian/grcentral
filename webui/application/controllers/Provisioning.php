@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Provisioning extends CI_Controller {
 	
-	private $testmode = TRUE;
+	private $testmode = FALSE;
 	
 	public function __construct()
 	{
@@ -261,15 +261,15 @@ class Provisioning extends CI_Controller {
 							}
 						}
 						// If a recent update is found, we will initiate an upgrade
-						if (isset($update_firmware['upgrade']))
+						if (isset($update_firmware['upgrade']) OR isset($update_firmware['pinned']))
 						{
 							// If there is a pinned firmware, then continue checking
 							if (isset($update_firmware['pinned']))
 							{
-								// If the pinned version is not equal to the previous version, we update it
-								if ($update_firmware['pinned']['version'] != $update_firmware['upgrade']['previous_version'])
+								// If the pinned version is not equal to the current device version, we update it
+								if ($update_firmware['pinned']['version'] != $phone_info['version'])
 								{
-									$put_firmware = $update_firmware['upgrade'];
+									$put_firmware = $update_firmware['pinned'];
 								}
 								// We have reached the pinned version. Stop updating.
 								else
@@ -306,6 +306,7 @@ class Provisioning extends CI_Controller {
 						// FOR TESTING ONLY:
 						if ($this->testmode === TRUE)
 						{
+							var_dump($update_firmware);
 							echo "Get file: ".$get_file.PHP_EOL;
 							if ($phone_info_db == FALSE) { echo "Friendly phone: No".PHP_EOL; } else { echo "Friendly phone: Yes".PHP_EOL; }
 							echo "Phone model: ".$model_info['friendly_name'].PHP_EOL;
