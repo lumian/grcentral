@@ -7,6 +7,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 
+<div class="btn-group btn-group-sm mt-2" role="group">
+	<button type="submit" class="btn btn-outline-success" form="SettingsForm"><?=lang('main_btn_save');?></button>
+	<a href="<?=lang('main_helpurl_settings_system');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+</div>
+
 <? if ($this->session->flashdata('success_result')): ?>
 <div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
@@ -51,5 +56,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</tr>
 	</tbody>
 </table>
-<p class="text-right"><button type="submit" class="btn btn-outline-success"><?=lang('main_btn_save');?></button></p>
 </form>

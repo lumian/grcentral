@@ -123,12 +123,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<option value='0'><?=lang('settings_fw_modal_addedit_status_off');?></option>
 							<option value='1'><?=lang('settings_fw_modal_addedit_status_on');?></option>
 						</select>
-						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_status_help');?></small>
+						<small id="ModalAddEditForm_StatusHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_status_help');?></small>
 					</div>
 					<div class="form-group">
 						<label for="ModalAddEditForm_File"><?=lang('settings_fw_modal_addedit_file');?></label>
 						<input type="file" class="form-control-file" id="ModalAddEditForm_File" name="userfile" required>
-						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_file_help');?></small>
+						<small id="ModalAddEditForm_FileHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_file_help');?></small>
 					</div>
 				</form>
 			</div>

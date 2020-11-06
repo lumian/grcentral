@@ -150,7 +150,7 @@ class Provisioning extends CI_Controller {
 						show_404();
 					}
 				}
-				elseif (mb_stripos($get_file, '.bin' != FALSE))
+				elseif (mb_stripos($get_file, '.bin') != FALSE)
 				{
 					$this->_fw_download_update($phone_info, $get_file);
 				}
