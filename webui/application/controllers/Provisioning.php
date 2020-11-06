@@ -54,7 +54,15 @@ class Provisioning extends CI_Controller {
 							$this->devices_model->edit($phone_info_db['id'], array('fw_version' => $phone_info['version']));
 							if (is_readable($this->config->item('storage_path', 'grcentral').'cfg/'.$get_file))
 							{
-								$this->grcentral->forcedownload($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
+								// FOR TESTING ONLY:
+								if ($this->testmode === TRUE)
+								{
+									show_404();
+								}
+								else
+								{
+									$this->grcentral->forcedownload($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
+								}
 							}
 							else
 							{
