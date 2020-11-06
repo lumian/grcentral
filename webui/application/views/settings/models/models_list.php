@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- ModalGroupAddEdit -->
 <div class="modal fade" id="ModalGroupAddEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalGroupAddEditLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalGroupAddEditLabel">ModalTitle</h5>
@@ -94,20 +94,83 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="modal-body">
 				<form id="ModalGroupAddEditForm" method="post" action="">
-					<div class="form-group">
-						<label for="ModalGroupAddEditForm_Name"><?=lang('settings_models_modal_addeditgroup_groupname');?></label>
-						<input type="text" name="name" class="form-control" id="ModalGroupAddEditForm_Name" required>
-						<small id="ModalGroupAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_models_modal_addeditgroup_groupname_help');?></small>
+					<div class="row">
+						<div class="col-md-12">
+							<p class="h5"><?=lang('settings_models_modal_addeditgroup_titlebase');?></p>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="ModalGroupAddEditForm_ParamGroup"><?=lang('settings_models_modal_addeditgroup_paramgroup');?></label>
-						<select class="form-control" name="params_group_id" id="ModalGroupAddEditForm_ParamGroup" required>
-							<option value='0'>--- <?=lang('settings_models_modal_addeditgroup_paramgroup_no');?> ---</option>
-							<? foreach($params_group as $param_group): ?>
-							<option value='<?=$param_group['id'];?>'><?=$param_group['name'];?></option>
-							<? endforeach; ?>
-						</select>
-						<small id="ModalGroupAddEditForm_ParamGroupHelp" class="form-text text-muted"><?=lang('settings_models_modal_addeditgroup_paramgroup_help');?></small>
+					<div class="form-row mt-2">
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_Name"><?=lang('settings_models_modal_addeditgroup_groupname');?></label>
+							<input type="text" name="name" class="form-control" id="ModalGroupAddEditForm_Name" required>
+							<small id="ModalGroupAddEditForm_NameHelp" class="form-text text-muted"><?=lang('settings_models_modal_addeditgroup_groupname_help');?></small>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_ParamGroup"><?=lang('settings_models_modal_addeditgroup_paramgroup');?></label>
+							<select class="form-control" name="params_group_id" id="ModalGroupAddEditForm_ParamGroup" required>
+								<option value='0'>--- <?=lang('settings_models_modal_addeditgroup_paramgroup_no');?> ---</option>
+								<? foreach($params_group as $param_group): ?>
+								<option value='<?=$param_group['id'];?>'><?=$param_group['name'];?></option>
+								<? endforeach; ?>
+							</select>
+							<small id="ModalGroupAddEditForm_ParamGroupHelp" class="form-text text-muted"><?=lang('settings_models_modal_addeditgroup_paramgroup_help');?></small>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-md-12">
+							<p class="h5"><?=lang('settings_models_modal_addeditgroup_titlesettings');?></p>
+							<small class="form-text text-muted"><?=lang('settings_models_modal_addeditgroup_titlesettings_help');?></small>
+						</div>
+					</div>
+					<div class="form-row mt-2">
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_acc_atatus"><?=lang('settings_models_modal_addeditgroup_params_conf_acc_atatus');?></label>
+							<input type="text" name="params_conf_acc_atatus" class="form-control" id="ModalGroupAddEditForm_params_conf_acc_atatus" placeholder="PXXXX" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_acc_name"><?=lang('settings_models_modal_addeditgroup_params_conf_acc_name');?></label>
+							<input type="text" name="params_conf_acc_name" class="form-control" id="ModalGroupAddEditForm_params_conf_acc_name" placeholder="PXXXX" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_srv_main"><?=lang('settings_models_modal_addeditgroup_params_conf_srv_main');?></label>
+							<input type="text" name="params_conf_srv_main" class="form-control" id="ModalGroupAddEditForm_params_conf_srv_main" placeholder="PXXXX" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_srv_reserve"><?=lang('settings_models_modal_addeditgroup_params_conf_srv_reserve');?></label>
+							<input type="text" name="params_conf_srv_reserve" class="form-control" id="ModalGroupAddEditForm_params_conf_srv_reserve" placeholder="PXXXX" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_sip_userid"><?=lang('settings_models_modal_addeditgroup_params_conf_sip_userid');?></label>
+							<input type="text" name="params_conf_sip_userid" class="form-control" id="ModalGroupAddEditForm_params_conf_sip_userid" placeholder="PXXXX" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_sip_authid"><?=lang('settings_models_modal_addeditgroup_params_conf_sip_authid');?></label>
+							<input type="text" name="params_conf_sip_authid" class="form-control" id="ModalGroupAddEditForm_params_conf_sip_authid" placeholder="PXXXX" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_sip_passwd"><?=lang('settings_models_modal_addeditgroup_params_conf_sip_passwd');?></label>
+							<input type="text" name="params_conf_sip_passwd" class="form-control" id="ModalGroupAddEditForm_params_conf_sip_passwd" placeholder="PXXXX" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_show_name"><?=lang('settings_models_modal_addeditgroup_params_conf_show_name');?></label>
+							<input type="text" name="params_conf_show_name" class="form-control" id="ModalGroupAddEditForm_params_conf_show_name" placeholder="PXXXX" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_acc_display"><?=lang('settings_models_modal_addeditgroup_params_conf_acc_display');?></label>
+							<input type="text" name="params_conf_acc_display" class="form-control" id="ModalGroupAddEditForm_params_conf_acc_display" placeholder="PXXXX" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="ModalGroupAddEditForm_params_conf_voicemail"><?=lang('settings_models_modal_addeditgroup_params_conf_voicemail');?></label>
+							<input type="text" name="params_conf_voicemail" class="form-control" id="ModalGroupAddEditForm_params_conf_voicemail" placeholder="PXXXX" required>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -127,6 +190,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if (actiontype == "new") {
 			modal.find('.modal-title').text('<?=lang("settings_models_modal_addeditgroup_titleadd");?>')
 			modal.find('.modal-body input').val('')
+			modal.find('.modal-body select').val('')
 			modal.find('.modal-body form').attr('action', '<?=site_url("settings/models/add_group/");?>')
 		} 
 		if (actiontype == "edit") {
@@ -138,6 +202,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					if (data.result == 'success') {
 						modal.find('.modal-body input[name=name]').val(data.data.name)
 						modal.find('.modal-body select[name=params_group_id]').val(data.data.params_group_id)
+						modal.find('.modal-body input[name=params_conf_acc_atatus]').val(data.data.params_conf_acc_atatus)
+						modal.find('.modal-body input[name=params_conf_acc_name]').val(data.data.params_conf_acc_name)
+						modal.find('.modal-body input[name=params_conf_srv_main]').val(data.data.params_conf_srv_main)
+						modal.find('.modal-body input[name=params_conf_srv_reserve]').val(data.data.params_conf_srv_reserve)
+						modal.find('.modal-body input[name=params_conf_sip_userid]').val(data.data.params_conf_sip_userid)
+						modal.find('.modal-body input[name=params_conf_sip_authid]').val(data.data.params_conf_sip_authid)
+						modal.find('.modal-body input[name=params_conf_sip_passwd]').val(data.data.params_conf_sip_passwd)
+						modal.find('.modal-body input[name=params_conf_show_name]').val(data.data.params_conf_show_name)
+						modal.find('.modal-body input[name=params_conf_acc_display]').val(data.data.params_conf_acc_display)
+						modal.find('.modal-body input[name=params_conf_voicemail]').val(data.data.params_conf_voicemail)
 						modal.find('.modal-body form').attr('action', '<?=site_url("settings/models/edit_group/");?>' + groupid)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')

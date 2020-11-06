@@ -147,9 +147,9 @@ class Settings extends CI_Controller {
 			if (!is_null($this->input->post('tech_name')) AND !is_null($this->input->post('friendly_name')) AND !is_null($this->input->post('group_id')))
 			{
 				$post_data = array(
-					'tech_name'			=> htmlspecialchars(trim($this->input->post('tech_name'))),
-					'friendly_name'		=> htmlspecialchars(trim($this->input->post('friendly_name'))),
-					'group_id'			=> htmlspecialchars(trim($this->input->post('group_id')))
+					'tech_name'					=> htmlspecialchars(trim($this->input->post('tech_name'))),
+					'friendly_name'				=> htmlspecialchars(trim($this->input->post('friendly_name'))),
+					'group_id'					=> htmlspecialchars(trim($this->input->post('group_id')))
 				);
 				$query = $this->settings_model->models_add($post_data);
 				
@@ -232,11 +232,24 @@ class Settings extends CI_Controller {
 		elseif ($action == 'add_group' AND is_null($param))
 		{
 			// Add new group
-			if (!is_null($this->input->post('name')) AND is_numeric($this->input->post('params_group_id')))
+			if (!is_null($this->input->post('name')) AND is_numeric($this->input->post('params_group_id')) AND !is_null($this->input->post('params_conf_acc_atatus'))
+				AND !is_null($this->input->post('params_conf_acc_name')) AND !is_null($this->input->post('params_conf_srv_main')) AND !is_null($this->input->post('params_conf_srv_reserve'))
+				AND !is_null($this->input->post('params_conf_sip_userid')) AND !is_null($this->input->post('params_conf_sip_authid')) AND !is_null($this->input->post('params_conf_sip_passwd'))
+				AND !is_null($this->input->post('params_conf_show_name')) AND !is_null($this->input->post('params_conf_acc_display')) AND !is_null($this->input->post('params_conf_voicemail')))
 			{
 				$post_data = array(
-					'name'				=> htmlspecialchars(trim($this->input->post('name'))),
-					'params_group_id'	=> htmlspecialchars(trim($this->input->post('params_group_id')))
+					'name'						=> htmlspecialchars(trim($this->input->post('name'))),
+					'params_group_id'			=> htmlspecialchars(trim($this->input->post('params_group_id'))),
+					'params_conf_acc_atatus'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_acc_atatus')))),
+					'params_conf_acc_name'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_acc_name')))),
+					'params_conf_srv_main'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_srv_main')))),
+					'params_conf_srv_reserve'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_srv_reserve')))),
+					'params_conf_sip_userid'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_sip_userid')))),
+					'params_conf_sip_authid'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_sip_authid')))),
+					'params_conf_sip_passwd'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_sip_passwd')))),
+					'params_conf_show_name'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_show_name')))),
+					'params_conf_acc_display'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_acc_display')))),
+					'params_conf_voicemail'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_voicemail'))))
 				);
 				
 				$query = $this->settings_model->models_group_add($post_data);
@@ -264,12 +277,25 @@ class Settings extends CI_Controller {
 			
 			if ($group_info != FALSE)
 			{
-				if (!is_null($this->input->post('name')) AND is_numeric($this->input->post('params_group_id')))
+				if (!is_null($this->input->post('name')) AND is_numeric($this->input->post('params_group_id')) AND !is_null($this->input->post('params_conf_acc_atatus'))
+					AND !is_null($this->input->post('params_conf_acc_name')) AND !is_null($this->input->post('params_conf_srv_main')) AND !is_null($this->input->post('params_conf_srv_reserve'))
+					AND !is_null($this->input->post('params_conf_sip_userid')) AND !is_null($this->input->post('params_conf_sip_authid')) AND !is_null($this->input->post('params_conf_sip_passwd'))
+					AND !is_null($this->input->post('params_conf_show_name')) AND !is_null($this->input->post('params_conf_acc_display')) AND !is_null($this->input->post('params_conf_voicemail')))
 				{
 					$post_data = array(
-						'name'				=> htmlspecialchars(trim($this->input->post('name'))),
-						'params_group_id'	=> htmlspecialchars(trim($this->input->post('params_group_id')))
-					);
+					'name'						=> htmlspecialchars(trim($this->input->post('name'))),
+					'params_group_id'			=> htmlspecialchars(trim($this->input->post('params_group_id'))),
+					'params_conf_acc_atatus'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_acc_atatus')))),
+					'params_conf_acc_name'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_acc_name')))),
+					'params_conf_srv_main'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_srv_main')))),
+					'params_conf_srv_reserve'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_srv_reserve')))),
+					'params_conf_sip_userid'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_sip_userid')))),
+					'params_conf_sip_authid'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_sip_authid')))),
+					'params_conf_sip_passwd'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_sip_passwd')))),
+					'params_conf_show_name'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_show_name')))),
+					'params_conf_acc_display'	=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_acc_display')))),
+					'params_conf_voicemail'		=> htmlspecialchars(trim(str_replace(" ", "", $this->input->post('params_conf_voicemail'))))
+				);
 					
 					$query = $this->settings_model->models_group_edit($param, $post_data);
 					

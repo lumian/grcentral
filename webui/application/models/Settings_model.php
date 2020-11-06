@@ -52,7 +52,22 @@ class Settings_model extends CI_Model {
 		}
 		if (!is_null($params) AND isset($params['group_data']) AND $params['group_data'] == TRUE)
 		{
-			$this->db->select('settings_models.*, settings_models_group.name AS group_name, settings_models_group.params_group_id');
+			$this->db->select('
+					settings_models.*,
+					settings_models_group.name AS group_name,
+					settings_models_group.params_group_id,
+					settings_models_group.params_conf_acc_atatus,
+					settings_models_group.params_conf_acc_name,
+					settings_models_group.params_conf_srv_main,
+					settings_models_group.params_conf_srv_reserve,
+					settings_models_group.params_conf_sip_userid,
+					settings_models_group.params_conf_sip_authid,
+					settings_models_group.params_conf_sip_passwd,
+					settings_models_group.params_conf_show_name,
+					settings_models_group.params_conf_acc_display,
+					settings_models_group.params_conf_voicemail
+				
+			');
 			$this->db->join('settings_models_group', 'settings_models_group.id = settings_models.group_id');
 		}
 		$query = $this->db->get()->result_array();
@@ -75,9 +90,9 @@ class Settings_model extends CI_Model {
 		if (!is_null($data) AND is_array($data) AND isset($data['tech_name']) AND isset($data['friendly_name']) AND isset($data['group_id']))
 		{
 			$add_data = array(
-				'tech_name'		=> $data['tech_name'],
-				'friendly_name' => $data['friendly_name'],
-				'group_id'		=> $data['group_id']
+				'tech_name'					=> $data['tech_name'],
+				'friendly_name' 			=> $data['friendly_name'],
+				'group_id'					=> $data['group_id']
 			);
 			$this->db->insert('settings_models', $add_data);
 			$insert_id = $this->db->insert_id();
@@ -88,12 +103,12 @@ class Settings_model extends CI_Model {
 	
 	function models_edit($id=NULL, $data=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id) AND is_array($data) AND isset($data['tech_name']) AND isset($data['friendly_name']) AND isset($data['group_id']))
+		if (!is_null($id) AND is_numeric($id) AND !is_null($data) AND is_array($data) AND isset($data['tech_name']) AND isset($data['friendly_name']) AND isset($data['group_id']))
 		{
 			$update_data = array(
-				'tech_name'		=> $data['tech_name'],
-				'friendly_name' => $data['friendly_name'],
-				'group_id'		=> $data['group_id']
+				'tech_name'					=> $data['tech_name'],
+				'friendly_name' 			=> $data['friendly_name'],
+				'group_id'					=> $data['group_id']
 			);
 			$this->db->where('id', $id);
 			$query = $this->db->update('settings_models', $update_data);
@@ -147,11 +162,24 @@ class Settings_model extends CI_Model {
 	
 	function models_group_add($data=NULL)
 	{
-		if (!is_null($data) AND is_array($data) AND isset($data['name']) AND is_numeric($data['params_group_id']))
+		if (!is_null($data) AND is_array($data) AND isset($data['name']) AND is_numeric($data['params_group_id']) AND isset($data['params_conf_acc_atatus'])
+			AND isset($data['params_conf_acc_name']) AND isset($data['params_conf_srv_main']) AND isset($data['params_conf_srv_reserve'])
+			AND isset($data['params_conf_sip_userid']) AND isset($data['params_conf_sip_authid']) AND isset($data['params_conf_sip_passwd'])
+			AND isset($data['params_conf_show_name']) AND isset($data['params_conf_acc_display']) AND isset($data['params_conf_voicemail']))
 		{
 			$add_data = array(
-				'name'				=> $data['name'],
-				'params_group_id'	=> $data['params_group_id']
+				'name'						=> $data['name'],
+				'params_group_id'			=> $data['params_group_id'],
+				'params_conf_acc_atatus'	=> $data['params_conf_acc_atatus'],
+				'params_conf_acc_name'		=> $data['params_conf_acc_name'],
+				'params_conf_srv_main'		=> $data['params_conf_srv_main'],
+				'params_conf_srv_reserve'	=> $data['params_conf_srv_reserve'],
+				'params_conf_sip_userid'	=> $data['params_conf_sip_userid'],
+				'params_conf_sip_authid'	=> $data['params_conf_sip_authid'],
+				'params_conf_sip_passwd'	=> $data['params_conf_sip_passwd'],
+				'params_conf_show_name'		=> $data['params_conf_show_name'],
+				'params_conf_acc_display'	=> $data['params_conf_acc_display'],
+				'params_conf_voicemail'		=> $data['params_conf_voicemail']
 			);
 			$this->db->insert('settings_models_group', $add_data);
 			$insert_id = $this->db->insert_id();
@@ -162,11 +190,24 @@ class Settings_model extends CI_Model {
 	
 	function models_group_edit($id=NULL, $data=NULL)
 	{
-		if (!is_null($data) AND is_array($data) AND isset($data['name']) AND is_numeric($data['params_group_id']))
+		if (!is_null($data) AND is_array($data) AND isset($data['name']) AND is_numeric($data['params_group_id']) AND isset($data['params_conf_acc_atatus'])
+			AND isset($data['params_conf_acc_name']) AND isset($data['params_conf_srv_main']) AND isset($data['params_conf_srv_reserve'])
+			AND isset($data['params_conf_sip_userid']) AND isset($data['params_conf_sip_authid']) AND isset($data['params_conf_sip_passwd'])
+			AND isset($data['params_conf_show_name']) AND isset($data['params_conf_acc_display']) AND isset($data['params_conf_voicemail']))
 		{
 			$update_data = array(
-				'name'				=> $data['name'],
-				'params_group_id'	=> $data['params_group_id']
+				'name'						=> $data['name'],
+				'params_group_id'			=> $data['params_group_id'],
+				'params_conf_acc_atatus'	=> $data['params_conf_acc_atatus'],
+				'params_conf_acc_name'		=> $data['params_conf_acc_name'],
+				'params_conf_srv_main'		=> $data['params_conf_srv_main'],
+				'params_conf_srv_reserve'	=> $data['params_conf_srv_reserve'],
+				'params_conf_sip_userid'	=> $data['params_conf_sip_userid'],
+				'params_conf_sip_authid'	=> $data['params_conf_sip_authid'],
+				'params_conf_sip_passwd'	=> $data['params_conf_sip_passwd'],
+				'params_conf_show_name'		=> $data['params_conf_show_name'],
+				'params_conf_acc_display'	=> $data['params_conf_acc_display'],
+				'params_conf_voicemail'		=> $data['params_conf_voicemail']
 			);
 			$this->db->where('id', $id);
 			$query = $this->db->update('settings_models_group', $update_data);

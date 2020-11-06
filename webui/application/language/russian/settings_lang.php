@@ -40,11 +40,24 @@ $lang['settings_models_table_noitemsingroup']				= "Нет моделей в д�
 // Страница "Модели": Модальное окно "Редактирование/Создание группы"
 $lang['settings_models_modal_addeditgroup_titleadd']		= "Создание новой группы";
 $lang['settings_models_modal_addeditgroup_titleedit']		= "Редактирование группы";
+$lang['settings_models_modal_addeditgroup_titlebase']		= "Базовые параметры группы";
+$lang['settings_models_modal_addeditgroup_titlesettings']	= "Настройки конфигурационных параметров";
+$lang['settings_models_modal_addeditgroup_titlesettings_help']	= "Укажите наименование параметров конфига (P-Value) для указанных опций для всех аккаунтов через запятую (Например: 'P1,P2,P3,P4'). Укажите 'P0' для отключения контроля выбранного параметра у указанного аккаунта (Например: 'P0,P0,P0,P0').";
 $lang['settings_models_modal_addeditgroup_groupname']		= "Имя группы";
 $lang['settings_models_modal_addeditgroup_groupname_help']	= "Введите произвольное имя группы";
 $lang['settings_models_modal_addeditgroup_paramgroup']		= "Шаблон настроек";
 $lang['settings_models_modal_addeditgroup_paramgroup_no']	= "Не выбрано";
 $lang['settings_models_modal_addeditgroup_paramgroup_help']	= "Укажите шаблон настроек, который будет применяться для указанной группы моделей.";
+$lang['settings_models_modal_addeditgroup_params_conf_acc_atatus']	= "Account Active";
+$lang['settings_models_modal_addeditgroup_params_conf_acc_name']	= "Account Name";
+$lang['settings_models_modal_addeditgroup_params_conf_srv_main']	= "Primary SIP Server";
+$lang['settings_models_modal_addeditgroup_params_conf_srv_reserve']	= "Secondary (or Failover) SIP Server";
+$lang['settings_models_modal_addeditgroup_params_conf_sip_userid']	= "SIP User ID";
+$lang['settings_models_modal_addeditgroup_params_conf_sip_authid']	= "Authenticate ID";
+$lang['settings_models_modal_addeditgroup_params_conf_sip_passwd']	= "Authenticate Password";
+$lang['settings_models_modal_addeditgroup_params_conf_show_name']	= "Name";
+$lang['settings_models_modal_addeditgroup_params_conf_acc_display']	= "Account Display";
+$lang['settings_models_modal_addeditgroup_params_conf_voicemail']	= "Voicemail number";
 // Страница "Модели": Модальное окно "Удаление группы"
 $lang['settings_models_modal_delgroup_title']				= "Удаление группы";
 $lang['settings_models_modal_delgroup_confirm']				= "Действительно удалить указанную группу?";

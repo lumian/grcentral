@@ -108,9 +108,10 @@ class Cron extends CI_Controller {
 			
 			foreach ($phones_list as $phone)
 			{
-				if ($models_list[$phone['model_id']]['params_group_id'] != '0' AND $phone['status_active'] == '1')
+				$model_info = $models_list[$phone['model_id']];
+				if ($model_info['params_group_id'] != '0' AND $phone['status_active'] == '1')
 				{
-					$params_id = $models_list[$phone['model_id']]['params_group_id'];
+					$params_id = $model_info['params_group_id'];
 					$params_array_src = json_decode($params_list[$params_id]['params_json_data'], TRUE);
 					$params_array = array();
 					
@@ -137,75 +138,74 @@ class Cron extends CI_Controller {
 					}
 					
 					$accounts_array = json_decode($phone['accounts_data'], TRUE);
+					// Get params from DB
+					$params_db = array(
+						'acc_atatus'	=> explode(",", $model_info['params_conf_acc_atatus']),
+						'acc_name'		=> explode(",", $model_info['params_conf_acc_name']),
+						'srv_main'		=> explode(",", $model_info['params_conf_srv_main']),
+						'srv_reserve'	=> explode(",", $model_info['params_conf_srv_reserve']),
+						'sip_userid'	=> explode(",", $model_info['params_conf_sip_userid']),
+						'sip_authid'	=> explode(",", $model_info['params_conf_sip_authid']),
+						'sip_passwd'	=> explode(",", $model_info['params_conf_sip_passwd']),
+						'show_name'		=> explode(",", $model_info['params_conf_show_name']),
+						'acc_display'	=> explode(",", $model_info['params_conf_acc_display']),
+						'voicemail'		=> explode(",", $model_info['params_conf_voicemail'])
+					);
 					
 					if ($accounts_array != NULL)
 					{
 						foreach($accounts_array as $acc_num=>$acc_info)
 						{
-							if ($acc_num == '1')
+							$acc_index = $acc_num - 1;
+							// Account Active
+							if (isset($params_db['acc_atatus'][$acc_index]) AND $params_db['acc_atatus'][$acc_index] != "P0")
 							{
-								
-								$params_array['P271']	= $acc_info['active'];								// Account Active
-								$params_array['P270']	= $acc_info['name'];								// Account Name
-								$params_array['P47']	= $servers_list[$acc_info['voipsrv1']]['server'];	// SIP Server
-								$params_array['P2312']	= $servers_list[$acc_info['voipsrv2']]['server'];	// Secondary SIP Server
-								$params_array['P35']	= $acc_info['userid'];								// SIP User ID
-								$params_array['P36']	= $acc_info['authid'];								// Authenticate ID
-								$params_array['P34']	= $acc_info['password'];							// Authenticate Password
-								$params_array['P3']		= $acc_info['name'];								// Name
-								$params_array['P2380']	= '1';												// Account Display
-								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
-								{
-									$params_array['P33']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number']; // Voice Mail Access Number
-								}
+								$params_array[$params_db['acc_atatus'][$acc_index]]	= $acc_info['active'];
 							}
-							if ($acc_num == '2')
+							// Account Name
+							if (isset($params_db['acc_name'][$acc_index]) AND $params_db['acc_name'][$acc_index] != "P0")
 							{
-								$params_array['P401'] 	= $acc_info['active'];
-								$params_array['P417']	= $acc_info['name'];
-								$params_array['P402']	= $servers_list[$acc_info['voipsrv1']]['server'];
-								$params_array['P2412']	= $servers_list[$acc_info['voipsrv2']]['server'];
-								$params_array['P404']	= $acc_info['userid'];
-								$params_array['P405']	= $acc_info['authid'];
-								$params_array['P406']	= $acc_info['password'];
-								$params_array['P407']	= $acc_info['name'];
-								$params_array['P2480']	= '1';
-								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
-								{
-									$params_array['P426']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
-								}
+								$params_array[$params_db['acc_name'][$acc_index]]	= $acc_info['name'];
 							}
-							if ($acc_num == '3')
+							// SIP Server
+							if (isset($params_db['srv_main'][$acc_index]) AND $params_db['srv_main'][$acc_index] != "P0")
 							{
-								$params_array['P501'] 	= $acc_info['active'];
-								$params_array['P517']	= $acc_info['name'];
-								$params_array['P502']	= $servers_list[$acc_info['voipsrv1']]['server'];
-								$params_array['P2512']	= $servers_list[$acc_info['voipsrv2']]['server'];
-								$params_array['P504']	= $acc_info['userid'];
-								$params_array['P505']	= $acc_info['authid'];
-								$params_array['P506']	= $acc_info['password'];
-								$params_array['P507']	= $acc_info['name'];
-								$params_array['P2580']	= '1';
-								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
-								{
-									$params_array['P526']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
-								}
+								$params_array[$params_db['srv_main'][$acc_index]]	= $servers_list[$acc_info['voipsrv1']]['server'];
 							}
-							if ($acc_num == '4')
+							// Secondary SIP Server
+							if (isset($params_db['srv_reserve'][$acc_index]) AND $params_db['srv_reserve'][$acc_index] != "P0")
 							{
-								$params_array['P601'] 	= $acc_info['active'];
-								$params_array['P617']	= $acc_info['name'];
-								$params_array['P602']	= $servers_list[$acc_info['voipsrv1']]['server'];
-								$params_array['P2612']	= $servers_list[$acc_info['voipsrv2']]['server'];
-								$params_array['P604']	= $acc_info['userid'];
-								$params_array['P605']	= $acc_info['authid'];
-								$params_array['P606']	= $acc_info['password'];
-								$params_array['P607']	= $acc_info['name'];
-								$params_array['P2680']	= '1';
-								if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']))
-								{
-									$params_array['P626']	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
-								}
+								$params_array[$params_db['srv_reserve'][$acc_index]]	= $servers_list[$acc_info['voipsrv2']]['server'];
+							}
+							// SIP User ID
+							if (isset($params_db['sip_userid'][$acc_index]) AND $params_db['sip_userid'][$acc_index] != "P0")
+							{
+								$params_array[$params_db['sip_userid'][$acc_index]]	= $acc_info['userid'];
+							}
+							// Authenticate ID
+							if (isset($params_db['sip_authid'][$acc_index]) AND $params_db['sip_authid'][$acc_index] != "P0")
+							{
+								$params_array[$params_db['sip_authid'][$acc_index]]	= $acc_info['authid'];
+							}
+							// Authenticate Password
+							if (isset($params_db['sip_passwd'][$acc_index]) AND $params_db['sip_passwd'][$acc_index] != "P0")
+							{
+								$params_array[$params_db['sip_passwd'][$acc_index]]	= $acc_info['password'];
+							}
+							// Name							
+							if (isset($params_db['show_name'][$acc_index]) AND $params_db['show_name'][$acc_index] != "P0")
+							{
+								$params_array[$params_db['show_name'][$acc_index]]	= $acc_info['name'];
+							}
+							// Account Display
+							if (isset($params_db['acc_display'][$acc_index]) AND $params_db['acc_display'][$acc_index] != "P0")
+							{
+								$params_array[$params_db['acc_display'][$acc_index]]	= '1';
+							}
+							// Voice Mail Access Number
+							if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']) AND isset($params_db['voicemail'][$acc_index]) AND $params_db['voicemail'][$acc_index] != "P0")
+							{
+								$params_array[$params_db['voicemail'][$acc_index]]	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
 							}
 						}
 					}
