@@ -65,6 +65,8 @@ class Devices_model extends CI_Model {
 				'status_active'		=> $data['status_active']
 			);
 			if (isset($data['descr'])) { $add_data['descr'] = $data['descr']; }
+			if (isset($data['params_source_data'])) {$add_data['params_source_data'] = $data['params_source_data']; }
+			if (isset($data['params_json_data'])) { $add_data['params_json_data'] = $data['params_json_data']; }
 			if (isset($data['fw_version'])) { $add_data['fw_version'] = $data['fw_version']; }
 			if (isset($data['fw_version_pinned'])) { $add_data['fw_version_pinned'] = $data['fw_version_pinned']; }
 			
@@ -85,6 +87,8 @@ class Devices_model extends CI_Model {
 			if (isset($data['model_id']))			{ $update_data['model_id']			= $data['model_id']; }
 			if (isset($data['status_active']))		{ $update_data['status_active']		= $data['status_active']; }
 			if (isset($data['descr']))				{ $update_data['descr']				= $data['descr']; }
+			if (isset($data['params_source_data']))	{ $update_data['params_source_data']= $data['params_source_data']; }
+			if (isset($data['params_json_data']))	{ $update_data['params_json_data']	= $data['params_json_data']; }
 			if (isset($data['fw_version']))			{ $update_data['fw_version']		= $data['fw_version']; }
 			if (isset($data['fw_version_pinned']))	{ $update_data['fw_version_pinned']	= $data['fw_version_pinned']; }
 			if (isset($data['admin_password']))		{ $update_data['admin_password']	= $data['admin_password']; }

@@ -55,6 +55,8 @@ $lang['devices_index_modaladdedit_statusactive_off']		= "Не активиров
 $lang['devices_index_modaladdedit_fwversionpinned']			= "Закрепить прошивку";
 $lang['devices_index_modaladdedit_fwversionpinned_help']	= "Укажите прошивку, которую необходимо закрепить за данным устройством. Закрепленная прошивка должна быть равна или выше уже установленной.";
 $lang['devices_index_modaladdedit_fwversionpinned_off']		= "Без закрепления";
+$lang['devices_index_modaladdedit_params']					= "Параметры";
+$lang['devices_index_modaladdedit_params_help']				= "Впишите параметры в это поле. Один параметр на строку. Допускается комментирование символом # в начале строки. Указанные тут параметры имеют приоритет над групповыми параметрами.";
 // Главная страница: Модальное окно "Удаление устройства"
 $lang['devices_index_modaldel_title']						= "Удаление устройства";
 $lang['devices_index_modaldel_confirm']						= "Вы действительно хотите удалить устройство?";

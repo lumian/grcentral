@@ -203,6 +203,26 @@ class Devices extends CI_Controller {
 					'fw_version_pinned'	=> htmlspecialchars(trim($this->input->post('fw_version_pinned')))
 				);
 				if (!is_null($this->input->post('descr'))) { $post_data['descr'] = htmlspecialchars(trim($this->input->post('descr'))); }
+				if (!is_null($this->input->post('params_source_data'))) 
+				{
+					$post_data['params_source_data'] = htmlspecialchars(trim($this->input->post('params_source_data')));
+					$params_json_data = $this->grcentral->convert_params_text2json($post_data['params_source_data']);
+					
+					if ($params_json_data != FALSE)
+					{
+						$post_data['params_json_data'] = $params_json_data;
+					}
+					else
+					{
+						$post_data['params_source_data'] = "";
+						$post_data['params_json_data'] = "";
+					}
+				}
+				else
+				{
+					$post_data['params_source_data'] = "";
+					$post_data['params_json_data'] = "";
+				}
 				
 				$query = $this->devices_model->add($post_data);
 				
@@ -235,6 +255,26 @@ class Devices extends CI_Controller {
 					'fw_version_pinned'	=> htmlspecialchars(trim($this->input->post('fw_version_pinned')))
 				);
 				if (!is_null($this->input->post('descr'))) { $post_data['descr'] = htmlspecialchars(trim($this->input->post('descr'))); }
+				if (!is_null($this->input->post('params_source_data'))) 
+				{
+					$post_data['params_source_data'] = htmlspecialchars(trim($this->input->post('params_source_data')));
+					$params_json_data = $this->grcentral->convert_params_text2json($post_data['params_source_data']);
+					
+					if ($params_json_data != FALSE)
+					{
+						$post_data['params_json_data'] = $params_json_data;
+					}
+					else
+					{
+						$post_data['params_source_data'] = "";
+						$post_data['params_json_data'] = "";
+					}
+				}
+				else
+				{
+					$post_data['params_source_data'] = "";
+					$post_data['params_json_data'] = "";
+				}
 				
 				$query = $this->devices_model->edit($param, $post_data);
 				

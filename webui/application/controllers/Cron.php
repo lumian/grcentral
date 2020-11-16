@@ -94,22 +94,22 @@ class Cron extends CI_Controller {
 	private function generate_cfg()
 	{
 		$this->settings_model->syssettings_update(array('cfg_need_apply' => 'off'));
-		$phones_list = $this->devices_model->getlist();
+		$devices_list = $this->devices_model->getlist();
 		$params_list = $this->settings_model->params_getlist();
 		$models_list = $this->settings_model->models_getlist(array('group_data'=>TRUE));
 		$servers_list = $this->settings_model->servers_getlist();
 		
-		if ($phones_list != FALSE AND $params_list != FALSE AND $models_list != FALSE AND $servers_list != FALSE)
+		if ($devices_list != FALSE AND $params_list != FALSE AND $models_list != FALSE AND $servers_list != FALSE)
 		{
 			$xml_path = $this->config->item('storage_path', 'grcentral').'cfg';
 			$this->_clean_dir($xml_path);
 			
 			$xml_data = FALSE;
 			
-			foreach ($phones_list as $phone)
+			foreach ($devices_list as $device)
 			{
-				$model_info = $models_list[$phone['model_id']];
-				if ($model_info['params_group_id'] != '0' AND $phone['status_active'] == '1')
+				$model_info = $models_list[$device['model_id']];
+				if ($model_info['params_group_id'] != '0' AND $device['status_active'] == '1')
 				{
 					$params_id = $model_info['params_group_id'];
 					$params_array_src = json_decode($params_list[$params_id]['params_json_data'], TRUE);
@@ -126,18 +126,33 @@ class Cron extends CI_Controller {
 						}
 					}
 					
+					if (isset($device['params_json_data']) AND !is_null($device['params_json_data']) AND $device['params_json_data'] != "")
+					{
+						$device_params_array_src = json_decode($device['params_json_data'], TRUE);
+						foreach($device_params_array_src as $device_param_string)
+						{
+							if (mb_stripos($device_param_string, "=") != FALSE)
+							{
+								$device_string_array = explode("=", $device_param_string);
+								$key = trim($device_string_array[0]);
+								$param = trim($device_string_array[1]);
+								$params_array[$key] = $param;
+							}
+						}
+					}
+					
 					if (isset($params_array['P2']))
 					{
 						// Update admin password in DB for CTI
-						$this->devices_model->edit($phone['id'], array('admin_password' => $params_array['P2']));
+						$this->devices_model->edit($device['id'], array('admin_password' => $params_array['P2']));
 					}
 					else
 					{
 						// Clear admin password in DB.
-						$this->devices_model->edit($phone['id'], array('admin_password' => ''));
+						$this->devices_model->edit($device['id'], array('admin_password' => ''));
 					}
 					
-					$accounts_array = json_decode($phone['accounts_data'], TRUE);
+					$accounts_array = json_decode($device['accounts_data'], TRUE);
 					// Get params from DB
 					$params_db = array(
 						'acc_atatus'	=> explode(",", $model_info['params_conf_acc_atatus']),
@@ -211,7 +226,7 @@ class Cron extends CI_Controller {
 					}
 					
 					$xml_data[] = array(
-						'mac'				=> $phone['mac_addr'],
+						'mac'				=> $device['mac_addr'],
 						'params'			=> $params_array
 					);
 				}

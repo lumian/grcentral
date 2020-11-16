@@ -85,4 +85,27 @@ class Grcentral {
 		}
 		return FALSE;
 	}
+	
+	// Convert devices params (text >>> json)
+	public function convert_params_text2json($source_data = NULL)
+	{
+		if ($source_data != NULL)
+		{
+			$source_data_array = explode(PHP_EOL, $source_data);
+
+			foreach($source_data_array as $string)
+			{
+				if (trim($string) != "" AND (mb_stripos($string, "#") === FALSE OR mb_stripos($string, "#") != "0"))
+				{
+					$params_data_array[] = trim($string);
+				}
+			}
+			if (is_array($params_data_array))
+			{
+				$json_data = json_encode($params_data_array);
+				return $json_data;
+			}
+		}
+		return FALSE;
+	}
 }

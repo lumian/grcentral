@@ -80,6 +80,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="ModalAddEditForm_Params"><?=lang('devices_index_modaladdedit_params');?></label>
+								<textarea name="params_source_data" class="form-control" id="ModalAddEditForm_Params" rows="10"></textarea>
+								<small id="ModalAddEditForm_ParamsHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_params_help');?></small>
+							</div>
+						</div>
+					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -98,6 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if (actiontype == "new") {
 			modal.find('.modal-title').text('<?=lang("devices_index_modaladdedit_titleadd");?>')
 			modal.find('.modal-body input').val('')
+			modal.find('.modal-body textarea').val('')
 			modal.find('.modal-body select').val('')
 			modal.find('.modal-body form').attr('action', '<?=site_url("devices/actions/add/")?>')
 		} 
@@ -111,6 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						modal.find('.modal-body input[name=mac_addr]').val(data.data.mac_addr)
 						modal.find('.modal-body input[name=ip_addr]').val(data.data.ip_addr)
 						modal.find('.modal-body input[name=descr]').val(data.data.descr)
+						modal.find('.modal-body textarea[name=params_source_data]').val(data.data.params_source_data)
 						modal.find('.modal-body select[name=model_id]').val(data.data.model_id)
 						modal.find('.modal-body select[name=status_active]').val(data.data.status_active)
 						modal.find('.modal-body select[name=fw_version_pinned]').val(data.data.fw_version_pinned)

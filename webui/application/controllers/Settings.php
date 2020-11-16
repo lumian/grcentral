@@ -525,18 +525,12 @@ class Settings extends CI_Controller {
 					'description'			=> htmlspecialchars(trim($this->input->post('description'))),
 					'params_source_data'	=> htmlspecialchars(trim($this->input->post('params_source_data')))
 				);
-				$params_source_data_array = explode(PHP_EOL, $post_data['params_source_data']);
 
-				foreach($params_source_data_array as $string)
+				$params_json_data = $this->grcentral->convert_params_text2json($post_data['params_source_data']);
+				
+				if ($params_json_data != FALSE)
 				{
-					if (trim($string) != "" AND (mb_stripos($string, "#") === FALSE OR mb_stripos($string, "#") != "0"))
-					{
-						$params_data_array[] = trim($string);
-					}
-				}
-				if (isset($params_data_array))
-				{
-					$post_data['params_json_data'] = json_encode($params_data_array);
+					$post_data['params_json_data'] = $params_json_data;
 					
 					$query = $this->settings_model->params_add($post_data);
 				}
@@ -571,18 +565,12 @@ class Settings extends CI_Controller {
 						'description'			=> htmlspecialchars(trim($this->input->post('description'))),
 						'params_source_data'	=> htmlspecialchars(trim($this->input->post('params_source_data')))
 					);
-					$params_source_data_array = explode(PHP_EOL, $post_data['params_source_data']);
 					
-					foreach($params_source_data_array as $string)
+					$params_json_data = $this->grcentral->convert_params_text2json($post_data['params_source_data']);
+				
+					if ($params_json_data != FALSE)
 					{
-						if (trim($string) != "" AND (mb_stripos($string, "#") === FALSE OR mb_stripos($string, "#") != "0"))
-						{
-							$params_data_array[] = trim($string);
-						}
-					}
-					if (isset($params_data_array))
-					{
-						$post_data['params_json_data'] = json_encode($params_data_array);
+						$post_data['params_json_data'] = $params_json_data;
 						
 						$query = $this->settings_model->params_edit($param, $post_data);
 					}
