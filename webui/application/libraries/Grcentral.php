@@ -68,4 +68,21 @@ class Grcentral {
 			show_404();
 		}
 	}
+	
+	// Get referer
+	public function get_local_referer()
+	{
+		if (isset($_SERVER['HTTP_REFERER']))
+		{
+			$server_referer = $_SERVER['HTTP_REFERER'];
+			$check_referer = strpos($server_referer, $this->CI->config->item('base_url'));
+			
+			if ($check_referer === 0)
+			{
+				$local_referer = mb_substr($server_referer, mb_strlen($this->CI->config->item('base_url')));
+				return $local_referer;
+			}
+		}
+		return FALSE;
+	}
 }

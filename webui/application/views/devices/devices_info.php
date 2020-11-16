@@ -9,58 +9,83 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
-<div class="card mt-2">
-	<div class="card-header"><i class="fa fa-info"></i> <?=lang('devices_info_panel_about_title')?></div>
-	<div class="card-body">
-		<img src="<?=base_url('style/img/grandstream_logo.png');?>" width="200px" class="rounded float-left mr-4" alt="Grandstream logo">
-		<table>
-			<tr>
-				<td><strong><?=lang('devices_info_panel_about_model');?>:</strong></td>
-				<td><?=$device_info['model_info']['friendly_name']; ?></td>
-			</tr>
-			<tr>
-				<td><strong><?=lang('devices_info_panel_about_ipaddr');?>:</strong></td>
-				<td><a href="<?=prep_url($device_info['ip_addr']); ?>"  target="_blank"><?=$device_info['ip_addr']; ?></a></td>
-			</tr>
-			<tr>
-				<td><strong><?=lang('devices_info_panel_about_macaddr');?>:</strong></td>
-				<td><?=$device_info['mac_addr']; ?></td>
-			</tr>
-			<tr>
-				<td><strong><?=lang('devices_info_panel_about_statusonline');?>:</strong></td>
-				<td>
-					<? if ($device_info['status_online'] == '1'): ?>
-						<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusonline_on'); ?></div>
-					<? else: ?>
-						<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusonline_off'); ?></div>
-					<? endif;?>
-				</td>
-			</tr>
-			<tr>
-				<td><strong><?=lang('devices_info_panel_about_statusactive');?>:</strong></td>
-				<td>
-					<? if ($device_info['status_active'] == '1'): ?>
-						<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusactive_on'); ?></div>
-					<? else: ?>
-						<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusactive_off'); ?></div>
-					<? endif;?>
-				</td>
-			</tr>
-			<tr>
-				<td><strong><?=lang('devices_info_panel_about_descr');?>:</strong></td>
-				<td><?=$device_info['descr']; ?></td>
-			</tr>
-		</table>
+<div class="row">
+	<div class="col-9">
+		<div class="card mt-2">
+			<div class="card-header"><i class="fa fa-info"></i> <?=lang('devices_info_panel_about_title')?></div>
+			<div class="card-body">
+				<table class="table table-hover table-sm">
+					<tr>
+						<th><?=lang('devices_info_panel_about_model');?></th>
+						<td><?=$device_info['model_info']['friendly_name']; ?></td>
+					</tr>
+					<tr>
+						<th><?=lang('devices_info_panel_about_ipaddr');?></th>
+						<td><a href="<?=prep_url($device_info['ip_addr']); ?>"  target="_blank"><?=$device_info['ip_addr']; ?></a></td>
+					</tr>
+					<tr>
+						<th><?=lang('devices_info_panel_about_macaddr');?></th>
+						<td><?=$device_info['mac_addr']; ?></td>
+					</tr>
+					<tr>
+						<th><?=lang('devices_info_panel_about_statusonline');?></th>
+						<td>
+							<? if ($device_info['status_online'] == '1'): ?>
+								<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusonline_on'); ?></div>
+							<? else: ?>
+								<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusonline_off'); ?></div>
+							<? endif;?>
+						</td>
+					</tr>
+					<tr>
+						<th><?=lang('devices_info_panel_about_statusactive');?></th>
+						<td>
+							<? if ($device_info['status_active'] == '1'): ?>
+								<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusactive_on'); ?></div>
+							<? else: ?>
+								<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusactive_off'); ?></div>
+							<? endif;?>
+						</td>
+					</tr>
+					<tr>
+						<th><?=lang('devices_info_panel_about_descr');?></th>
+						<td><?=$device_info['descr']; ?></td>
+					</tr>
+					<tr>
+						<th><?=lang('devices_info_panel_about_fw');?></th>
+						<td>
+							<?=$device_info['fw_version']; ?>
+							<? if (isset($device_info['fw_version_pinned']) AND $device_info['fw_version_pinned'] != '0'): ?>
+								(<?=lang('devices_info_panel_about_fw_pinned');?>: <?=$device_info['fw_version_pinned'];?>)
+							<? endif; ?>
+						
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
-</div>
-<div class="card mt-2">
-	<div class="card-header"><i class="fa fa-network-wired"></i> <?=lang('devices_info_panel_cti_title')?></div>
-	<div class="card-body">
-		<? if ($device_info['admin_password'] != ""): ?>
-			<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#ModalCTIQuery" data-action="cti_reboot"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
-		<? else: ?>
-			<div class="alert alert-info" role="alert"><?=lang('devices_info_panel_cti_notavailable');?></div>
-		<? endif;?>
+	<div class="col-3">
+		<div class="card mt-2">
+			<div class="card-header"><i class="fa fa-wrench"></i> <?=lang('devices_info_panel_actions_title')?></div>
+			<div class="card-body">
+				<button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$device_info['id'];?>">
+					<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
+				</button><br />
+				<button type="button" class="btn btn-outline-danger btn-sm mt-2" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$device_info['id'];?>">
+					<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
+				</button>
+				<hr class="hr" />
+				<? if ($device_info['admin_password'] != ""): ?>
+					<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#ModalCTIQuery" data-action="cti_reboot"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
+				<? else: ?>
+					<div class="alert alert-info" role="alert">
+						
+						<span data-toggle="tooltip" title="<?=lang('devices_info_panel_actions_cti_na_descr');?>"><?=lang('devices_info_panel_actions_cti_na_error');?></span>
+					</div>
+				<? endif;?>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -452,3 +477,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	})
 </script>
 <? endif;?>
+
+<?=$this->load->view('devices/devices_actions', NULL, TRUE); ?>

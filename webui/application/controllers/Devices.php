@@ -135,6 +135,20 @@ class Devices extends CI_Controller {
 		if (!is_null($param) AND is_numeric($param))
 		{
 			$device_info = $this->devices_model->get(array('id' => $param));
+			$models_list = $this->settings_model->models_getlist();
+			$groups_list = $this->settings_model->models_group_getlist();
+			$fw_list = array();
+			
+			if ($groups_list != FALSE)
+			{
+				foreach ($groups_list as $group)
+				{
+					$fw_list[$group['id']] = array(
+						'group_info'	=> $group,
+						'items'			=> $this->settings_model->fw_getlist(array('group_id' => $group['id']))
+					);
+				}
+			}
 			
 			if ($device_info != FALSE)
 			{
@@ -155,6 +169,8 @@ class Devices extends CI_Controller {
 					'device_info'		=> $device_info,
 					'accounts_list'		=> $accounts_list,
 					'servers_list'		=> $servers_list,
+					'models_list'		=> $models_list,
+					'fw_list'			=> $fw_list
 				);
 			}
 			else
@@ -231,7 +247,14 @@ class Devices extends CI_Controller {
 				{
 					$this->session->set_flashdata('error_result', lang('devices_index_flashdata_editerror'));
 				}
-				redirect('/devices');
+				if ($this->grcentral->get_local_referer() != FALSE)
+				{
+					redirect($this->grcentral->get_local_referer());
+				}
+				else
+				{
+					redirect('/devices/');
+				}
 			}
 			else
 			{

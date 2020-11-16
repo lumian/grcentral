@@ -54,7 +54,7 @@ $lang['devices_index_modaladdedit_statusactive_on']			= "Активирован"
 $lang['devices_index_modaladdedit_statusactive_off']		= "Не активирован";
 $lang['devices_index_modaladdedit_fwversionpinned']			= "Закрепить прошивку";
 $lang['devices_index_modaladdedit_fwversionpinned_help']	= "Укажите прошивку, которую необходимо закрепить за данным устройством. Закрепленная прошивка должна быть равна или выше уже установленной.";
-$lang['devices_index_modaladdedit_fwversionpinned_off']		= "Без закрепления - на общих условиях";
+$lang['devices_index_modaladdedit_fwversionpinned_off']		= "Без закрепления";
 // Главная страница: Модальное окно "Удаление устройства"
 $lang['devices_index_modaldel_title']						= "Удаление устройства";
 $lang['devices_index_modaldel_confirm']						= "Вы действительно хотите удалить устройство?";
@@ -81,9 +81,15 @@ $lang['devices_info_panel_about_statusactive']				= "Активность";
 $lang['devices_info_panel_about_statusactive_on']			= "Активировано";
 $lang['devices_info_panel_about_statusactive_off']			= "Не активировано";
 $lang['devices_info_panel_about_descr']						= "Описание";
+$lang['devices_info_panel_about_fw']						= "Прошивка";
+$lang['devices_info_panel_about_fw_pinned']					= "Закреплена";
 // Страница информации: Панель "CTI интеграция"
 $lang['devices_info_panel_cti_title']						= "CTI интеграция";
-$lang['devices_info_panel_cti_notavailable']				= "CTI интеграция недоступна. В шаблоне настроек для данного устройства, не найден пароль администратора (P2 value)";
+
+// Страница информации: Панель "Действия"
+$lang['devices_info_panel_actions_title']					= "Действия с устройством";
+$lang['devices_info_panel_actions_cti_na_error']			= "CTI интеграция недоступна.";
+$lang['devices_info_panel_actions_cti_na_descr']			= "В шаблоне настроек для данного устройства, не найден пароль администратора (P2 value).";
 // Страница информации: Панель "SIP аккаунты"
 $lang['devices_info_panel_accounts_title']					= "SIP аккаунты";
 $lang['devices_info_panel_accounts_description']			= "Кол-во аккаунтов ограничено 4 штуками, в зависимости от модели устройства, будет использоваться от 1 до 4 штук.";
