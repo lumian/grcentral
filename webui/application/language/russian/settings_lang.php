@@ -62,16 +62,16 @@ $lang['settings_models_modal_addeditgroup_params_conf_voicemail']	= "Voicemail n
 $lang['settings_models_modal_delgroup_title']				= "Удаление группы";
 $lang['settings_models_modal_delgroup_confirm']				= "Действительно удалить указанную группу?";
 // Страница "Модели": Модальное окно "Редактирование/Создание модели"
-$lang['settings_models_modal_addedit_titleadd']				= "Создание новой модели телефона";
-$lang['settings_models_modal_addedit_titleedit']			= "Редактирование модели телефона";
+$lang['settings_models_modal_addedit_titleadd']				= "Создание новой модели устройства";
+$lang['settings_models_modal_addedit_titleedit']			= "Редактирование модели устройства";
 $lang['settings_models_modal_addedit_techname']				= "Техническое имя модели";
-$lang['settings_models_modal_addedit_techname_help']		= "Техническое имя - это имя, по которому система распознает телефон.";
+$lang['settings_models_modal_addedit_techname_help']		= "Техническое имя - это имя, по которому система распознает устройство.";
 $lang['settings_models_modal_addedit_friendlyname']			= "Дружественное имя";
-$lang['settings_models_modal_addedit_friendlyname_help']	= "Произвольное имя модели телефона.";
+$lang['settings_models_modal_addedit_friendlyname_help']	= "Произвольное имя модели устройства.";
 $lang['settings_models_modal_addedit_group']				= "Группа моделей";
 $lang['settings_models_modal_addedit_group_help']			= "Укажите группу моделей, для их группировки";
 // Страница "Модели": Модальное окно "Удаление модели"
-$lang['settings_models_modal_del_title']					= "Удаление модели телефона";
+$lang['settings_models_modal_del_title']					= "Удаление модели устройства";
 $lang['settings_models_modal_del_confirm']					= "Действительно удалить указанную модель?";
 // Страница "Модели": Сообщения
 $lang['settings_models_flashdata_addsuccess']				= "Создание модели выполнено.";
@@ -107,9 +107,9 @@ $lang['settings_fw_table_noitemsingroup']					= "Нет прошивок в да
 // Страница "Обновление прошивки": Модальное окно "Редактирование/Создание прошивки"
 $lang['settings_fw_modal_addedit_title_add']				= "Создание новой прошивки";
 $lang['settings_fw_modal_addedit_version']					= "Версия прошивки";
-$lang['settings_fw_modal_addedit_version_help']				= "Введите версию прошивки";
+$lang['settings_fw_modal_addedit_version_help']				= "Введите версию загружаемой прошивки";
 $lang['settings_fw_modal_addedit_previous_version']			= "Предыдущая версия прошивки";
-$lang['settings_fw_modal_addedit_previous_version_help']	= "Введите версию прошивки, на которую необходимо устанавливать текущее обновление.";
+$lang['settings_fw_modal_addedit_previous_version_help']	= "Введите версию прошивки, на которую необходимо устанавливать обновление.";
 $lang['settings_fw_modal_addedit_group']					= "Группа моделей";
 $lang['settings_fw_modal_addedit_group_help']				= "Укажите группу моделей устройств, для которой загружаете прошивку.";
 $lang['settings_fw_modal_addedit_status']					= "Статус прошивки";
@@ -133,7 +133,7 @@ $lang['settings_fw_flashdata_change_status_success']		= "Изменение ст
 // Раздел "Параметры"
 //
 $lang['settings_params_pagetitle']							= "Параметры";
-$lang['settings_params_description_text']					= "В данном разделе производится непосредственное управление настройками устройств (P-Value). Настройки объединяются в шаблоны. <br />Для применения шаблона, его необходимо выбрать в разделе <a href='".site_url('settings/models')."'>Модели телефонов</a> у каждой группы моделей.";
+$lang['settings_params_description_text']					= "В данном разделе производится непосредственное управление настройками устройств (P-Value). Настройки объединяются в шаблоны. <br />Для применения шаблона, его необходимо выбрать в разделе <a href='".site_url('settings/models')."'>Модели устройств</a> у каждой группы моделей.";
 // Раздел "Параметры": Кнопки
 $lang['settings_params_btn_new']							= "Новый шаблон";
 $lang['settings_params_btn_hideshow']						= "Свернуть/Развернуть";
