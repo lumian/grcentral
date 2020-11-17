@@ -92,7 +92,6 @@ class Phonebook extends CI_Controller {
 					'last_name'			=> htmlspecialchars(trim($this->input->post('last_name'))),
 					'phone_work'		=> htmlspecialchars(trim($this->input->post('phone_work'))),
 					'status'			=> htmlspecialchars(trim($this->input->post('status'))),
-					'group_id'			=> '1',
 					'data_source'		=> 'manual'
 				);
 				

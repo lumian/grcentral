@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<tbody>
 		<tr>
 			<td>
-				<strong><?=lang('settings_syssettings_auto_add_devices_name');?></strong></br>
+				<?=lang('settings_syssettings_auto_add_devices_name');?></br>
 				<small class="text-muted"><?=lang('settings_syssettings_auto_add_devices_help');?></small>
 			</td>
 			<td>
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</tr>
 		<tr>
 			<td>
-				<strong><?=lang('settings_syssettings_fw_update_only_friend_name');?></strong></br>
+				<?=lang('settings_syssettings_fw_update_only_friend_name');?></br>
 				<small class="text-muted"><?=lang('settings_syssettings_fw_update_only_friend_help');?></small>
 			</td>
 			<td>
@@ -51,6 +51,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="custom-control custom-switch">
 					<input type="checkbox" class="custom-control-input" name="fw_update_only_friend" id="fw_update_only_friend" <?=$fw_update_only_friend;?>>
 					<label class="custom-control-label" for="fw_update_only_friend"></label>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="2"><?=lang('settings_syssettings_title_phonebook');?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_pb_generate_enable_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_pb_generate_enable_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['pb_generate_enable'] == 'on') { $pb_generate_enable = 'checked'; } else { $pb_generate_enable = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="pb_generate_enable" id="pb_generate_enable" <?=$pb_generate_enable;?>>
+					<label class="custom-control-label" for="pb_generate_enable"></label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_pb_collect_accounts_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_pb_collect_accounts_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['pb_collect_accounts'] == 'on') { $pb_collect_accounts = 'checked'; } else { $pb_collect_accounts = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="pb_collect_accounts" id="pb_collect_accounts" <?=$pb_collect_accounts;?>>
+					<label class="custom-control-label" for="pb_collect_accounts"></label>
 				</div>
 			</td>
 		</tr>

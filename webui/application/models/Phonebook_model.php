@@ -71,6 +71,16 @@ class Phonebook_model extends CI_Model {
 		return FALSE;
 	}
 	
+	function abonent_add_batch($data=NULL)
+	{
+		if (!is_null($data) AND is_array($data))
+		{
+			$this->db->insert_batch('phonebook_data', $data);
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
 	function abonent_edit($id=NULL, $data=NULL)
 	{
 		if (!is_null($id) AND is_numeric($id) AND !is_null($data) AND is_array($data) AND isset($data['first_name']) AND isset($data['last_name']) AND isset($data['phone_work']) AND isset($data['status']) AND isset($data['data_source']))
@@ -89,6 +99,15 @@ class Phonebook_model extends CI_Model {
 		return FALSE;
 	}
 	
+	function abonent_edit_batch($data=NULL)
+	{
+		if (!is_null($data) AND is_array($data))
+		{
+			$this->db->update_batch('phonebook_data', $data, 'id');
+		}
+		return FALSE;
+	}
+	
 	function abonent_del($id=NULL)
 	{
 		if (!is_null($id) AND is_numeric($id['id']))
@@ -100,13 +119,28 @@ class Phonebook_model extends CI_Model {
 		return FALSE;
 	}
 	
-	function abonents_getlist()
+	function abonent_del_batch($data=NULL)
 	{
-		$this->db->select()->from('phonebook_data')->order_by('first_name', 'ASC')->order_by('last_name', 'ASC');
+		if (!is_null($data) AND is_array($data))
+		{
+			$this->db->where_in('id', $data);
+			$query = $this->db->delete('phonebook_data');
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
+	function abonents_getlist($params=NULL)
+	{
+		$this->db->select()->from('phonebook_data')->order_by('phone_work', 'ASC');
 		$result = $this->db->get()->result_array();
 		if (count($result) > 0)
 		{
-			return $result;
+			foreach ($result as $row)
+			{
+				$result_array[$row['phone_work']] = $row;
+			}
+			return $result_array;
 		}
 		return FALSE;
 	}

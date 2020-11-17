@@ -792,6 +792,10 @@ class Settings extends CI_Controller {
 			if (!is_null($this->input->post('auto_add_devices'))) { $settings_data['auto_add_devices'] = 'on'; } else { $settings_data['auto_add_devices'] = 'off'; }
 			// fw_update_only_friend
 			if (!is_null($this->input->post('fw_update_only_friend'))) { $settings_data['fw_update_only_friend'] = 'on'; } else { $settings_data['fw_update_only_friend'] = 'off'; }
+			// pb_generate_enable
+			if (!is_null($this->input->post('pb_generate_enable'))) { $settings_data['pb_generate_enable'] = 'on'; } else { $settings_data['pb_generate_enable'] = 'off'; }
+			// pb_collect_accounts
+			if (!is_null($this->input->post('pb_collect_accounts'))) { $settings_data['pb_collect_accounts'] = 'on'; } else { $settings_data['pb_collect_accounts'] = 'off'; }
 			
 			// DB query for update settings
 			$query = $this->settings_model->syssettings_update($settings_data);

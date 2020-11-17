@@ -16,7 +16,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //
 $lang['phonebook_tabs_title_abonents']							= "Абоненты";
 $lang['phonebook_tabs_title_groups']							= "Группы";
-
 //
 // Страница абоненты
 //
@@ -25,7 +24,6 @@ $lang['phonebook_abonents_description_text']					= "В данном раздел
 $lang['phonebook_abonents_table_firstname']						= "Фамилия";
 $lang['phonebook_abonents_table_lastname']						= "Имя";
 $lang['phonebook_abonents_table_phonework']						= "Телефон";
-$lang['phonebook_abonents_table_group_id']						= "Группа";
 $lang['phonebook_abonents_table_datasource']					= "Источник данных";
 $lang['phonebook_abonents_table_datasource_']					= "N/A";
 $lang['phonebook_abonents_table_datasource_manual']				= "Внутренний: Создан вручную";
@@ -34,7 +32,8 @@ $lang['phonebook_abonents_table_datasource_ldap']				= "Внешний: LDAP";
 $lang['phonebook_abonents_table_status']						= "Статус";
 $lang['phonebook_abonents_table_status_on']						= "Активен";
 $lang['phonebook_abonents_table_status_off']					= "Не активен";
-$lang['phonebook_abonents_table_status_descr']					= "Нажмите, для изменения статуса";
+$lang['phonebook_abonents_table_status_descr_manual']			= "Нажмите, для изменения статуса";
+$lang['phonebook_abonents_table_status_descr_external']			= "Переключение статуса возможно только для абонентов добавленных вручную.";
 // Страница абоненты: Кнопки
 $lang['phonebook_abonents_btn_new']								= "Новый абонент";
 $lang['phonebook_abonents_btn_infotitle']						= "Инфо";

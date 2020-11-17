@@ -19,11 +19,11 @@ class Cron extends CI_Controller {
 		// Loading models:
 		$this->load->model('settings_model');
 		$this->load->model('devices_model');
+		$this->load->model('phonebook_model');
 	}
 	
 	public function webcron($query=NULL)
 	{
-		
 		if (!$this->grcentral->is_user())
 		{
 			redirect(index_page());
@@ -98,6 +98,10 @@ class Cron extends CI_Controller {
 		$params_list = $this->settings_model->params_getlist();
 		$models_list = $this->settings_model->models_getlist(array('group_data'=>TRUE));
 		$servers_list = $this->settings_model->servers_getlist();
+		
+		// Phonebook integration (check system settings)
+		$pb_collect_account = $this->settings_model->syssettings_get('pb_collect_accounts');
+		$pb_abonents_list = $this->phonebook_model->abonents_getlist();
 		
 		if ($devices_list != FALSE AND $params_list != FALSE AND $models_list != FALSE AND $servers_list != FALSE)
 		{
@@ -222,13 +226,98 @@ class Cron extends CI_Controller {
 							{
 								$params_array[$params_db['voicemail'][$acc_index]]	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
 							}
+							
+							// Phonebook integration (collect data)
+							if ($pb_collect_account == 'on')
+							{
+								// If the subscriber is already present in the database, we update the data about it
+								if (isset($pb_abonents_list[$acc_info['userid']]) AND $pb_abonents_list[$acc_info['userid']]['data_source'] == 'accounts')
+								{
+									$abonent_db_info = $pb_abonents_list[$acc_info['userid']];
+									$abonent_new_info = NULL;
+									
+									// Get subscriber name from account info (data format: "First_Name Last_Name"
+									$abonent_name_explode = explode(' ', $acc_info['name']);
+									if (isset($abonent_name_explode[0])) { $abonent_name['first_name'] =  $abonent_name_explode[0]; } else { $abonent_name['first_name'] = "N/A"; }
+									if (isset($abonent_name_explode[1])) { $abonent_name['last_name'] =  $abonent_name_explode[1]; } else { $abonent_name['last_name'] = ""; }
+									
+									// We check the data for the need to update it in the database
+									if ($abonent_db_info['first_name'] != $abonent_name['first_name'] OR $abonent_db_info['last_name'] != $abonent_name['last_name'] OR $abonent_db_info['external_id'] != $device['id'] OR $abonent_db_info['status'] != $acc_info['active'])
+									{
+										$pb_update_data[] = array(
+											'id'				=> $pb_abonents_list[$acc_info['userid']]['id'],
+											'first_name'		=> $abonent_name['first_name'],
+											'last_name'			=> $abonent_name['last_name'],
+											'external_id'		=> $device['id'],
+											'status'			=> $acc_info['active']
+										);
+									}
+								}
+								// If the subscriber is not found in the database, then add it.
+								if (!isset($pb_abonents_list[$acc_info['userid']]))
+								{
+									$abonent_name_explode = explode(' ', $acc_info['name']);
+									if (isset($abonent_name_explode[0])) { $abonent_name['first_name'] =  $abonent_name_explode[0]; } else { $abonent_name['first_name'] = "N/A"; }
+									if (isset($abonent_name_explode[1])) { $abonent_name['last_name'] =  $abonent_name_explode[1]; } else { $abonent_name['last_name'] = ""; }
+									
+									$pb_add_data[] = array(
+										'first_name'		=> $abonent_name['first_name'],
+										'last_name'			=> $abonent_name['last_name'],
+										'phone_work'		=> $acc_info['userid'],
+										'data_source'		=> 'accounts',
+										'external_id'		=> $device['id'],
+										'status'			=> $acc_info['active']
+									);
+								}
+								$pb_check_abonents_data[$acc_info['userid']] = $acc_info['userid'];
+							}
 						}
+						
 					}
 					
 					$xml_data[] = array(
 						'mac'				=> $device['mac_addr'],
 						'params'			=> $params_array
 					);
+				}
+			}
+			
+			// Phonebook integration
+			
+			// We perform data reconciliation to clear irrelevant subscribers
+			if (isset($pb_abonents_list) AND is_array($pb_abonents_list))
+			{
+				foreach($pb_abonents_list as $abonent)
+				{
+					// We only check integrated subscribers
+					if ($abonent['data_source'] == 'accounts')
+					{
+						if (!isset($pb_check_abonents_data[$abonent['phone_work']]))
+						{
+							echo "Del: ".$abonent['phone_work'].PHP_EOL;
+							$pb_delete_data[] = $abonent['id'];
+						}
+					}
+				}
+				// Deleting data
+				if (isset($pb_delete_data) AND is_array($pb_delete_data))
+				{
+					$this->phonebook_model->abonent_del_batch($pb_delete_data);
+				}
+			}
+			
+				
+			if ($pb_collect_account == 'on')
+			{
+				// Updating data
+				if (isset($pb_update_data) AND is_array($pb_update_data))
+				{
+					$this->phonebook_model->abonent_edit_batch($pb_update_data);
+				}
+				// Adding data
+				if (isset($pb_add_data) AND is_array($pb_add_data))
+				{
+					$this->phonebook_model->abonent_add_batch($pb_add_data);
 				}
 			}
 			
