@@ -45,20 +45,9 @@ CREATE TABLE IF NOT EXISTS `phonebook_data` (
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `phone_work` varchar(50) DEFAULT NULL,
-  `group_id` int(5) DEFAULT NULL,
   `data_source` varchar(50) DEFAULT NULL,
   `external_id` varchar(50) DEFAULT NULL,
   `status` int(5) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_base.phonebook_groups
-CREATE TABLE IF NOT EXISTS `phonebook_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `default` int(5) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
