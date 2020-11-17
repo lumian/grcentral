@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `devices_data` (
   `fw_version` varchar(50) DEFAULT NULL,
   `fw_version_pinned` varchar(50) DEFAULT NULL,
   `admin_password` varchar(50) DEFAULT NULL,
+  `params_source_data` text DEFAULT NULL,
+  `params_json_data` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `mac_addr` (`mac_addr`)
