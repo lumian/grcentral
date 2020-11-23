@@ -183,7 +183,22 @@ class Provisioning extends CI_Controller {
 	// Processing Phonebook requests
 	public function pb()
 	{
-		// In the development...
+		$pb_generation = $this->settings_model->syssettings_get('pb_generate_enable');
+		
+		if ($pb_generation == 'on')
+		{
+			$phone_info = $this->_useragent2phonedata($_SERVER['HTTP_USER_AGENT']);
+			
+			if (isset($phone_info['mac']) AND mb_strlen($phone_info['mac']) == '12')
+			{
+				$device_info_db = $this->devices_model->get(array('mac_addr' => $phone_info['mac']));
+				if ($device_info_db != FALSE AND isset($device_info_db['status_active']) AND $device_info_db['status_active'] == '1')
+				{
+					$this->grcentral->forcedownload('phonebook.xml',$this->config->item('storage_path', 'grcentral').'phonebook/phonebook.xml');
+					exit;
+				}
+			}
+		}
 		show_404();
 	}
 	

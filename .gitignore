@@ -1,2 +1,3 @@
 webui/storage/cfg/*.xml
 webui/storage/fw/*.bin
+webui/storage/phonebook/*.xml

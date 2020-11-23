@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table class="table">
 					<tr><th>Config Server Path</th><td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/cfg</td></tr>
 					<tr><th>Firmware Server Path</th><td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/fw</td></tr>
-					<tr><th><s>Phonebook XML Server Path</s></th><td><s><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/pb</s></td></tr>
+					<tr><th>Phonebook XML Server Path</th><td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/pb</td></tr>
 				</table>
 			</div>
 		</div>

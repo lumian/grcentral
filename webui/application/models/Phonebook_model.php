@@ -133,6 +133,10 @@ class Phonebook_model extends CI_Model {
 	function abonents_getlist($params=NULL)
 	{
 		$this->db->select()->from('phonebook_data')->order_by('phone_work', 'ASC');
+		if (isset($params['status']) AND is_numeric($params['status']))
+		{
+			$this->db->where('status', $params['status']);
+		}
 		$result = $this->db->get()->result_array();
 		if (count($result) > 0)
 		{

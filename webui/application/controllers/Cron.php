@@ -37,6 +37,10 @@ class Cron extends CI_Controller {
 			{
 				$result = $this->generate_cfg();
 			}
+			elseif ($query == 'genpb')
+			{
+				$result = $this->generate_pb();
+			}
 			else
 			{
 				show_404();
@@ -69,6 +73,10 @@ class Cron extends CI_Controller {
 			{
 				$result = $this->generate_cfg();
 			}
+			elseif ($type == 'genpb')
+			{
+				$result = $this->generate_pb();
+			}
 			else
 			{
 				echo "Error: Type not found";
@@ -91,6 +99,7 @@ class Cron extends CI_Controller {
 	//
 	// Service functions
 	//
+	// Generating config files and collect phonebook
 	private function generate_cfg()
 	{
 		$this->settings_model->syssettings_update(array('cfg_need_apply' => 'off'));
@@ -348,13 +357,77 @@ class Cron extends CI_Controller {
 		return FALSE;
 	}
 	
-	private function _clean_dir($dir) {
+	// Generating phonebook
+	private function generate_pb()
+	{
+		$pb_generation = $this->settings_model->syssettings_get('pb_generate_enable');
+		
+		$xml_path = $this->config->item('storage_path', 'grcentral').'phonebook';
+		$this->_clean_dir($xml_path);
+		
+		if ($pb_generation == 'off')
+		{
+			return FALSE;
+		}
+		
+		$pb_list = $this->phonebook_model->abonents_getlist(array('status' => '1'));
+		
+		if ($pb_list != FALSE AND count($pb_list) > 0)
+		{
+			foreach ($pb_list as $abonent)
+			{
+				$xml_data[] = array(
+					'id'			=> $abonent['id'],
+					'first_name'	=> $abonent['first_name'],
+					'last_name'		=> $abonent['last_name'],
+					'phone_work'	=> $abonent['phone_work']
+				);
+			}
+		}
+		
+		if (isset($xml_data) AND is_array($xml_data))
+		{
+			// XML header:
+			$put_data = '<?xml version="1.0" encoding="UTF-8" ?>'.PHP_EOL;
+			$put_data .= '<AddressBook>'.PHP_EOL;
+			$put_data .= ' <pbgroup>'.PHP_EOL;
+			$put_data .= '  <id>0</id>'.PHP_EOL;
+			$put_data .= '  <name>Default</name>'.PHP_EOL;
+			$put_data .= ' </pbgroup>'.PHP_EOL;
+			
+			foreach($xml_data as $row)
+			{
+				// XML Contact data
+				$put_data .= ' <Contact>'.PHP_EOL;
+				$put_data .= '  <id>'.$row['id'].'</id>'.PHP_EOL;
+				$put_data .= '  <FirstName>'.$row['first_name'].'</FirstName>'.PHP_EOL;
+				$put_data .= '  <LastName>'.$row['last_name'].'</LastName>'.PHP_EOL;
+				$put_data .= '  <Frequent>0</Frequent>'.PHP_EOL;
+				$put_data .= '  <Phone type="Work">'.PHP_EOL;
+				$put_data .= '   <phonenumber>'.$row['phone_work'].'</phonenumber>'.PHP_EOL;
+				$put_data .= '   <accountindex>1</accountindex>'.PHP_EOL;
+				$put_data .= '  </Phone>'.PHP_EOL;
+				$put_data .= '  <Group>0</Group>'.PHP_EOL;
+				$put_data .= '  <Primary>0</Primary>'.PHP_EOL;
+				$put_data .= ' </Contact>'.PHP_EOL;
+			}
+			$put_data .= '</AddressBook>'.PHP_EOL;
+			$xml_file = $xml_path.'/phonebook.xml';
+			file_put_contents($xml_file, $put_data);
+			
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
+	private function _clean_dir($dir)
+	{
 		$files_list = glob($dir."/*");
 		if (count($files_list) > 0)
 		{
 			foreach ($files_list as $file)
 			{      
-				if (file_exists($file))
+				if (file_exists($file) AND $file != 'index.html')
 				{
 					unlink($file);
 				}   
