@@ -53,6 +53,21 @@ class Phonebook_model extends CI_Model {
 		return FALSE;
 	}
 	
+	function abonent_transform_source($id=NULL, $source=NULL)
+	{
+		if (!is_null($id) AND is_numeric($id) AND !is_null($source) AND is_string($source))
+		{
+			$update_data = array(
+				'data_source'		=> $source,
+				'external_id'		=> ''
+			);
+			$this->db->where('id', $id);
+			$query = $this->db->update('phonebook_data', $update_data);
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
 	function abonent_add($data=NULL)
 	{
 		if (!is_null($data) AND is_array($data) AND isset($data['first_name']) AND isset($data['last_name']) AND isset($data['phone_work']) AND isset($data['status']) AND isset($data['data_source']))

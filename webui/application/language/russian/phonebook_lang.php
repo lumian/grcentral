@@ -26,6 +26,7 @@ $lang['phonebook_abonents_table_lastname']						= "Имя";
 $lang['phonebook_abonents_table_phonework']						= "Телефон";
 $lang['phonebook_abonents_table_datasource']					= "Источник данных";
 $lang['phonebook_abonents_table_datasource_']					= "N/A";
+$lang['phonebook_abonents_table_datasource_transform']			= "Преобразовать в";
 $lang['phonebook_abonents_table_datasource_manual']				= "Внутренний: Создан вручную";
 $lang['phonebook_abonents_table_datasource_accounts']			= "Внутренний: VoIP аккаунты";
 $lang['phonebook_abonents_table_datasource_ldap']				= "Внешний: LDAP";
@@ -42,6 +43,9 @@ $lang['phonebook_abonents_btn_action_na']						= "Нет доступных де
 // Страница абоненты: Модальное окно "Изменение статуса"
 $lang['phonebook_abonents_modal_changestatus_title']			= "Изменение статуса абонента";
 $lang['phonebook_abonents_modal_changestatus_confirm']			= "Вы действительно хотите изменить статус абонента?<br /><i>Примечание: только активные абоненты выгружаются в адресную книгу на аппараты.</i>";
+// Страница абоненты: Модальное окно "Преобразование источника данных"
+$lang['phonebook_abonents_modal_transformsource_title']		= "Преобразование источника данных";
+$lang['phonebook_abonents_modal_transformsource_confirm']		= "Вы действительно хотите изменить источник данных на ручной?";
 // Страница абоненты: Модальное окно "Удаление абонента"
 $lang['phonebook_abonents_modal_delabonent_title']				= "Удаление абонента";
 $lang['phonebook_abonents_modal_delabonent_confirm']			= "Вы действительно хотите удалить выбранного абонента из справочника?";
@@ -60,8 +64,10 @@ $lang['phonebook_abonents_modal_addeditabonent_status_on']		= "Активен";
 $lang['phonebook_abonents_modal_addeditabonent_status_off']		= "Не активен";
 // Страница абоненты: Сообщения
 $lang['phonebook_abonents_flashdata_changestatus_success']		= "Изменение статуса успешно выполнено.";
+$lang['phonebook_abonents_flashdata_transformsource_success']	= "Изменение источника данных успешно выполнено.";
 $lang['phonebook_abonents_flashdata_addabonent_success']		= "Новый абонент успешно добавлен в справочник.";
 $lang['phonebook_abonents_flashdata_addabonent_error']			= "Ошибка. Абонент не добавлен.";
+$lang['phonebook_abonents_flashdata_addabonent_error_phoneuse']	= "Номер абонента уже используется.";
 $lang['phonebook_abonents_flashdata_editabonent_success']		= "Данные об абоненте успешно отредактированы.";
 $lang['phonebook_abonents_flashdata_editabonent_error']			= "Ошибка. Данные об абоненте не отредактированы.";
 $lang['phonebook_abonents_flashdata_delabonent_success']		= "Удаление абонента успешно выполнено.";

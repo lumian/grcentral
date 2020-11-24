@@ -73,7 +73,6 @@ class Phonebook extends CI_Controller {
 		
 		$page_data = array(
 			'abonents_list'		=> $abonents_list,
-			'group_list'		=> TRUE
 		);
 		
 		$this->content = $this->load->view('phonebook/abonents_list', $page_data, TRUE);
@@ -87,24 +86,34 @@ class Phonebook extends CI_Controller {
 			// Add new abonent
 			if (!is_null($this->input->post('first_name')) AND !is_null($this->input->post('last_name')) AND !is_null($this->input->post('phone_work')) AND !is_null($this->input->post('status')))
 			{
-				$post_data = array(
-					'first_name'		=> htmlspecialchars(trim($this->input->post('first_name'))),
-					'last_name'			=> htmlspecialchars(trim($this->input->post('last_name'))),
-					'phone_work'		=> htmlspecialchars(trim($this->input->post('phone_work'))),
-					'status'			=> htmlspecialchars(trim($this->input->post('status'))),
-					'data_source'		=> 'manual'
-				);
+				$phone_work = htmlspecialchars(trim($this->input->post('phone_work')));
+				$check_abonent = $this->phonebook_model->abonent_get(array('phone_work'=>$phone_work));
 				
-				$query = $this->phonebook_model->abonent_add($post_data);
-				
-				if ($query != FALSE)
+				if ($check_abonent === FALSE)
 				{
-					$this->session->set_flashdata('success_result', lang('phonebook_abonents_flashdata_addabonent_success'));
+					$post_data = array(
+						'first_name'		=> htmlspecialchars(trim($this->input->post('first_name'))),
+						'last_name'			=> htmlspecialchars(trim($this->input->post('last_name'))),
+						'phone_work'		=> $phone_work,
+						'status'			=> htmlspecialchars(trim($this->input->post('status'))),
+						'data_source'		=> 'manual'
+					);
+					
+					$query = $this->phonebook_model->abonent_add($post_data);
+					if ($query != FALSE)
+					{
+						$this->session->set_flashdata('success_result', lang('phonebook_abonents_flashdata_addabonent_success'));
+					}
+					else
+					{
+						$this->session->set_flashdata('error_result', lang('phonebook_abonents_flashdata_addabonent_error'));
+					}
 				}
 				else
 				{
-					$this->session->set_flashdata('error_result', lang('phonebook_abonents_flashdata_addabonent_error'));
+					$this->session->set_flashdata('error_result', lang('phonebook_abonents_flashdata_addabonent_error').' '.lang('phonebook_abonents_flashdata_addabonent_error_phoneuse'));
 				}
+				
 				redirect('/phonebook/');
 			}
 			else
@@ -126,7 +135,6 @@ class Phonebook extends CI_Controller {
 						'last_name'			=> htmlspecialchars(trim($this->input->post('last_name'))),
 						'phone_work'		=> htmlspecialchars(trim($this->input->post('phone_work'))),
 						'status'			=> htmlspecialchars(trim($this->input->post('status'))),
-						'group_id'			=> '1',
 						'data_source'		=> 'manual'
 					);
 					
@@ -195,7 +203,31 @@ class Phonebook extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
-					$this->session->set_flashdata('success_result', lang('phonebook_index_flashdata_changestatus_success'));
+					$this->session->set_flashdata('success_result', lang('phonebook_abonents_flashdata_changestatus_success'));
+				}
+				else
+				{
+					$this->session->set_flashdata('error_result', lang('main_error_db'));
+				}
+			}
+			else
+			{
+				show_404(current_url());
+			}
+			redirect('/phonebook/');
+		}
+		elseif ($action == 'abonent_transformsource' AND !is_null($param) AND is_numeric($param))
+		{
+			// Abonent: Transform source: accounts to manual
+			$abonent_info = $this->phonebook_model->abonent_get(array('id'=>$param));
+			
+			if ($abonent_info != FALSE)
+			{
+				$query = $this->phonebook_model->abonent_transform_source($param, 'manual');
+				
+				if ($query != FALSE)
+				{
+					$this->session->set_flashdata('success_result', lang('phonebook_abonents_flashdata_transformsource_success'));
 				}
 				else
 				{
@@ -210,6 +242,7 @@ class Phonebook extends CI_Controller {
 		}
 		else
 		{
+			
 			show_404(current_url());
 		}
 	}

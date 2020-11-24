@@ -8,9 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <div class="btn-group btn-group-sm mt-2" role="group">
-	<? if ($group_list != FALSE): ?>
 	<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('phonebook_abonents_btn_new');?></button>
-	<? endif; ?>
 	<a href="<?=lang('main_helpurl_phonebook_abonents');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
 </div>
 
@@ -39,7 +37,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$abonent['first_name'];?></td>
 					<td><?=$abonent['last_name'];?></td>
 					<td><?=$abonent['phone_work'];?></td>
-					<td><?=lang('phonebook_abonents_table_datasource_'.$abonent['data_source']);?></td>
+					<td><?=lang('phonebook_abonents_table_datasource_'.$abonent['data_source']);?>
+					<? if ($abonent['data_source'] != 'manual'): ?>
+						&nbsp;
+						<span data-toggle="tooltip" title="<?=lang('phonebook_abonents_table_datasource_transform');?> <?=lang('phonebook_abonents_table_datasource_manual');?>">
+							<a href="#" data-toggle="modal" data-target="#ModalTransformSource" data-id="<?=$abonent['id'];?>">
+								<i class="fa fa-random"></i>
+							</a>
+						</span>
+					<? endif; ?>
+					</td>
 					<td>
 						<!-- Status button -->
 						<div class="btn-group btn-block" role="group">
@@ -54,8 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<button type="button" class="btn btn-outline-success btn-xs btn-block" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_external');?>" disabled><i class="fa fa-power-off"></i></button>
 								<? else: ?>
 									<button type="button" class="btn btn-outline-danger btn-xs btn-block" title="<?=lang('phonebook_abonents_table_status_off');?>. <?=lang('phonebook_abonents_table_status_descr_external');?>" disabled><i class="fa fa-power-off"></i></button>
-								<? endif; ?>
-								
+								<? endif; ?>								
 							<? endif; ?>
 						</div>
 					</td>
@@ -63,20 +69,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<!-- Action buttons -->
 						<div class="btn-group btn-block" role="group">
 							<? if ($abonent['data_source'] == 'manual'): ?>
-							<button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_edit');?>">
-								<i class="fa fa-edit"></i>
-							</button>
-							<button type="button" class="btn btn-outline-danger btn-xs" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_del');?>">
-								<i class="fa fa-trash-alt"></i>
-							</button>
+								<button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_edit');?>">
+									<i class="fa fa-edit"></i>
+								</button>
+								<button type="button" class="btn btn-outline-danger btn-xs" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_del');?>">
+									<i class="fa fa-trash-alt"></i>
+								</button>
 							<? elseif ($abonent['data_source'] == 'accounts' AND isset($abonent['external_id']) AND is_numeric($abonent['external_id'])):?>
-							<a type="button" class="btn btn-outline-info btn-xs" title="<?=lang('phonebook_abonents_btn_gotodevice');?>" href="<?=site_url('devices/info/'.$abonent['external_id']);?>" target="_blank">
-								<i class="fa fa-external-link-alt"></i>
-							</a>
+								<a type="button" class="btn btn-outline-info btn-xs" title="<?=lang('phonebook_abonents_btn_gotodevice');?>" href="<?=site_url('devices/info/'.$abonent['external_id']);?>" target="_blank">
+									<i class="fa fa-external-link-alt"></i>
+								</a>
 							<? else: ?>
-							<button type="button" class="btn btn-outline-info btn-xs disabled" title="<?=lang('phonebook_abonents_btn_action_na');?>">
-								<i class="fa fa-times"></i>
-							</button>
+								<button type="button" class="btn btn-outline-info btn-xs disabled" title="<?=lang('phonebook_abonents_btn_action_na');?>">
+									<i class="fa fa-times"></i>
+								</button>
 							<? endif; ?>
 						</div>
 					</td>
@@ -222,5 +228,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var abonentid = button.data('id')
 		var modal = $(this)
 		modal.find('.modal-footer a').attr('href', '<?=site_url("phonebook/actions/abonent_changestatus/");?>' + abonentid)
+	})
+</script>
+
+<!-- ModalTransformSource -->
+<div class="modal fade" id="ModalTransformSource" tabindex="-1" role="dialog" aria-labelledby="ModalTransformSourceLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalTransformSourceLabel"><?=lang('phonebook_abonents_modal_transformsource_title');?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<?=lang('phonebook_abonents_modal_transformsource_confirm');?>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<a type="button" class="btn btn-outline-success btn-sm" href="#"><?=lang('main_btn_save');?></a>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('#ModalTransformSource').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var abonentid = button.data('id')
+		var modal = $(this)
+		modal.find('.modal-footer a').attr('href', '<?=site_url("phonebook/actions/abonent_transformsource/");?>' + abonentid + '/manual')
 	})
 </script>
