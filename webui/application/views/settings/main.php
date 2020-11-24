@@ -14,9 +14,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col">
 				<?=lang('settings_index_urls');?>:
 				<table class="table">
-					<tr><th>Config Server Path</th><td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/cfg</td></tr>
-					<tr><th>Firmware Server Path</th><td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/fw</td></tr>
-					<tr><th>Phonebook XML Server Path</th><td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/pb</td></tr>
+					<tr>
+						<th>Config Server Path</th>
+						<td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/cfg</td>
+						<td>
+							<? if ($modules_status['cfg_enable_get'] == 'on'):  ?>
+							<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
+							<? else: ?>
+							<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
+							<? endif; ?>
+						</td>
+					</tr>
+					<tr>
+						<th>Firmware Server Path</th>
+						<td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/fw</td>
+						<td>
+							<? if ($modules_status['fw_enable_update'] == 'on'):  ?>
+							<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
+							<? else: ?>
+							<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
+							<? endif; ?>
+						</td>
+					</tr>
+					<tr>
+						<th>Phonebook XML Server Path</th>
+						<td><?=parse_url(base_url(), PHP_URL_HOST);?>/provisioning/pb</td>
+						<td>
+							<? if ($modules_status['pb_generate_enable'] == 'on'):  ?>
+							<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
+							<? else: ?>
+							<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
+							<? endif; ?>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</div>

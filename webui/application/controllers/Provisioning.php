@@ -12,8 +12,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Provisioning extends CI_Controller {
 	
-	private $testmode = FALSE;
-	
 	public function __construct()
 	{
 		parent::__construct();
@@ -30,6 +28,13 @@ class Provisioning extends CI_Controller {
 	// Processing CFG requests
 	public function cfg($get_file=NULL)
 	{
+		$cfg_enable_get = $this->settings_model->syssettings_get('cfg_enable_get');
+		
+		if ($cfg_enable_get == 'off')
+		{
+			show_404();
+		}
+		
 		// If the requested file is present
 		if (!is_null($get_file))
 		{
@@ -54,15 +59,7 @@ class Provisioning extends CI_Controller {
 							$this->devices_model->edit($phone_info_db['id'], array('fw_version' => $phone_info['version']));
 							if (is_readable($this->config->item('storage_path', 'grcentral').'cfg/'.$get_file))
 							{
-								// FOR TESTING ONLY:
-								if ($this->testmode === TRUE)
-								{
-									show_404();
-								}
-								else
-								{
-									$this->grcentral->forcedownload($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
-								}
+								$this->grcentral->forcedownload($get_file, $this->config->item('storage_path', 'grcentral').'cfg/'.$get_file);
 							}
 							else
 							{
@@ -130,6 +127,13 @@ class Provisioning extends CI_Controller {
 	// Processing FW requests (language.txt file, rindX.bin files, pdate files)
 	public function fw($get_file=NULL)
 	{
+		$fw_enable_update = $this->settings_model->syssettings_get('fw_enable_update');
+		
+		if ($fw_enable_update == 'off')
+		{
+			show_404();
+		}
+		
 		// If the requested file is present
 		if (!is_null($get_file))
 		{
@@ -326,43 +330,22 @@ class Provisioning extends CI_Controller {
 							show_404(current_url());
 						}
 						
-						// FOR TESTING ONLY:
-						if ($this->testmode === TRUE)
+						// If the information for the device upgrade is received correctly, then we give the file to download
+						if (isset($put_firmware) AND $put_firmware != FALSE AND isset($put_firmware['file_name']) AND isset($put_firmware['file_name_real']))
 						{
-							var_dump($update_firmware);
-							echo "Get file: ".$get_file.PHP_EOL;
-							if ($phone_info_db == FALSE) { echo "Friendly phone: No".PHP_EOL; } else { echo "Friendly phone: Yes".PHP_EOL; }
-							echo "Phone model: ".$model_info['friendly_name'].PHP_EOL;
-							echo "Phone sw version: ".$phone_info['version'].PHP_EOL;
-							if (isset($put_firmware) AND $put_firmware != FALSE)
+							// If firmware file is readable...
+							if (is_readable($this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']))
 							{
-								echo "New sw version: ".$put_firmware['version'].PHP_EOL;
-								echo "Put file: ".$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real'].PHP_EOL;
-							}
-							else
-							{
-								echo "No new updates";
-							}
-						}
-						else
-						{
-							// If the information for the device upgrade is received correctly, then we give the file to download
-							if (isset($put_firmware) AND $put_firmware != FALSE AND isset($put_firmware['file_name']) AND isset($put_firmware['file_name_real']))
-							{
-								// If firmware file is readable...
-								if (is_readable($this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']))
-								{
-									$this->grcentral->forcedownload($put_firmware['file_name'],$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']);
-								}
-								else
-								{
-									show_404();
-								}
+								$this->grcentral->forcedownload($put_firmware['file_name'],$this->config->item('storage_path', 'grcentral').'fw/'.$put_firmware['file_name_real']);
 							}
 							else
 							{
 								show_404();
 							}
+						}
+						else
+						{
+							show_404();
 						}
 						exit;
 					}

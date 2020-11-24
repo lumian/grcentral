@@ -110,7 +110,14 @@ class Settings extends CI_Controller {
 	// Settings index page
 	public function index()
 	{
-		$this->content = $this->load->view('settings/main', NULL, TRUE);
+		$page_data = array(
+			'modules_status'	=> array(
+				'fw_enable_update'		=> $this->settings_model->syssettings_get('fw_enable_update'),
+				'cfg_enable_get'		=> $this->settings_model->syssettings_get('cfg_enable_get'),
+				'pb_generate_enable'	=> $this->settings_model->syssettings_get('pb_generate_enable')
+			)
+		);
+		$this->content = $this->load->view('settings/main', $page_data, TRUE);
 		$this->_RenderPage();
 	}
 	
@@ -796,6 +803,10 @@ class Settings extends CI_Controller {
 			if (!is_null($this->input->post('pb_generate_enable'))) { $settings_data['pb_generate_enable'] = 'on'; } else { $settings_data['pb_generate_enable'] = 'off'; }
 			// pb_collect_accounts
 			if (!is_null($this->input->post('pb_collect_accounts'))) { $settings_data['pb_collect_accounts'] = 'on'; } else { $settings_data['pb_collect_accounts'] = 'off'; }
+			// fw_enable_update
+			if (!is_null($this->input->post('fw_enable_update'))) { $settings_data['fw_enable_update'] = 'on'; } else { $settings_data['fw_enable_update'] = 'off'; }
+			// cfg_enable_get
+			if (!is_null($this->input->post('cfg_enable_get'))) { $settings_data['cfg_enable_get'] = 'on'; } else { $settings_data['cfg_enable_get'] = 'off'; }
 			
 			// DB query for update settings
 			$query = $this->settings_model->syssettings_update($settings_data);

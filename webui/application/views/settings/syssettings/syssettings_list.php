@@ -54,6 +54,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_fw_enable_update_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_fw_enable_update_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['fw_enable_update'] == 'on') { $fw_enable_update = 'checked'; } else { $fw_enable_update = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="fw_enable_update" id="fw_enable_update" <?=$fw_enable_update;?>>
+					<label class="custom-control-label" for="fw_enable_update"></label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_cfg_enable_get_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_cfg_enable_get_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['cfg_enable_get'] == 'on') { $cfg_enable_get = 'checked'; } else { $cfg_enable_get = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="cfg_enable_get" id="cfg_enable_get" <?=$cfg_enable_get;?>>
+					<label class="custom-control-label" for="cfg_enable_get"></label>
+				</div>
+			</td>
+		</tr>
 	</tbody>
 	<thead>
 		<tr>
