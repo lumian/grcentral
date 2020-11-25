@@ -39,6 +39,18 @@ CREATE TABLE IF NOT EXISTS `devices_data` (
 
 -- Экспортируемые данные не выделены.
 
+-- Дамп структуры для таблица grcentral_base.logs_data
+CREATE TABLE IF NOT EXISTS `logs_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) DEFAULT NULL,
+  `log_data` text DEFAULT NULL,
+  `datetime` datetime DEFAULT NULL,
+  `unit_id` int(11) DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Экспортируемые данные не выделены.
+
 -- Дамп структуры для таблица grcentral_base.phonebook_data
 CREATE TABLE IF NOT EXISTS `phonebook_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

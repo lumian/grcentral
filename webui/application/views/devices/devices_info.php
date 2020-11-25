@@ -72,6 +72,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$device_info['id'];?>">
 					<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 				</button><br />
+				<button type="button" class="btn btn-outline-info btn-sm mt-2" data-toggle="modal" data-target="#ModalLogs">
+					<i class="fa fa-list-ul"></i> <?=lang('devices_info_btn_logs');?>
+				</button><br />
 				<button type="button" class="btn btn-outline-danger btn-sm mt-2" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$device_info['id'];?>">
 					<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 				</button>
@@ -477,5 +480,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	})
 </script>
 <? endif;?>
+
+<!-- ModalLogs -->
+<div class="modal fade" id="ModalLogs" tabindex="-1" role="dialog" aria-labelledby="ModalLogsLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalLogsLabel"><?=lang('devices_index_modallogs_title');?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p><?=lang('devices_index_modallogs_descr');?></p>
+				<table class="table table-hover table-sm mt-2">
+					<thead>
+					<tr>
+						<th><?=lang('devices_index_modallogs_table_date');?></th>
+						<th><?=lang('devices_index_modallogs_table_type');?></th>
+						<th><?=lang('devices_index_modallogs_table_fwversion');?></th>
+					</tr>
+					</thead>
+					<tbody>
+						<? if ($logs_list != FALSE): ?>
+						<? foreach($logs_list as $log): ?>
+							<tr>
+								<td><?=$log['datetime'];?></td>
+								<td><?=$log['type'];?></td>
+								<td><? $log_data = json_decode($log['log_data']); echo $log_data->fw_version; ?></td>
+							</tr>
+						<? endforeach; ?>
+						<? else: ?>
+						<tr>
+							<td class="table-primary" colspan="3"><?=lang('devices_index_modallogs_table_nodata');?></td>
+						</tr>
+						<? endif;?>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <?=$this->load->view('devices/devices_actions', NULL, TRUE); ?>

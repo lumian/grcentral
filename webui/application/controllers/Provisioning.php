@@ -19,6 +19,7 @@ class Provisioning extends CI_Controller {
 		// Loading:
 		$this->load->model('settings_model');
 		$this->load->model('devices_model');
+		$this->load->library('logger');
 	}
 	
 	//
@@ -50,6 +51,9 @@ class Provisioning extends CI_Controller {
 				// If the device is found in the database, we continue
 				if ($phone_info_db != FALSE)
 				{
+					// Logging
+					$this->logger->device_get_cfg($phone_info_db['id'], array('fw_version'=>$phone_info['version']));
+					
 					// If the requested file matches the configuration file template, then continue
 					if ($get_file == 'cfg'.$phone_info_db['mac_addr'].'.xml')
 					{
@@ -191,13 +195,16 @@ class Provisioning extends CI_Controller {
 		
 		if ($pb_generation == 'on')
 		{
-			$phone_info = $this->_useragent2phonedata($_SERVER['HTTP_USER_AGENT']);
+			$device_info = $this->_useragent2phonedata($_SERVER['HTTP_USER_AGENT']);
 			
-			if (isset($phone_info['mac']) AND mb_strlen($phone_info['mac']) == '12')
+			if (isset($device_info['mac']) AND mb_strlen($device_info['mac']) == '12')
 			{
-				$device_info_db = $this->devices_model->get(array('mac_addr' => $phone_info['mac']));
+				$device_info_db = $this->devices_model->get(array('mac_addr' => $device_info['mac']));
 				if ($device_info_db != FALSE AND isset($device_info_db['status_active']) AND $device_info_db['status_active'] == '1')
 				{
+					// Logging:
+					$this->logger->device_get_pb($device_info_db['id'], array('fw_version'=>$device_info['version']));
+					// Download file:
 					$this->grcentral->forcedownload('phonebook.xml',$this->config->item('storage_path', 'grcentral').'phonebook/phonebook.xml');
 					exit;
 				}
@@ -227,6 +234,11 @@ class Provisioning extends CI_Controller {
 				{
 					show_404();
 				}
+			}
+			else
+			{
+				// Logging:
+				$this->logger->device_get_fw($phone_info_db['id'], array('fw_version'=>$phone_info['version']));
 			}
 			
 			// If the device is not active, then we display a 404 error.

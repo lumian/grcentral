@@ -132,11 +132,19 @@ class Devices extends CI_Controller {
 	
 	public function info($param=NULL)
 	{
+		$this->load->model('logger_model');
+		
 		if (!is_null($param) AND is_numeric($param))
 		{
 			$device_info = $this->devices_model->get(array('id' => $param));
+			if ($device_info == FALSE)
+			{
+				show_404();
+			}
 			$models_list = $this->settings_model->models_getlist();
 			$groups_list = $this->settings_model->models_group_getlist();
+			$logs_list = $this->logger_model->get_logs(array('unit_id'=>$device_info['id'], 'type'=>'provisioning', 'limit'=>'30'));
+			
 			$fw_list = array();
 			
 			if ($groups_list != FALSE)
@@ -170,7 +178,8 @@ class Devices extends CI_Controller {
 					'accounts_list'		=> $accounts_list,
 					'servers_list'		=> $servers_list,
 					'models_list'		=> $models_list,
-					'fw_list'			=> $fw_list
+					'fw_list'			=> $fw_list,
+					'logs_list'			=> $logs_list
 				);
 			}
 			else
