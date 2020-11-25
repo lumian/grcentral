@@ -18,10 +18,15 @@ class Logger_model extends CI_Model {
 		{
 			$this->db->select('*')->from('logs_data');
 			
-			if (isset($params['unit_id']) AND is_numeric($params['unit_id']) AND isset($params['type']) AND is_string($params['type']))
+			// Set unit_id
+			if (isset($params['unit_id']) AND is_numeric($params['unit_id']))
 			{
 				$this->db->where('unit_id', $params['unit_id']);
-				
+			}
+			
+			// Set type
+			if (isset($params['type']) AND is_string($params['type']))
+			{
 				if ($params['type'] = 'provisioning')
 				{
 					$types = array('device_get_cfg', 'device_get_fw', 'device_get_pb');
@@ -31,16 +36,19 @@ class Logger_model extends CI_Model {
 				{
 					$this->db->where('type', $params['type']);
 				}
-				if (isset($params['limit']) AND is_numeric($params['limit']))
-				{
-					$this->db->limit($params['limit']);
-				}
-				$this->db->order_by('datetime', 'DESC');
+			}
+			
+			// Set limit
+			if (isset($params['limit']) AND is_numeric($params['limit']))
+			{
+				$this->db->limit($params['limit']);
 			}
 			else
 			{
-				return FALSE;
+				$this->db->limit('500');
 			}
+			
+			$this->db->order_by('datetime', 'DESC');
 			$result = $this->db->get()->result_array();
 			
 			if (isset($result) AND count($result) > 0)

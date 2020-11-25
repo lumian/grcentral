@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['main_menu_home']							= "Главная";
 $lang['main_menu_devices']						= "Устройства";
 $lang['main_menu_phonebook']					= "Справочник";
+$lang['main_menu_logs']							= "Логи системы";
 $lang['main_menu_settings']						= "Настройки";
 // Стандартные сообщения об ошибках
 $lang['main_error_db']							= "Ошибка базы данных.";

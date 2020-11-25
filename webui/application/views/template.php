@@ -59,6 +59,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<? if ($current == 'phonebook'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
 						<a class="nav-link" href="<?=site_url('phonebook');?>"><i class="fa fa-address-book"></i> <?=lang('main_menu_phonebook');?></a>
 					</li>
+					<? if ($current == 'logs'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
+						<a class="nav-link" href="<?=site_url('logs');?>"><i class="fa fa-list-ul"></i> <?=lang('main_menu_logs');?></a>
+					</li>
 					<? if ($current == 'settings'): ?><li class="nav-item active"><? else: ?><li class="nav-item"><? endif; ?>
 						<a class="nav-link" href="<?=site_url('settings');?>"><i class="fa fa-cog"></i> <?=lang('main_menu_settings');?></a>
 					</li>
