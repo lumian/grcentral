@@ -71,3 +71,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? endif; ?>
 	</tbody>
 </table>
+
+<? if ($pagination_links != ''): ?>
+<nav aria-label="Navigation">
+	<ul class="pagination pagination-sm mt-2">
+		<?=$pagination_links;?>
+	</ul>
+</nav>
+<? endif; ?>
