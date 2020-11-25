@@ -41,7 +41,14 @@ class Logger_model extends CI_Model {
 			// Set limit
 			if (isset($params['limit']) AND is_numeric($params['limit']))
 			{
-				$this->db->limit($params['limit']);
+				if (isset($params['start']) AND is_numeric($params['start']))
+				{
+					$this->db->limit($params['limit'], $params['start']);
+				}
+				else
+				{
+					$this->db->limit($params['limit']);
+				}
 			}
 			else
 			{
@@ -49,9 +56,16 @@ class Logger_model extends CI_Model {
 			}
 			
 			$this->db->order_by('datetime', 'DESC');
-			$result = $this->db->get()->result_array();
+			if (isset($params['get_total']) AND $params['get_total'] == TRUE)
+			{
+				$result = $this->db->count_all_results();
+			}
+			else
+			{
+				$result = $this->db->get()->result_array();
+			}
 			
-			if (isset($result) AND count($result) > 0)
+			if (isset($result))
 			{
 				return $result;
 			}

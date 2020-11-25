@@ -25,6 +25,8 @@ class Logs extends CI_Controller {
 		
 		$this->lang->load('logs');
 		$this->load->model('logger_model');
+		$this->load->library('pagination');
+		$this->config->load('pagination');
 	}
 	
 	private function _RenderPage()
@@ -52,7 +54,13 @@ class Logs extends CI_Controller {
 	{
 		$this->load->model('devices_model');
 		
-		$logs_list = $this->logger_model->get_logs(array('type'=>'provisioning'));
+		$page_in_uri = '3';
+		$logs_get_params = array(
+			'type'				=> 'provisioning',
+			'limit'				=> '100',
+			'start'				=> ($this->uri->segment($page_in_uri)) ? $this->uri->segment($page_in_uri) : 0,
+		);
+		
 		$devices_query = $this->devices_model->getlist();
 		
 		if ($devices_query != FALSE)
@@ -67,9 +75,18 @@ class Logs extends CI_Controller {
 			$devices_list = FALSE;
 		}
 		
+		// Pagination
+		$pagination = $this->config->item('pagination');
+		$pagination['base_url']			= site_url('logs/provisioning');
+		$pagination['total_rows']		= $this->logger_model->get_logs(array('get_total' => TRUE, 'type' => $logs_get_params['type']));
+		$pagination['per_page']			= $logs_get_params['limit'];
+		$pagination['uri_segment']		= $page_in_uri;
+		$this->pagination->initialize($pagination);
+		
 		$page_data = array(
-			'devices_list'	=> $devices_list,
-			'logs_list'		=> $logs_list
+			'devices_list'		=> $devices_list,
+			'logs_list'			=> $this->logger_model->get_logs($logs_get_params),
+			'pagination_links'	=> $this->pagination->create_links()
 		);
 		$this->content = $this->load->view('logs/provisioning', $page_data, TRUE);
 		$this->_RenderPage();

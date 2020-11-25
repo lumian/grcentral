@@ -7,6 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 
+<div class="btn-group btn-group-sm mt-2" role="group">
+	<a href="<?=lang('main_helpurl_logs');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+</div>
+
 <? if ($this->session->flashdata('success_result')): ?>
 	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
@@ -14,6 +18,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? if ($this->session->flashdata('error_result')): ?>
 	<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
+
+<? if ($pagination_links != ''): ?>
+<nav aria-label="Navigation">
+	<ul class="pagination pagination-sm mt-2">
+		<?=$pagination_links;?>
+	</ul>
+</nav>
+<? endif; ?>
 
 <table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
