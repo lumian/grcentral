@@ -27,3 +27,10 @@ $config['grcentral']['storage_path']			= $_SERVER['DOCUMENT_ROOT'].'storage/';
 // RUS: Авторизация
 $config['auth']['login']		= 'admin';
 $config['auth']['password'] 	= 'admin';
+
+//
+// Cron settings
+//
+// ENG: How many days to store logs?
+// RUS: Сколько дней хранить логи
+$config['cron']['keep_logs'] 			= "7";

@@ -108,4 +108,9 @@ class Grcentral {
 		}
 		return FALSE;
 	}
+	
+	function is_date($str=NULL)
+	{
+		return is_numeric(strtotime($str));
+	}
 }

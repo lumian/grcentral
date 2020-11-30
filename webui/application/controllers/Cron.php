@@ -20,6 +20,7 @@ class Cron extends CI_Controller {
 		$this->load->model('settings_model');
 		$this->load->model('devices_model');
 		$this->load->model('phonebook_model');
+		$this->load->model('logger_model');
 	}
 	
 	public function webcron($query=NULL)
@@ -40,6 +41,10 @@ class Cron extends CI_Controller {
 			elseif ($query == 'genpb')
 			{
 				$result = $this->generate_pb();
+			}
+			elseif ($query == 'clean_logs')
+			{
+				$result = $this->clean_logs();
 			}
 			else
 			{
@@ -76,6 +81,10 @@ class Cron extends CI_Controller {
 			elseif ($type == 'genpb')
 			{
 				$result = $this->generate_pb();
+			}
+			elseif ($type == 'clean_logs')
+			{
+				$result = $this->clean_logs();
 			}
 			else
 			{
@@ -415,6 +424,24 @@ class Cron extends CI_Controller {
 			$xml_file = $xml_path.'/phonebook.xml';
 			file_put_contents($xml_file, $put_data);
 			
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
+	public function clean_logs()
+	{
+		// Read the config
+		$keep_logs = $this->config->item('keep_logs', 'cron');
+		
+		// Calculating dates
+		$current_date = date('Y-m-d H:i:s');
+		$remove_before_date = date('Y-m-d H:i:s', strtotime($current_date. " - ".$keep_logs." day"));
+		
+		// DB query
+		$result = $this->logger_model->clean_logs('provisioning', $remove_before_date);
+		if ($result === TRUE)
+		{
 			return TRUE;
 		}
 		return FALSE;

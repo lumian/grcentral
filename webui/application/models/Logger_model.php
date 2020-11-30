@@ -50,10 +50,6 @@ class Logger_model extends CI_Model {
 					$this->db->limit($params['limit']);
 				}
 			}
-			else
-			{
-				$this->db->limit('500');
-			}
 			
 			$this->db->order_by('datetime', 'DESC');
 			if (isset($params['get_total']) AND $params['get_total'] == TRUE)
@@ -80,6 +76,25 @@ class Logger_model extends CI_Model {
 			$this->db->insert('logs_data', $data);
 			$insert_id = $this->db->insert_id();
 			return $insert_id;
+		}
+		return FALSE;
+	}
+	
+	function clean_logs($type=NULL, $match_date=NULL)
+	{
+		if (!is_null($match_date) AND !is_null($type) AND $this->grcentral->is_date($match_date) != FALSE)
+		{
+			if ($type == 'provisioning')
+			{
+				$type_array = array('device_get_pb', 'device_get_fw', 'device_get_cfg');
+				$this->db->where_in('type', $type_array);
+				$this->db->where('datetime <', $match_date);
+				$result = $this->db->delete('logs_data');
+				if ($result != FALSE)
+				{
+					return TRUE;
+				}
+			}
 		}
 		return FALSE;
 	}
