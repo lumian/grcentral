@@ -15,7 +15,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Табы
 //
 $lang['phonebook_tabs_title_abonents']							= "Абоненты";
-$lang['phonebook_tabs_title_groups']							= "Группы";
 //
 // Страница абоненты
 //

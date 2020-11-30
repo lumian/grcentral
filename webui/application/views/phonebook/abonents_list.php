@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<? endforeach; ?>
 		<? else: ?>
 			<tr class="table-primary">
-				<td colspan="5"><?=lang('main_message_nodata');?></td>
+				<td colspan="6"><?=lang('main_message_nodata');?></td>
 			</tr>
 		<? endif; ?>
 	</tbody>
