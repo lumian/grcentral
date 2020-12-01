@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral v0.2
+	GRCentral v0.3
 	File:			application\language\russian\settings_lang.php
 	Description:	Language file for "Settings" controller.
 	Laguage:		Russian
@@ -17,7 +17,7 @@ $lang['settings_tabs_title_models']							= "Модели";
 $lang['settings_tabs_title_fw']								= "Прошивки";
 $lang['settings_tabs_title_params']							= "Параметры";
 $lang['settings_tabs_title_servers']						= "VoIP серверы";
-$lang['settings_tabs_title_syssettings']							= "Система";
+$lang['settings_tabs_title_syssettings']					= "Система";
 //
 // Главная страница
 //

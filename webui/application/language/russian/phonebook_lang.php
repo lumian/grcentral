@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral v0.2
+	GRCentral v0.3
 	File:			application\language\russian\phonebook.php
 	Description:	Language file for "Phonebook" controller.
 	Laguage:		Russian
