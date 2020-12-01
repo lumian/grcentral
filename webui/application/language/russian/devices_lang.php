@@ -98,7 +98,7 @@ $lang['devices_info_panel_cti_title']						= "CTI интеграция";
 // Страница информации: Панель "Действия"
 $lang['devices_info_panel_actions_title']					= "Действия с устройством";
 $lang['devices_info_panel_actions_cti_na_error']			= "CTI интеграция недоступна.";
-$lang['devices_info_panel_actions_cti_na_descr']			= "В шаблоне настроек для данного устройства, не найден пароль администратора (P2 value).";
+$lang['devices_info_panel_actions_cti_na_descr']			= "В шаблоне настроек для данного устройства не найден пароль администратора (P2 value).";
 // Страница информации: Панель "SIP аккаунты"
 $lang['devices_info_panel_accounts_title']					= "SIP аккаунты";
 $lang['devices_info_panel_accounts_description']			= "Кол-во аккаунтов ограничено 4 штуками, в зависимости от модели устройства, будет использоваться от 1 до 4 штук.";

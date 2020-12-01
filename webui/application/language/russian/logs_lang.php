@@ -25,7 +25,6 @@ $lang['logs_provisioning_description_text']						= "В данном раздел
 $lang['logs_provisioning_table_datetime']						= "Дата и время";
 $lang['logs_provisioning_table_device']							= "Устройство";
 $lang['logs_provisioning_table_device_linktitle']				= "Перейти к странице устройства";
-$lang['logs_provisioning_table_ip']								= "IP адрес";
 $lang['logs_provisioning_table_type']							= "Тип запроса";
 $lang['logs_provisioning_table_type_device_get_cfg']			= "Запрос конфига";
 $lang['logs_provisioning_table_type_device_get_fw']				= "Запрос прошивки";

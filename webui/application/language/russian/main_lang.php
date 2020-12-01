@@ -33,9 +33,9 @@ $lang['main_table_actions']						= "Действия";
 // Стандартные сообщения
 $lang['main_message_nodata']					= "Нет данных для отображения.";
 $lang['main_message_loading']					= "Загрузка данных...";
-$lang['main_message_authsuccess']				= "Вы успешно авторизовались";
-$lang['main_message_autherror']					= "Авторизация не удалась";
-$lang['main_message_authlogout']				= "Вы успешно выйшли из системы";
+$lang['main_message_authsuccess']				= "Вы успешно авторизовались.";
+$lang['main_message_autherror']					= "Авторизация не удалась.";
+$lang['main_message_authlogout']				= "Вы успешно выйшли из системы.";
 // Окно авторизации
 $lang['main_auth_modal_title']					= "Авторизация";
 $lang['main_auth_modal_login']					= "Пользователь";
@@ -50,6 +50,8 @@ $lang['main_page_text']							= "Web UI для управления телефо
 $lang['main_page_nonauth_text']					= "Авторизуйтесь, для получения доступа к системе.";
 $lang['main_page_auth_text']					= "Удачной работы!";
 $lang['main_page_btn_devices']					= "Управление устройствами";
+$lang['main_page_btn_phonebook']				= "Справочник";
+$lang['main_page_btn_logs']						= "Логи";
 $lang['main_page_btn_settings']					= "Настроить сервер";
 // Ссылки на github wiki для помощи по разделам GRCentral.
 $lang['main_helpurl_urltitle']					= "Открыть страницу помощи по разделу";
