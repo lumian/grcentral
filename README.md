@@ -37,7 +37,7 @@ Web UI для управления телефонами Grandstream
   * Автоочистка логов по расписанию (при добавлении записи в кронтаб).
   
 ## Планируемый функционал:
-* [см. Issues](https://github.com/lumian/grcentral/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+* [см. Issues](https://github.com/lumian/grcentral/issues?q=is%3Aissue+is%3Aopen+label%3A%22Type%3A+Planned+improvement%22)
 
 ## Процесс установки и настройки
 * [Установка GRCentral](https://github.com/lumian/grcentral/wiki/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-GRCentral)
