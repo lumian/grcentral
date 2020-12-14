@@ -36,7 +36,7 @@ class Logs extends CI_Controller {
 		);
 		
 		$full_page_data = array(
-			'title'			=> $this->config->item('site_title', 'grcentral')." - ".lang('main_menu_settings').$this->title,
+			'title'			=> $this->config->item('site_title', 'grcentral')." - ".lang('main_menu_logs').$this->title,
 			'content'		=> $this->load->view('logs/template', $template_page_data, TRUE),
 		);
 		
