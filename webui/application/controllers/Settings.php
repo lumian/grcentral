@@ -807,6 +807,10 @@ class Settings extends CI_Controller {
 			if (!is_null($this->input->post('fw_enable_update'))) { $settings_data['fw_enable_update'] = 'on'; } else { $settings_data['fw_enable_update'] = 'off'; }
 			// cfg_enable_get
 			if (!is_null($this->input->post('cfg_enable_get'))) { $settings_data['cfg_enable_get'] = 'on'; } else { $settings_data['cfg_enable_get'] = 'off'; }
+			// access_device_by_ip
+			if (!is_null($this->input->post('access_device_by_ip'))) { $settings_data['access_device_by_ip'] = 'on'; } else { $settings_data['access_device_by_ip'] = 'off'; }
+			// auto_update_ip_addr
+			if (!is_null($this->input->post('auto_update_ip_addr'))) { $settings_data['auto_update_ip_addr'] = 'on'; } else { $settings_data['auto_update_ip_addr'] = 'off'; }
 			
 			// DB query for update settings
 			$query = $this->settings_model->syssettings_update($settings_data);

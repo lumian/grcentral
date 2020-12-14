@@ -24,10 +24,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <table class="table table-bordered table-sm mt-2">
 	<thead>
 		<tr>
-			<th colspan="2"><?=lang('settings_syssettings_title_provisioning');?></th>
+			<th colspan="2"><?=lang('settings_syssettings_title_general');?></th>
 		</tr>
 	</thead>
 	<tbody>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_access_device_by_ip_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_access_device_by_ip_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['access_device_by_ip'] == 'on') { $access_device_by_ip = 'checked'; } else { $access_device_by_ip = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="access_device_by_ip" id="access_device_by_ip" <?=$access_device_by_ip;?>>
+					<label class="custom-control-label" for="access_device_by_ip"></label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_auto_update_ip_addr_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_auto_update_ip_addr_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['auto_update_ip_addr'] == 'on') { $auto_update_ip_addr = 'checked'; } else { $auto_update_ip_addr = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="auto_update_ip_addr" id="auto_update_ip_addr" <?=$auto_update_ip_addr;?>>
+					<label class="custom-control-label" for="auto_update_ip_addr"></label>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="2"><?=lang('settings_syssettings_title_cfg_server');?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_cfg_enable_get_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_cfg_enable_get_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['cfg_enable_get'] == 'on') { $cfg_enable_get = 'checked'; } else { $cfg_enable_get = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="cfg_enable_get" id="cfg_enable_get" <?=$cfg_enable_get;?>>
+					<label class="custom-control-label" for="cfg_enable_get"></label>
+				</div>
+			</td>
+		</tr>
 		<tr>
 			<td>
 				<?=lang('settings_syssettings_auto_add_devices_name');?></br>
@@ -38,6 +84,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="custom-control custom-switch">
 					<input type="checkbox" class="custom-control-input" name="auto_add_devices" id="auto_add_devices" <?=$auto_add_devices;?>>
 					<label class="custom-control-label" for="auto_add_devices"></label>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="2"><?=lang('settings_syssettings_title_fw_server');?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_fw_enable_update_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_fw_enable_update_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['fw_enable_update'] == 'on') { $fw_enable_update = 'checked'; } else { $fw_enable_update = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="fw_enable_update" id="fw_enable_update" <?=$fw_enable_update;?>>
+					<label class="custom-control-label" for="fw_enable_update"></label>
 				</div>
 			</td>
 		</tr>
@@ -54,36 +120,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</td>
 		</tr>
-		<tr>
-			<td>
-				<?=lang('settings_syssettings_fw_enable_update_name');?></br>
-				<small class="text-muted"><?=lang('settings_syssettings_fw_enable_update_help');?></small>
-			</td>
-			<td>
-				<? if ($syssettings_list['fw_enable_update'] == 'on') { $fw_enable_update = 'checked'; } else { $fw_enable_update = ''; }?>
-				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input" name="fw_enable_update" id="fw_enable_update" <?=$fw_enable_update;?>>
-					<label class="custom-control-label" for="fw_enable_update"></label>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<?=lang('settings_syssettings_cfg_enable_get_name');?></br>
-				<small class="text-muted"><?=lang('settings_syssettings_cfg_enable_get_help');?></small>
-			</td>
-			<td>
-				<? if ($syssettings_list['cfg_enable_get'] == 'on') { $cfg_enable_get = 'checked'; } else { $cfg_enable_get = ''; }?>
-				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input" name="cfg_enable_get" id="cfg_enable_get" <?=$cfg_enable_get;?>>
-					<label class="custom-control-label" for="cfg_enable_get"></label>
-				</div>
-			</td>
-		</tr>
 	</tbody>
 	<thead>
 		<tr>
-			<th colspan="2"><?=lang('settings_syssettings_title_phonebook');?></th>
+			<th colspan="2"><?=lang('settings_syssettings_title_pb_server');?></th>
 		</tr>
 	</thead>
 	<tbody>

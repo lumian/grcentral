@@ -49,6 +49,7 @@ class Provisioning extends CI_Controller {
 		//
 		if ($this->device_info['db'] != FALSE)
 		{
+			$this->_check_access_device();
 			$this->_update_device_info();
 		}
 	}
@@ -366,6 +367,27 @@ class Provisioning extends CI_Controller {
 		{
 			// Update info about device firmware version
 			$this->devices_model->edit($this->device_info['db']['id'], array('fw_version' => $this->device_info['useragent']['version']));
+			
+			$auto_update_ip_addr = $this->settings_model->syssettings_get('auto_update_ip_addr');
+			if ($auto_update_ip_addr == 'on')
+			{
+				$this->devices_model->edit($this->device_info['db']['id'], array('ip_addr' => $this->device_info['client']['ip_addr']));
+			}
+		}
+	}
+	
+	private function _check_access_device()
+	{
+		if ($this->device_info['db'] != FALSE)
+		{
+			$access_device_by_ip = $this->settings_model->syssettings_get('access_device_by_ip');
+			if ($access_device_by_ip == 'on')
+			{
+				if ($this->device_info['db']['ip_addr'] != $this->device_info['client']['ip_addr'])
+				{
+					show_404();
+				}
+			}
 		}
 	}
 }
