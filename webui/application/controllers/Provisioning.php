@@ -321,10 +321,14 @@ class Provisioning extends CI_Controller {
 		if ($this->device_info['useragent'] != FALSE AND $this->device_info['db'] != FALSE AND $this->device_info['db']['status_active'] == '1')
 		{
 			// Logging
-			$this->logger->device_get_pb($device_info_db['id'], array('fw_version'=>$device_info['version']));
+			$this->logger->device_get_pb($this->device_info['db']['id'], array('fw_version' => $this->device_info['useragent']['version']));
 			// Download file
 			$this->grcentral->forcedownload('phonebook.xml',$this->config->item('storage_path', 'grcentral').'phonebook/phonebook.xml');
 			exit;
+		}
+		else
+		{
+			show_404();
 		}
 	}
 	
