@@ -109,26 +109,73 @@ class Settings extends CI_Controller {
 	// Settings index page
 	public function index()
 	{
-		$page_data = array(
-			'services'	=> array(
-				'fw'			=> array(
-					'status'		=> $this->settings_model->syssettings_get('fw_enable_update'),
-					'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/fw"
-				),
-				'cfg'			=> array(
-					'status'		=> $this->settings_model->syssettings_get('cfg_enable_get'),
-					'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/cfg"
-				),
-				'phonebook'		=> array(
-					'status'		=> $this->settings_model->syssettings_get('pb_generate_enable'),
-					'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/pb"
-				),
-				'monitoring'	=> array(
-					'status'		=> $this->settings_model->syssettings_get('monitoring_enable'),
-					'info'			=> ''
-				)
+		$this->load->model('devices_model');
+		
+		// Services info:
+		$services = array(
+			'cfg'			=> array(
+				'name'			=> 'Config service',
+				'status'		=> $this->settings_model->syssettings_get('cfg_enable_get'),
+				'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/cfg"
+			),
+			'fw'			=> array(
+				'name'			=> 'Firmware update service',
+				'status'		=> $this->settings_model->syssettings_get('fw_enable_update'),
+				'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/fw"
+			),
+			'pb'			=> array(
+				'name'			=> 'Phonebook XML Service',
+				'status'		=> $this->settings_model->syssettings_get('pb_generate_enable'),
+				'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/pb"
+			),
+			'monitoring'	=> array(
+				'name'			=> 'Monitoring service',
+				'status'		=> $this->settings_model->syssettings_get('monitoring_enable'),
+				'info'			=> ''
 			)
 		);
+		
+		// Monitoring service:
+		$devices_list = $this->devices_model->getlist();
+		
+		$monitoring_count = array(
+			'online_device'		=> 0,
+			'offline_device'	=> 0,
+			'disabled_device'	=> 0
+		);
+		
+		if (count($devices_list) > 0 AND $services['monitoring']['status'] == 'on')
+		{
+			foreach($devices_list as $device)
+			{
+				if ($device['status_active'] == '1')
+				{
+					if ($device['status_online'] == '1')
+					{
+						++$monitoring_count['online_device'];
+					}
+					else
+					{
+						++$monitoring_count['offline_device'];
+					}
+				}
+				else
+				{
+					++$monitoring_count['disabled_device'];
+				}
+			}
+			$services['monitoring']['info'] = "Online: ".$monitoring_count['online_device']." | Offline: ".$monitoring_count['offline_device']." | Disabled: ".$monitoring_count['disabled_device'];
+		}
+		else
+		{
+			$services['monitoring']['info'] = "";
+		}
+		
+		// Page data
+		$page_data = array(
+			'services' => $services
+		);
+		
 		$this->content = $this->load->view('settings/main', $page_data, TRUE);
 		$this->_RenderPage();
 	}

@@ -17,50 +17,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tr>
 			</thead>
 			<tbody>
+				<? foreach($services as $service): ?>
 				<tr>
-					<td>Config Service</td>
+					<td><?=$service['name'];?></td>
 					<td>
-						<? if ($services['cfg']['status'] == 'on'):  ?>
+						<? if ($service['status'] == 'on'):  ?>
 						<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
 						<? else: ?>
 						<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
 						<? endif; ?>
 					</td>
-					<td><?=$services['cfg']['info'];?></td>
+					<td><?=$service['info'];?></td>
 				</tr>
-				<tr>
-					<td>Firmware update Service</td>
-					<td>
-						<? if ($services['fw']['status'] == 'on'):  ?>
-						<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
-						<? else: ?>
-						<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
-						<? endif; ?>
-					</td>
-					<td><?=$services['fw']['info'];?></td>
-				</tr>
-				<tr>
-					<td>Phonebook XML Service</td>
-					<td>
-						<? if ($services['phonebook']['status'] == 'on'):  ?>
-						<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
-						<? else: ?>
-						<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
-						<? endif; ?>
-					</td>
-					<td><?=$services['phonebook']['info'];?></td>
-				</tr>
-				<tr>
-					<td>Monitoring Service</td>
-					<td>
-						<? if ($services['monitoring']['status'] == 'on'):  ?>
-						<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
-						<? else: ?>
-						<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
-						<? endif; ?>
-					</td>
-					<td><?=$services['monitoring']['info'];?></td>
-				</tr>
+				<? endforeach; ?>
 			</tbody>
 		</table>
 	</div>
