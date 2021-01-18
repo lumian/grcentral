@@ -27,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th><?=lang('devices_info_panel_about_macaddr');?></th>
 						<td><?=$device_info['mac_addr']; ?></td>
 					</tr>
+					<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
 					<tr>
 						<th><?=lang('devices_info_panel_about_statusonline');?></th>
 						<td>
@@ -38,6 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							(<?=lang('devices_info_panel_about_statusonline_changetime'); ?> <?=$device_info['status_online_changetime'];?>)
 						</td>
 					</tr>
+					<? endif; ?>
 					<tr>
 						<th><?=lang('devices_info_panel_about_statusactive');?></th>
 						<td>

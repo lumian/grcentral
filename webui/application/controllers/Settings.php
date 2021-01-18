@@ -110,10 +110,23 @@ class Settings extends CI_Controller {
 	public function index()
 	{
 		$page_data = array(
-			'modules_status'	=> array(
-				'fw_enable_update'		=> $this->settings_model->syssettings_get('fw_enable_update'),
-				'cfg_enable_get'		=> $this->settings_model->syssettings_get('cfg_enable_get'),
-				'pb_generate_enable'	=> $this->settings_model->syssettings_get('pb_generate_enable')
+			'services'	=> array(
+				'fw'			=> array(
+					'status'		=> $this->settings_model->syssettings_get('fw_enable_update'),
+					'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/fw"
+				),
+				'cfg'			=> array(
+					'status'		=> $this->settings_model->syssettings_get('cfg_enable_get'),
+					'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/cfg"
+				),
+				'phonebook'		=> array(
+					'status'		=> $this->settings_model->syssettings_get('pb_generate_enable'),
+					'info'			=> "URL: ".parse_url(base_url(), PHP_URL_HOST)."/provisioning/pb"
+				),
+				'monitoring'	=> array(
+					'status'		=> $this->settings_model->syssettings_get('monitoring_enable'),
+					'info'			=> ''
+				)
 			)
 		);
 		$this->content = $this->load->view('settings/main', $page_data, TRUE);
@@ -813,6 +826,8 @@ class Settings extends CI_Controller {
 			if (!is_null($this->input->post('auto_update_ip_addr'))) { $settings_data['auto_update_ip_addr'] = 'on'; } else { $settings_data['auto_update_ip_addr'] = 'off'; }
 			// hide_help_header_msg
 			if (!is_null($this->input->post('hide_help_header_msg'))) { $settings_data['hide_help_header_msg'] = 'on'; } else { $settings_data['hide_help_header_msg'] = 'off'; }
+			// monitoring_enable
+			if (!is_null($this->input->post('monitoring_enable'))) { $settings_data['monitoring_enable'] = 'on'; } else { $settings_data['monitoring_enable'] = 'off'; }
 			
 			// DB query for update settings
 			$query = $this->settings_model->syssettings_update($settings_data);

@@ -458,51 +458,53 @@ class Cron extends CI_Controller {
 	// Ping devices
 	public function ping_devices()
 	{
-		$devices_list = $this->devices_model->getlist();
+		$monitoring_enable = $this->settings_model->syssettings_get('monitoring_enable');
 		
-		if (count($devices_list) > 0)
+		if ($monitoring_enable == 'on')
 		{
-			if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
-			{
-				$windows_os = TRUE;
-			}
-			else
-			{
-				$windows_os = FALSE;
-			}
+			$devices_list = $this->devices_model->getlist();
 			
-			foreach ($devices_list as $device)
+			if (count($devices_list) > 0)
 			{
-				$status_online = '0';
-				
-				if ($device['status_active'] == '1')
+				if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
 				{
-					if ($windows_os == TRUE)
-					{
-						// Windows OS
-						$cmd = "ping -n 1 ".$device['ip_addr'];
-					}
-					else
-					{
-						// non Windows OS
-						$cmd = "ping -c 1 ".$device['ip_addr'];
-					}
-					
-					exec($cmd, $ping_output, $ping_result);
-					
-					if ($ping_result == 0)
-					{
-						$status_online = '1';
-					}
+					$windows_os = TRUE;
 				}
-				$this->devices_model->update_monitoring_status($device['id'], $status_online);
+				else
+				{
+					$windows_os = FALSE;
+				}
+				
+				foreach ($devices_list as $device)
+				{
+					$status_online = '0';
+					
+					if ($device['status_active'] == '1')
+					{
+						if ($windows_os == TRUE)
+						{
+							// Windows OS
+							$ping_cmd = "ping -n 1 ".$device['ip_addr'];
+						}
+						else
+						{
+							// non Windows OS
+							$ping_cmd = "ping -c 1 ".$device['ip_addr'];
+						}
+						
+						exec($ping_cmd, $ping_output, $ping_result);
+						
+						if ($ping_result == 0)
+						{
+							$status_online = '1';
+						}
+					}
+					$this->devices_model->update_monitoring_status($device['id'], $status_online);
+				}
+				return TRUE;
 			}
-			return TRUE;
 		}
-		else
-		{
-			return FALSE;
-		}
+		return FALSE;
 	}
 	
 	private function _clean_dir($dir)

@@ -69,6 +69,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_monitoring_enable_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_monitoring_enable_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['monitoring_enable'] == 'on') { $monitoring_enable = 'checked'; } else { $monitoring_enable = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="monitoring_enable" id="monitoring_enable" <?=$monitoring_enable;?>>
+					<label class="custom-control-label" for="monitoring_enable"></label>
+				</div>
+			</td>
+		</tr>
 	</tbody>
 	<thead>
 		<tr>
