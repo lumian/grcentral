@@ -125,4 +125,22 @@ class Devices_model extends CI_Model {
 		}
 		return FALSE;
 	}
+	
+	function update_monitoring_status($id=NULL, $status=NULL)
+	{
+		if (!is_null($id) AND is_numeric($id) AND !is_null($status) AND is_numeric($status))
+		{
+			if ($status == '1' OR $status == '0')
+			{
+				$this->db->where('id', $id);
+				$update_data = array(
+					'status_online'				=> $status,
+					'status_online_changetime'	=> date('Y-m-d H:i:s')
+				);
+				$query = $this->db->update('devices_data', $update_data);
+				return TRUE;
+			}
+		}
+		return FALSE;
+	}
 }

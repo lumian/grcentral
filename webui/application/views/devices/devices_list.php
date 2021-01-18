@@ -29,6 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<th><?=lang('devices_index_table_descr');?></th>
 		<th><?=lang('devices_index_table_macaddr');?></th>
 		<th><?=lang('devices_index_table_ipaddr');?></th>
+		<th><?=lang('devices_index_table_status_online');?></th>
 		<th><?=lang('devices_index_table_model');?></th>
 		<th><?=lang('devices_index_table_accounts');?></th>
 		<th><?=lang('devices_index_table_fwversion');?></th>
@@ -44,8 +45,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$device_count;?></td>
 					<td><?=$device['descr'];?></td>
 					<td><?=$device['mac_addr'];?></td>
-					<? if ($device['status_online'] === '1'): ?><td><? else: ?><td class="table-warning"><? endif; ?>
+					<td>
 						<a href="<?=prep_url($device['ip_addr']);?>" target="_blank" title="<?=lang('devices_index_table_ipaddr_linktitle');?>"><?=$device['ip_addr'];?></a>
+					</td>
+					<td>
+						<? if ($device['status_online'] === '1'): ?>
+							<span class="text-success"><span class="fa fa-bezier-curve"></span></span>
+						<? else: ?>
+							<span class="text-danger"><span class="fa fa-bezier-curve"></span></span>
+						<? endif; ?>
 					</td>
 					<td>
 						<? if ($device['model_id'] != '0' AND isset($models_list[$device['model_id']])): ?>

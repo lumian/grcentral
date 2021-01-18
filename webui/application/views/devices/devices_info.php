@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</tr>
 					<tr>
 						<th><?=lang('devices_info_panel_about_ipaddr');?></th>
-						<td><a href="<?=prep_url($device_info['ip_addr']); ?>"  target="_blank"><?=$device_info['ip_addr']; ?></a></td>
+						<td><a href="<?=prep_url($device_info['ip_addr']); ?>"  target="_blank" title="<?=lang('devices_info_panel_about_ipaddr_linktitle');?>"><?=$device_info['ip_addr']; ?></a></td>
 					</tr>
 					<tr>
 						<th><?=lang('devices_info_panel_about_macaddr');?></th>
@@ -35,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<? else: ?>
 								<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusonline_off'); ?></div>
 							<? endif;?>
+							(<?=lang('devices_info_panel_about_statusonline_changetime'); ?> <?=$device_info['status_online_changetime'];?>)
 						</td>
 					</tr>
 					<tr>

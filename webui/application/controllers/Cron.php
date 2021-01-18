@@ -45,6 +45,10 @@ class Cron extends CI_Controller {
 			{
 				$result = $this->clean_logs();
 			}
+			elseif ($query == 'ping_devices')
+			{
+				$result = $this->ping_devices();
+			}
 			else
 			{
 				show_404();
@@ -84,6 +88,10 @@ class Cron extends CI_Controller {
 			elseif ($type == 'clean_logs')
 			{
 				$result = $this->clean_logs();
+			}
+			elseif ($type == 'ping_devices')
+			{
+				$result = $this->ping_devices();
 			}
 			else
 			{
@@ -428,7 +436,8 @@ class Cron extends CI_Controller {
 		return FALSE;
 	}
 	
-	public function clean_logs()
+	// Clean logs
+	private function clean_logs()
 	{
 		// Read the config
 		$keep_logs = $this->config->item('keep_logs', 'cron');
@@ -444,6 +453,56 @@ class Cron extends CI_Controller {
 			return TRUE;
 		}
 		return FALSE;
+	}
+	
+	// Ping devices
+	public function ping_devices()
+	{
+		$devices_list = $this->devices_model->getlist();
+		
+		if (count($devices_list) > 0)
+		{
+			if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+			{
+				$windows_os = TRUE;
+			}
+			else
+			{
+				$windows_os = FALSE;
+			}
+			
+			foreach ($devices_list as $device)
+			{
+				$status_online = '0';
+				
+				if ($device['status_active'] == '1')
+				{
+					if ($windows_os == TRUE)
+					{
+						// Windows OS
+						$cmd = "ping -n 1 ".$device['ip_addr'];
+					}
+					else
+					{
+						// non Windows OS
+						$cmd = "ping -c 1 ".$device['ip_addr'];
+					}
+					
+					exec($cmd, $ping_output, $ping_result);
+					
+					if ($ping_result == 0)
+					{
+						$status_online = '1';
+					}
+				}
+				$this->devices_model->update_monitoring_status($device['id'], $status_online);
+			}
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 	
 	private function _clean_dir($dir)
