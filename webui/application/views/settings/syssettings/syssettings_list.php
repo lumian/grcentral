@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<? if ($this->settings_model->syssettings_get('hide_help_header_msg') != 'on'): ?>
 <div class="card mt-2">
   <div class="card-body">
     <?=lang('settings_syssettings_description_text');?>
   </div>
 </div>
+<? endif; ?>
 
 <div class="btn-group btn-group-sm mt-2" role="group">
 	<button type="submit" class="btn btn-outline-success" form="SettingsForm"><?=lang('main_btn_save');?></button>
@@ -51,6 +53,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="custom-control custom-switch">
 					<input type="checkbox" class="custom-control-input" name="auto_update_ip_addr" id="auto_update_ip_addr" <?=$auto_update_ip_addr;?>>
 					<label class="custom-control-label" for="auto_update_ip_addr"></label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_hide_help_header_msg_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_hide_help_header_msg_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['hide_help_header_msg'] == 'on') { $hide_help_header_msg = 'checked'; } else { $hide_help_header_msg = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="hide_help_header_msg" id="hide_help_header_msg" <?=$hide_help_header_msg;?>>
+					<label class="custom-control-label" for="hide_help_header_msg"></label>
 				</div>
 			</td>
 		</tr>

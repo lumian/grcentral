@@ -24,7 +24,6 @@ class Settings extends CI_Controller {
 		}
 		
 		$this->lang->load('settings');
-		$this->load->model('settings_model');
 	}
 	
 	private function _RenderPage()
@@ -778,6 +777,7 @@ class Settings extends CI_Controller {
 		$this->_RenderPage();
 	}
 	
+	// System settings
 	public function syssettings($action=NULL, $param=NULL)
 	{
 		if (is_null($action) AND is_null($param))
@@ -811,6 +811,8 @@ class Settings extends CI_Controller {
 			if (!is_null($this->input->post('access_device_by_ip'))) { $settings_data['access_device_by_ip'] = 'on'; } else { $settings_data['access_device_by_ip'] = 'off'; }
 			// auto_update_ip_addr
 			if (!is_null($this->input->post('auto_update_ip_addr'))) { $settings_data['auto_update_ip_addr'] = 'on'; } else { $settings_data['auto_update_ip_addr'] = 'off'; }
+			// hide_help_header_msg
+			if (!is_null($this->input->post('hide_help_header_msg'))) { $settings_data['hide_help_header_msg'] = 'on'; } else { $settings_data['hide_help_header_msg'] = 'off'; }
 			
 			// DB query for update settings
 			$query = $this->settings_model->syssettings_update($settings_data);

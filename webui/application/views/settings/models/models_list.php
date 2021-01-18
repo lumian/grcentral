@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<? if ($this->settings_model->syssettings_get('hide_help_header_msg') != 'on'): ?>
 <div class="card mt-2">
   <div class="card-body">
     <?=lang('settings_models_description_text');?>
   </div>
 </div>
+<? endif; ?>
 
 <div class="btn-group btn-group-sm mt-2" role="group">
 	<? if ($group_list != FALSE): ?>

@@ -95,8 +95,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="card mt-2">
 	<div class="card-header"><i class="fa fa-users"></i> <?=lang('devices_info_panel_accounts_title')?></div>
 	<div class="card-body">
+		<? if ($this->settings_model->syssettings_get('hide_help_header_msg') != 'on'): ?>
 		<p><?=lang('devices_info_panel_accounts_description');?></p>
-		
+		<? endif; ?>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
 			<a href="<?=lang('main_helpurl_devices_accounts');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>

@@ -25,7 +25,6 @@ class Devices extends CI_Controller {
 		
 		$this->lang->load('devices');
 		$this->load->model('devices_model');
-		$this->load->model('settings_model');
 	}
 	
 	private function _RenderPage()

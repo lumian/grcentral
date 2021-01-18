@@ -19,7 +19,6 @@ class Provisioning extends CI_Controller {
 		//
 		// Loading models and library
 		//
-		$this->load->model('settings_model');
 		$this->load->model('devices_model');
 		$this->load->library('logger');
 		

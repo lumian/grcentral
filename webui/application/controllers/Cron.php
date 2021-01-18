@@ -17,7 +17,6 @@ class Cron extends CI_Controller {
 		parent::__construct();
 		
 		// Loading models:
-		$this->load->model('settings_model');
 		$this->load->model('devices_model');
 		$this->load->model('phonebook_model');
 		$this->load->model('logger_model');
