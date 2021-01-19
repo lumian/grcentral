@@ -25,6 +25,10 @@ class Phonebook_model extends CI_Model {
 			{
 				$this->db->where('id', $params['id']);
 			}
+			elseif (isset($params['phone_work']) AND is_numeric($params['phone_work']))
+			{
+				$this->db->where('phone_work', $params['phone_work']);
+			}
 			else
 			{
 				return FALSE;
