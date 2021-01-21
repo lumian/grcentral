@@ -29,6 +29,10 @@ class Devices_model extends CI_Model {
 			{
 				$this->db->where('mac_addr', $params['mac_addr']);
 			}
+			elseif (isset($params['ip_addr']) AND filter_var($params['ip_addr'],FILTER_VALIDATE_IP) != FALSE)
+			{
+				$this->db->where('ip_addr', $params['ip_addr']);
+			}
 			else
 			{
 				return FALSE;
