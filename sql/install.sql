@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
--- Версия сервера:               10.3.25-MariaDB-0+deb10u1 - Debian 10
+-- Версия сервера:               10.3.27-MariaDB-0+deb10u1 - Debian 10
 -- Операционная система:         debian-linux-gnu
 -- HeidiSQL Версия:              11.1.0.6116
 -- --------------------------------------------------------
@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `devices_data` (
   `ip_addr` varchar(15) DEFAULT NULL,
   `model_id` int(11) DEFAULT NULL,
   `status_online` tinyint(4) DEFAULT NULL,
+  `status_online_changetime` datetime DEFAULT NULL,
   `status_active` tinyint(4) unsigned DEFAULT NULL,
   `descr` varchar(250) DEFAULT NULL,
   `accounts_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
