@@ -181,6 +181,14 @@ class Api extends CI_Controller {
 			{
 				$result_data = $this->devices_model->get(array('mac_addr'=>$subtype));
 			}
+			elseif ($type == 'list' AND $subtype == 'active')
+			{
+				$result_data = $this->devices_model->getlist(array('status_active'=>'1'));
+			}
+			elseif ($type == 'list' AND $subtype == 'all')
+			{
+				$result_data = $this->devices_model->getlist();
+			}
 			else
 			{
 				$result_data = FALSE;
@@ -188,32 +196,41 @@ class Api extends CI_Controller {
 			
 			if ($result_data != FALSE AND is_array($result_data))
 			{
-				if (isset($result_data['model_id']))
+				if ($type == 'list')
 				{
-					$model_info_query = $this->settings_model->models_get(array('id'=>$result_data['model_id']));
-					if ($model_info_query != FALSE)
+					foreach($result_data as $data)
 					{
-						$model_info = array(
-							'id'			=> $model_info_query['id'],
-							'tech_name'		=> $model_info_query['tech_name'],
-							'friendly_name'	=> $model_info_query['friendly_name']
+						$device_data[] = array(
+							'id'							=> ( isset($data['id']) ? $data['id'] : NULL ),
+							'mac_addr'						=> ( isset($data['mac_addr']) ? $data['mac_addr'] : NULL ),
+							'ip_addr'						=> ( isset($data['ip_addr']) ? $data['ip_addr'] : NULL ),
+							'model_id'						=> ( isset($data['model_id']) ? $data['model_id'] : NULL ),
+							'status_online'					=> ( isset($data['status_online']) ? $data['status_online'] : NULL ),
+							'status_online_changetime'		=> ( isset($data['status_online_changetime']) ? $data['status_online_changetime'] : NULL ),
+							'status_active'					=> ( isset($data['status_active']) ? $data['status_active'] : NULL ),
+							'descr'							=> ( isset($data['descr']) ? $data['descr'] : NULL ),
+							'fw_version'					=> ( isset($data['fw_version']) ? $data['fw_version'] : NULL ),
+							'fw_version_pinned'				=> ( isset($data['fw_version_pinned']) ? $data['fw_version_pinned'] : NULL ),
+							'params_json_data'				=> ( isset($data['params_json_data']) ? $data['params_json_data'] : NULL )
 						);
 					}
 				}
-				
-				$device_data = array(
-					'id'							=> ( isset($result_data['id']) ? $result_data['id'] : NULL),
-					'mac_addr'						=> ( isset($result_data['mac_addr']) ? $result_data['mac_addr'] : NULL),
-					'ip_addr'						=> ( isset($result_data['ip_addr']) ? $result_data['ip_addr'] : NULL),
-					'model_info'					=> ( isset($model_info) ? $model_info : NULL),
-					'status_online'					=> ( isset($result_data['status_online']) ? $result_data['status_online'] : NULL),
-					'status_online_changetime'		=> ( isset($result_data['status_online_changetime']) ? $result_data['status_online_changetime'] : NULL),
-					'status_active'					=> ( isset($result_data['status_active']) ? $result_data['status_active'] : NULL),
-					'descr'							=> ( isset($result_data['descr']) ? $result_data['descr'] : NULL),
-					'fw_version'					=> ( isset($result_data['fw_version']) ? $result_data['fw_version'] : NULL),
-					'fw_version_pinned'				=> ( isset($result_data['fw_version_pinned']) ? $result_data['fw_version_pinned'] : NULL),
-					'params_json_data'				=> ( isset($result_data['params_json_data']) ? $result_data['params_json_data'] : NULL)
-				);
+				else
+				{
+					$device_data = array(
+						'id'							=> ( isset($result_data['id']) ? $result_data['id'] : NULL ),
+						'mac_addr'						=> ( isset($result_data['mac_addr']) ? $result_data['mac_addr'] : NULL ),
+						'ip_addr'						=> ( isset($result_data['ip_addr']) ? $result_data['ip_addr'] : NULL ),
+						'model_id'						=> ( isset($result_data['model_id']) ? $result_data['model_id'] : NULL ),
+						'status_online'					=> ( isset($result_data['status_online']) ? $result_data['status_online'] : NULL ),
+						'status_online_changetime'		=> ( isset($result_data['status_online_changetime']) ? $result_data['status_online_changetime'] : NULL ),
+						'status_active'					=> ( isset($result_data['status_active']) ? $result_data['status_active'] : NULL ),
+						'descr'							=> ( isset($result_data['descr']) ? $result_data['descr'] : NULL ),
+						'fw_version'					=> ( isset($result_data['fw_version']) ? $result_data['fw_version'] : NULL ),
+						'fw_version_pinned'				=> ( isset($result_data['fw_version_pinned']) ? $result_data['fw_version_pinned'] : NULL ),
+						'params_json_data'				=> ( isset($result_data['params_json_data']) ? $result_data['params_json_data'] : NULL )
+					);
+				}
 				
 				$result = array(
 					'data'		=> $device_data,

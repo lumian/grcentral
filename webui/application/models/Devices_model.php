@@ -47,9 +47,13 @@ class Devices_model extends CI_Model {
 		return FALSE;
 	}
 	
-	function getlist()
+	function getlist($params=NULL)
 	{
 		$this->db->select()->from('devices_data')->order_by('descr', 'ASC');
+		if (isset($params['status_active']) AND is_numeric($params['status_active']))
+		{
+			$this->db->where('status_active', $params['status_active']);
+		}
 		$result = $this->db->get()->result_array();
 		if (count($result) > 0)
 		{
