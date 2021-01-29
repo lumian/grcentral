@@ -2,7 +2,7 @@
 -- Хост:                         127.0.0.1
 -- Версия сервера:               10.3.27-MariaDB-0+deb10u1 - Debian 10
 -- Операционная система:         debian-linux-gnu
--- HeidiSQL Версия:              11.1.0.6116
+-- HeidiSQL Версия:              11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -70,7 +70,6 @@ CREATE TABLE IF NOT EXISTS `phonebook_data` (
 CREATE TABLE IF NOT EXISTS `settings_fw` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(50) DEFAULT NULL,
-  `previous_version` varchar(50) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
   `file_name` varchar(100) DEFAULT NULL,
   `file_name_real` varchar(100) DEFAULT NULL,
@@ -151,6 +150,6 @@ CREATE TABLE IF NOT EXISTS `settings_system` (
 -- Экспортируемые данные не выделены.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
