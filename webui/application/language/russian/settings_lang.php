@@ -96,12 +96,11 @@ $lang['settings_models_flashdata_delgrouperror']			= "Группа не удал
 // Страница "Обновление прошивки"
 //
 $lang['settings_fw_pagetitle']								= "Прошивки";
-$lang['settings_fw_description_text']						= "В данном разделе производится управление файлами прошивок для различных моделей устройств. <br />Прошивки отдаются устройствам исключительно в заданной последовательности с помощью поля \"Пред. версия\" (укажите \"0\" для выбора стартовой прошивки).<br />Для использования, сначала создайте группу моделей в <a href='".site_url('/settings/models/')."'>соответствующем разделе</a>, а затем закачайте прошивку. Только активные прошивки отдаются аппаратам на загрузку.";
+$lang['settings_fw_description_text']						= "В данном разделе производится управление файлами прошивок для различных моделей устройств.<br />Для распространения на устройства выбранной прошивки, переведите её статус в 'Активна'. В каждой группе может быть только одна активная прошивка.<br />Для использования, сначала создайте группу моделей в <a href='".site_url('/settings/models/')."'>соответствующем разделе</a>, а затем закачайте прошивку.";
 // Страница "Обновление прошивки": Кнопки
 $lang['settings_fw_btn_new']								= "Новая прошивка";
 // Страница "Обновление прошивки": Таблица
-$lang['settings_fw_table_version']							= "Новая версия";
-$lang['settings_fw_table_previousversion']					= "Пред. версия";
+$lang['settings_fw_table_version']							= "Версия";
 $lang['settings_fw_table_startversion']						= "Стартовая";
 $lang['settings_fw_table_filename']							= "Имя файла";
 $lang['settings_fw_table_filename_real']					= "Реальное имя файла";
@@ -114,19 +113,13 @@ $lang['settings_fw_table_noitemsingroup']					= "Нет прошивок в да
 $lang['settings_fw_modal_addedit_title_add']				= "Создание новой прошивки";
 $lang['settings_fw_modal_addedit_version']					= "Версия прошивки";
 $lang['settings_fw_modal_addedit_version_help']				= "Введите версию загружаемой прошивки";
-$lang['settings_fw_modal_addedit_previous_version']			= "Предыдущая версия прошивки";
-$lang['settings_fw_modal_addedit_previous_version_help']	= "Введите версию прошивки, на которую необходимо устанавливать обновление.";
 $lang['settings_fw_modal_addedit_group']					= "Группа моделей";
 $lang['settings_fw_modal_addedit_group_help']				= "Укажите группу моделей устройств, для которой загружаете прошивку.";
-$lang['settings_fw_modal_addedit_status']					= "Статус прошивки";
-$lang['settings_fw_modal_addedit_status_help']				= "Укажите статус прошивки (необходимо ли распространение)";
-$lang['settings_fw_modal_addedit_status_on']				= "Активна";
-$lang['settings_fw_modal_addedit_status_off']				= "Не активна";
 $lang['settings_fw_modal_addedit_file']						= "Файл прошивки";
 $lang['settings_fw_modal_addedit_file_help']				= "Укажите бинарный файл для загрузки (Расширение .bin).";
 // Страница "Обновление прошивки": Модальное окно "Изменение статуса прошивки"
 $lang['settings_fw_modal_changestatus_title']				= "Изменение статуса прошивки";
-$lang['settings_fw_modal_changestatus_confirm']				= "Действительно изменить статус прошивки?";
+$lang['settings_fw_modal_changestatus_confirm']				= "Вы действительно хотите изменить статус прошивки?";
 // Страница "Обновление прошивки": Модальное окно "Удаление прошивки"
 $lang['settings_fw_modal_del_title']						= "Удаление прошивки";
 $lang['settings_fw_modal_del_confirm']						= "Действительно удалить прошивку?";

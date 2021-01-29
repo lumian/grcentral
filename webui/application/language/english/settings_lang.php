@@ -96,12 +96,11 @@ $lang['settings_models_flashdata_delgrouperror']			= "The group was not deleted 
 // Page "Firmware"
 //
 $lang['settings_fw_pagetitle']								= "Firmware";
-$lang['settings_fw_description_text']						= "In this section you can manage files of firmware for different models of devices. <br />Firmware is given to devices exclusively in the specified sequence using the \"Pre-version\" field (specify \"0\" to select the starting firmware).<br />To use it, first create a group of models in <a href='".site_url('/settings/models/')."'>the corresponding section</a>, and then upload the firmware. Only active firmware is given to the devices for downloading.";
+$lang['settings_fw_description_text']						= "In this section, you can manage the firmware files for different device models. <br />To distribute the selected firmware to devices, set the status to 'Active'. Each group can have only one active firmware.<br />To use it, first create a group of models in <a href='".site_url('/settings/models/')."'>the corresponding section</a>, and then upload the firmware.";
 // Page "Firmware": Buttons
 $lang['settings_fw_btn_new']								= "New firmware";
 // Page "Firmware": Table
-$lang['settings_fw_table_version']							= "New version";
-$lang['settings_fw_table_previousversion']					= "Pre-version";
+$lang['settings_fw_table_version']							= "Version";
 $lang['settings_fw_table_startversion']						= "Starting";
 $lang['settings_fw_table_filename']							= "File name";
 $lang['settings_fw_table_filename_real']					= "The real file name";
@@ -114,14 +113,8 @@ $lang['settings_fw_table_noitemsingroup']					= "There is no firmware in this gr
 $lang['settings_fw_modal_addedit_title_add']				= "Adding firmware";
 $lang['settings_fw_modal_addedit_version']					= "Firmware version";
 $lang['settings_fw_modal_addedit_version_help']				= "Enter the firmware version to upload";
-$lang['settings_fw_modal_addedit_previous_version']			= "Previous firmware version";
-$lang['settings_fw_modal_addedit_previous_version_help']	= "Enter the firmware version that you want to install the update on.";
 $lang['settings_fw_modal_addedit_group']					= "Model group";
 $lang['settings_fw_modal_addedit_group_help']				= "Specify the group of device models for which you are uploading the firmware.";
-$lang['settings_fw_modal_addedit_status']					= "The status of the firmware";
-$lang['settings_fw_modal_addedit_status_help']				= "Specify the firmware status (whether it needs to be distributed)";
-$lang['settings_fw_modal_addedit_status_on']				= "Active";
-$lang['settings_fw_modal_addedit_status_off']				= "Not active";
 $lang['settings_fw_modal_addedit_file']						= "Firmware file";
 $lang['settings_fw_modal_addedit_file_help']				= "Specify the binary file to download (Extension: .bin).";
 // Page "Firmware": Modal window "Changing the status of the firmware"

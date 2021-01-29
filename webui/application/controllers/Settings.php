@@ -459,7 +459,7 @@ class Settings extends CI_Controller {
 		elseif ($action == 'add' AND is_null($param))
 		{
 			// Add new firmware
-			if (!is_null($this->input->post('version')) AND !is_null($this->input->post('group_id')) AND !is_null($this->input->post('previous_version')) AND !is_null($this->input->post('status')) AND is_numeric($this->input->post('status')))
+			if (!is_null($this->input->post('version')) AND !is_null($this->input->post('group_id')) AND is_numeric($this->input->post('status')))
 			{
 				$upload_config = array(
 					'upload_path'		=> $this->config->item('storage_path', 'grcentral').'fw/',
@@ -475,9 +475,8 @@ class Settings extends CI_Controller {
 					
 					$post_data = array(
 						'version'			=> htmlspecialchars(trim($this->input->post('version'))),
-						'previous_version'	=> htmlspecialchars(trim($this->input->post('previous_version'))),
 						'group_id'			=> htmlspecialchars(trim($this->input->post('group_id'))),
-						'status'			=> htmlspecialchars(trim($this->input->post('status'))),
+						'status'			=> '0',
 						'file_name'			=> $upload_data['orig_name'],
 						'file_name_real'	=> $upload_data['file_name']
 					);
@@ -540,7 +539,7 @@ class Settings extends CI_Controller {
 				{
 					$new_status = '1';
 				}
-				$query = $this->settings_model->fw_change_status($param, $new_status);
+				$query = $this->settings_model->fw_change_status($fw_info, $new_status);
 				
 				if ($query != FALSE)
 				{

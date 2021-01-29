@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <? if ($this->settings_model->syssettings_get('hide_help_header_msg') != 'on'): ?>
 <div class="card mt-2">
-  <div class="card-body">
-    <?=lang('settings_fw_description_text');?>
-  </div>
+	<div class="card-body">
+		<?=lang('settings_fw_description_text');?>
+	</div>
 </div>
 <? endif; ?>
 
@@ -27,7 +27,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
-		<th><?=lang('settings_fw_table_previousversion');?></th>
 		<th><?=lang('settings_fw_table_version');?></th>
 		<th><?=lang('settings_fw_table_filename');?></th>
 		<th><?=lang('settings_fw_table_filename_real');?></th>
@@ -46,13 +45,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? if ($row['items'] != FALSE): ?>
 			<? foreach($row['items'] as $fw): ?>
 				<tr>
-					<td>
-						<? if ($fw['previous_version'] == "0"): ?>
-							<?=lang('settings_fw_table_startversion');?>
-						<? else: ?>
-							<?=$fw['previous_version'];?>
-						<? endif; ?>
-					</td>
 					<td><?=$fw['version'];?></td>
 					<td><?=$fw['file_name'];?></td>
 					<td><?=$fw['file_name_real'];?></td>
@@ -106,11 +98,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<small id="ModalAddEditForm_VersionHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_version_help');?></small>
 					</div>
 					<div class="form-group">
-						<label for="ModalAddEditForm_PreviousVersion"><?=lang('settings_fw_modal_addedit_previous_version');?></label>
-						<input type="text" name="previous_version" class="form-control" id="ModalAddEditForm_PreviousVersion" required>
-						<small id="ModalAddEditForm_PreviousVersionHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_previous_version_help');?></small>
-					</div>
-					<div class="form-group">
 						<label for="ModalAddEditForm_Group"><?=lang('settings_fw_modal_addedit_group');?></label>
 						<select class="form-control" name="group_id" id="ModalAddEditForm_Group" required>
 							<? foreach($group_list as $group): ?>
@@ -118,14 +105,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<? endforeach; ?>
 						</select>
 						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_group_help');?></small>
-					</div>
-					<div class="form-group">
-						<label for="ModalAddEditForm_Status"><?=lang('settings_fw_modal_addedit_status');?></label>
-						<select class="form-control" name="status" id="ModalAddEditForm_Status" required>
-							<option value='0'><?=lang('settings_fw_modal_addedit_status_off');?></option>
-							<option value='1'><?=lang('settings_fw_modal_addedit_status_on');?></option>
-						</select>
-						<small id="ModalAddEditForm_StatusHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_status_help');?></small>
 					</div>
 					<div class="form-group">
 						<label for="ModalAddEditForm_File"><?=lang('settings_fw_modal_addedit_file');?></label>

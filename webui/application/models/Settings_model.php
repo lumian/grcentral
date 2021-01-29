@@ -279,12 +279,11 @@ class Settings_model extends CI_Model {
 	
 	function fw_add($data=NULL)
 	{
-		if (!is_null($data) AND is_array($data) AND isset($data['group_id']) AND isset($data['version']) AND isset($data['previous_version']) AND isset($data['file_name']) AND isset($data['file_name_real']) AND isset($data['status']))
+		if (!is_null($data) AND is_array($data) AND isset($data['group_id']) AND isset($data['version']) AND isset($data['file_name']) AND isset($data['file_name_real']) AND isset($data['status']))
 		{
 			$add_data = array(
 				'group_id'			=> $data['group_id'],
 				'version' 			=> $data['version'],
-				'previous_version' 	=> $data['previous_version'],
 				'status' 			=> $data['status'],
 				'file_name'			=> $data['file_name'],
 				'file_name_real'	=> $data['file_name_real']
@@ -292,22 +291,6 @@ class Settings_model extends CI_Model {
 			$this->db->insert('settings_fw', $add_data);
 			$insert_id = $this->db->insert_id();
 			return $insert_id;
-		}
-		return FALSE;
-	}
-	
-	function fw_edit($id=NULL, $data=NULL)
-	{
-		if (!is_null($data) AND is_array($data) AND isset($data['group_id']) AND isset($data['version']) AND isset($data['previous_version']))
-		{
-			$update_data = array(
-				'group_id'			=> $data['group_id'],
-				'version' 			=> $data['version'],
-				'previous_version' 	=> $data['previous_version'],
-			);
-			$this->db->where('id', $id);
-			$query = $this->db->update('settings_fw', $update_data);
-			return TRUE;
 		}
 		return FALSE;
 	}
@@ -323,19 +306,17 @@ class Settings_model extends CI_Model {
 		return FALSE;
 	}
 	
-	function fw_change_status($id=NULL, $status=NULL)
+	function fw_change_status($fw_info=NULL, $status=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id) AND !is_null($status) AND is_numeric($status))
+		if (!is_null($fw_info) AND is_array($fw_info) AND isset($fw_info['id']) AND is_numeric($fw_info['id']) AND isset($fw_info['group_id']) AND is_numeric($fw_info['group_id']) AND !is_null($status) AND is_numeric($status))
 		{
-			$update_data = array(
-				'status'	=> $status
-			);
-			$this->db->where('id', $id);
-			$query = $this->db->update('settings_fw', $update_data);
+			$this->db->update('settings_fw', array('status' => '0'), array('group_id' => $fw_info['group_id']));
+			$this->db->update('settings_fw', array('status' => $status), array('id' => $fw_info['id']));
 			return TRUE;
 		}
 		return FALSE;
 	}
+	
 	//
 	// Params query
 	//

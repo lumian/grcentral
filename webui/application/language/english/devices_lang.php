@@ -20,7 +20,7 @@ $lang['devices_tabs_title_info']							= "Device information";
 //
 // Main page (Devices list)
 //
-$lang['devices_index_description_text']						= "This section provides device management. SIP accounts are managed using the \"info\" button. <br />Note: Disabled devices do not receive settings from the server.";
+$lang['devices_index_description_text']						= "This section provides device management. SIP accounts are managed using the \"info\" button. <br />Note: Disabled devices do not receive settings/firmware from the server.";
 // Main page: Table
 $lang['devices_index_table_descr']							= "Description";
 $lang['devices_index_table_macaddr']						= "MAC address";
@@ -54,7 +54,7 @@ $lang['devices_index_modaladdedit_statusactive_help']		= "Enable or disable work
 $lang['devices_index_modaladdedit_statusactive_on']			= "Activated";
 $lang['devices_index_modaladdedit_statusactive_off']		= "Not activated";
 $lang['devices_index_modaladdedit_fwversionpinned']			= "Pin the firmware";
-$lang['devices_index_modaladdedit_fwversionpinned_help']	= "Specify the firmware that you want to attach to this device. The pinned firmware must be equal to or higher than the one already installed.";
+$lang['devices_index_modaladdedit_fwversionpinned_help']	= "Specify the firmware that you want to attach to this device.";
 $lang['devices_index_modaladdedit_fwversionpinned_off']		= "Without pinning";
 $lang['devices_index_modaladdedit_params']					= "Parameters";
 $lang['devices_index_modaladdedit_params_help']				= "Enter the parameters in this field. One parameter per line. You can comment with the # symbol at the beginning of the line. The parameters specified here take precedence over the group parameters.";
