@@ -182,6 +182,14 @@ class Cron extends CI_Controller {
 					}
 					
 					$accounts_array = json_decode($device['accounts_data'], TRUE);
+					
+					if (count($accounts_array) < 4 AND count($accounts_array) >= 1)
+					{
+						if (!isset($accounts_array[2])) { $accounts_array[2]['active'] = '0'; }
+						if (!isset($accounts_array[3])) { $accounts_array[3]['active'] = '0'; }
+						if (!isset($accounts_array[4])) { $accounts_array[4]['active'] = '0'; }
+					}
+					
 					// Get params from DB
 					$params_db = array(
 						'acc_atatus'	=> explode(",", $model_info['params_conf_acc_atatus']),
@@ -202,42 +210,42 @@ class Cron extends CI_Controller {
 						{
 							$acc_index = $acc_num - 1;
 							// Account Active
-							if (isset($params_db['acc_atatus'][$acc_index]) AND $params_db['acc_atatus'][$acc_index] != "P0")
+							if (isset($acc_info['active']) AND isset($params_db['acc_atatus'][$acc_index]) AND $params_db['acc_atatus'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['acc_atatus'][$acc_index]]	= $acc_info['active'];
 							}
 							// Account Name
-							if (isset($params_db['acc_name'][$acc_index]) AND $params_db['acc_name'][$acc_index] != "P0")
+							if (isset($acc_info['name']) AND isset($params_db['acc_name'][$acc_index]) AND $params_db['acc_name'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['acc_name'][$acc_index]]	= $acc_info['name'];
 							}
 							// SIP Server
-							if (isset($params_db['srv_main'][$acc_index]) AND $params_db['srv_main'][$acc_index] != "P0")
+							if (isset($acc_info['voipsrv1']) AND isset($params_db['srv_main'][$acc_index]) AND $params_db['srv_main'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['srv_main'][$acc_index]]	= $servers_list[$acc_info['voipsrv1']]['server'];
 							}
 							// Secondary SIP Server
-							if (isset($params_db['srv_reserve'][$acc_index]) AND $params_db['srv_reserve'][$acc_index] != "P0")
+							if (isset($acc_info['voipsrv2']) AND isset($params_db['srv_reserve'][$acc_index]) AND $params_db['srv_reserve'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['srv_reserve'][$acc_index]]	= $servers_list[$acc_info['voipsrv2']]['server'];
 							}
 							// SIP User ID
-							if (isset($params_db['sip_userid'][$acc_index]) AND $params_db['sip_userid'][$acc_index] != "P0")
+							if (isset($acc_info['userid']) AND isset($params_db['sip_userid'][$acc_index]) AND $params_db['sip_userid'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['sip_userid'][$acc_index]]	= $acc_info['userid'];
 							}
 							// Authenticate ID
-							if (isset($params_db['sip_authid'][$acc_index]) AND $params_db['sip_authid'][$acc_index] != "P0")
+							if (isset($acc_info['authid']) AND isset($params_db['sip_authid'][$acc_index]) AND $params_db['sip_authid'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['sip_authid'][$acc_index]]	= $acc_info['authid'];
 							}
 							// Authenticate Password
-							if (isset($params_db['sip_passwd'][$acc_index]) AND $params_db['sip_passwd'][$acc_index] != "P0")
+							if (isset($acc_info['password']) AND isset($params_db['sip_passwd'][$acc_index]) AND $params_db['sip_passwd'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['sip_passwd'][$acc_index]]	= $acc_info['password'];
 							}
 							// Name							
-							if (isset($params_db['show_name'][$acc_index]) AND $params_db['show_name'][$acc_index] != "P0")
+							if (isset($acc_info['name']) AND isset($params_db['show_name'][$acc_index]) AND $params_db['show_name'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['show_name'][$acc_index]]	= $acc_info['name'];
 							}
@@ -247,7 +255,7 @@ class Cron extends CI_Controller {
 								$params_array[$params_db['acc_display'][$acc_index]]	= '1';
 							}
 							// Voice Mail Access Number
-							if (!is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']) AND isset($params_db['voicemail'][$acc_index]) AND $params_db['voicemail'][$acc_index] != "P0")
+							if (isset($acc_info['voipsrv1']) AND !is_null($servers_list[$acc_info['voipsrv1']]['voicemail_number']) AND isset($params_db['voicemail'][$acc_index]) AND $params_db['voicemail'][$acc_index] != "P0")
 							{
 								$params_array[$params_db['voicemail'][$acc_index]]	= $servers_list[$acc_info['voipsrv1']]['voicemail_number'];
 							}
@@ -256,7 +264,7 @@ class Cron extends CI_Controller {
 							if ($pb_collect_account == 'on')
 							{
 								// If the subscriber is already present in the database, we update the data about it
-								if (isset($pb_abonents_list[$acc_info['userid']]) AND $pb_abonents_list[$acc_info['userid']]['data_source'] == 'accounts')
+								if (isset($acc_info['userid']) AND isset($pb_abonents_list[$acc_info['userid']]) AND $pb_abonents_list[$acc_info['userid']]['data_source'] == 'accounts')
 								{
 									$abonent_db_info = $pb_abonents_list[$acc_info['userid']];
 									$abonent_new_info = NULL;
@@ -277,9 +285,10 @@ class Cron extends CI_Controller {
 											'status'			=> $acc_info['active']
 										);
 									}
+									$pb_check_abonents_data[$acc_info['userid']] = $acc_info['userid'];
 								}
 								// If the subscriber is not found in the database, then add it.
-								if (!isset($pb_abonents_list[$acc_info['userid']]))
+								if (isset($acc_info['userid']) AND !isset($pb_abonents_list[$acc_info['userid']]))
 								{
 									$abonent_name_explode = explode(' ', $acc_info['name']);
 									if (isset($abonent_name_explode[0])) { $abonent_name['first_name'] =  $abonent_name_explode[0]; } else { $abonent_name['first_name'] = "N/A"; }
@@ -293,13 +302,12 @@ class Cron extends CI_Controller {
 										'external_id'		=> $device['id'],
 										'status'			=> $acc_info['active']
 									);
+									$pb_check_abonents_data[$acc_info['userid']] = $acc_info['userid'];
 								}
-								$pb_check_abonents_data[$acc_info['userid']] = $acc_info['userid'];
 							}
 						}
 						
 					}
-					
 					$xml_data[] = array(
 						'mac'				=> $device['mac_addr'],
 						'params'			=> $params_array
