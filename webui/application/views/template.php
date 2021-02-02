@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- Custom styles for this template -->
 	<link href="/style/style.css" rel="stylesheet">
 	<script src="/style/bootstrap/js/jquery-3.5.1.min.js"></script>
-	<script src="/style/bootstrap/js/bootstrap.bundle.min.js" integrity="sha256-Xt8pc4G0CdcRvI0nZ2lRpZ4VHng0EoUDMlGcBSQ9HiQ=" crossorigin="anonymous"></script>
+	<script src="/style/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? endif;?>
 	<script>
 		$(function () {
-		  $('[data-toggle="tooltip"]').tooltip()
+			$('[data-toggle="tooltip"]').tooltip()
 		})
 	</script>
 </body>
