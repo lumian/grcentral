@@ -38,39 +38,31 @@ class Api extends CI_Controller {
 	//
 	// API v1 start function
 	//
-	public function v1($category=NULL)
+	public function v1($query_category=NULL,$param1=NULL,$param2=NULL)
 	{
 		$result = array(
 			'error'			=> TRUE,
 			'result'		=> NULL
 		);
-				
-		if (!is_null($category))
+		
+		if (!is_null($query_category))
 		{
-			if ($category == 'phonebook')
+			if ($query_category == 'phonebook')
 			{
 				// EN: Get information from phonebook
 				// RU: Получение информации из телефонной книги
-				
-				$query_type = $this->uri->segment(4);
-				$query_subtype = $this->uri->segment(5);
-				
-				if (!is_null($query_type) AND $query_type != FALSE AND !is_null($query_subtype) AND $query_subtype != FALSE)
+				if (!is_null($param1) AND $param1 != FALSE AND !is_null($param2) AND $param2 != FALSE)
 				{
-					$query_result = $this->_v1_phonebook_get($query_type, $query_subtype);
+					$query_result = $this->_v1_phonebook_get($param1, $param2);
 				}
 			}
-			elseif ($category == 'devices')
+			elseif ($query_category == 'devices')
 			{
 				// EN: Get information about devices
 				// RU: Получение информации об устройствах
-				
-				$query_type = $this->uri->segment(4);
-				$query_subtype = $this->uri->segment(5);
-				
-				if (!is_null($query_type) AND $query_type != FALSE AND !is_null($query_subtype) AND $query_subtype != FALSE)
+				if (!is_null($param1) AND $param1 != FALSE AND !is_null($param2) AND $param2 != FALSE)
 				{
-					$query_result = $this->_v1_device_get($query_type, $query_subtype);
+					$query_result = $this->_v1_device_get($param1, $param2);
 				}
 			}
 		}
@@ -101,7 +93,7 @@ class Api extends CI_Controller {
 		
 		if (!is_null($type) AND !is_null($subtype))
 		{
-			if ($type == 'full' AND is_string($subtype))
+			if ($type == 'list' AND is_string($subtype))
 			{
 				if ($subtype == 'all')
 				{
@@ -128,7 +120,7 @@ class Api extends CI_Controller {
 					}
 				}
 			}
-			elseif ($type == 'contact' AND is_numeric($subtype))
+			elseif ($type == 'phone' AND is_numeric($subtype))
 			{
 				$contact_info = $this->phonebook_model->abonent_get(array('phone_work'=>$subtype));
 				
@@ -160,7 +152,6 @@ class Api extends CI_Controller {
 	private function _v1_device_get($type=NULL, $subtype=NULL)
 	{
 		$this->load->model('devices_model');
-		$this->load->model('settings_model');
 		
 		$result = array(
 			'data'		=> NULL,
