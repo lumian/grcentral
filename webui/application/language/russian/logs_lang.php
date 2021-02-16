@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Табы
 //
 $lang['logs_tabs_title_provisioning']							= "Распространение";
+$lang['logs_tabs_title_api']									= "Запросы к API";
 $lang['logs_tabs_title_system']									= "Система";
 //
 // Страница "Распространение"
@@ -36,3 +37,17 @@ $lang['logs_provisioning_table_fwversion']						= "Версия прошивки
 //
 $lang['logs_system_description_text']							= "В данном разделе расположены логи работы системы.";
 $lang['logs_system_underconstruction']							= "Раздел находится в разработке.";
+
+//
+// Страница "Запросы к API"
+//
+$lang['logs_api_description_text']								= "В данном разделе расположены логи запросов к API.";
+
+// Страница "Запросы к API": Таблица
+$lang['logs_api_table_datetime']								= "Дата и время";
+$lang['logs_api_table_user']									= "Пользователь";
+$lang['logs_api_table_query_type']								= "Тип запроса";
+$lang['logs_api_table_query']									= "Запрос";
+$lang['logs_api_table_error']									= "Результат";
+$lang['logs_api_table_error_true']								= "Ошибка запроса";
+$lang['logs_api_table_error_false']								= "Успешный запрос";

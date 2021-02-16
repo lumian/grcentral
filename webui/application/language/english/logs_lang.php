@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Tabs
 //
 $lang['logs_tabs_title_provisioning']							= "Provisioning";
+$lang['logs_tabs_title_api']									= "API query";
 $lang['logs_tabs_title_system']									= "System";
 //
 // Page Provisioning
@@ -36,3 +37,17 @@ $lang['logs_provisioning_table_fwversion']						= "Firmware version";
 //
 $lang['logs_system_description_text']							= "In this section there are logs of system operation.";
 $lang['logs_system_underconstruction']							= "This section is under development.";
+
+//
+// Page "API query"
+//
+$lang['logs_api_description_text']								= "В данном разделе расположены логи запросов к API.";
+
+// Page "API query": Table
+$lang['logs_api_table_datetime']								= "Date and time";
+$lang['logs_api_table_user']									= "User";
+$lang['logs_api_table_query_type']								= "Query type";
+$lang['logs_api_table_query']									= "Query";
+$lang['logs_api_table_error']									= "Result";
+$lang['logs_api_table_error_true']								= "Error";
+$lang['logs_api_table_error_false']								= "Success";

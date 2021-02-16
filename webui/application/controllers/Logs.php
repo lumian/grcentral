@@ -92,6 +92,32 @@ class Logs extends CI_Controller {
 		$this->_RenderPage();
 	}
 	
+	// API logs
+	public function api()
+	{
+		$page_in_uri = '3';
+		$logs_get_params = array(
+			'type'				=> 'api',
+			'limit'				=> '100',
+			'start'				=> ($this->uri->segment($page_in_uri)) ? $this->uri->segment($page_in_uri) : 0,
+		);
+		
+		// Pagination
+		$pagination = $this->config->item('pagination');
+		$pagination['base_url']			= site_url('logs/api');
+		$pagination['total_rows']		= $this->logger_model->get_logs(array('get_total' => TRUE, 'type' => $logs_get_params['type']));
+		$pagination['per_page']			= $logs_get_params['limit'];
+		$pagination['uri_segment']		= $page_in_uri;
+		$this->pagination->initialize($pagination);
+		
+		$page_data = array(
+			'logs_list'			=> $this->logger_model->get_logs($logs_get_params),
+			'pagination_links'	=> $this->pagination->create_links()
+		);
+		$this->content = $this->load->view('logs/api', $page_data, TRUE);
+		$this->_RenderPage();
+	}
+	
 	// System logs (in development...)
 	public function system()
 	{

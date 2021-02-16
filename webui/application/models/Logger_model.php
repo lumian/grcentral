@@ -27,9 +27,14 @@ class Logger_model extends CI_Model {
 			// Set type
 			if (isset($params['type']) AND is_string($params['type']))
 			{
-				if ($params['type'] = 'provisioning')
+				if ($params['type'] == 'provisioning')
 				{
 					$types = array('device_get_cfg', 'device_get_fw', 'device_get_pb');
+					$this->db->where_in('type', $types);
+				}
+				elseif ($params['type'] == 'api')
+				{
+					$types = array('api_get');
 					$this->db->where_in('type', $types);
 				}
 				else
