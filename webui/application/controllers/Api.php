@@ -16,6 +16,11 @@ class Api extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('logger');
+		
+		$this->api_user = array(
+			'id'	=> '0'
+		);
 	}
 	
 	//
@@ -75,6 +80,8 @@ class Api extends CI_Controller {
 				$result['result'] = $query_result['data'];
 			}
 		}
+		
+		$this->logger->api_get($this->api_user['id'], array('query' => $this->uri->uri_string(), 'error' => $result['error']));
 		
 		$this->_RenderPage($result);
 	}

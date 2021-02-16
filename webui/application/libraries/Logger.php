@@ -64,4 +64,19 @@ class Logger {
 			return $result;
 		}
 	}
+	
+	public function api_get($id=NULL, $data=NULL)
+	{
+		if (!is_null($id) AND is_numeric($id) AND is_array($data))
+		{
+			$log_data = array(
+				'unit_id'	=> $id,
+				'type'		=> 'api_get',
+				'datetime'	=> date('Y-m-d H:i:s'),
+				'log_data'	=> json_encode($data)
+			);
+			$result = $this->CI->logger_model->add_log($log_data);
+			return $result;
+		}
+	}
 }
