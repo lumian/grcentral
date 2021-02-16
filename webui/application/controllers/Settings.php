@@ -459,7 +459,7 @@ class Settings extends CI_Controller {
 		elseif ($action == 'add' AND is_null($param))
 		{
 			// Add new firmware
-			if (!is_null($this->input->post('version')) AND !is_null($this->input->post('group_id')) AND is_numeric($this->input->post('status')))
+			if (!is_null($this->input->post('version')) AND !is_null($this->input->post('group_id')))
 			{
 				$upload_config = array(
 					'upload_path'		=> $this->config->item('storage_path', 'grcentral').'fw/',
