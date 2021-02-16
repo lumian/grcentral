@@ -100,6 +100,18 @@ class Logger_model extends CI_Model {
 					return TRUE;
 				}
 			}
+			if ($type == 'api')
+			{
+				$type_array = array('api_get');
+				$this->db->where_in('type', $type_array);
+				$this->db->where('datetime <', $match_date);
+				$result = $this->db->delete('logs_data');
+				if ($result != FALSE)
+				{
+					return TRUE;
+				}
+			}
+				
 		}
 		return FALSE;
 	}
