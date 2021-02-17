@@ -40,7 +40,7 @@ class Provisioning extends CI_Controller {
 			$this->device_info['db'] = FALSE;
 		}
 		$this->device_info['client'] = array(
-			'ip_addr'	=> $_SERVER['REMOTE_ADDR']
+			'ip_addr'	=> $this->grcentral->get_client_ip()
 		);
 		
 		//

@@ -109,8 +109,15 @@ class Grcentral {
 		return FALSE;
 	}
 	
-	function is_date($str=NULL)
+	// Validate date
+	public function is_date($str=NULL)
 	{
 		return is_numeric(strtotime($str));
+	}
+	
+	// Get client IP
+	public function get_client_ip()
+	{
+		return $_SERVER['REMOTE_ADDR'];
 	}
 }
