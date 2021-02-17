@@ -90,7 +90,12 @@ class Api extends CI_Controller {
 			}
 		}
 		
-		$this->logger->api_get($this->api_user['id'], array('query' => $this->uri->uri_string(), 'error' => $result['error']));
+		$logger_data = array(
+			'query'			=> $this->uri->uri_string(),
+			'client_ip'		=> $this->grcentral->get_client_ip(),
+			'error'			=> $result['error']
+		);
+		$this->logger->api_get($this->api_user['id'], $logger_data);
 		
 		$this->_RenderPage($result);
 	}

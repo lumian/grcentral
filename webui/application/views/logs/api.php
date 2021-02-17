@@ -41,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<tbody>
 		<? if ($logs_list != FALSE): ?>
 			<? foreach($logs_list as $log): ?>
+				<? $log_data = json_decode($log['log_data'], TRUE); ?>
 				<tr>
 					<td>
 						<!-- datetime -->
@@ -50,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					<td>
 						<!-- user -->
-						#<?=$log['unit_id'];?>
+						#<?=$log['unit_id'];?> (IP: <?=$log_data['client_ip'];?>)
 					</td>
 					
 					
@@ -59,7 +60,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-cog"></i> <?=$log['type']; ?>
 					</td>
 					
-					<? $log_data = json_decode($log['log_data'], TRUE); ?>
 					<td>
 						<!-- query -->
 						<?=$log_data['query']; ?>
