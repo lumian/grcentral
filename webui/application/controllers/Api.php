@@ -70,6 +70,15 @@ class Api extends CI_Controller {
 					$query_result = $this->_v1_device_get($param1, $param2);
 				}
 			}
+			elseif ($query_category == 'device_models')
+			{
+				// EN: Get information about device models
+				// RU: Получение информации о моделях устройств
+				if (!is_null($param1) AND $param1 != FALSE AND !is_null($param2) AND $param2 != FALSE)
+				{
+					$query_result = $this->v1_device_models_get($param1, $param2);
+				}
+			}
 		}
 		
 		if (isset($query_result) AND isset($query_result['data']) AND isset($query_result['error']))
@@ -236,6 +245,60 @@ class Api extends CI_Controller {
 				);
 			}
 		}
+		return $result;
+	}
+	
+	private function v1_device_models_get($type=NULL, $subtype=NULL)
+	{
+		$this->load->model('settings_model');
+		
+		$result = array(
+			'data'		=> NULL,
+			'error'		=> TRUE
+		);
+		
+		if ($type == 'list' AND $subtype == 'all')
+		{
+			$result_data = $this->settings_model->models_getlist();
+		}
+		elseif ($type == 'id' AND is_numeric($subtype))
+		{
+			$result_data = $this->settings_model->models_get(array('id' => $subtype));
+		}
+		else
+		{
+			$result_data = FALSE;
+		}
+		
+		if ($result_data != FALSE AND is_array($result_data))
+		{
+			if ($type == 'list')
+			{
+				foreach($result_data as $data)
+				{
+					$device_models_data[] = array(
+						'id'				=> ( isset($data['id']) ? $data['id'] : NULL ),
+						'tech_name'			=> ( isset($data['id']) ? $data['tech_name'] : NULL ),
+						'friendly_name'		=> ( isset($data['id']) ? $data['friendly_name'] : NULL )
+					);
+				}
+			}
+			else
+			{
+				$device_models_data = array(
+					'id'				=> ( isset($result_data['id']) ? $result_data['id'] : NULL ),
+					'tech_name'			=> ( isset($result_data['id']) ? $result_data['tech_name'] : NULL ),
+					'friendly_name'		=> ( isset($result_data['id']) ? $result_data['friendly_name'] : NULL )
+				);
+			}
+			
+			$result = array(
+				'data'		=> $device_models_data,
+				'error'		=> FALSE
+			);
+		}
+		
+		
 		return $result;
 	}
 }
