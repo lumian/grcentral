@@ -25,6 +25,7 @@ class Devices extends CI_Controller {
 		
 		$this->lang->load('devices');
 		$this->load->model('devices_model');
+		$this->load->model('logger_model');
 	}
 	
 	private function _RenderPage()
@@ -131,8 +132,6 @@ class Devices extends CI_Controller {
 	
 	public function info($param=NULL)
 	{
-		$this->load->model('logger_model');
-		
 		if (!is_null($param) AND is_numeric($param))
 		{
 			$device_info = $this->devices_model->get(array('id' => $param));
@@ -320,6 +319,8 @@ class Devices extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
+					$this->logger_model->clean_logs(array('type'=>'provisioning','unit_id'=>$param));
+					
 					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_delsuccess'));
 				}

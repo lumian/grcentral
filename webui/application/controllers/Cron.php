@@ -455,10 +455,13 @@ class Cron extends CI_Controller {
 		$remove_before_date = date('Y-m-d H:i:s', strtotime($current_date. " - ".$keep_logs." day"));
 		
 		// DB query
-		$result1 = $this->logger_model->clean_logs('provisioning', $remove_before_date);
-		$result2 = $this->logger_model->clean_logs('api', $remove_before_date);
+		$clean_params = array(
+			'type'			=> 'all',
+			'min_date'		=> $remove_before_date
+		);
+		$result = $this->logger_model->clean_logs($clean_params);
 		
-		if ($result1 === TRUE AND $result2 === TRUE)
+		if ($result === TRUE)
 		{
 			return TRUE;
 		}

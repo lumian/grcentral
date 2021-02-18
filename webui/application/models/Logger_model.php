@@ -85,34 +85,62 @@ class Logger_model extends CI_Model {
 		return FALSE;
 	}
 	
-	function clean_logs($type=NULL, $match_date=NULL)
+	function clean_logs($params=NULL)
 	{
-		if (!is_null($match_date) AND !is_null($type) AND $this->grcentral->is_date($match_date) != FALSE)
+		// Selecting all logs of the specified type
+		if (isset($params['type']))
 		{
-			if ($type == 'provisioning')
+			if ($params['type'] == 'provisioning')
 			{
-				$type_array = array('device_get_pb', 'device_get_fw', 'device_get_cfg');
-				$this->db->where_in('type', $type_array);
-				$this->db->where('datetime <', $match_date);
-				$result = $this->db->delete('logs_data');
-				if ($result != FALSE)
-				{
-					return TRUE;
-				}
+				$where_type_array = array('device_get_pb', 'device_get_fw', 'device_get_cfg');
 			}
-			if ($type == 'api')
+			elseif ($params['type'] == 'api')
 			{
-				$type_array = array('api_get');
-				$this->db->where_in('type', $type_array);
-				$this->db->where('datetime <', $match_date);
-				$result = $this->db->delete('logs_data');
-				if ($result != FALSE)
-				{
-					return TRUE;
-				}
+				$where_type_array = array('api_get');
 			}
-				
+			elseif ($params['type'] == 'all')
+			{
+				$where_type_array = array('device_get_pb', 'device_get_fw', 'device_get_cfg', 'api_get');
+			}
+			else
+			{
+				return FALSE;
+			}
+			$this->db->where_in('type', $where_type_array);
 		}
-		return FALSE;
+		else
+		{
+			return FALSE;
+		}
+		
+		if (isset($params['min_date']) OR isset($params['unit_id']))
+		{
+			// Selecting all logs less than the specified date
+			if (isset($params['min_date']) AND $this->grcentral->is_date($params['min_date']) != FALSE)
+			{
+				$this->db->where('datetime <', $params['min_date']);
+			}
+			
+			// Selecting all logs of the specified unit
+			if (isset($params['unit_id']) AND is_numeric($params['unit_id']))
+			{
+				$this->db->where('unit_id', $params['unit_id']);
+			}
+			
+			$result = $this->db->delete('logs_data');
+			
+			if ($result != FALSE)
+			{
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			}
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 }
