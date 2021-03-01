@@ -21,6 +21,12 @@ class Api extends CI_Controller {
 		$this->api_user = array(
 			'id'	=> '0'
 		);
+		
+		$api_enable = $this->settings_model->syssettings_get('api_enable');
+		if ($api_enable == 'off' OR $api_enable == FALSE)
+		{
+			show_404();
+		}
 	}
 	
 	//

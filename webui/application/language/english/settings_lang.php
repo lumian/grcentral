@@ -222,6 +222,9 @@ $lang['settings_syssettings_pb_generate_enable_name']		= "Enable the function of
 $lang['settings_syssettings_pb_generate_enable_help']		= "If you enable this option, you will be able to generate and receive Phonebook XML files by devices. If you disable this option, the phonebook section will not be disabled, and instead of the phonebook xml file, the error 404 (Not found) will be returned.";
 $lang['settings_syssettings_pb_collect_accounts_name']		= "Collect information about accounts in phonebook.";
 $lang['settings_syssettings_pb_collect_accounts_help']		= "In the process of applying the settings, information about phone accounts (Name and UserID) will be collected and integrated with the phonebook.";
+$lang['settings_syssettings_title_api']						= "API";
+$lang['settings_syssettings_api_enable_name']				= "Enable API";
+$lang['settings_syssettings_api_enable_help']				= "Enabling the ability to use the API.";
 // Page "System settings": Messages
 $lang['settings_syssettings_flashdata_editsuccess']			= "Settings updated successfully";
 $lang['settings_syssettings_flashdata_editerror']			= "An error occurred. Settings have not been updated.";

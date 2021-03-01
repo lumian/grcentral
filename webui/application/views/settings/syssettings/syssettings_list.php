@@ -182,5 +182,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</td>
 		</tr>
 	</tbody>
+	<thead>
+		<tr>
+			<th colspan="2"><?=lang('settings_syssettings_title_api');?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<?=lang('settings_syssettings_api_enable_name');?></br>
+				<small class="text-muted"><?=lang('settings_syssettings_api_enable_help');?></small>
+			</td>
+			<td>
+				<? if ($syssettings_list['api_enable'] == 'on') { $api_enable = 'checked'; } else { $api_enable = ''; }?>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" name="api_enable" id="api_enable" <?=$api_enable;?>>
+					<label class="custom-control-label" for="api_enable"></label>
+				</div>
+			</td>
+		</tr>
+	</tbody>
 </table>
 </form>

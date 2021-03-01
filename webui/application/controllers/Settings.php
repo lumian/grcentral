@@ -874,6 +874,8 @@ class Settings extends CI_Controller {
 			if (!is_null($this->input->post('hide_help_header_msg'))) { $settings_data['hide_help_header_msg'] = 'on'; } else { $settings_data['hide_help_header_msg'] = 'off'; }
 			// monitoring_enable
 			if (!is_null($this->input->post('monitoring_enable'))) { $settings_data['monitoring_enable'] = 'on'; } else { $settings_data['monitoring_enable'] = 'off'; }
+			// api_enable
+			if (!is_null($this->input->post('api_enable'))) { $settings_data['api_enable'] = 'on'; } else { $settings_data['api_enable'] = 'off'; }
 			
 			// DB query for update settings
 			$query = $this->settings_model->syssettings_update($settings_data);
