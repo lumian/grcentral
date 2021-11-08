@@ -2,91 +2,75 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!-- ModalAddEdit -->
-<div class="modal fade" id="ModalAddEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAddEditLabel" aria-hidden="true">
+<div class="modal fade" id="ModalAddEdit" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAddEditLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalAddEditLabel">ModalTitle</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<form id="ModalAddEditForm" method="post" action="">
 					<div class="row">
 						<div class="col">
-							<div class="form-group">
-								<label for="ModalAddEditForm_MacAddr"><?=lang('devices_index_modaladdedit_mac_addr');?></label>
-								<input type="text" name="mac_addr" class="form-control" id="ModalAddEditForm_MacAddr" required>
-								<small id="ModalAddEditForm_MacAddrHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_mac_addr_help');?></small>
-							</div>
+							<label for="ModalAddEditForm_MacAddr"><?=lang('devices_index_modaladdedit_mac_addr');?></label>
+							<input type="text" name="mac_addr" class="form-control" id="ModalAddEditForm_MacAddr" required>
+							<small id="ModalAddEditForm_MacAddrHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_mac_addr_help');?></small>
 						</div>
 						<div class="col">
-							<div class="form-group">
-								<label for="ModalAddEditForm_IPAddr"><?=lang('devices_index_modaladdedit_ip_addr');?></label>
-								<input type="text" name="ip_addr" class="form-control" id="ModalAddEditForm_IPAddr" required>
-								<small id="ModalAddEditForm_IPAddrHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_ip_addr_help');?></small>
-							</div>
+							<label for="ModalAddEditForm_IPAddr"><?=lang('devices_index_modaladdedit_ip_addr');?></label>
+							<input type="text" name="ip_addr" class="form-control" id="ModalAddEditForm_IPAddr" required>
+							<small id="ModalAddEditForm_IPAddrHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_ip_addr_help');?></small>
 						</div>
 						<div class="col">
-							<div class="form-group">
-								<label for="ModalAddEditForm_Descr"><?=lang('devices_index_modaladdedit_descr');?></label>
-								<input type="text" name="descr" class="form-control" id="ModalAddEditForm_Descr">
-								<small id="ModalAddEditForm_DescrHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_descr_help');?></small>
-							</div>
+							<label for="ModalAddEditForm_Descr"><?=lang('devices_index_modaladdedit_descr');?></label>
+							<input type="text" name="descr" class="form-control" id="ModalAddEditForm_Descr">
+							<small id="ModalAddEditForm_DescrHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_descr_help');?></small>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mt-2">
 						<div class="col">
-							<div class="form-group">
-								<label for="ModalAddEditForm_Model"><?=lang('devices_index_modaladdedit_model');?></label>
-								<select class="form-control" name="model_id" id="ModalAddEditForm_Model" required>
-									<option value='0'>--- <?=lang('devices_index_modaladdedit_model_na');?> ---</option>
-									<? if ($models_list != FALSE): ?>
-										<? foreach($models_list as $model): ?>
-											<option value='<?=$model['id'];?>'><?=$model['friendly_name'];?></option>
-										<? endforeach; ?>
-									<? endif; ?>
-								</select>
-								<small id="ModalAddEditForm_ModelHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_model_help');?></small>
-							</div>
+							<label for="ModalAddEditForm_Model"><?=lang('devices_index_modaladdedit_model');?></label>
+							<select class="form-select" name="model_id" id="ModalAddEditForm_Model" required>
+								<option value='0'>--- <?=lang('devices_index_modaladdedit_model_na');?> ---</option>
+								<? if ($models_list != FALSE): ?>
+									<? foreach($models_list as $model): ?>
+										<option value='<?=$model['id'];?>'><?=$model['friendly_name'];?></option>
+									<? endforeach; ?>
+								<? endif; ?>
+							</select>
+							<small id="ModalAddEditForm_ModelHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_model_help');?></small>
 						</div>
 						<div class="col">
-							<div class="form-group">
-								<label for="ModalAddEditForm_StatusActive"><?=lang('devices_index_modaladdedit_statusactive');?></label>
-								<select class="form-control" name="status_active" id="ModalAddEditForm_StatusActive" required>
-									<option value='0'><?=lang('devices_index_modaladdedit_statusactive_off');?></option>
-									<option value='1'><?=lang('devices_index_modaladdedit_statusactive_on');?></option>
-								</select>
-								<small id="ModalAddEditForm_StatusActiveHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_statusactive_help');?></small>
-							</div>
+							<label for="ModalAddEditForm_StatusActive"><?=lang('devices_index_modaladdedit_statusactive');?></label>
+							<select class="form-select" name="status_active" id="ModalAddEditForm_StatusActive" required>
+								<option value='0'><?=lang('devices_index_modaladdedit_statusactive_off');?></option>
+								<option value='1'><?=lang('devices_index_modaladdedit_statusactive_on');?></option>
+							</select>
+							<small id="ModalAddEditForm_StatusActiveHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_statusactive_help');?></small>
 						</div>
 						<div class="col">
-							<div class="form-group">
-								<label for="ModalAddEditForm_FWVersionPinned"><?=lang('devices_index_modaladdedit_fwversionpinned');?></label>
-								<select class="form-control" name="fw_version_pinned" id="ModalAddEditForm_FWVersionPinned" required>
-									<option value='0'>--- <?=lang('devices_index_modaladdedit_fwversionpinned_off');?> ---</option>
-									<? if ($fw_list != FALSE): ?>
-										<? foreach($fw_list as $row): ?>
-											<? if ($row['items'] != FALSE): ?>
-												<? foreach ($row['items'] as $fw): ?>
-													<option value='<?=$fw['version'];?>'><?=$row['group_info']['name'];?>: <?=$fw['version'];?></option>
-												<? endforeach;?>
-											<? endif; ?>
-										<? endforeach; ?>
-									<? endif; ?>
-								</select>
-								<small id="ModalAddEditForm_FWVersionPinnedHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_fwversionpinned_help');?></small>
-							</div>
+							<label for="ModalAddEditForm_FWVersionPinned"><?=lang('devices_index_modaladdedit_fwversionpinned');?></label>
+							<select class="form-select" name="fw_version_pinned" id="ModalAddEditForm_FWVersionPinned" required>
+								<option value='0'>--- <?=lang('devices_index_modaladdedit_fwversionpinned_off');?> ---</option>
+								<? if ($fw_list != FALSE): ?>
+									<? foreach($fw_list as $row): ?>
+										<? if ($row['items'] != FALSE): ?>
+											<? foreach ($row['items'] as $fw): ?>
+												<option value='<?=$fw['version'];?>'><?=$row['group_info']['name'];?>: <?=$fw['version'];?></option>
+											<? endforeach;?>
+										<? endif; ?>
+									<? endforeach; ?>
+								<? endif; ?>
+							</select>
+							<small id="ModalAddEditForm_FWVersionPinnedHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_fwversionpinned_help');?></small>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mt-2">
 						<div class="col">
-							<div class="form-group">
-								<label for="ModalAddEditForm_Params"><?=lang('devices_index_modaladdedit_params');?></label>
-								<textarea name="params_source_data" class="form-control" id="ModalAddEditForm_Params" rows="10"></textarea>
-								<small id="ModalAddEditForm_ParamsHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_params_help');?></small>
-							</div>
+							<label for="ModalAddEditForm_Params"><?=lang('devices_index_modaladdedit_params');?></label>
+							<textarea name="params_source_data" class="form-control" id="ModalAddEditForm_Params" rows="10"></textarea>
+							<small id="ModalAddEditForm_ParamsHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_params_help');?></small>
 						</div>
 					</div>
 				</form>
@@ -99,10 +83,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <script>
-	$('#ModalAddEdit').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
-		var actiontype = button.data('actiontype')
-		var phoneid = button.data('id')
+	document.getElementById('ModalAddEdit').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
+		var actiontype = button.getAttribute('data-bs-actiontype')
+		var phoneid = button.getAttribute('data-bs-id')
 		var modal = $(this)
 		if (actiontype == "new") {
 			modal.find('.modal-title').text('<?=lang("devices_index_modaladdedit_titleadd");?>')
@@ -141,9 +125,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('devices_index_modaldel_title');?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<?=lang('devices_index_modaldel_confirm');?>
@@ -156,9 +138,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <script>
-	$('#ModalDelete').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
-		var phoneid = button.data('id')
+	document.getElementById('ModalDelete').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
+		var phoneid = button.getAttribute('data-bs-id')
 		var modal = $(this)
 		modal.find('.modal-footer a').attr('href', '<?=site_url("devices/actions/del/")?>' + phoneid)
 	})

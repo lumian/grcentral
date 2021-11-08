@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif; ?>
 
 <div class="btn-group btn-group-sm mt-2" role="group">
-	<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('phonebook_abonents_btn_new');?></button>
+	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('phonebook_abonents_btn_new');?></button>
 	<a href="<?=lang('main_helpurl_phonebook_abonents');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
 </div>
 
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<? if ($abonent['data_source'] != 'manual'): ?>
 						&nbsp;
 						<span data-toggle="tooltip" title="<?=lang('phonebook_abonents_table_datasource_transform');?> <?=lang('phonebook_abonents_table_datasource_manual');?>">
-							<a href="#" data-toggle="modal" data-target="#ModalTransformSource" data-id="<?=$abonent['id'];?>">
+							<a href="#" data-bs-toggle="modal" data-bs-target="#ModalTransformSource" data-bs-id="<?=$abonent['id'];?>">
 								<i class="fa fa-random"></i>
 							</a>
 						</span>
@@ -54,9 +54,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="btn-group btn-block" role="group">
 							<? if ($abonent['data_source'] == 'manual'): ?>
 								<? if ($abonent['status'] == '1'): ?>
-									<button type="button" class="btn btn-outline-success btn-xs btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
+									<button type="button" class="btn btn-outline-success btn-xs btn-block" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
 								<? else: ?>
-									<button type="button" class="btn btn-outline-danger btn-xs btn-block" data-toggle="modal" data-target="#ModalChangeStatus" data-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_off');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
+									<button type="button" class="btn btn-outline-danger btn-xs btn-block" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_off');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
 								<? endif; ?>
 							<? else: ?>
 								<? if ($abonent['status'] == '1'): ?>
@@ -71,10 +71,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<!-- Action buttons -->
 						<div class="btn-group btn-block" role="group">
 							<? if ($abonent['data_source'] == 'manual'): ?>
-								<button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_edit');?>">
+								<button type="button" class="btn btn-outline-info btn-xs" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_edit');?>">
 									<i class="fa fa-edit"></i>
 								</button>
-								<button type="button" class="btn btn-outline-danger btn-xs" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_del');?>">
+								<button type="button" class="btn btn-outline-danger btn-xs" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_del');?>">
 									<i class="fa fa-trash-alt"></i>
 								</button>
 							<? elseif ($abonent['data_source'] == 'accounts' AND isset($abonent['external_id']) AND is_numeric($abonent['external_id'])):?>
@@ -99,33 +99,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </table>
 
 <!-- ModalAddEdit -->
-<div class="modal fade" id="ModalAddEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAddEditLabel" aria-hidden="true">
+<div class="modal fade" id="ModalAddEdit" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAddEditLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalAddEditLabel">ModalTitle</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<form id="ModalAddEditForm" method="post" action="" enctype="multipart/form-data">
-					<div class="form-group">
+					<div>
 						<label for="ModalAddEditForm_FirstName"><?=lang('phonebook_abonents_modal_addeditabonent_firstname');?></label>
 						<input type="text" name="first_name" class="form-control" id="ModalAddEditForm_FirstName" required>
 						<small id="ModalAddEditForm_FirstNameHelp" class="form-text text-muted"><?=lang('phonebook_abonents_modal_addeditabonent_firstname_help');?></small>
 					</div>
-					<div class="form-group">
+					<div class="mt-2">
 						<label for="ModalAddEditForm_LastName"><?=lang('phonebook_abonents_modal_addeditabonent_lastname');?></label>
 						<input type="text" name="last_name" class="form-control" id="ModalAddEditForm_LastName" required>
 						<small id="ModalAddEditForm_LastNameHelp" class="form-text text-muted"><?=lang('phonebook_abonents_modal_addeditabonent_lastname_help');?></small>
 					</div>
-					<div class="form-group">
+					<div class="mt-2">
 						<label for="ModalAddEditForm_PhoneWork"><?=lang('phonebook_abonents_modal_addeditabonent_phonework');?></label>
 						<input type="text" name="phone_work" class="form-control" id="ModalAddEditForm_PhoneWork" required>
 						<small id="ModalAddEditForm_PhoneWorkNameHelp" class="form-text text-muted"><?=lang('phonebook_abonents_modal_addeditabonent_phonework_help');?></small>
 					</div>
-					<div class="form-group">
+					<div class="mt-2">
 						<label for="ModalAddEditForm_Status"><?=lang('phonebook_abonents_modal_addeditabonent_status');?></label>
 						<select class="form-control" name="status" id="ModalAddEditForm_Status" required>
 							<option value='0'><?=lang('phonebook_abonents_modal_addeditabonent_status_off');?></option>
@@ -136,17 +134,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
 				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalAddEditForm"><?=lang('main_btn_save');?></button>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-	$('#ModalAddEdit').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
-		var actiontype = button.data('actiontype')
-		var abonentid = button.data('id')
+	document.getElementById('ModalAddEdit').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
+		var actiontype = button.getAttribute('data-bs-actiontype')
+		var abonentid = button.getAttribute('data-bs-id')
 		var modal = $(this)
 		if (actiontype == "new") {
 			modal.find('.modal-title').text('<?=lang("phonebook_abonents_modal_addeditabonent_title_add");?>')
@@ -181,24 +179,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('phonebook_abonents_modal_delabonent_title');?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<?=lang('phonebook_abonents_modal_delabonent_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
 				<a type="button" class="btn btn-outline-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-	$('#ModalDelete').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
-		var abonentid = button.data('id')
+	document.getElementById('ModalDelete').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
+		var abonentid = button.getAttribute('data-bs-id')
 		var modal = $(this)
 		modal.find('.modal-footer a').attr('href', '<?=site_url("phonebook/actions/del_abonent/");?>' + abonentid)
 	})
@@ -210,24 +206,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalChangeStatusLabel"><?=lang('phonebook_abonents_modal_changestatus_title');?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<?=lang('phonebook_abonents_modal_changestatus_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
 				<a type="button" class="btn btn-outline-success btn-sm" href="#"><?=lang('main_btn_save');?></a>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-	$('#ModalChangeStatus').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
-		var abonentid = button.data('id')
+	document.getElementById('ModalChangeStatus').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
+		var abonentid = button.getAttribute('data-bs-id')
 		var modal = $(this)
 		modal.find('.modal-footer a').attr('href', '<?=site_url("phonebook/actions/abonent_changestatus/");?>' + abonentid)
 	})
@@ -239,24 +233,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalTransformSourceLabel"><?=lang('phonebook_abonents_modal_transformsource_title');?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<?=lang('phonebook_abonents_modal_transformsource_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
 				<a type="button" class="btn btn-outline-success btn-sm" href="#"><?=lang('main_btn_save');?></a>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-	$('#ModalTransformSource').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
-		var abonentid = button.data('id')
+	document.getElementById('ModalTransformSource').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
+		var abonentid = button.getAttribute('data-bs-id')
 		var modal = $(this)
 		modal.find('.modal-footer a').attr('href', '<?=site_url("phonebook/actions/abonent_transformsource/");?>' + abonentid + '/manual')
 	})

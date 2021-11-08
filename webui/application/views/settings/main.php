@@ -22,9 +22,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$service['name'];?></td>
 					<td>
 						<? if ($service['status'] == 'on'):  ?>
-						<span class="badge badge-success"><?=lang('settings_index_status_on');?></span>
+						<span class="badge bg-success"><?=lang('settings_index_status_on');?></span>
 						<? else: ?>
-						<span class="badge badge-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
+						<span class="badge bg-danger" data-toggle="tooltip" data-placement="top" title="<?=lang('settings_index_status_off_descr');?>"><?=lang('settings_index_status_off');?></span>
 						<? endif; ?>
 					</td>
 					<td><?=$service['info'];?></td>

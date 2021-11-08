@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif; ?>
 
 <div class="btn-group btn-group-sm mt-2" role="group">
-	<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('devices_index_btn_new');?></button>
+	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('devices_index_btn_new');?></button>
 	<a href="<?=lang('main_helpurl_devices');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
 </div>
 
@@ -82,18 +82,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?=lang('devices_index_table_fwversion_na');?>
 						<? endif; ?>
 						<? if (isset($device['fw_version_pinned']) AND $device['fw_version_pinned'] != '0'): ?>
-							<span data-toggle="tooltip" title="<?=lang('devices_index_table_fwversionpinned_help');?>: <?=$device['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
+							<span data-bs-toggle="tooltip" title="<?=lang('devices_index_table_fwversionpinned_help');?>: <?=$device['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
 						<? endif; ?>
 					</td>
 					<td>
-						<div class="btn-group btn-block" role="group">
-							<a href="<?=site_url('devices/info/'.$device['id']);?>" type="button" class="btn btn-outline-info btn-xs" title="<?=lang('devices_index_btn_infotitle');?>">
+						<div class="btn-group" role="group">
+							<a href="<?=site_url('devices/info/'.$device['id']);?>" type="button" class="btn btn-outline-info btn-sm" title="<?=lang('devices_index_btn_infotitle');?>">
 								<i class="fa fa-info"></i>
 							</a>
-							<button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$device['id'];?>" title="<?=lang('main_btn_edit');?>">
+							<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device['id'];?>" title="<?=lang('main_btn_edit');?>">
 								<i class="fa fa-edit"></i>
 							</button>
-							<button type="button" class="btn btn-outline-danger btn-xs" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$device['id'];?>" title="<?=lang('main_btn_del');?>">
+							<button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$device['id'];?>" title="<?=lang('main_btn_del');?>">
 								<i class="fa fa-trash-alt"></i>
 							</button>
 						</div>

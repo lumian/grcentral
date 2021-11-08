@@ -32,9 +32,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th><?=lang('devices_info_panel_about_statusonline');?></th>
 						<td>
 							<? if ($device_info['status_online'] == '1'): ?>
-								<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusonline_on'); ?></div>
+								<span class="badge bg-success"><?=lang('devices_info_panel_about_statusonline_on'); ?></span>
 							<? else: ?>
-								<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusonline_off'); ?></div>
+								<span class="badge bg-danger"><?=lang('devices_info_panel_about_statusonline_off'); ?></span>
 							<? endif;?>
 							(<?=lang('devices_info_panel_about_statusonline_changetime'); ?> <?=$device_info['status_online_changetime'];?>)
 						</td>
@@ -44,9 +44,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th><?=lang('devices_info_panel_about_statusactive');?></th>
 						<td>
 							<? if ($device_info['status_active'] == '1'): ?>
-								<div class="badge badge-success text-wrap"><?=lang('devices_info_panel_about_statusactive_on'); ?></div>
+								<span class="badge bg-success"><?=lang('devices_info_panel_about_statusactive_on'); ?></span>
 							<? else: ?>
-								<div class="badge badge-danger text-wrap"><?=lang('devices_info_panel_about_statusactive_off'); ?></div>
+								<span class="badge bg-danger"><?=lang('devices_info_panel_about_statusactive_off'); ?></span>
 							<? endif;?>
 						</td>
 					</tr>
@@ -72,22 +72,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-wrench"></i> <?=lang('devices_info_panel_actions_title')?></div>
 			<div class="card-body">
-				<button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#ModalAddEdit" data-actiontype="edit" data-id="<?=$device_info['id'];?>">
+				<button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device_info['id'];?>">
 					<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 				</button><br />
-				<button type="button" class="btn btn-outline-info btn-sm mt-2" data-toggle="modal" data-target="#ModalLogs">
+				<button type="button" class="btn btn-outline-info btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ModalLogs">
 					<i class="fa fa-list-ul"></i> <?=lang('devices_info_btn_logs');?>
 				</button><br />
-				<button type="button" class="btn btn-outline-danger btn-sm mt-2" data-toggle="modal" data-target="#ModalDelete" data-id="<?=$device_info['id'];?>">
+				<button type="button" class="btn btn-outline-danger btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$device_info['id'];?>">
 					<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 				</button>
 				<hr class="hr" />
 				<? if ($device_info['admin_password'] != ""): ?>
-					<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#ModalCTIQuery" data-action="cti_reboot"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
+					<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCTIQuery" data-bs-action="cti_reboot"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
 				<? else: ?>
 					<div class="alert alert-info" role="alert">
-						
-						<span data-toggle="tooltip" title="<?=lang('devices_info_panel_actions_cti_na_descr');?>"><?=lang('devices_info_panel_actions_cti_na_error');?></span>
+						<span data-bs-toggle="tooltip" title="<?=lang('devices_info_panel_actions_cti_na_descr');?>"><?=lang('devices_info_panel_actions_cti_na_error');?></span>
 					</div>
 				<? endif;?>
 			</div>
@@ -102,11 +101,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p><?=lang('devices_info_panel_accounts_description');?></p>
 		<? endif; ?>
 		<div class="btn-group btn-group-sm" role="group">
-			<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
+			<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
 			<a href="<?=lang('main_helpurl_devices_accounts');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
 		</div>
 		
-		<table class="table table-hover table-sm mt-2">
+		<table class="table table-hover table-bordered table-sm mt-2">
 			<thead>
 				<th><?=lang('devices_info_table_accounts_position');?></th>
 				<th><?=lang('devices_info_table_accounts_name');?></th>
@@ -144,9 +143,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td>
 					<td>
 						<? if ($account['active'] === "1"): ?>
-							<div class="badge badge-success text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_on');?>"><i class="fa fa-phone"></i></div>
+							<div class="badge bg-success" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_on');?>"><i class="fa fa-phone"></i></div>
 						<? else: ?>
-							<div class="badge badge-danger text-wrap" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_off');?>"><i class="fa fa-phone-slash"></i></div>
+							<div class="badge bg-danger" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_off');?>"><i class="fa fa-phone-slash"></i></div>
 						<? endif;?>
 					</td>
 				</tr>
@@ -162,14 +161,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <!-- ModalAccountsEdit -->
-<div class="modal fade" id="ModalAccountsEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAccountsEditLabel" aria-hidden="true">
+<div class="modal fade" id="ModalAccountsEdit" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAccountsEditLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalAccountsEditLabel"><?=lang('devices_info_modal_accounts_title');?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<form id="ModalAccountsEditForm" method="post" action="<?=site_url('devices/actions/edit_accounts/'.$device_info['id']);?>">
@@ -182,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							&nbsp;
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc1_active" required>
+							<select class="form-select form-select-sm" name="acc1_active" required>
 								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
 								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
 								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
@@ -194,7 +191,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc1_name" required>
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc1_voipsrv1" required>
+							<select class="form-select form-select-sm" name="acc1_voipsrv1" required>
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -204,7 +201,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc1_voipsrv2" required>
+							<select class="form-select form-select-sm" name="acc1_voipsrv2" required>
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -235,7 +232,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							&nbsp;
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc2_active">
+							<select class="form-select form-select-sm" name="acc2_active">
 								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
 								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
 								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
@@ -247,7 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc2_name">
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc2_voipsrv1">
+							<select class="form-select form-select-sm" name="acc2_voipsrv1">
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -257,7 +254,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc2_voipsrv2">
+							<select class="form-select form-select-sm" name="acc2_voipsrv2">
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -288,7 +285,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							&nbsp;
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc3_active">
+							<select class="form-select form-select-sm" name="acc3_active">
 								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
 								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
 								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
@@ -300,7 +297,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc3_name">
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc3_voipsrv1">
+							<select class="form-select form-select-sm" name="acc3_voipsrv1">
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -310,7 +307,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc3_voipsrv2">
+							<select class="form-select form-select-sm" name="acc3_voipsrv2">
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -341,7 +338,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							&nbsp;
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc4_active">
+							<select class="form-select form-select-sm" name="acc4_active">
 								<option value="">-- <?=lang('devices_info_modal_accounts_active');?> --</option>
 								<option value='0'><?=lang('devices_info_modal_accounts_active_off');?></option>
 								<option value='1'><?=lang('devices_info_modal_accounts_active_on');?></option>
@@ -353,7 +350,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<input type="text" class="form-control form-control-sm" placeholder="<?=lang('devices_info_modal_accounts_name');?>" name="acc4_name">
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc4_voipsrv1">
+							<select class="form-select form-select-sm" name="acc4_voipsrv1">
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv1');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -363,7 +360,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</select>
 						</div>
 						<div class="col">
-							<select class="form-control form-control-sm" name="acc4_voipsrv2">
+							<select class="form-select form-select-sm" name="acc4_voipsrv2">
 								<option value="">-- <?=lang('devices_info_modal_accounts_voipsrv2');?> --</option>
 								<? if ($servers_list != FALSE): ?>
 								<? foreach($servers_list as $server): ?>
@@ -387,15 +384,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
 				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalAccountsEditForm"><?=lang('main_btn_save');?></button>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-	$('#ModalAccountsEdit').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
+	document.getElementById('ModalAccountsEdit').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
 		var modal = $(this)
 		$.ajax({
 			url: '<?=site_url("devices/ajax/get_accounts/".$device_info["id"]);?>',
@@ -444,9 +441,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('devices_info_modal_cti_title');?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-center">
 				<div class="spinner-border text-warning" role="status">
@@ -457,10 +452,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <script>
-	$('#ModalCTIQuery').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget)
+	document.getElementById('ModalCTIQuery').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
 		var modal = $(this)
-		var action = button.data('action')
+		var action = button.getAttribute('data-bs-action')
 		if (action == 'cti_reboot') {
 			$.ajax({
 				url: '<?=site_url("devices/ajax/cti_reboot/".$device_info["id"]);?>',
@@ -479,7 +474,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 	})
 	
-	$('#ModalCTIQuery').on('hidden.bs.modal', function () {
+	document.getElementById('ModalCTIQuery').addEventListener('hidden.bs.modal', function (event) {
 		location.reload();
 	})
 </script>
@@ -491,9 +486,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="ModalLogsLabel"><?=lang('devices_index_modallogs_title');?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
 				<p><?=lang('devices_index_modallogs_descr');?></p>
@@ -523,7 +516,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
 			</div>
 		</div>
 	</div>
