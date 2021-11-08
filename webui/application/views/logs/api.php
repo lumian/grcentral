@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					<td>
 						<!-- user -->
-						#<?=$log['unit_id'];?> (IP: <?=$log_data['client_ip'];?>)
+						<?=(isset($api_users[$log['unit_id']]['name']) ? $api_users[$log['unit_id']]['name'] : $log['unit_id']); ?> (IP: <?=$log_data['client_ip'];?>)
 					</td>
 					
 					

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral
+	GRCentral v0.3
 	File:			application\config\grcentral.php
 	Description:	System settings config
 	
@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //
 // General settings
 //
+
 // ENG: The main title that will be added to all pages
 // RUS: Главный тайтл который будет добавляться ко всем страницам
 $config['grcentral']['site_title'] 				= 'GRCentral';
@@ -31,6 +32,13 @@ $config['auth']['password'] 	= 'admin';
 //
 // Cron settings
 //
+
 // ENG: How many days to store logs?
 // RUS: Сколько дней хранить логи
 $config['cron']['keep_logs'] 			= "7";
+
+//
+// API auth
+//
+$config['api']['users'][] = array('id'=>'1', 'ip'=>'192.168.1.1', 'name'=>'User1');
+$config['api']['users'][] = array('id'=>'2', 'ip'=>'192.168.1.2', 'name'=>'User2');

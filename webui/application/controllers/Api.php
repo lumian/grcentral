@@ -18,12 +18,39 @@ class Api extends CI_Controller {
 		parent::__construct();
 		$this->load->library('logger');
 		
-		$this->api_user = array(
-			'id'	=> '0'
-		);
-		
+		$this->_CheckAccess();
+	}
+	
+	//
+	// Checking API access
+	//
+	private function _CheckAccess()
+	{
 		$api_enable = $this->settings_model->syssettings_get('api_enable');
 		if ($api_enable == 'off' OR $api_enable == FALSE)
+		{
+			show_404();
+		}
+		$auth_user = FALSE;
+		$client_ip = $this->grcentral->get_client_ip();		
+		$api_users = $this->config->item('users', 'api');
+		
+		if ($api_users != FALSE AND is_array($api_users) AND $client_ip != FALSE)
+		{
+			foreach($api_users as $row)
+			{
+				if (isset($row['ip']) AND $row['ip'] == $client_ip)
+				{
+					$auth_user = $row;
+				}
+			}
+		}
+		
+		if ($auth_user != FALSE)
+		{
+			$this->api_user = $auth_user;
+		}
+		else
 		{
 			show_404();
 		}
