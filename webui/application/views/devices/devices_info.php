@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="row">
 	<div class="col-9">
 		<div class="card mt-2">
-			<div class="card-header"><i class="fa fa-info"></i> <?=lang('devices_info_panel_about_title')?></div>
+			<div class="card-header"><i class="fa fa-info-circle"></i> <?=lang('devices_info_panel_about_title')?></div>
 			<div class="card-body">
 				<table class="table table-hover table-sm">
 					<tr>

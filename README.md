@@ -4,7 +4,7 @@ Web UI для управления телефонами Grandstream
 ## Основа:
 * Code language: PHP 7.3
 * PHP framework: Codeigniter 3.1.11
-* WebUI: Bootstrap 5.1 + jQuery 3.6.0 + Font Awesome icons 5.15.2
+* WebUI: Bootstrap 5.1 + jQuery 3.6.0 + Font Awesome icons 5.15.4
 * UI Languages: Russian, English (начиная с v0.3).
 
 ## Примечание:

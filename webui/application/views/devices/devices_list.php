@@ -88,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td>
 						<div class="btn-group" role="group">
 							<a href="<?=site_url('devices/info/'.$device['id']);?>" type="button" class="btn btn-outline-info btn-sm" title="<?=lang('devices_index_btn_infotitle');?>">
-								<i class="fa fa-info"></i>
+								<i class="fa fa-info-circle"></i>
 							</a>
 							<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device['id'];?>" title="<?=lang('main_btn_edit');?>">
 								<i class="fa fa-edit"></i>

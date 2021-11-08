@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<? if ($current_tab == 'info'): ?>
 				<li class="nav-item">
 					<a class="nav-link active" href="">
-						<i class="fa fa-info"></i> <?=lang('devices_tabs_title_info');?>
+						<i class="fa fa-info-circle"></i> <?=lang('devices_tabs_title_info');?>
 					</a>
 				</li>
 				<? endif; ?>
