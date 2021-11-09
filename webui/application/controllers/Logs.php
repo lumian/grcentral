@@ -110,8 +110,23 @@ class Logs extends CI_Controller {
 		$pagination['uri_segment']		= $page_in_uri;
 		$this->pagination->initialize($pagination);
 		
+		$api_users_config = $this->config->item('users', 'api');
+		$api_users = FALSE;
+		
+		if ($api_users_config != FALSE AND is_array($api_users_config))
+		{
+			foreach($api_users_config as $row)
+			{
+				if (isset($row['id']) AND isset($row['name']))
+				{
+					$api_users[$row['id']] = $row;
+				}
+			}
+		}
+		
 		$page_data = array(
 			'logs_list'			=> $this->logger_model->get_logs($logs_get_params),
+			'api_users'			=> $api_users,
 			'pagination_links'	=> $this->pagination->create_links()
 		);
 		$this->content = $this->load->view('logs/api', $page_data, TRUE);
