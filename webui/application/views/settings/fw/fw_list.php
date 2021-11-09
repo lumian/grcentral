@@ -16,6 +16,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<a href="<?=lang('main_helpurl_settings_fw');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
 </div>
 
+<? if ($this->grcentral->max_size_upload() < 15000): ?>
+<div class="alert alert-danger mt-2" role="alert"><?=lang('settings_fw_flashdata_minimum_requirements');?></div>
+<? endif; ?>
 
 <? if ($this->session->flashdata('success_result')): ?>
 <div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
@@ -89,21 +92,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div>
 						<label for="ModalAddEditForm_Version"><?=lang('settings_fw_modal_addedit_version');?></label>
 						<input type="text" name="version" class="form-control" id="ModalAddEditForm_Version" required>
-						<small id="ModalAddEditForm_VersionHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_version_help');?></small>
+						<small id="ModalAddEditForm_VersionHelp" class="text-muted"><?=lang('settings_fw_modal_addedit_version_help');?></small>
 					</div>
 					<div class="mt-2">
 						<label for="ModalAddEditForm_Group"><?=lang('settings_fw_modal_addedit_group');?></label>
-						<select class="form-control" name="group_id" id="ModalAddEditForm_Group" required>
+						<select class="form-select" name="group_id" id="ModalAddEditForm_Group" required>
 							<? foreach($group_list as $group): ?>
 							<option value='<?=$group['id'];?>'><?=$group['name'];?></option>
 							<? endforeach; ?>
 						</select>
-						<small id="ModalAddEditForm_GroupHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_group_help');?></small>
+						<small id="ModalAddEditForm_GroupHelp" class="text-muted"><?=lang('settings_fw_modal_addedit_group_help');?></small>
 					</div>
 					<div class="mt-2">
 						<label for="ModalAddEditForm_File"><?=lang('settings_fw_modal_addedit_file');?></label>
 						<input class="form-control" type="file" id="ModalAddEditForm_File" name="userfile" required>
-						<small id="ModalAddEditForm_FileHelp" class="form-text text-muted"><?=lang('settings_fw_modal_addedit_file_help');?></small>
+						<small id="ModalAddEditForm_FileHelp" class="text-muted"><? printf(lang('settings_fw_modal_addedit_file_help'), $this->grcentral->max_size_upload('MB')); ?></small>
 					</div>
 				</form>
 			</div>
@@ -123,6 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if (actiontype == "new") {
 			modal.find('.modal-title').text('<?=lang("settings_fw_modal_addedit_title_add");?>')
 			modal.find('.modal-body input').val('')
+			modal.find('.modal-body select').val('')
 			modal.find('.modal-body form').attr('action', '<?=site_url("settings/fw/add/");?>')
 		}
 	})

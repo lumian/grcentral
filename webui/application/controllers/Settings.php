@@ -466,11 +466,13 @@ class Settings extends CI_Controller {
 		elseif ($action == 'add' AND is_null($param))
 		{
 			// Add new firmware
+			
 			if (!is_null($this->input->post('version')) AND !is_null($this->input->post('group_id')))
 			{
 				$upload_config = array(
 					'upload_path'		=> $this->config->item('storage_path', 'grcentral').'fw/',
 					'allowed_types'		=> 'bin',
+					'max_size'			=> $this->grcentral->max_size_upload(),
 					'encrypt_name'		=> TRUE
 				);
 				
@@ -496,9 +498,8 @@ class Settings extends CI_Controller {
 				}
 				else
 				{
-					$this->session->set_flashdata('error_result', lang('settings_fw_flashdata_addsuccess').$this->upload->display_errors());
+					$this->session->set_flashdata('error_result', lang('settings_fw_flashdata_adderror').$this->upload->display_errors());
 				}
-				
 				redirect('/settings/fw');
 			}
 			else

@@ -116,7 +116,7 @@ $lang['settings_fw_modal_addedit_version_help']				= "Enter the firmware version
 $lang['settings_fw_modal_addedit_group']					= "Model group";
 $lang['settings_fw_modal_addedit_group_help']				= "Specify the group of device models for which you are uploading the firmware.";
 $lang['settings_fw_modal_addedit_file']						= "Firmware file";
-$lang['settings_fw_modal_addedit_file_help']				= "Specify the binary file to download (Extension: .bin).";
+$lang['settings_fw_modal_addedit_file_help']				= "Specify the binary file to download (Max size: %s MB).";
 // Page "Firmware": Modal window "Changing the status of the firmware"
 $lang['settings_fw_modal_changestatus_title']				= "Changing the status of the firmware";
 $lang['settings_fw_modal_changestatus_confirm']				= "Do you really want to change the firmware status?";
@@ -128,6 +128,7 @@ $lang['settings_fw_flashdata_addsuccess']					= "Firmware uploaded successfully!
 $lang['settings_fw_flashdata_adderror']						= "The upload of the firmware failed.";
 $lang['settings_fw_flashdata_delsuccess']					= "Firmware successfully removed!";
 $lang['settings_fw_flashdata_change_status_success']		= "Status change completed successfully!";
+$lang['settings_fw_flashdata_minimum_requirements']			= "The values specified in your server settings are too small for the firmware download function to work correctly.<br />Please <a href='https://github.com/lumian/grcentral/wiki/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-GRCentral' target='_blank'>read the installation documentation</a> for details.";
 //
 // Page "Parameters"
 //
