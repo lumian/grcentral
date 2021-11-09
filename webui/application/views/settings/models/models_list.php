@@ -188,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if (actiontype == "new") {
 			modal.find('.modal-title').text('<?=lang("settings_models_modal_addeditgroup_titleadd");?>')
 			modal.find('.modal-body input').val('')
-			modal.find('.modal-body select').val('')
+			modal.find('.modal-body select').val('0')
 			modal.find('.modal-body form').attr('action', '<?=site_url("settings/models/add_group/");?>')
 		} 
 		if (actiontype == "edit") {
@@ -271,7 +271,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="mt-2">
 						<label for="ModalModelAddEditForm_Group"><?=lang('settings_models_modal_addedit_group');?></label>
-						<select class="form-control" name="group_id" id="ModalModelAddEditForm_Group" required>
+						<select class="form-select" name="group_id" id="ModalModelAddEditForm_Group" required>
 							<? foreach($group_list as $group): ?>
 							<option value='<?=$group['id'];?>'><?=$group['name'];?></option>
 							<? endforeach; ?>

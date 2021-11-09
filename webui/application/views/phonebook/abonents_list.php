@@ -125,7 +125,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="mt-2">
 						<label for="ModalAddEditForm_Status"><?=lang('phonebook_abonents_modal_addeditabonent_status');?></label>
-						<select class="form-control" name="status" id="ModalAddEditForm_Status" required>
+						<select class="form-select" name="status" id="ModalAddEditForm_Status" required>
 							<option value='0'><?=lang('phonebook_abonents_modal_addeditabonent_status_off');?></option>
 							<option value='1' selected="selected"><?=lang('phonebook_abonents_modal_addeditabonent_status_on');?></option>
 						</select>

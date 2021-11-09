@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
 				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalAddEditForm"><?=lang('main_btn_save');?></button>
 			</div>
 		</div>
@@ -92,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			modal.find('.modal-title').text('<?=lang("devices_index_modaladdedit_titleadd");?>')
 			modal.find('.modal-body input').val('')
 			modal.find('.modal-body textarea').val('')
-			modal.find('.modal-body select').val('')
+			modal.find('.modal-body select').val('0')
 			modal.find('.modal-body form').attr('action', '<?=site_url("devices/actions/add/")?>')
 		} 
 		if (actiontype == "edit") {
