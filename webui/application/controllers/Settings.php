@@ -136,35 +136,42 @@ class Settings extends CI_Controller {
 		);
 		
 		// Monitoring service:
-		$devices_list = $this->devices_model->getlist();
-		
-		$monitoring_count = array(
-			'online_device'		=> 0,
-			'offline_device'	=> 0,
-			'disabled_device'	=> 0
-		);
-		
-		if (count($devices_list) > 0 AND $services['monitoring']['status'] == 'on')
+		if ($services['monitoring']['status'] == 'on')
 		{
-			foreach($devices_list as $device)
+			$devices_list = $this->devices_model->getlist();
+			
+			if (count($devices_list) > 0)
 			{
-				if ($device['status_active'] == '1')
+				$monitoring_count = array(
+					'online_device'		=> 0,
+					'offline_device'	=> 0,
+					'disabled_device'	=> 0
+				);
+				
+				foreach($devices_list as $device)
 				{
-					if ($device['status_online'] == '1')
+					if ($device['status_active'] == '1')
 					{
-						++$monitoring_count['online_device'];
+						if ($device['status_online'] == '1')
+						{
+							++$monitoring_count['online_device'];
+						}
+						else
+						{
+							++$monitoring_count['offline_device'];
+						}
 					}
 					else
 					{
-						++$monitoring_count['offline_device'];
+						++$monitoring_count['disabled_device'];
 					}
 				}
-				else
-				{
-					++$monitoring_count['disabled_device'];
-				}
+				$services['monitoring']['info'] = "Online: ".$monitoring_count['online_device']." | Offline: ".$monitoring_count['offline_device']." | Disabled: ".$monitoring_count['disabled_device'];
 			}
-			$services['monitoring']['info'] = "Online: ".$monitoring_count['online_device']." | Offline: ".$monitoring_count['offline_device']." | Disabled: ".$monitoring_count['disabled_device'];
+			else
+			{
+				$services['monitoring']['info'] = "";
+			}
 		}
 		else
 		{
