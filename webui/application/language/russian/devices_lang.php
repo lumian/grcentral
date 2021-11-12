@@ -63,7 +63,7 @@ $lang['devices_index_modaldel_title']						= "Удаление устройст�
 $lang['devices_index_modaldel_confirm']						= "Вы действительно хотите удалить устройство?";
 // Главная страница: Модальное окно "Логи устройства"
 $lang['devices_index_modallogs_title']						= "Логи устройства";
-$lang['devices_index_modallogs_descr']						= "Ниже представлены логи последних 20-ти обращений выбранного устройства к GRCentral.";
+$lang['devices_index_modallogs_descr']						= "Ниже представлены логи обращений выбранного устройства к GRCentral.";
 $lang['devices_index_modallogs_table_date']					= "Дата и время";
 $lang['devices_index_modallogs_table_type']					= "Тип запроса";
 $lang['devices_index_modallogs_table_fwversion']			= "Версия прошивки";

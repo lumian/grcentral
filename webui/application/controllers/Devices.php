@@ -97,6 +97,27 @@ class Devices extends CI_Controller {
 					}
 				}
 			}
+			if ($func == 'get_logs' AND is_numeric($param))
+			{
+				$query = $this->logger_model->get_logs(array('unit_id'=>$param, 'type'=>'provisioning'));
+				
+				if ($query != FALSE)
+				{
+					foreach($query as $row)
+					{
+						$query_result[] = array(
+							'type'		=> $row['type'],
+							'log_data'	=> json_decode($row['log_data'], TRUE),
+							'datetime'	=> $row['datetime']
+						);
+					}
+					
+					$result_data = array(
+						'result'	=> 'success',
+						'data'		=> (isset($query_result) ? $query_result : FALSE)
+					);
+				}
+			}
 		}
 		echo json_encode($result_data);
 	}
@@ -141,7 +162,6 @@ class Devices extends CI_Controller {
 			}
 			$models_list = $this->settings_model->models_getlist();
 			$groups_list = $this->settings_model->models_group_getlist();
-			$logs_list = $this->logger_model->get_logs(array('unit_id'=>$device_info['id'], 'type'=>'provisioning', 'limit'=>'30'));
 			
 			$fw_list = array();
 			
@@ -176,8 +196,7 @@ class Devices extends CI_Controller {
 					'accounts_list'		=> $accounts_list,
 					'servers_list'		=> $servers_list,
 					'models_list'		=> $models_list,
-					'fw_list'			=> $fw_list,
-					'logs_list'			=> $logs_list
+					'fw_list'			=> $fw_list
 				);
 			}
 			else

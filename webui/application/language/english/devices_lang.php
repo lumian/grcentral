@@ -63,7 +63,7 @@ $lang['devices_index_modaldel_title']						= "Deleting a device";
 $lang['devices_index_modaldel_confirm']						= "Do you really want to delete this device?";
 // Main page: A modal window "Device logs"
 $lang['devices_index_modallogs_title']						= "Device logs";
-$lang['devices_index_modallogs_descr']						= "Below are logs of the last 20 calls of the selected device to GRCentral.";
+$lang['devices_index_modallogs_descr']						= "The logs of the selected device's calls to GRCentral are shown below.";
 $lang['devices_index_modallogs_table_date']					= "Date and time";
 $lang['devices_index_modallogs_table_type']					= "Type of query";
 $lang['devices_index_modallogs_table_fwversion']			= "FW version";

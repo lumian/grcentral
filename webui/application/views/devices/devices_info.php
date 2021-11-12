@@ -436,6 +436,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 <? if ($device_info['admin_password'] != ""): ?>
+<!-- ModalCTIQuery -->
 <div class="modal fade" id="ModalCTIQuery" tabindex="-1" role="dialog" aria-labelledby="ModalCTIQueryLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
@@ -492,26 +493,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<p><?=lang('devices_index_modallogs_descr');?></p>
 				<table class="table table-hover table-sm mt-2">
 					<thead>
-					<tr>
-						<th><?=lang('devices_index_modallogs_table_date');?></th>
-						<th><?=lang('devices_index_modallogs_table_type');?></th>
-						<th><?=lang('devices_index_modallogs_table_fwversion');?></th>
-					</tr>
+						<tr>
+							<th><?=lang('devices_index_modallogs_table_date');?></th>
+							<th><?=lang('devices_index_modallogs_table_type');?></th>
+							<th><?=lang('devices_index_modallogs_table_fwversion');?></th>
+						</tr>
 					</thead>
 					<tbody>
-						<? if ($logs_list != FALSE): ?>
-						<? foreach($logs_list as $log): ?>
-							<tr>
-								<td><?=$log['datetime'];?></td>
-								<td><?=$log['type'];?></td>
-								<td><? $log_data = json_decode($log['log_data']); echo $log_data->fw_version; ?></td>
-							</tr>
-						<? endforeach; ?>
-						<? else: ?>
 						<tr>
-							<td class="table-primary" colspan="3"><?=lang('devices_index_modallogs_table_nodata');?></td>
+							<td colspan="3" class="text-center">
+								<div class="spinner-border text-warning" role="status">
+									<span class="sr-only"><?=lang('main_message_loading');?></span>
+								</div>
+							</td>
 						</tr>
-						<? endif;?>
 					</tbody>
 				</table>
 			</div>
@@ -521,5 +516,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 </div>
-
+<script>
+	document.getElementById('ModalLogs').addEventListener('show.bs.modal', function (event) {
+		var button = event.relatedTarget
+		var modal = $(this)
+		var table_stings = ''
+		$.ajax({
+			url: '<?=site_url("devices/ajax/get_logs/".$device_info["id"]);?>',
+			dataType: 'json',
+			success: function(data) {
+				if (data.result == 'success') {
+					$.each( data.data, function( key, value ){
+						table_stings = table_stings + '<tr><td>' + value.datetime + '</td><td>' + value.type + '</td><td>' + value.log_data.fw_version + '</td></tr>';
+					});
+				} else {
+					table_stings = '<tr colspan="3" class="text-center"><td class="table-primary" colspan="3"><?=lang("devices_index_modallogs_table_nodata");?></td></tr>';
+				}
+				modal.find('.modal-body table tbody').html(table_stings);
+			}
+		});
+	})
+</script>
 <?=$this->load->view('devices/devices_actions', NULL, TRUE); ?>
