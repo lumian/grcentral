@@ -18,12 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-database"></i> <?=lang('logs_tabs_title_api');?>
 					</a>
 				</li>
-				<li class="nav-item">
-					<? if ($current_tab == 'system'): ?><a class="nav-link active" href=""><?else:?>
-					<a class="nav-link" href="<?=site_url('logs/system');?>"><?endif;?>
-						<i class="fa fa-cogs"></i> <?=lang('logs_tabs_title_system');?>
-					</a>
-				</li>
 			</ul>
 		</div>
 	</div>

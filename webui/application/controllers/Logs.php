@@ -132,12 +132,4 @@ class Logs extends CI_Controller {
 		$this->content = $this->load->view('logs/api', $page_data, TRUE);
 		$this->_RenderPage();
 	}
-	
-	// System logs (in development...)
-	public function system()
-	{
-		$page_data = array();
-		$this->content = $this->load->view('logs/system', $page_data, TRUE);
-		$this->_RenderPage();
-	}
 }
