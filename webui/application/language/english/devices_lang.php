@@ -54,6 +54,7 @@ $lang['devices_index_modaladdedit_statusactive_help']		= "Enable or disable work
 $lang['devices_index_modaladdedit_statusactive_on']			= "Activated";
 $lang['devices_index_modaladdedit_statusactive_off']		= "Not activated";
 $lang['devices_index_modaladdedit_fwversionpinned']			= "Pin the firmware";
+$lang['devices_index_modaladdedit_fwversionpinned_def']		= "First, specify the device model";
 $lang['devices_index_modaladdedit_fwversionpinned_help']	= "Specify the firmware that you want to attach to this device.";
 $lang['devices_index_modaladdedit_fwversionpinned_off']		= "Without pinning";
 $lang['devices_index_modaladdedit_params']					= "Parameters";

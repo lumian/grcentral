@@ -54,6 +54,7 @@ $lang['devices_index_modaladdedit_statusactive_help']		= "Включить ил�
 $lang['devices_index_modaladdedit_statusactive_on']			= "Активирован";
 $lang['devices_index_modaladdedit_statusactive_off']		= "Не активирован";
 $lang['devices_index_modaladdedit_fwversionpinned']			= "Закрепить прошивку";
+$lang['devices_index_modaladdedit_fwversionpinned_def']		= "Сначала укажите модель";
 $lang['devices_index_modaladdedit_fwversionpinned_help']	= "Укажите прошивку, которую необходимо закрепить за данным устройством.";
 $lang['devices_index_modaladdedit_fwversionpinned_off']		= "Без закрепления";
 $lang['devices_index_modaladdedit_params']					= "Параметры";

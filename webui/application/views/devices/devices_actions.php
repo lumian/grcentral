@@ -42,28 +42,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<small id="ModalAddEditForm_ModelHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_model_help');?></small>
 						</div>
 						<div class="col">
+							<label for="ModalAddEditForm_FWVersionPinned"><?=lang('devices_index_modaladdedit_fwversionpinned');?></label>
+							<select class="form-select" name="fw_version_pinned" id="ModalAddEditForm_FWVersionPinned" required></select>
+							<small id="ModalAddEditForm_FWVersionPinnedHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_fwversionpinned_help');?></small>
+						</div>
+						<div class="col">
 							<label for="ModalAddEditForm_StatusActive"><?=lang('devices_index_modaladdedit_statusactive');?></label>
 							<select class="form-select" name="status_active" id="ModalAddEditForm_StatusActive" required>
 								<option value='0'><?=lang('devices_index_modaladdedit_statusactive_off');?></option>
 								<option value='1'><?=lang('devices_index_modaladdedit_statusactive_on');?></option>
 							</select>
 							<small id="ModalAddEditForm_StatusActiveHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_statusactive_help');?></small>
-						</div>
-						<div class="col">
-							<label for="ModalAddEditForm_FWVersionPinned"><?=lang('devices_index_modaladdedit_fwversionpinned');?></label>
-							<select class="form-select" name="fw_version_pinned" id="ModalAddEditForm_FWVersionPinned" required>
-								<option value='0'>--- <?=lang('devices_index_modaladdedit_fwversionpinned_off');?> ---</option>
-								<? if ($fw_list != FALSE): ?>
-									<? foreach($fw_list as $row): ?>
-										<? if ($row['items'] != FALSE): ?>
-											<? foreach ($row['items'] as $fw): ?>
-												<option value='<?=$fw['version'];?>'><?=$row['group_info']['name'];?>: <?=$fw['version'];?></option>
-											<? endforeach;?>
-										<? endif; ?>
-									<? endforeach; ?>
-								<? endif; ?>
-							</select>
-							<small id="ModalAddEditForm_FWVersionPinnedHelp" class="form-text text-muted"><?=lang('devices_index_modaladdedit_fwversionpinned_help');?></small>
 						</div>
 					</div>
 					<div class="row mt-2">
@@ -94,7 +83,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			modal.find('.modal-body textarea').val('')
 			modal.find('.modal-body select').val('0')
 			modal.find('.modal-body form').attr('action', '<?=site_url("devices/actions/add/")?>')
-		} 
+			FillFWVersionPinned()
+		}
 		if (actiontype == "edit") {
 			modal.find('.modal-title').text('<?=lang("devices_index_modaladdedit_titleedit");?>')
 			$.ajax({
@@ -108,8 +98,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						modal.find('.modal-body textarea[name=params_source_data]').val(data.data.params_source_data)
 						modal.find('.modal-body select[name=model_id]').val(data.data.model_id)
 						modal.find('.modal-body select[name=status_active]').val(data.data.status_active)
-						modal.find('.modal-body select[name=fw_version_pinned]').val(data.data.fw_version_pinned)
 						modal.find('.modal-body form').attr('action', '<?=site_url("devices/actions/edit/")?>' + phoneid)
+						FillFWVersionPinned(data.data.model_id)
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')
 					}
@@ -117,6 +107,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
 		}
 	})
+	
+	$("#ModalAddEditForm_Model").change(function() {
+		var SelectItem = $(this).val()
+		FillFWVersionPinned(SelectItem)
+	});
+	
+	function FillFWVersionPinned (ModelItem) {
+		var DefaultOption = '<option>--- <?=lang("devices_index_modaladdedit_fwversionpinned_def");?>  ---</option>'
+		
+		if ($.isNumeric(ModelItem)) {
+			$.ajax({
+				url: '<?=site_url("devices/ajax/get_fw_bymodel/' + ModelItem + '");?>',
+				dataType: 'json',
+				success: function(data) {
+					if (data.result == 'success') {
+						$('#ModalAddEditForm_FWVersionPinned option').remove()
+						$('#ModalAddEditForm_FWVersionPinned').append('<option value="0">--- <?=lang("devices_index_modaladdedit_fwversionpinned_off");?> ---</option>')
+						$.each( data.data, function( key, value ){
+							$('#ModalAddEditForm_FWVersionPinned').append('<option value="' + value.version + '">' + value.version + ' (' + value.file_name + ')</option>')
+						});
+					} else {
+						$('#ModalAddEditForm_FWVersionPinned option').remove()
+						$('#ModalAddEditForm_FWVersionPinned').append(DefaultOption)
+					}
+				}
+			});
+		} else {
+			$('#ModalAddEditForm_FWVersionPinned option').remove()
+			$('#ModalAddEditForm_FWVersionPinned').append(DefaultOption)
+		}
+	}
 </script>
 
 <!-- ModalDelete -->

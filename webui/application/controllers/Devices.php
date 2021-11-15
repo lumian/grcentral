@@ -118,6 +118,23 @@ class Devices extends CI_Controller {
 					);
 				}
 			}
+			if ($func == 'get_fw_bymodel' AND is_numeric($param))
+			{
+				$model_info = $this->settings_model->models_get(array('id'=>$param));
+				
+				if ($model_info != FALSE)
+				{
+					$fw_list = $this->settings_model->fw_getlist(array('group_id' => $model_info['group_id']));
+					
+					if ($fw_list != FALSE)
+					{
+						$result_data = array(
+							'result'	=> 'success',
+							'data'		=> $fw_list
+						);
+					}
+				}
+			}
 		}
 		echo json_encode($result_data);
 	}
@@ -160,21 +177,6 @@ class Devices extends CI_Controller {
 			{
 				show_404();
 			}
-			$models_list = $this->settings_model->models_getlist();
-			$groups_list = $this->settings_model->models_group_getlist();
-			
-			$fw_list = array();
-			
-			if ($groups_list != FALSE)
-			{
-				foreach ($groups_list as $group)
-				{
-					$fw_list[$group['id']] = array(
-						'group_info'	=> $group,
-						'items'			=> $this->settings_model->fw_getlist(array('group_id' => $group['id']))
-					);
-				}
-			}
 			
 			if ($device_info != FALSE)
 			{
@@ -195,8 +197,7 @@ class Devices extends CI_Controller {
 					'device_info'		=> $device_info,
 					'accounts_list'		=> $accounts_list,
 					'servers_list'		=> $servers_list,
-					'models_list'		=> $models_list,
-					'fw_list'			=> $fw_list
+					'models_list'		=> $this->settings_model->models_getlist()
 				);
 			}
 			else
