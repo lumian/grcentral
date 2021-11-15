@@ -54,15 +54,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="btn-group btn-block" role="group">
 							<? if ($abonent['data_source'] == 'manual'): ?>
 								<? if ($abonent['status'] == '1'): ?>
-									<button type="button" class="btn btn-outline-success btn-xs btn-block" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
+									<button type="button" class="btn btn-outline-success btn-sm btn-block" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
 								<? else: ?>
-									<button type="button" class="btn btn-outline-danger btn-xs btn-block" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_off');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
+									<button type="button" class="btn btn-outline-danger btn-sm btn-block" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_off');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
 								<? endif; ?>
 							<? else: ?>
 								<? if ($abonent['status'] == '1'): ?>
-									<button type="button" class="btn btn-outline-success btn-xs btn-block" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_external');?>" disabled><i class="fa fa-power-off"></i></button>
+									<button type="button" class="btn btn-outline-success btn-sm btn-block" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_external');?>" disabled><i class="fa fa-power-off"></i></button>
 								<? else: ?>
-									<button type="button" class="btn btn-outline-danger btn-xs btn-block" title="<?=lang('phonebook_abonents_table_status_off');?>. <?=lang('phonebook_abonents_table_status_descr_external');?>" disabled><i class="fa fa-power-off"></i></button>
+									<button type="button" class="btn btn-outline-danger btn-sm btn-block" title="<?=lang('phonebook_abonents_table_status_off');?>. <?=lang('phonebook_abonents_table_status_descr_external');?>" disabled><i class="fa fa-power-off"></i></button>
 								<? endif; ?>								
 							<? endif; ?>
 						</div>
@@ -71,18 +71,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<!-- Action buttons -->
 						<div class="btn-group btn-block" role="group">
 							<? if ($abonent['data_source'] == 'manual'): ?>
-								<button type="button" class="btn btn-outline-info btn-xs" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_edit');?>">
+								<button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_edit');?>">
 									<i class="fa fa-edit"></i>
 								</button>
-								<button type="button" class="btn btn-outline-danger btn-xs" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_del');?>">
+								<button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_del');?>">
 									<i class="fa fa-trash-alt"></i>
 								</button>
 							<? elseif ($abonent['data_source'] == 'accounts' AND isset($abonent['external_id']) AND is_numeric($abonent['external_id'])):?>
-								<a type="button" class="btn btn-outline-info btn-xs" title="<?=lang('phonebook_abonents_btn_gotodevice');?>" href="<?=site_url('devices/info/'.$abonent['external_id']);?>" target="_blank">
+								<a type="button" class="btn btn-outline-info btn-sm" title="<?=lang('phonebook_abonents_btn_gotodevice');?>" href="<?=site_url('devices/info/'.$abonent['external_id']);?>" target="_blank">
 									<i class="fa fa-external-link-alt"></i>
 								</a>
 							<? else: ?>
-								<button type="button" class="btn btn-outline-info btn-xs disabled" title="<?=lang('phonebook_abonents_btn_action_na');?>">
+								<button type="button" class="btn btn-outline-info btn-sm disabled" title="<?=lang('phonebook_abonents_btn_action_na');?>">
 									<i class="fa fa-times"></i>
 								</button>
 							<? endif; ?>
