@@ -9,8 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-center">
-				<div class="spinner-border text-warning" role="status">
-					<span class="sr-only"><?=lang('main_message_loading');?></span>
+				<div class="d-flex align-items-center">
+					<strong><?=lang('main_message_loading');?></strong>
+					<div class="spinner-grow ms-auto text-warning" role="status" aria-hidden="true"></div>
 				</div>
 			</div>
 		</div>
