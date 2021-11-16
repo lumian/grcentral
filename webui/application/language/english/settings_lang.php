@@ -211,6 +211,8 @@ $lang['settings_servers_flashdata_delerror']				= "The server was not deleted be
 $lang['settings_syssettings_pagetitle']						= "System settings";
 $lang['settings_syssettings_description_text']				= "In this section, you can configure some important options for the GRCentral system. <br />Don't forget to save your settings after making changes.";
 // Page "System settings": Descriptions
+$lang['settings_syssettings_table_title_setting']			= "Setting / Description";
+$lang['settings_syssettings_table_title_status']			= "Status";
 $lang['settings_syssettings_title_general']					= "General settings";
 $lang['settings_syssettings_access_device_by_ip_name']		= "Use IP address for authorization";
 $lang['settings_syssettings_access_device_by_ip_help']		= "Additionally (other than the MAC address), use the IP address to authorize devices when accessing the server. This setting does not make sense when activating the auto-update IP addresses feature.";

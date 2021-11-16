@@ -27,8 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <table class="table table-bordered table-sm mt-2">
 	<thead>
 		<tr>
-			<th>Настройка / Описание</th>
-			<th style="width:10%">Статус</th>
+			<th><?=lang('settings_syssettings_table_title_setting');?></th>
+			<th style="width:10%"><?=lang('settings_syssettings_table_title_status');?></th>
 		</tr>
 	</thead>
 	<tbody>
