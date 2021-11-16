@@ -30,6 +30,18 @@ $lang['settings_index_service_table_info']					= "Дополнительная �
 $lang['settings_index_status_on']							= "Включено";
 $lang['settings_index_status_off']							= "Отключено";
 $lang['settings_index_status_off_descr']					= "Функция отключена в системных настройках.";
+$lang['settings_index_update_title']						= "Проверка обновлений системы";
+$lang['settings_index_update_current_version']				= "Текущая версия";
+$lang['settings_index_update_actual_version']				= "Доступная версия";
+$lang['settings_index_update_last_check']					= "Последняя проверка";
+$lang['settings_index_update_need_update_yes']				= "Требуется обновление";
+$lang['settings_index_update_need_update_no']				= "Система в актуальном состоянии.";
+$lang['settings_index_update_not_start']					= "Проверка обновлений ранее не выполнялась. Информация недоступна.";
+$lang['settings_index_update_release_date']					= "Дата резила";
+$lang['settings_index_update_release_url']					= "Ссылка на релиз";
+$lang['settings_index_update_btn_start_check']				= "Проверить обновления";
+$lang['settings_index_update_alert_ok']						= "Проверка обновлений завершена успешно.";
+$lang['settings_index_update_alert_error']					= "Ошибка проверки обновлений.<br />Не удалось получить данные.";
 //
 // Страница "Модели"
 //

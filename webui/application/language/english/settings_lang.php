@@ -30,6 +30,18 @@ $lang['settings_index_service_table_info']					= "Additional information";
 $lang['settings_index_status_on']							= "Active";
 $lang['settings_index_status_off']							= "Not active";
 $lang['settings_index_status_off_descr']					= "This feature is disabled in system settings.";
+$lang['settings_index_update_title']						= "Checking for system updates";
+$lang['settings_index_update_current_version']				= "Current version";
+$lang['settings_index_update_actual_version']				= "Available version";
+$lang['settings_index_update_last_check']					= "Last check";
+$lang['settings_index_update_need_update_yes']				= "Update required";
+$lang['settings_index_update_need_update_no']				= "The system is up to date.";
+$lang['settings_index_update_not_start']					= "The update check has not been performed before. Information is not available.";
+$lang['settings_index_update_release_date']					= "Release date";
+$lang['settings_index_update_release_url']					= "Link to the release";
+$lang['settings_index_update_btn_start_check']				= "Check for updates";
+$lang['settings_index_update_alert_ok']						= "The update check was completed successfully.";
+$lang['settings_index_update_alert_error']					= "Error checking for updates.<br />Data could not be retrieved.";
 //
 // Page "Models"
 //

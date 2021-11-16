@@ -26,8 +26,8 @@ $config['grcentral']['storage_path']			= $_SERVER['DOCUMENT_ROOT'].'storage/';
 
 // ENG: Authorization
 // RUS: Авторизация
-$config['auth']['login']		= 'admin';
-$config['auth']['password'] 	= 'admin';
+$config['auth']['login']						= 'admin';
+$config['auth']['password'] 					= 'admin';
 
 //
 // Cron settings
@@ -35,7 +35,14 @@ $config['auth']['password'] 	= 'admin';
 
 // ENG: How many days to store logs?
 // RUS: Сколько дней хранить логи
-$config['cron']['keep_logs'] 			= "7";
+$config['cron']['keep_logs'] 					= '7';
+
+//
+// System update
+//
+// ENG: URL for checking the relevance of GRCentral
+// RUS: URL для проверки актуальности GRCentral
+$config['update']['url_version_file']			= 'https://raw.githubusercontent.com/lumian/grcentral/master/notify/version.json';
 
 //
 // API auth

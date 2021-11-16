@@ -103,6 +103,59 @@ class Settings extends CI_Controller {
 				}
 			}
 		}
+		elseif ($type == 'system_update' AND $func == 'check' AND is_null($param))
+		{
+			$query_data = @file_get_contents($this->config->item('url_version_file', 'update'));
+			
+			if ($query_data != FALSE)
+			{
+				$update_data = json_decode($query_data, TRUE);
+				$current_version = $this->config->item('version', 'grcentral');
+				
+				if (!is_null($update_data) AND $update_data != FALSE AND isset($update_data['base']))
+				{
+					if (isset($update_data['base']) AND isset($update_data['base']['version']))
+					{
+						$update_settings['checkupdate_last_datetime'] = date('Y-m-d H:i:s');
+						$update_settings['checkupdate_version'] = $update_data['base']['version'];
+						
+						if (isset($update_data['base']['release_date']) AND isset($update_data['base']['release_url']))
+						{
+							$update_settings['checkupdate_version_info'] = json_encode(array('release_date' => $update_data['base']['release_date'], 'release_url' => $update_data['base']['release_url']));
+						}
+						else
+						{
+							$update_settings['checkupdate_version_info'] = '';
+						}
+					}
+					else
+					{
+						$update_settings['checkupdate_version'] = '';
+						$update_settings['checkupdate_version_info'] = '';
+					}
+					
+					if (isset($update_settings['checkupdate_version']) AND $update_settings['checkupdate_version'] != '')
+					{
+						$compare_version = version_compare($current_version, $update_settings['checkupdate_version']);
+						
+						if ($compare_version < 0)
+						{
+							$update_settings['checkupdate_status'] = 'need_update';
+						}
+						else
+						{
+							$update_settings['checkupdate_status'] = 'actual';
+						}
+					}
+					
+					$this->settings_model->syssettings_update($update_settings);
+					
+					$result_data = array(
+						'result'	=> 'success'
+					);
+				}
+			}
+		}
 		echo json_encode($result_data);
 	}
 	
@@ -178,9 +231,37 @@ class Settings extends CI_Controller {
 			$services['monitoring']['info'] = "";
 		}
 		
+		$updates_last_check = $this->settings_model->syssettings_get('checkupdate_last_datetime');
+		
+		if ($updates_last_check != FALSE AND !is_null($updates_last_check))
+		{
+			$update_status = $this->settings_model->syssettings_get('checkupdate_status');
+			
+			$updates = array(
+				'last_check'		=> date('d.m.Y H:i:s', strtotime($updates_last_check)),
+				'version_actual'	=> $this->settings_model->syssettings_get('checkupdate_version'),
+				'need_update'		=> (($update_status == 'actual') ? FALSE : TRUE)
+			);
+			
+			if ($update_status == 'need_update')
+			{
+				$version_info = $this->settings_model->syssettings_get('checkupdate_version_info');
+				
+				if ($version_info != FALSE)
+				{
+					$updates['version_info'] = json_decode($version_info, TRUE);
+				}
+			}
+		}
+		else
+		{
+			$updates = FALSE;
+		}
+		
 		// Page data
 		$page_data = array(
-			'services' => $services
+			'services'	=> $services,
+			'updates'	=> $updates
 		);
 		
 		$this->content = $this->load->view('settings/main', $page_data, TRUE);
