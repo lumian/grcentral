@@ -152,8 +152,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?=lang('devices_index_modaldel_confirm');?>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<a type="button" class="btn btn-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<a type="button" class="btn btn-outline-warning btn-sm" href="#"><?=lang('main_btn_del');?></a>
 			</div>
 		</div>
 	</div>
