@@ -979,6 +979,19 @@ class Settings extends CI_Controller {
 			}
 			redirect('/settings/syssettings');
 		}
+		elseif ($action == 'reset_settings')
+		{
+			$result = $this->settings_model->syssettings_default('system');
+			if ($result == TRUE)
+			{
+				$this->session->set_flashdata('success_result', lang('settings_syssettings_flashdata_resetsuccess'));
+			}
+			else
+			{
+				$this->session->set_flashdata('success_result', lang('settings_syssettings_flashdata_reseterror'));
+			}
+			redirect('/settings/syssettings');
+		}
 		else
 		{
 			show_404(current_url());

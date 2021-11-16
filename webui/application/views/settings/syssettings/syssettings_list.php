@@ -11,7 +11,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="btn-group btn-group-sm mt-2" role="group">
 	<button type="submit" class="btn btn-outline-success" form="SettingsForm"><?=lang('main_btn_save');?></button>
-	<a href="<?=lang('main_helpurl_settings_system');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+	<button type="submit" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ModalDefaultSettings"><?=lang('settings_syssettings_btn_reset_settings');?></button>
+	<a href="<?=lang('main_helpurl_settings_system');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
 
 <? if ($this->session->flashdata('success_result')): ?>
@@ -197,3 +198,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</tbody>
 </table>
 </form>
+
+<div class="modal fade" id="ModalDefaultSettings" tabindex="-1" role="dialog" aria-labelledby="ModalDefaultSettingsLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalDefaultSettingsLabel"><?=lang('settings_syssettings_modal_reset_title');?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<?=lang('settings_syssettings_modal_reset_confirm');?>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<a type="button" class="btn btn-outline-warning btn-sm" href="/settings/syssettings/reset_settings/"><?=lang('settings_syssettings_btn_reset_settings');?></a>
+			</div>
+		</div>
+	</div>
+</div>

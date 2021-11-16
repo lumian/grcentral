@@ -241,3 +241,10 @@ $lang['settings_syssettings_api_enable_help']				= "Enabling the ability to use 
 // Page "System settings": Messages
 $lang['settings_syssettings_flashdata_editsuccess']			= "Settings updated successfully";
 $lang['settings_syssettings_flashdata_editerror']			= "An error occurred. Settings have not been updated.";
+$lang['settings_syssettings_flashdata_resetsuccess']		= "All system settings have been successfully reset to \"Default\" mode.";
+$lang['settings_syssettings_flashdata_reseterror']			= "An error occurred. The settings have not been reset.";
+// Page "System settings": Buttons
+$lang['settings_syssettings_btn_reset_settings']			= "Reset settings";
+// Page "System settings": Modal window "Reset settings"
+$lang['settings_syssettings_modal_reset_title']				= "Reset settings to \"Default\" mode";
+$lang['settings_syssettings_modal_reset_confirm']			= "Confirm the reset. All system settings will be reset to \"Default\" mode.";

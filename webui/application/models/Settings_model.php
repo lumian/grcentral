@@ -562,5 +562,46 @@ class Settings_model extends CI_Model {
 		return FALSE;
 	}
 	
-
+	function syssettings_default($param='system')
+	{
+		$settings_list = $this->syssettings_getlist();
+		
+		if ($param == 'system')
+		{
+			$default_settings = array(
+				'access_device_by_ip'		=> 'on',
+				'auto_update_ip_addr'		=> 'off',
+				'hide_help_header_msg'		=> 'off',
+				'monitoring_enable'			=> 'off',
+				'cfg_enable_get'			=> 'on',
+				'auto_add_devices'			=> 'off',
+				'fw_enable_update'			=> 'on',
+				'fw_update_only_friend'		=> 'on',
+				'pb_generate_enable'		=> 'on',
+				'pb_collect_accounts'		=> 'on',
+				'api_enable'				=> 'off'
+			);
+		}
+		elseif ($param == 'update')
+		{
+			$default_settings = array(
+				'checkupdate_last_datetime'		=> '',
+				'checkupdate_version'			=> '',
+				'checkupdate_version_info'		=> '',
+				'checkupdate_status'			=> ''
+			);
+		}
+		else
+		{
+			$default_settings = FALSE;
+		}
+		
+		if (isset($default_settings) AND $default_settings != FALSE AND is_array($default_settings))
+		{
+			$this->syssettings_update($default_settings);
+			return TRUE;
+		}
+		
+		return FALSE;
+	}
 }
