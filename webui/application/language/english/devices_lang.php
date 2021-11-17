@@ -96,12 +96,10 @@ $lang['devices_info_panel_about_statusactive_off']			= "Not activated";
 $lang['devices_info_panel_about_descr']						= "Description";
 $lang['devices_info_panel_about_fw']						= "Firmware";
 $lang['devices_info_panel_about_fw_pinned']					= "Pinned";
-// Information page: Panel "CTI integration"
-$lang['devices_info_panel_cti_title']						= "CTI integration";
 // Information page: Panel "Actions with the device"
 $lang['devices_info_panel_actions_title']					= "Actions with the device";
-$lang['devices_info_panel_actions_cti_na_error']			= "CTI integration is not available.";
-$lang['devices_info_panel_actions_cti_na_descr']			= "The administrator password (P2 value) was not found in the settings template for this device.";
+$lang['devices_info_panel_actions_reboot_na_error']			= "Reboot action is not available.";
+$lang['devices_info_panel_actions_reboot_na_descr']			= "The administrator password (P2 value) was not found in the settings template for this device.";
 // Information page: Panel "SIP accounts"
 $lang['devices_info_panel_accounts_title']					= "SIP accounts";
 $lang['devices_info_panel_accounts_description']			= "The number of accounts is limited to 4 pieces, depending on the device model, from 1 to 4 pieces will be used.";
@@ -121,7 +119,7 @@ $lang['devices_info_table_accounts_voipsrv_na']				= "N/A";
 $lang['devices_info_table_accounts_status']					= "Status";
 $lang['devices_info_table_accounts_status_on']				= "On";
 $lang['devices_info_table_accounts_status_off']				= "Off";
-// Information page: Modal window "Редактирование SIP аккаунтов"
+// Information page: Modal window "Editing SIP accounts"
 $lang['devices_info_modal_accounts_title']					= "Editing SIP accounts";
 $lang['devices_info_modal_accounts_account']				= "Account";
 $lang['devices_info_modal_accounts_mustbefilled']			= "necessarily";
@@ -134,10 +132,11 @@ $lang['devices_info_modal_accounts_voipsrv2']				= "Specify an additional server
 $lang['devices_info_modal_accounts_userid']					= "UserID";
 $lang['devices_info_modal_accounts_authid']					= "AuthID";
 $lang['devices_info_modal_accounts_password']				= "Password";
-// Information page: Modal window "Выполнение CTI запроса"
-$lang['devices_info_modal_cti_title']						= "Executing a CTI request";
-$lang['devices_info_modal_cti_querysuccess']				= "Request completed successfully.";
-$lang['devices_info_modal_cti_queryerror']					= "An error occurred. Request failed.";
+// Information page: Modal window "Reboot device"
+$lang['devices_info_modal_reboot_title']					= "Reboot device";
+$lang['devices_info_modal_reboot_confirm']					= "Really reboot the device?";
+$lang['devices_info_modal_reboot_querysuccess']				= "The request to reboot the device has been successfully sent.";
+$lang['devices_info_modal_reboot_queryerror']				= "An error has occurred. The request to reboot the device was not executed.";
 // Information page: Messages
 $lang['devices_info_flashdata_account_editsuccess']			= "Account editing was completed successfully.";
 $lang['devices_info_flashdata_account_editerror']			= "Edit the accounts are not made.";

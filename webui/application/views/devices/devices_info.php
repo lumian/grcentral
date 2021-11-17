@@ -83,10 +83,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</button>
 				<hr class="hr" />
 				<? if ($device_info['admin_password'] != ""): ?>
-					<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCTIQuery" data-bs-action="cti_reboot"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
+					<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalRebootDevice"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
 				<? else: ?>
 					<div class="alert alert-info" role="alert">
-						<span data-bs-toggle="tooltip" title="<?=lang('devices_info_panel_actions_cti_na_descr');?>"><?=lang('devices_info_panel_actions_cti_na_error');?></span>
+						<span data-bs-toggle="tooltip" title="<?=lang('devices_info_panel_actions_reboot_na_descr');?>"><?=lang('devices_info_panel_actions_reboot_na_error');?></span>
 					</div>
 				<? endif;?>
 			</div>
@@ -436,12 +436,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 <? if ($device_info['admin_password'] != ""): ?>
-<!-- ModalCTIQuery -->
-<div class="modal fade" id="ModalCTIQuery" tabindex="-1" role="dialog" aria-labelledby="ModalCTIQueryLabel" aria-hidden="true">
+<!-- ModalRebootDevice -->
+<div class="modal fade" id="ModalRebootDevice" tabindex="-1" role="dialog" aria-labelledby="ModalRebootDeviceLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('devices_info_modal_cti_title');?></h5>
+				<h5 class="modal-title" id="ModalRebootDeviceLabel"><?=lang('devices_info_modal_reboot_title');?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body text-center">
+				<?=lang('devices_info_modal_reboot_confirm');?>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button class="btn btn-outline-warning btn-sm" data-bs-target="#ModalRebootDeviceRun" data-bs-toggle="modal">Перезапуск</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ModalRebootDeviceRun -->
+<div class="modal fade" id="ModalRebootDeviceRun" tabindex="-1" role="dialog" aria-labelledby="ModalRebootDeviceRunLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalRebootDeviceRunLabel"><?=lang('devices_info_modal_reboot_title');?></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-center">
@@ -454,26 +473,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 <script>
-	document.getElementById('ModalCTIQuery').addEventListener('show.bs.modal', function (event) {
-		var button = event.relatedTarget
+	document.getElementById('ModalRebootDeviceRun').addEventListener('show.bs.modal', function (event) {
 		var modal = $(this)
-		var action = button.getAttribute('data-bs-action')
-		if (action == 'cti_reboot') {
-			$.ajax({
-				url: '<?=site_url("devices/ajax/cti_reboot/".$device_info["id"]);?>',
-				dataType: 'json',
-				success: function(data) {
-					if (data.result == 'success') {
-						modal.find('.modal-body').html('<div class="alert alert-success" role="alert"><?=lang("devices_info_modal_cti_querysuccess");?></div>')
-						setTimeout(function() {
-							$('#ModalCTIQuery').modal('hide');
-						}, 3000);
-					} else {
-						modal.find('.modal-body').html('<div class="alert alert-danger" role="alert"><?=lang("devices_info_modal_cti_queryerror");?></div>')
-					}
-				},
-			});
-		}
+		$.ajax({
+			url: '<?=site_url("devices/ajax/cti_reboot/".$device_info["id"]);?>',
+			dataType: 'json',
+			success: function(data) {
+				if (data.result == 'success') {
+					modal.find('.modal-body').html('<div class="alert alert-success" role="alert"><?=lang("devices_info_modal_reboot_querysuccess");?></div>')
+					setTimeout(function() {
+						$('#ModalRebootDeviceRun').modal('hide');
+					}, 3000);
+				} else {
+					modal.find('.modal-body').html('<div class="alert alert-danger" role="alert"><?=lang("devices_info_modal_reboot_queryerror");?></div>')
+				}
+			},
+		});
 	})
 	
 	document.getElementById('ModalCTIQuery').addEventListener('hidden.bs.modal', function (event) {
