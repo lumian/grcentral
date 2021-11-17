@@ -16,9 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //
 $lang['devices_tabs_title_main']							= "Devices";
 $lang['devices_tabs_title_info']							= "Device information";
-
 //
-// Main page (Devices list)
+// Main page
 //
 $lang['devices_index_description_text']						= "This section provides device management. SIP accounts are managed using the \"info\" button. <br />Note: Disabled devices do not receive settings/firmware from the server.";
 // Main page: Table
@@ -75,12 +74,11 @@ $lang['devices_index_flashdata_adderror']					= "The device is not created.";
 $lang['devices_index_flashdata_editsuccess']				= "The device was successfully edited.";
 $lang['devices_index_flashdata_editerror']					= "The device is not edited.";
 $lang['devices_index_flashdata_delsuccess']					= "The device was successfully deleted.";
-
 //
-// Device information page
+// Page "Device information"
 //
 $lang['devices_info_pagetitle']								= "Device information";
-// Information page: Panel "General information"
+// Page "Device information": Panel "General information"
 $lang['devices_info_panel_about_title']						= "General information";
 $lang['devices_info_panel_about_model']						= "Device model";
 $lang['devices_info_panel_about_ipaddr']					= "IP address";
@@ -96,18 +94,18 @@ $lang['devices_info_panel_about_statusactive_off']			= "Not activated";
 $lang['devices_info_panel_about_descr']						= "Description";
 $lang['devices_info_panel_about_fw']						= "Firmware";
 $lang['devices_info_panel_about_fw_pinned']					= "Pinned";
-// Information page: Panel "Actions with the device"
+// Page "Device information": Panel "Actions with the device"
 $lang['devices_info_panel_actions_title']					= "Actions with the device";
 $lang['devices_info_panel_actions_reboot_na_error']			= "Reboot action is not available.";
 $lang['devices_info_panel_actions_reboot_na_descr']			= "The administrator password (P2 value) was not found in the settings template for this device.";
-// Information page: Panel "SIP accounts"
+// Page "Device information": Panel "SIP accounts"
 $lang['devices_info_panel_accounts_title']					= "SIP accounts";
 $lang['devices_info_panel_accounts_description']			= "The number of accounts is limited to 4 pieces, depending on the device model, from 1 to 4 pieces will be used.";
-// Information page: Buttons
+// Page "Device information": Buttons
 $lang['devices_info_btn_accounts_edit']						= "Edit SIP accounts";
 $lang['devices_info_btn_logs']								= "Viewing logs";
 $lang['devices_info_btn_cti_reboot']						= "Device reboot";
-// Information page: Table with SIP accounts
+// Page "Device information": Table with SIP accounts
 $lang['devices_info_table_accounts_position']				= "#";
 $lang['devices_info_table_accounts_name']					= "Name";
 $lang['devices_info_table_accounts_userid']					= "UserID";
@@ -119,7 +117,7 @@ $lang['devices_info_table_accounts_voipsrv_na']				= "N/A";
 $lang['devices_info_table_accounts_status']					= "Status";
 $lang['devices_info_table_accounts_status_on']				= "On";
 $lang['devices_info_table_accounts_status_off']				= "Off";
-// Information page: Modal window "Editing SIP accounts"
+// Page "Device information": Modal window "Editing SIP accounts"
 $lang['devices_info_modal_accounts_title']					= "Editing SIP accounts";
 $lang['devices_info_modal_accounts_account']				= "Account";
 $lang['devices_info_modal_accounts_mustbefilled']			= "necessarily";
@@ -132,11 +130,11 @@ $lang['devices_info_modal_accounts_voipsrv2']				= "Specify an additional server
 $lang['devices_info_modal_accounts_userid']					= "UserID";
 $lang['devices_info_modal_accounts_authid']					= "AuthID";
 $lang['devices_info_modal_accounts_password']				= "Password";
-// Information page: Modal window "Reboot device"
+// Page "Device information": Modal window "Reboot device"
 $lang['devices_info_modal_reboot_title']					= "Reboot device";
 $lang['devices_info_modal_reboot_confirm']					= "Really reboot the device?";
 $lang['devices_info_modal_reboot_querysuccess']				= "The request to reboot the device has been successfully sent.";
 $lang['devices_info_modal_reboot_queryerror']				= "An error has occurred. The request to reboot the device was not executed.";
-// Information page: Messages
+// Page "Device information": Messages
 $lang['devices_info_flashdata_account_editsuccess']			= "Account editing was completed successfully.";
 $lang['devices_info_flashdata_account_editerror']			= "Edit the accounts are not made.";

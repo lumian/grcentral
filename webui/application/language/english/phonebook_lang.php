@@ -16,10 +16,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //
 $lang['phonebook_tabs_title_abonents']							= "Subscribers";
 //
-// Page Subscribers
+// Page "Subscribers"
 //
 $lang['phonebook_abonents_description_text']					= "In this section, you can view the directory of subscribers generated based on your data. Editing is only possible for manually added subscribers. Attention! The directory file is given only to activated and added to the database devices.";
-// Page Subscribers: table
+// Page "Subscribers": table
 $lang['phonebook_abonents_table_firstname']						= "Surname";
 $lang['phonebook_abonents_table_lastname']						= "Name";
 $lang['phonebook_abonents_table_phonework']						= "Phone number";
@@ -34,21 +34,21 @@ $lang['phonebook_abonents_table_status_on']						= "Active";
 $lang['phonebook_abonents_table_status_off']					= "Not active";
 $lang['phonebook_abonents_table_status_descr_manual']			= "Click to change the status";
 $lang['phonebook_abonents_table_status_descr_external']			= "Switching the status is only possible for subscribers added manually.";
-// Page Subscribers: Buttons
+// Page "Subscribers": Buttons
 $lang['phonebook_abonents_btn_new']								= "New subscriber";
 $lang['phonebook_abonents_btn_infotitle']						= "Info";
 $lang['phonebook_abonents_btn_gotodevice']						= "Open the device with the specified account";
 $lang['phonebook_abonents_btn_action_na']						= "No actions available. Editing is performed in an external database.";
-// Page Subscribers: Modal window "Change the status of the subscriber"
+// Page "Subscribers": Modal window "Change the status of the subscriber"
 $lang['phonebook_abonents_modal_changestatus_title']			= "Change the status of the subscriber";
 $lang['phonebook_abonents_modal_changestatus_confirm']			= "Do you really want to change the subscriber status?<br /><i>Note: only active subscribers are uploaded to the address book on the devices.</i>";
-// Page Subscribers: Modal window "Transforming a data source"
+// Page "Subscribers": Modal window "Transforming a data source"
 $lang['phonebook_abonents_modal_transformsource_title']			= "Transforming a data source";
 $lang['phonebook_abonents_modal_transformsource_confirm']		= "Do you really want to change the data source to manual?";
-// Page Subscribers: Modal window "Delete the subscriber"
+// Page "Subscribers": Modal window "Delete the subscriber"
 $lang['phonebook_abonents_modal_delabonent_title']				= "Delete the subscriber";
 $lang['phonebook_abonents_modal_delabonent_confirm']			= "Do you really want to delete the selected subscriber from the directory?";
-// Page Subscribers: Modal window "Adding / Editing a subscriber"
+// Page "Subscribers": Modal window "Adding / Editing a subscriber"
 $lang['phonebook_abonents_modal_addeditabonent_title_add']		= "Creating a new subscriber";
 $lang['phonebook_abonents_modal_addeditabonent_title_edit']		= "Editing a subscriber";
 $lang['phonebook_abonents_modal_addeditabonent_firstname']		= "Surname";
@@ -61,7 +61,7 @@ $lang['phonebook_abonents_modal_addeditabonent_status']			= "Status";
 $lang['phonebook_abonents_modal_addeditabonent_status_help']	= "Only active subscribers are uploaded to the directory on devices";
 $lang['phonebook_abonents_modal_addeditabonent_status_on']		= "Active";
 $lang['phonebook_abonents_modal_addeditabonent_status_off']		= "Not active";
-// Page Subscribers: Messages
+// Page "Subscribers": Messages
 $lang['phonebook_abonents_flashdata_changestatus_success']		= "Status change completed successfully.";
 $lang['phonebook_abonents_flashdata_transformsource_success']	= "The data source was changed successfully.";
 $lang['phonebook_abonents_flashdata_addabonent_success']		= "The new subscriber was successfully added to the directory.";
