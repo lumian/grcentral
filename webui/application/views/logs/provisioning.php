@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif; ?>
 
 <div class="btn-group btn-group-sm mt-2" role="group">
-	<a href="<?=lang('main_helpurl_logs');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+	<a href="<?=lang('main_helpurl_logs');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
 
 <? if ($this->session->flashdata('success_result')): ?>

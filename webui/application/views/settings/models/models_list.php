@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalModelAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_models_btn_new');?></button>
 	<? endif; ?>
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalGroupAddEdit" data-bs-actiontype="new"><i class="fa fa-folder-plus"></i> <?=lang('settings_models_btn_newgroup');?></button>
-	<a href="<?=lang('main_helpurl_settings_models');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+	<a href="<?=lang('main_helpurl_settings_models');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
 
 <? if ($this->session->flashdata('success_result')): ?>
@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</th>
 			<th>
 				<div class="btn-group" role="group">
-					<button class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalGroupAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$row['group_info']['id'];?>">
+					<button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalGroupAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$row['group_info']['id'];?>">
 						<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 					</button>
 					<button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalGroupDelete" data-bs-id="<?=$row['group_info']['id'];?>">
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$model['friendly_name'];?></td>
 					<td>
 						<div class="btn-group" role="group">
-							<button class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalModelAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$model['id'];?>">
+							<button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalModelAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$model['id'];?>">
 								<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 							</button>
 							<button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalModelDelete" data-bs-id="<?=$model['id'];?>">

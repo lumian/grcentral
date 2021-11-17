@@ -72,10 +72,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-wrench"></i> <?=lang('devices_info_panel_actions_title')?></div>
 			<div class="card-body">
-				<button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device_info['id'];?>">
+				<button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device_info['id'];?>">
 					<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 				</button><br />
-				<button type="button" class="btn btn-outline-info btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ModalLogs">
+				<button type="button" class="btn btn-outline-secondary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ModalLogs">
 					<i class="fa fa-list-ul"></i> <?=lang('devices_info_btn_logs');?>
 				</button><br />
 				<button type="button" class="btn btn-outline-danger btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$device_info['id'];?>">
@@ -101,8 +101,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p><?=lang('devices_info_panel_accounts_description');?></p>
 		<? endif; ?>
 		<div class="btn-group btn-group-sm" role="group">
-			<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
-			<a href="<?=lang('main_helpurl_devices_accounts');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+			<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ModalAccountsEdit"><i class="fa fa-edit"></i> <?=lang('devices_info_btn_accounts_edit');?></button>
+			<a href="<?=lang('main_helpurl_devices_accounts');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 		</div>
 		
 		<table class="table table-hover table-bordered table-sm mt-2">

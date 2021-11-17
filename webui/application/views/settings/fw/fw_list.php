@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? if ($group_list != FALSE): ?>
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_fw_btn_new');?></button>
 	<? endif; ?>
-	<a href="<?=lang('main_helpurl_settings_fw');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+	<a href="<?=lang('main_helpurl_settings_fw');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
 
 <? if ($this->grcentral->max_size_upload() < 15000): ?>

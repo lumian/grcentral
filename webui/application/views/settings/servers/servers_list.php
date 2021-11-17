@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="btn-group btn-group-sm mt-2" role="group">
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_servers_btn_new');?></button>
-	<a href="<?=lang('main_helpurl_settings_servers');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-info"><i class="fa fa-question-circle"></i></a>
+	<a href="<?=lang('main_helpurl_settings_servers');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
 
 <? if ($this->session->flashdata('success_result')): ?>
@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<td><?=$server['voicemail_number'];?></td>
 			<td>
 				<div class="btn-group btn-block" role="group">
-					<button class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$server['id'];?>">
+					<button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$server['id'];?>">
 						<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 					</button>
 					<button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$server['id'];?>">
