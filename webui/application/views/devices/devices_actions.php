@@ -145,11 +145,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('devices_index_modaldel_title');?></h5>
+				<h5 class="modal-title" id="ModalDeleteLabel"><?=lang('devices_index_modal_del_title');?></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
-				<?=lang('devices_index_modaldel_confirm');?>
+			<div class="modal-body text-center">
+				<?=lang('devices_index_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>

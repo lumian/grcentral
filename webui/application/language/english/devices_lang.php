@@ -60,8 +60,8 @@ $lang['devices_index_modaladdedit_fwversionpinned_off']		= "Without pinning";
 $lang['devices_index_modaladdedit_params']					= "Parameters";
 $lang['devices_index_modaladdedit_params_help']				= "Enter the parameters in this field. One parameter per line. You can comment with the # symbol at the beginning of the line. The parameters specified here take precedence over the group parameters.";
 // Main page: A modal window "Deleting a device"
-$lang['devices_index_modaldel_title']						= "Deleting a device";
-$lang['devices_index_modaldel_confirm']						= "Do you really want to delete this device?";
+$lang['devices_index_modal_del_title']						= "Deleting a device";
+$lang['devices_index_modal_del_confirm']						= "Really delete the device?";
 // Main page: A modal window "Device logs"
 $lang['devices_index_modallogs_title']						= "Device logs";
 $lang['devices_index_modallogs_descr']						= "The logs of the selected device's calls to GRCentral are shown below.";
