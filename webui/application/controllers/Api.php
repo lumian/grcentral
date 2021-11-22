@@ -18,7 +18,6 @@ class Api extends CI_Controller {
 		parent::__construct();
 		
 		$this->grcentral->installed_check('404');
-		$this->load->database();
 		$this->load->library('logger');
 		
 		$this->_CheckAccess();

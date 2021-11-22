@@ -80,7 +80,7 @@ class Installer extends CI_Controller {
 			
 			$page_data = array(
 				'check_result'		=> $check_result,
-				'status_ok'			=> $status_ok,
+				'status_ok'			=> $status_ok
 			);
 		}
 		elseif ($step == '2')

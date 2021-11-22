@@ -165,7 +165,7 @@ class Grcentral {
 		{
 			if ($action == 'redirect')
 			{
-				redirect('installer');
+				redirect('/installer/', 'refresh');
 			}
 			elseif ($action == '404')
 			{
@@ -176,6 +176,11 @@ class Grcentral {
 				echo $this->CI->config->item('site_title', 'grcentral')." is not installed. Please, follow to \"http://<ip_address_of_your_server>/installer\" for install system.".PHP_EOL;
 				exit();
 			}
+		}
+		else
+		{
+			$this->CI->load->library('session');
+			$this->CI->load->database();
 		}
 	}
 }

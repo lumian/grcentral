@@ -14,7 +14,19 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Дамп структуры для таблица grcentral_base.devices_data
+-- Дамп структуры для таблица grcentral_demo_v03.ci_sessions
+DROP TABLE IF EXISTS `ci_sessions`;
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `data` blob NOT NULL,
+  KEY `ci_sessions_timestamp` (`timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица grcentral_demo_v03.devices_data
 DROP TABLE IF EXISTS `devices_data`;
 CREATE TABLE IF NOT EXISTS `devices_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `devices_data` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.logs_data
+-- Дамп структуры для таблица grcentral_demo_v03.logs_data
 DROP TABLE IF EXISTS `logs_data`;
 CREATE TABLE IF NOT EXISTS `logs_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -51,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `logs_data` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.phonebook_data
+-- Дамп структуры для таблица grcentral_demo_v03.phonebook_data
 DROP TABLE IF EXISTS `phonebook_data`;
 CREATE TABLE IF NOT EXISTS `phonebook_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -66,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `phonebook_data` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.settings_fw
+-- Дамп структуры для таблица grcentral_demo_v03.settings_fw
 DROP TABLE IF EXISTS `settings_fw`;
 CREATE TABLE IF NOT EXISTS `settings_fw` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -81,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `settings_fw` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.settings_models
+-- Дамп структуры для таблица grcentral_demo_v03.settings_models
 DROP TABLE IF EXISTS `settings_models`;
 CREATE TABLE IF NOT EXISTS `settings_models` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -95,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `settings_models` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.settings_models_group
+-- Дамп структуры для таблица grcentral_demo_v03.settings_models_group
 DROP TABLE IF EXISTS `settings_models_group`;
 CREATE TABLE IF NOT EXISTS `settings_models_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -117,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `settings_models_group` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.settings_params
+-- Дамп структуры для таблица grcentral_demo_v03.settings_params
 DROP TABLE IF EXISTS `settings_params`;
 CREATE TABLE IF NOT EXISTS `settings_params` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -131,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `settings_params` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.settings_servers
+-- Дамп структуры для таблица grcentral_demo_v03.settings_servers
 DROP TABLE IF EXISTS `settings_servers`;
 CREATE TABLE IF NOT EXISTS `settings_servers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -145,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `settings_servers` (
 
 -- Экспортируемые данные не выделены.
 
--- Дамп структуры для таблица grcentral_base.settings_system
+-- Дамп структуры для таблица grcentral_demo_v03.settings_system
 DROP TABLE IF EXISTS `settings_system`;
 CREATE TABLE IF NOT EXISTS `settings_system` (
   `key` varchar(250) DEFAULT NULL,

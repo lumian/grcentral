@@ -17,7 +17,6 @@ class Cron extends CI_Controller {
 		parent::__construct();
 		
 		$this->grcentral->installed_check('error');
-		$this->load->database();
 		
 		// Loading models:
 		$this->load->model('devices_model');

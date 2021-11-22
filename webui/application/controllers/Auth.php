@@ -17,7 +17,6 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		
 		$this->grcentral->installed_check();
-		$this->load->database();
 	}
 	
 	public function Index()
