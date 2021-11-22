@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	Description:	Language file for "Settings" controller.
 	Laguage:		English
 	
-	2020 (c) Copyright GRCentral
+	2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 

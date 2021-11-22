@@ -14,8 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // General settings
 //
 
-// ENG:
-// RUS:
+// ENG: Marker of the installed system (used by the installer and all controllers for verification)
+// RUS: Маркер установленной системы (используется инсталлятором и всеми контроллерами для проверки)
 $config['system_installed'] = FALSE;
 
 // ENG: The main title that will be added to all pages
