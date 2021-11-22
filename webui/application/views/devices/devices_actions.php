@@ -99,7 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						modal.find('.modal-body select[name=model_id]').val(data.data.model_id)
 						modal.find('.modal-body select[name=status_active]').val(data.data.status_active)
 						modal.find('.modal-body form').attr('action', '<?=site_url("devices/actions/edit/")?>' + phoneid)
-						FillFWVersionPinned(data.data.model_id)
+						FillFWVersionPinned( data.data.model_id, data.data.fw_version_pinned )
 					} else {
 						alert('<?=lang("main_error_ajaxload");?>')
 					}
@@ -113,9 +113,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		FillFWVersionPinned(SelectItem)
 	});
 	
-	function FillFWVersionPinned (ModelItem) {
+	function FillFWVersionPinned ( ModelItem, SelectedVersion ) {
 		var DefaultOption = '<option>--- <?=lang("devices_index_modaladdedit_fwversionpinned_def");?>  ---</option>'
-		
+		console.log(SelectedVersion)
 		if ($.isNumeric(ModelItem)) {
 			$.ajax({
 				url: '<?=site_url("devices/ajax/get_fw_bymodel/' + ModelItem + '");?>',
@@ -125,7 +125,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						$('#ModalAddEditForm_FWVersionPinned option').remove()
 						$('#ModalAddEditForm_FWVersionPinned').append('<option value="0">--- <?=lang("devices_index_modaladdedit_fwversionpinned_off");?> ---</option>')
 						$.each( data.data, function( key, value ){
-							$('#ModalAddEditForm_FWVersionPinned').append('<option value="' + value.version + '">' + value.version + ' (' + value.file_name + ')</option>')
+							if ( ( SelectedVersion != undefined ) && ( SelectedVersion == value.version ) )
+							{
+								$('#ModalAddEditForm_FWVersionPinned').append('<option value="' + value.version + '" selected>' + value.version + ' (' + value.file_name + ')</option>')
+							}
+							else
+							{
+								$('#ModalAddEditForm_FWVersionPinned').append('<option value="' + value.version + '">' + value.version + ' (' + value.file_name + ')</option>')
+							}
 						});
 					} else {
 						$('#ModalAddEditForm_FWVersionPinned option').remove()
