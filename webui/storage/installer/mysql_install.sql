@@ -1,23 +1,21 @@
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
--- Версия сервера:               10.3.27-MariaDB-0+deb10u1 - Debian 10
+-- Версия сервера:               10.5.12-MariaDB-0+deb11u1 - Debian 11
 -- Операционная система:         debian-linux-gnu
--- HeidiSQL Версия:              11.2.0.6213
+-- HeidiSQL Версия:              11.3.0.6365
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Дамп структуры базы данных grcentral_base
-CREATE DATABASE IF NOT EXISTS `grcentral_base` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `grcentral_base`;
-
 -- Дамп структуры для таблица grcentral_base.devices_data
+DROP TABLE IF EXISTS `devices_data`;
 CREATE TABLE IF NOT EXISTS `devices_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mac_addr` varchar(12) DEFAULT NULL,
@@ -41,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `devices_data` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.logs_data
+DROP TABLE IF EXISTS `logs_data`;
 CREATE TABLE IF NOT EXISTS `logs_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) DEFAULT NULL,
@@ -53,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `logs_data` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.phonebook_data
+DROP TABLE IF EXISTS `phonebook_data`;
 CREATE TABLE IF NOT EXISTS `phonebook_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) DEFAULT NULL,
@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `phonebook_data` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.settings_fw
+DROP TABLE IF EXISTS `settings_fw`;
 CREATE TABLE IF NOT EXISTS `settings_fw` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(50) DEFAULT NULL,
@@ -81,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `settings_fw` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.settings_models
+DROP TABLE IF EXISTS `settings_models`;
 CREATE TABLE IF NOT EXISTS `settings_models` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tech_name` varchar(100) DEFAULT NULL,
@@ -94,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `settings_models` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.settings_models_group
+DROP TABLE IF EXISTS `settings_models_group`;
 CREATE TABLE IF NOT EXISTS `settings_models_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
@@ -115,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `settings_models_group` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.settings_params
+DROP TABLE IF EXISTS `settings_params`;
 CREATE TABLE IF NOT EXISTS `settings_params` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
@@ -128,6 +132,7 @@ CREATE TABLE IF NOT EXISTS `settings_params` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.settings_servers
+DROP TABLE IF EXISTS `settings_servers`;
 CREATE TABLE IF NOT EXISTS `settings_servers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) DEFAULT NULL,
@@ -141,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `settings_servers` (
 -- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица grcentral_base.settings_system
+DROP TABLE IF EXISTS `settings_system`;
 CREATE TABLE IF NOT EXISTS `settings_system` (
   `key` varchar(250) DEFAULT NULL,
   `value` varchar(250) DEFAULT NULL,
@@ -149,6 +155,7 @@ CREATE TABLE IF NOT EXISTS `settings_system` (
 
 -- Экспортируемые данные не выделены.
 
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -159,4 +159,23 @@ class Grcentral {
 		}
 	}
 	
+	public function installed_check($action = 'redirect')
+	{
+		if ($this->CI->config->item('system_installed') != TRUE)
+		{
+			if ($action == 'redirect')
+			{
+				redirect('installer');
+			}
+			elseif ($action == '404')
+			{
+				show_404();
+			}
+			else
+			{
+				echo $this->CI->config->item('site_title', 'grcentral')." is not installed. Please, follow to \"http://<ip_address_of_your_server>/installer\" for install system.".PHP_EOL;
+				exit();
+			}
+		}
+	}
 }

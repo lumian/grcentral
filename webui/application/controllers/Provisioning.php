@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\controllers\Provisioning.php
 	Description:	Processing requests from the devices. Returns configs and firmware.
 	
-	2020 (c) Copyright GRCentral
+	2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -15,6 +15,9 @@ class Provisioning extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		$this->grcentral->installed_check();
+		$this->load->database();
 		
 		//
 		// Loading models and library

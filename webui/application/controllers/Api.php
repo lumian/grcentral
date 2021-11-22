@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	Description:	API for GRCentral.
 	API version:	v1
 	
-	2020 (c) Copyright GRCentral
+	2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -16,6 +16,9 @@ class Api extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		$this->grcentral->installed_check('404');
+		$this->load->database();
 		$this->load->library('logger');
 		
 		$this->_CheckAccess();

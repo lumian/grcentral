@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\controllers\Devices.php
 	Description:	Controller for devices management
 	
-	2020 (c) Copyright GRCentral
+	2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -17,6 +17,9 @@ class Devices extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		$this->grcentral->installed_check();
+		$this->load->database();
 		
 		if (!$this->grcentral->is_user())
 		{

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\models\Settings_model.php
 	Description:	Database queries for the Settings controller
 	
-	2020 (c) Copyright GRCentral
+	2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -564,8 +564,6 @@ class Settings_model extends CI_Model {
 	
 	function syssettings_default($param='system')
 	{
-		$settings_list = $this->syssettings_getlist();
-		
 		if ($param == 'system')
 		{
 			$default_settings = array(

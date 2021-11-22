@@ -6,13 +6,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\config\grcentral.php
 	Description:	System settings config
 	
-	2020 (c) Copyright GRCentral
+	2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
 //
 // General settings
 //
+
+// ENG:
+// RUS:
+$config['system_installed'] = FALSE;
 
 // ENG: The main title that will be added to all pages
 // RUS: Главный тайтл который будет добавляться ко всем страницам
@@ -48,4 +52,4 @@ $config['update']['url_version_file']			= 'https://raw.githubusercontent.com/lum
 // API auth
 //
 $config['api']['users'][] = array('id'=>'1', 'ip'=>'192.168.1.1', 'name'=>'User1');
-$config['api']['users'][] = array('id'=>'2', 'ip'=>'192.168.1.2', 'name'=>'User2');
+//$config['api']['users'][] = array('id'=>'2', 'ip'=>'192.168.1.2', 'name'=>'User2');
