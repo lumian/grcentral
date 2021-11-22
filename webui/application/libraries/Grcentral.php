@@ -118,7 +118,7 @@ class Grcentral {
 	// Get client IP
 	public function get_client_ip()
 	{
-		return $_SERVER['REMOTE_ADDR'];
+		return $this->CI->input->ip_address();
 	}
 	
 	public function max_size_upload($return='KB')
