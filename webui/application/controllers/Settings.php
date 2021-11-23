@@ -195,7 +195,7 @@ class Settings extends CI_Controller {
 		{
 			$devices_list = $this->devices_model->getlist();
 			
-			if (count($devices_list) > 0)
+			if ($devices_list != FALSE AND count($devices_list) > 0)
 			{
 				$monitoring_count = array(
 					'online_device'		=> 0,

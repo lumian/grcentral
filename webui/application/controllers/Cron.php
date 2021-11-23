@@ -471,7 +471,7 @@ class Cron extends CI_Controller {
 	}
 	
 	// Ping devices
-	public function ping_devices()
+	private function ping_devices()
 	{
 		$monitoring_enable = $this->settings_model->syssettings_get('monitoring_enable');
 		
