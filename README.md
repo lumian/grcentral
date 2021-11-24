@@ -45,7 +45,7 @@
    * Получение контактов из телефонной книги
 * Мониторинг устройств:
   * Возможность мониторить доступность устройств в сети (простой ping) - включается и отключается в системных настройках.
-  
+
 ## Планы на развитие:
 * [Запланированные изменения](https://github.com/lumian/grcentral/issues?q=is%3Aissue+is%3Aopen+label%3A%22Type%3A+Planned+improvement%22)
 * [Идеи к функционалу, без планов на реализацию](https://github.com/lumian/grcentral/issues?q=is%3Aissue+is%3Aopen+label%3A%22Type%3A+Good+idea%22)
@@ -54,8 +54,10 @@
 * [Установка GRCentral](https://github.com/lumian/grcentral/wiki/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-GRCentral)
 * [Другие статьи в Wiki...](https://github.com/lumian/grcentral/wiki/)
 
-## Скриншоты
-* [см. на github](https://github.com/lumian/grcentral/tree/master/docs/screenshots/v.0.3)
+## Полезные ссылки
+* Скриншоты [смотри на github](https://github.com/lumian/grcentral/tree/master/docs/screenshots/v.0.3)
+* Демоверсия интерфейса доступна на сайте [demo.grcentral.it-35.ru](http://demo.grcentral.it-35.ru/)
+* Любые обсуждения можно вести на github в [разделе Discussions](https://github.com/lumian/grcentral/discussions)
 
 ## Авторские права
 Все зарегистрированные товарные знаки и торговые марки, упомянутые в текстах и изображениях в данном репозитории, а также названия продуктов и предприятий, являются собственностью их законных владельцев.
