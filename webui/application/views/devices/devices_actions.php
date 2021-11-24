@@ -114,7 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	});
 	
 	function FillFWVersionPinned ( ModelItem, SelectedVersion ) {
-		var DefaultOption = '<option>--- <?=lang("devices_index_modaladdedit_fwversionpinned_def");?>  ---</option>'
+		var DefaultOption = '<option value="0">--- <?=lang("devices_index_modaladdedit_fwversionpinned_def");?>  ---</option>'
 		console.log(SelectedVersion)
 		if ($.isNumeric(ModelItem)) {
 			$.ajax({
