@@ -1,5 +1,5 @@
 # GRCentral
-Web UI для управления телефонами Grandstream
+Система управления VoIP устройствами Grandstream в удобном Web интерфейсе.
 
 ## Основа:
 * Code language: PHP 7.3
