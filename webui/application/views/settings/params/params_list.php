@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<td><?=$group['name'];?></td>
 			<td><?=$group['description'];?></td>
 			<td>
-				<div class="btn-group btn-block" role="group">
+				<div class="btn-group w-100" role="group">
 					<a class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" href="#TableGroup<?=$group['id'];?>" aria-expanded="false" aria-controls="TableGroup<?=$group['id'];?>" title="<?=lang('settings_params_btn_hideshow');?>">
 						<i class="fa fa-compress-alt"></i>
 					</a>

@@ -26,7 +26,7 @@ $config['grcentral']['site_title'] 				= 'GRCentral';
 $config['grcentral']['version'] 				= '0.3';
 // ENG: Path to the file storage
 // RUS: Путь к хранилищу файлов
-$config['grcentral']['storage_path']			= $_SERVER['DOCUMENT_ROOT'].'storage/';
+$config['grcentral']['storage_path']			= './storage/';
 
 // ENG: Authorization
 // RUS: Авторизация

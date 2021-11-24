@@ -17,9 +17,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? else: ?>
 	<small><?=lang('main_page_auth_text');?></small>
 	<hr class="hr">
-	<a href="<?=site_url('devices');?>" type="button" class="btn btn-secondary"><i class="fa fa-phone-square-alt"></i> <?=lang('main_page_btn_devices');?></a>
-	<a href="<?=site_url('phonebook');?>" type="button" class="btn btn-secondary"><i class="fa fa-address-book"></i> <?=lang('main_page_btn_phonebook');?></a>
-	<a href="<?=site_url('logs/provisioning');?>" type="button" class="btn btn-secondary"><i class="fa fa-list-ul"></i> <?=lang('main_page_btn_logs');?></a>
-	<a href="<?=site_url('settings');?>" type="button" class="btn btn-secondary"><i class="fa fa-cog"></i> <?=lang('main_page_btn_settings');?></a>
+	<div class="row">
+		<div class="col-3"><a href="<?=site_url('devices');?>" type="button" class="btn btn-secondary w-100"><i class="fa fa-phone-square-alt"></i> <?=lang('main_page_btn_devices');?></a></div>
+		<div class="col-3"><a href="<?=site_url('phonebook');?>" type="button" class="btn btn-secondary w-100"><i class="fa fa-address-book"></i> <?=lang('main_page_btn_phonebook');?></a></div>
+		<div class="col-3"><a href="<?=site_url('logs/provisioning');?>" type="button" class="btn btn-secondary w-100"><i class="fa fa-list-ul"></i> <?=lang('main_page_btn_logs');?></a></div>
+		<div class="col-3"><a href="<?=site_url('settings');?>" type="button" class="btn btn-secondary w-100"><i class="fa fa-cog"></i> <?=lang('main_page_btn_settings');?></a></div>
+	</div>
 	<? endif;?>
 </div>

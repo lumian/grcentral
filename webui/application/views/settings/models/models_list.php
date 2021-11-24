@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				(<?=lang('settings_models_table_params');?>: <? if ($row['group_info']['params_group_id'] != '0') { echo $params_group[$row['group_info']['params_group_id']]['name']; } else { echo lang('settings_modelsgroup_modal_paramgroup_no'); }?>)
 			</th>
 			<th>
-				<div class="btn-group" role="group">
+				<div class="btn-group w-100" role="group">
 					<button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalGroupAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$row['group_info']['id'];?>">
 						<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 					</button>
@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$model['tech_name'];?></td>
 					<td><?=$model['friendly_name'];?></td>
 					<td>
-						<div class="btn-group" role="group">
+						<div class="btn-group w-100" role="group">
 							<button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalModelAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$model['id'];?>">
 								<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 							</button>

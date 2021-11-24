@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<td><?=$server['server'];?></td>
 			<td><?=$server['voicemail_number'];?></td>
 			<td>
-				<div class="btn-group btn-block" role="group">
+				<div class="btn-group w-100" role="group">
 					<button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$server['id'];?>">
 						<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 					</button>

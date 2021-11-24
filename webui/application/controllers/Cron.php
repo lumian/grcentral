@@ -97,20 +97,21 @@ class Cron extends CI_Controller {
 			}
 			else
 			{
-				echo "Error: Type not found";
+				echo "Error: Type not found".PHP_EOL;
 			}
 		}
 		else
 		{
-			echo "Error: Only CLI requests are allowed.";
+			echo "Error: Only CLI requests are allowed.".PHP_EOL;
 		}
+		
 		if ($result == TRUE)
 		{
 			echo "Task completed: ".$type.PHP_EOL;
 		}
 		else
 		{
-			echo "Error";
+			echo "Error".PHP_EOL;
 		}
 	}
 	
@@ -185,7 +186,7 @@ class Cron extends CI_Controller {
 					
 					$accounts_array = json_decode($device['accounts_data'], TRUE);
 					
-					if (count($accounts_array) < 4 AND count($accounts_array) >= 1)
+					if (is_array($accounts_array) AND count($accounts_array) < 4 AND count($accounts_array) >= 1)
 					{
 						if (!isset($accounts_array[2])) { $accounts_array[2]['active'] = '0'; }
 						if (!isset($accounts_array[3])) { $accounts_array[3]['active'] = '0'; }
@@ -206,7 +207,7 @@ class Cron extends CI_Controller {
 						'voicemail'		=> explode(",", $model_info['params_conf_voicemail'])
 					);
 					
-					if ($accounts_array != NULL)
+					if ($accounts_array != NULL AND is_array($accounts_array))
 					{
 						foreach($accounts_array as $acc_num=>$acc_info)
 						{
@@ -397,8 +398,7 @@ class Cron extends CI_Controller {
 		}
 		
 		$pb_list = $this->phonebook_model->abonents_getlist(array('status' => '1'));
-		
-		if ($pb_list != FALSE AND count($pb_list) > 0)
+		if ($pb_list != FALSE AND is_array($pb_list) AND count($pb_list) > 0)
 		{
 			foreach ($pb_list as $abonent)
 			{
@@ -529,7 +529,7 @@ class Cron extends CI_Controller {
 		{
 			foreach ($files_list as $file)
 			{      
-				if (file_exists($file) AND $file != 'index.html')
+				if (file_exists($file) AND !mb_stripos($file, 'index.html'))
 				{
 					unlink($file);
 				}   

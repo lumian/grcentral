@@ -51,13 +51,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=$fw['file_name_real'];?></td>
 					<td>
 						<? if ($fw['status'] == '1'): ?>
-							<button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_on');?>. <?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
+							<button type="button" class="btn btn-outline-success btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_on');?>. <?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
 						<? else: ?>
-							<button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_off');?>. <?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
+							<button type="button" class="btn btn-outline-danger btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$fw['id'];?>" title="<?=lang('settings_fw_table_status_off');?>. <?=lang('settings_fw_table_status_descr');?>"><i class="fa fa-power-off"></i></button>
 						<? endif; ?>
 					</td>
 					<td>
-						<button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$fw['id'];?>">
+						<button class="btn btn-outline-danger btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$fw['id'];?>">
 							<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 						</button>
 					</td>
@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<? endforeach; ?>
 		<? else: ?>
 		<tr class="table-primary">
-			<td colspan="4"><?=lang('settings_fw_table_noitemsingroup');?></td>
+			<td colspan="5"><?=lang('settings_fw_table_noitemsingroup');?></td>
 		</tr>
 		<? endif; ?>
 		<? endforeach; ?>

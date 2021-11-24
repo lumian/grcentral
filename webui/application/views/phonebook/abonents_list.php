@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td>
 					<td>
 						<!-- Status button -->
-						<div class="btn-group btn-block" role="group">
+						<div class="btn-group btn-block w-100" role="group">
 							<? if ($abonent['data_source'] == 'manual'): ?>
 								<? if ($abonent['status'] == '1'): ?>
 									<button type="button" class="btn btn-outline-success btn-sm btn-block" data-bs-toggle="modal" data-bs-target="#ModalChangeStatus" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('phonebook_abonents_table_status_on');?>. <?=lang('phonebook_abonents_table_status_descr_manual');?>"><i class="fa fa-power-off"></i></button>
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td>
 					<td>
 						<!-- Action buttons -->
-						<div class="btn-group btn-block" role="group">
+						<div class="btn-group btn-block w-100" role="group">
 							<? if ($abonent['data_source'] == 'manual'): ?>
 								<button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$abonent['id'];?>" title="<?=lang('main_btn_edit');?>">
 									<i class="fa fa-edit"></i>
@@ -78,7 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<i class="fa fa-trash-alt"></i>
 								</button>
 							<? elseif ($abonent['data_source'] == 'accounts' AND isset($abonent['external_id']) AND is_numeric($abonent['external_id'])):?>
-								<a type="button" class="btn btn-outline-secondary btn-sm" title="<?=lang('phonebook_abonents_btn_gotodevice');?>" href="<?=site_url('devices/info/'.$abonent['external_id']);?>" target="_blank">
+								<a type="button" class="btn btn-outline-secondary btn-sm" title="<?=lang('phonebook_abonents_btn_gotodevice');?>" href="<?=site_url('devices/info/'.$abonent['external_id']);?>">
 									<i class="fa fa-chevron-circle-right"></i>
 								</a>
 							<? else: ?>

@@ -86,7 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<? endif; ?>
 					</td>
 					<td>
-						<div class="btn-group" role="group">
+						<div class="btn-group w-100" role="group">
 							<a href="<?=site_url('devices/info/'.$device['id']);?>" type="button" class="btn btn-outline-secondary btn-sm" title="<?=lang('devices_index_btn_infotitle');?>">
 								<i class="fa fa-info-circle"></i>
 							</a>

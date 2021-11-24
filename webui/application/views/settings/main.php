@@ -46,31 +46,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?=lang('settings_index_update_title');?>
 			</div>
 			<div class="card-body">
-				<p class="card-text">
-					<? if ($updates != FALSE): ?>
-						<?=lang('settings_index_update_current_version');?>: <?=$this->config->item('version', 'grcentral');?><br />
-						<?=lang('settings_index_update_actual_version');?>: <?=$updates['version_actual'];?><br />
-						<?=lang('settings_index_update_last_check');?>: <?=$updates['last_check'];?><br />
-						<? if ($updates['need_update'] == TRUE): ?>
-							<div class="alert alert-primary" role="alert">
+				<? if ($updates != FALSE): ?>
+					<ul class="list-unstyled">
+						<li><?=lang('settings_index_update_current_version');?>: <?=$this->config->item('version', 'grcentral');?>
+						<li><?=lang('settings_index_update_actual_version');?>: <?=$updates['version_actual'];?>
+						<li><?=lang('settings_index_update_last_check');?>: <?=$updates['last_check'];?>
+					</ul>
+					<? if ($updates['need_update'] == TRUE): ?>
+						<div class="alert alert-primary text-center" role="alert">
 							<?=lang('settings_index_update_need_update_yes');?>
 							<? if (isset($updates['version_info']) AND !is_null($updates['version_info'])): ?>
 								<br />
 								<?=lang('settings_index_update_release_date');?>: <?=$updates['version_info']['release_date'];?><br />
 								<a href="<?=$updates['version_info']['release_url'];?>" target="_blank"><?=lang('settings_index_update_release_url');?></a>
 							<? endif; ?>
-							</div>
-						<? else: ?>
-							<div class="alert alert-success" role="alert">
-							<?=lang('settings_index_update_need_update_no');?>
-							</div>
-						<? endif; ?>
+						</div>
 					<? else: ?>
-						<?=lang('settings_index_update_not_start');?>
+						<div class="alert alert-success text-center" role="alert">
+							<?=lang('settings_index_update_need_update_no');?>
+						</div>
 					<? endif; ?>
-				</p>
+				<? else: ?>
+					<?=lang('settings_index_update_not_start');?>
+				<? endif; ?>
 				<hr />
-				<button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#ModalCheckUpdate"><?=lang('settings_index_update_btn_start_check');?></button>
+				<button type="button" class="btn btn-outline-success btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalCheckUpdate"><?=lang('settings_index_update_btn_start_check');?></button>
 			</div>
 	</div>
 </div>

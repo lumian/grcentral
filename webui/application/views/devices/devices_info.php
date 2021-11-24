@@ -16,8 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="card-body">
 				<table class="table table-hover table-sm">
 					<tr>
-						<th><?=lang('devices_info_panel_about_model');?></th>
-						<td><?=$device_info['model_info']['friendly_name']; ?></td>
+						<th width="40%"><?=lang('devices_info_panel_about_model');?></th>
+						<td width="60%"><?=$device_info['model_info']['friendly_name']; ?></td>
 					</tr>
 					<tr>
 						<th><?=lang('devices_info_panel_about_ipaddr');?></th>
@@ -36,7 +36,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<? else: ?>
 								<span class="badge bg-danger"><?=lang('devices_info_panel_about_statusonline_off'); ?></span>
 							<? endif;?>
-							(<?=lang('devices_info_panel_about_statusonline_changetime'); ?> <?=$device_info['status_online_changetime'];?>)
+							<? if (!is_null($device_info['status_online_changetime'])): ?>
+								(<?=lang('devices_info_panel_about_statusonline_changetime'); ?> <?=$device_info['status_online_changetime'];?>)
+							<? endif; ?>
 						</td>
 					</tr>
 					<? endif; ?>
@@ -72,20 +74,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-wrench"></i> <?=lang('devices_info_panel_actions_title')?></div>
 			<div class="card-body">
-				<button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device_info['id'];?>">
+				<button type="button" class="btn btn-outline-secondary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device_info['id'];?>">
 					<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
 				</button><br />
-				<button type="button" class="btn btn-outline-secondary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ModalLogs">
+				<button type="button" class="btn btn-outline-secondary btn-sm mt-2 w-100" data-bs-toggle="modal" data-bs-target="#ModalLogs">
 					<i class="fa fa-list-ul"></i> <?=lang('devices_info_btn_logs');?>
 				</button><br />
-				<button type="button" class="btn btn-outline-danger btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$device_info['id'];?>">
+				<button type="button" class="btn btn-outline-danger btn-sm mt-2 w-100" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$device_info['id'];?>">
 					<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
 				</button>
 				<hr class="hr" />
 				<? if ($device_info['admin_password'] != ""): ?>
-					<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalRebootDevice"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
+					<button type="button" class="btn btn-outline-primary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalRebootDevice"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
 				<? else: ?>
-					<div class="alert alert-info" role="alert">
+					<div class="alert alert-info text-center" role="alert">
 						<span data-bs-toggle="tooltip" title="<?=lang('devices_info_panel_actions_reboot_na_descr');?>"><?=lang('devices_info_panel_actions_reboot_na_error');?></span>
 					</div>
 				<? endif;?>
