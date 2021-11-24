@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 		<? elseif ($step == '1'): ?>
 		
-			<h3 class="mb-4">Checking write access to files</h3>
+			<h3 class="mb-4">Checking write access to files/directories</h3>
 			
 			<table class="table table-hover table-bordered">
 				<thead>
@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<? else: ?>
 				<div class="alert alert-danger mt-4" role="alert">
 					<h4 class="alert-heading"><i class="fa fa-times"></i> Failed</h4>
-					<p>Could not get write access to one or more files. Set the write permissions for the above files and try again.</p>
+					<p>Could not get write access to one or more files or directories. Set write permissions for the above files and directories and try again.</p>
 				</div>
 			<? endif; ?>
 			

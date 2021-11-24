@@ -49,6 +49,9 @@ class Installer extends CI_Controller {
 			'config_main'		=> './application/config/config.php',
 			'config_grcentral'	=> './application/config/grcentral.php',
 			'config_database'	=> './application/config/database.php',
+			'storage_cfg'		=> $this->config->item('storage_path','grcentral').'cfg/',
+			'storage_fw'		=> $this->config->item('storage_path','grcentral').'fw/',
+			'storage_pb'		=> $this->config->item('storage_path','grcentral').'phonebook/'
 		);
 			
 		if (is_null($step))
