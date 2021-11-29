@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral v0.3
+	GRCentral v0.4
 	File:			application\controllers\Api.php
 	Description:	API for GRCentral.
 	API version:	v1
 	
-	2021 (c) Copyright GRCentral
+	2020-2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
