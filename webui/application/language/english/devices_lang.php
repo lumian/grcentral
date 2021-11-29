@@ -25,7 +25,10 @@ $lang['devices_index_table_descr']							= "Description";
 $lang['devices_index_table_macaddr']						= "MAC address";
 $lang['devices_index_table_ipaddr']							= "IP address";
 $lang['devices_index_table_ipaddr_linktitle']				= "Go to the WEB interface";
-$lang['devices_index_table_status_online']					= "Online";
+$lang['devices_index_table_status']							= "Status";
+$lang['devices_index_table_status_online_on']				= "The device is online";
+$lang['devices_index_table_status_online_off']				= "The device is offline";
+$lang['devices_index_table_status_private_params_yes']		= "The device has private parameters";
 $lang['devices_index_table_model']							= "Model";
 $lang['devices_index_table_model_na']						= "Not defined";
 $lang['devices_index_table_accounts']						= "Accounts";
@@ -60,7 +63,7 @@ $lang['devices_index_modaladdedit_params']					= "Parameters";
 $lang['devices_index_modaladdedit_params_help']				= "Enter the parameters in this field. One parameter per line. You can comment with the # symbol at the beginning of the line. The parameters specified here take precedence over the group parameters.";
 // Main page: A modal window "Deleting a device"
 $lang['devices_index_modal_del_title']						= "Deleting a device";
-$lang['devices_index_modal_del_confirm']						= "Really delete the device?";
+$lang['devices_index_modal_del_confirm']					= "Really delete the device?";
 // Main page: A modal window "Device logs"
 $lang['devices_index_modallogs_title']						= "Device logs";
 $lang['devices_index_modallogs_descr']						= "The logs of the selected device's calls to GRCentral are shown below.";
@@ -79,25 +82,30 @@ $lang['devices_index_flashdata_delsuccess']					= "The device was successfully d
 //
 $lang['devices_info_pagetitle']								= "Device information";
 // Page "Device information": Panel "General information"
-$lang['devices_info_panel_about_title']						= "General information";
+$lang['devices_info_panel_about_title']						= "General information about the device";
 $lang['devices_info_panel_about_model']						= "Device model";
 $lang['devices_info_panel_about_ipaddr']					= "IP address";
 $lang['devices_info_panel_about_ipaddr_linktitle']			= "Go to the WEB interface";
 $lang['devices_info_panel_about_macaddr']					= "MAC address";
-$lang['devices_info_panel_about_statusonline']				= "Online status";
-$lang['devices_info_panel_about_statusonline_changetime']	= "As of";
-$lang['devices_info_panel_about_statusonline_on']			= "Online";
-$lang['devices_info_panel_about_statusonline_off']			= "Offline";
-$lang['devices_info_panel_about_statusactive']				= "Active status";
-$lang['devices_info_panel_about_statusactive_on']			= "Activated";
-$lang['devices_info_panel_about_statusactive_off']			= "Not activated";
 $lang['devices_info_panel_about_descr']						= "Description";
-$lang['devices_info_panel_about_fw']						= "Firmware";
-$lang['devices_info_panel_about_fw_pinned']					= "Pinned";
 // Page "Device information": Panel "Actions with the device"
 $lang['devices_info_panel_actions_title']					= "Actions with the device";
 $lang['devices_info_panel_actions_reboot_na_error']			= "Reboot action is not available.";
-$lang['devices_info_panel_actions_reboot_na_descr']			= "The administrator password (P2 value) was not found in the settings template for this device.";
+$lang['devices_info_panel_actions_reboot_na_descr']			= "The administrator password (P2 value) was not found in the settings template for this device. Device reboot is not available.";
+// Page "Device information": Panel "State"
+$lang['devices_info_panel_status_title']					= "Device status";
+$lang['devices_info_panel_status_online_title']				= "Availability";
+$lang['devices_info_panel_status_online_changetime']		= "As of";
+$lang['devices_info_panel_status_online_on']				= "Online";
+$lang['devices_info_panel_status_online_off']				= "Offline";
+$lang['devices_info_panel_status_active_title']				= "Activity";
+$lang['devices_info_panel_status_active_on']				= "Activated";
+$lang['devices_info_panel_status_active_off']				= "Not activated";
+$lang['devices_info_panel_status_privateparams_title']		= "Parameters";
+$lang['devices_info_panel_status_privateparams_yes']		= "Set";
+$lang['devices_info_panel_status_privateparams_no']			= "Not set";
+$lang['devices_info_panel_status_fw_title']					= "Firmware";
+$lang['devices_info_panel_status_fw_pinned']				= "Pinned firmware";
 // Page "Device information": Panel "SIP accounts"
 $lang['devices_info_panel_accounts_title']					= "SIP accounts";
 $lang['devices_info_panel_accounts_description']			= "The number of accounts is limited to 4 pieces, depending on the device model, from 1 to 4 pieces will be used.";
