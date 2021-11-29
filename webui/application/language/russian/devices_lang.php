@@ -25,7 +25,10 @@ $lang['devices_index_table_descr']							= "Описание";
 $lang['devices_index_table_macaddr']						= "MAC адрес";
 $lang['devices_index_table_ipaddr']							= "IP адрес";
 $lang['devices_index_table_ipaddr_linktitle']				= "Перейти в WEB интерфейс";
-$lang['devices_index_table_status_online']					= "Онлайн";
+$lang['devices_index_table_status']							= "Статус";
+$lang['devices_index_table_status_online_on']				= "Устройство в сети";
+$lang['devices_index_table_status_online_off']				= "Устройство не в сети";
+$lang['devices_index_table_status_private_params_yes']		= "Устройство имеет частные параметры";
 $lang['devices_index_table_model']							= "Модель";
 $lang['devices_index_table_model_na']						= "Не определена";
 $lang['devices_index_table_accounts']						= "Аккаунты";
@@ -60,7 +63,7 @@ $lang['devices_index_modaladdedit_params']					= "Параметры";
 $lang['devices_index_modaladdedit_params_help']				= "Впишите параметры в это поле. Один параметр на строку. Допускается комментирование символом # в начале строки. Указанные тут параметры имеют приоритет над групповыми параметрами.";
 // Главная страница: Модальное окно "Удаление устройства"
 $lang['devices_index_modal_del_title']						= "Удаление устройства";
-$lang['devices_index_modal_del_confirm']						= "Действительно удалить устройство?";
+$lang['devices_index_modal_del_confirm']					= "Действительно удалить устройство?";
 // Главная страница: Модальное окно "Логи устройства"
 $lang['devices_index_modallogs_title']						= "Логи устройства";
 $lang['devices_index_modallogs_descr']						= "Ниже представлены логи обращений выбранного устройства к GRCentral.";
@@ -79,25 +82,30 @@ $lang['devices_index_flashdata_delsuccess']					= "Устройство успе
 //
 $lang['devices_info_pagetitle']								= "Информация об устройстве";
 // Страница "Информация об устройстве": Панель "Общая информация"
-$lang['devices_info_panel_about_title']						= "Общая информация";
+$lang['devices_info_panel_about_title']						= "Общая информация об устройстве";
 $lang['devices_info_panel_about_model']						= "Модель устройства";
 $lang['devices_info_panel_about_ipaddr']					= "IP адрес";
 $lang['devices_info_panel_about_ipaddr_linktitle']			= "Перейти в WEB интерфейс";
 $lang['devices_info_panel_about_macaddr']					= "MAC адрес";
-$lang['devices_info_panel_about_statusonline']				= "Онлайн";
-$lang['devices_info_panel_about_statusonline_changetime']	= "По состоянию на";
-$lang['devices_info_panel_about_statusonline_on']			= "В сети";
-$lang['devices_info_panel_about_statusonline_off']			= "Не в сети";
-$lang['devices_info_panel_about_statusactive']				= "Активность";
-$lang['devices_info_panel_about_statusactive_on']			= "Активировано";
-$lang['devices_info_panel_about_statusactive_off']			= "Не активировано";
 $lang['devices_info_panel_about_descr']						= "Описание";
-$lang['devices_info_panel_about_fw']						= "Прошивка";
-$lang['devices_info_panel_about_fw_pinned']					= "Закреплена";
 // Страница "Информация об устройстве": Панель "Действия"
 $lang['devices_info_panel_actions_title']					= "Действия с устройством";
 $lang['devices_info_panel_actions_reboot_na_error']			= "Возможность перезапуска недоступна.";
-$lang['devices_info_panel_actions_reboot_na_descr']			= "В шаблоне настроек для данного устройства не найден пароль администратора (P2 value).";
+$lang['devices_info_panel_actions_reboot_na_descr']			= "В шаблоне настроек для данного устройства не найден пароль администратора (P2 value). Перезагрузка устройства недоступна.";
+// Страница "Информация об устройстве": Панель "Состояние"
+$lang['devices_info_panel_status_title']					= "Состояние устройства";
+$lang['devices_info_panel_status_online_title']				= "Онлайн";
+$lang['devices_info_panel_status_online_changetime']		= "По состоянию на";
+$lang['devices_info_panel_status_online_on']				= "В сети";
+$lang['devices_info_panel_status_online_off']				= "Не в сети";
+$lang['devices_info_panel_status_active_title']				= "Активность";
+$lang['devices_info_panel_status_active_on']				= "Активировано";
+$lang['devices_info_panel_status_active_off']				= "Не активировано";
+$lang['devices_info_panel_status_privateparams_title']		= "Параметры";
+$lang['devices_info_panel_status_privateparams_yes']		= "Установлены";
+$lang['devices_info_panel_status_privateparams_no']			= "Не установлены";
+$lang['devices_info_panel_status_fw_title']					= "Прошивка";
+$lang['devices_info_panel_status_fw_pinned']				= "Прошивка закреплена";
 // Страница "Информация об устройстве": Панель "SIP аккаунты"
 $lang['devices_info_panel_accounts_title']					= "SIP аккаунты";
 $lang['devices_info_panel_accounts_description']			= "Кол-во аккаунтов ограничено 4 штуками, в зависимости от модели устройства, будет использоваться от 1 до 4 штук.";

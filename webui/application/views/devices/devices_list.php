@@ -29,12 +29,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<th><?=lang('devices_index_table_descr');?></th>
 		<th><?=lang('devices_index_table_macaddr');?></th>
 		<th><?=lang('devices_index_table_ipaddr');?></th>
-		<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
-		<th><?=lang('devices_index_table_status_online');?></th>
-		<? endif; ?>
 		<th><?=lang('devices_index_table_model');?></th>
 		<th><?=lang('devices_index_table_accounts');?></th>
 		<th><?=lang('devices_index_table_fwversion');?></th>
+		<th><?=lang('devices_index_table_status');?></th>
 		<th><?=lang('main_table_actions');?></th>
 	</thead>
 	
@@ -50,15 +48,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td>
 						<a href="<?=prep_url($device['ip_addr']);?>" target="_blank" title="<?=lang('devices_index_table_ipaddr_linktitle');?>"><?=$device['ip_addr'];?></a>
 					</td>
-					<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
-					<td>
-						<? if ($device['status_online'] === '1'): ?>
-							<span class="text-success"><span class="fa fa-bezier-curve"></span></span>
-						<? else: ?>
-							<span class="text-danger"><span class="fa fa-bezier-curve"></span></span>
-						<? endif; ?>
-					</td>
-					<? endif; ?>
 					<td>
 						<? if ($device['model_id'] != '0' AND isset($models_list[$device['model_id']])): ?>
 							<?=$models_list[$device['model_id']]['friendly_name'];?>
@@ -82,8 +71,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?=lang('devices_index_table_fwversion_na');?>
 						<? endif; ?>
 						<? if (isset($device['fw_version_pinned']) AND $device['fw_version_pinned'] != '0'): ?>
-							<span data-bs-toggle="tooltip" title="<?=lang('devices_index_table_fwversionpinned_help');?>: <?=$device['fw_version_pinned'];?>"><i class="fa fa-lock"></i></span>
+							<span data-bs-toggle="tooltip" title="<?=lang('devices_index_table_fwversionpinned_help');?>: <?=$device['fw_version_pinned'];?>"><i class="fa fa-user-lock"></i></span>
 						<? endif; ?>
+					</td>
+					<td>
+						<ul class="list-inline my-0">
+							<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
+								<? if ($device['status_online'] === '1'): ?>
+									<li class="list-inline-item"><span data-bs-toggle="tooltip" class="text-success" title="<?=lang('devices_index_table_status_online_on');?>"><i class="fa fa-globe"></i></span></li>
+								<? else: ?>
+									<li class="list-inline-item"><span data-bs-toggle="tooltip" class="text-danger" title="<?=lang('devices_index_table_status_online_off');?>"><i class="fa fa-globe"></i></span></li>
+								<? endif; ?>
+							<? endif; ?>
+							
+							<? if ($device['params_json_data'] != '' AND $device['params_json_data'] !== NULL): ?>
+								<li class="list-inline-item"><span data-bs-toggle="tooltip" class="text-success" title="<?=lang('devices_index_table_status_private_params_yes');?>"><i class="fa fa-user-cog"></i></span></li>
+							<? endif; ?>
+						</ul>
 					</td>
 					<td>
 						<div class="btn-group w-100" role="group">

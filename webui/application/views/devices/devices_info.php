@@ -10,88 +10,111 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif;?>
 
 <div class="row">
-	<div class="col-9">
-		<div class="card mt-2">
-			<div class="card-header"><i class="fa fa-info-circle"></i> <?=lang('devices_info_panel_about_title')?></div>
-			<div class="card-body">
-				<table class="table table-hover table-sm">
-					<tr>
-						<th width="40%"><?=lang('devices_info_panel_about_model');?></th>
-						<td width="60%"><?=$device_info['model_info']['friendly_name']; ?></td>
-					</tr>
-					<tr>
-						<th><?=lang('devices_info_panel_about_ipaddr');?></th>
-						<td><a href="<?=prep_url($device_info['ip_addr']); ?>"  target="_blank" title="<?=lang('devices_info_panel_about_ipaddr_linktitle');?>"><?=$device_info['ip_addr']; ?></a></td>
-					</tr>
-					<tr>
-						<th><?=lang('devices_info_panel_about_macaddr');?></th>
-						<td><?=$device_info['mac_addr']; ?></td>
-					</tr>
-					<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
-					<tr>
-						<th><?=lang('devices_info_panel_about_statusonline');?></th>
-						<td>
-							<? if ($device_info['status_online'] == '1'): ?>
-								<span class="badge bg-success"><?=lang('devices_info_panel_about_statusonline_on'); ?></span>
-							<? else: ?>
-								<span class="badge bg-danger"><?=lang('devices_info_panel_about_statusonline_off'); ?></span>
-							<? endif;?>
-							<? if (!is_null($device_info['status_online_changetime'])): ?>
-								(<?=lang('devices_info_panel_about_statusonline_changetime'); ?> <?=$device_info['status_online_changetime'];?>)
-							<? endif; ?>
-						</td>
-					</tr>
-					<? endif; ?>
-					<tr>
-						<th><?=lang('devices_info_panel_about_statusactive');?></th>
-						<td>
-							<? if ($device_info['status_active'] == '1'): ?>
-								<span class="badge bg-success"><?=lang('devices_info_panel_about_statusactive_on'); ?></span>
-							<? else: ?>
-								<span class="badge bg-danger"><?=lang('devices_info_panel_about_statusactive_off'); ?></span>
-							<? endif;?>
-						</td>
-					</tr>
-					<tr>
-						<th><?=lang('devices_info_panel_about_descr');?></th>
-						<td><?=$device_info['descr']; ?></td>
-					</tr>
-					<tr>
-						<th><?=lang('devices_info_panel_about_fw');?></th>
-						<td>
-							<?=$device_info['fw_version']; ?>
-							<? if (isset($device_info['fw_version_pinned']) AND $device_info['fw_version_pinned'] != '0'): ?>
-								(<?=lang('devices_info_panel_about_fw_pinned');?>: <?=$device_info['fw_version_pinned'];?>)
-							<? endif; ?>
-						
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="col-3">
+	<div class="col-12">
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-wrench"></i> <?=lang('devices_info_panel_actions_title')?></div>
 			<div class="card-body">
-				<button type="button" class="btn btn-outline-secondary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device_info['id'];?>">
-					<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
-				</button><br />
-				<button type="button" class="btn btn-outline-secondary btn-sm mt-2 w-100" data-bs-toggle="modal" data-bs-target="#ModalLogs">
-					<i class="fa fa-list-ul"></i> <?=lang('devices_info_btn_logs');?>
-				</button><br />
-				<button type="button" class="btn btn-outline-danger btn-sm mt-2 w-100" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$device_info['id'];?>">
-					<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
-				</button>
-				<hr class="hr" />
-				<? if ($device_info['admin_password'] != ""): ?>
-					<button type="button" class="btn btn-outline-primary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#ModalRebootDevice"><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
-				<? else: ?>
-					<div class="alert alert-info text-center" role="alert">
-						<span data-bs-toggle="tooltip" title="<?=lang('devices_info_panel_actions_reboot_na_descr');?>"><?=lang('devices_info_panel_actions_reboot_na_error');?></span>
+					<div class="btn-group w-100" role="group">
+						<button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="edit" data-bs-id="<?=$device_info['id'];?>">
+							<i class="fa fa-edit"></i> <?=lang('main_btn_edit');?>
+						</button>
+						<button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalLogs">
+							<i class="fa fa-list-ul"></i> <?=lang('devices_info_btn_logs');?>
+						</button>
+						<button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#ModalDelete" data-bs-id="<?=$device_info['id'];?>">
+							<i class="fa fa-trash-alt"></i> <?=lang('main_btn_del');?>
+						</button>
+						<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalRebootDevice"<? if ($device_info['admin_password'] == ""): ?> disabled<?endif;?>><i class="fa fa-sync"></i> <?=lang('devices_info_btn_cti_reboot');?></button>
 					</div>
-				<? endif;?>
 			</div>
+			<? if ($device_info['admin_password'] == ""): ?>
+			<div class="card-footer text-muted">
+				<?=lang('devices_info_panel_actions_reboot_na_descr');?>
+			</div>
+			<? endif; ?>
+		</div>
+	</div>
+	
+	<div class="col-9">
+		<div class="card mt-2">
+			<div class="card-header"><i class="fa fa-info-circle"></i> <?=lang('devices_info_panel_about_title')?></div>
+			<table class="table table-sm">
+				<tr>
+					<th class="ps-2" width="50%"><?=lang('devices_info_panel_about_model');?></th>
+					<td class="pe-2" width="50%"><?=$device_info['model_info']['friendly_name']; ?></td>
+				</tr>
+				<tr>
+					<th class="ps-2"><?=lang('devices_info_panel_about_ipaddr');?></th>
+					<td class="pe-2"><a href="<?=prep_url($device_info['ip_addr']); ?>"  target="_blank" title="<?=lang('devices_info_panel_about_ipaddr_linktitle');?>"><?=$device_info['ip_addr']; ?></a></td>
+				</tr>
+				<tr>
+					<th class="ps-2"><?=lang('devices_info_panel_about_macaddr');?></th>
+					<td class="pe-2"><?=$device_info['mac_addr']; ?></td>
+				</tr>
+				<tr>
+					<th class="ps-2"><?=lang('devices_info_panel_about_descr');?></th>
+					<td class="pe-2"><?=$device_info['descr']; ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<div class="col-3">
+		<div class="card mt-2">
+			<div class="card-header"><i class="fa fa-wifi"></i> <?=lang('devices_info_panel_status_title')?></div>
+			<table class="table table-sm">
+				<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
+				<!-- Monitoring status -->
+				<tr>
+					<th class="ps-2"><?=lang('devices_info_panel_status_online_title');?></th>
+					<td class="pe-2">
+						<? if (!is_null($device_info['status_online_changetime'])) {
+							$status_online_changetime_tooltip = 'data-bs-toggle="tooltip" title="'.lang('devices_info_panel_status_online_changetime').' '.date('H:i:s d-m-Y', strtotime($device_info['status_online_changetime'])).'"';
+						} else {
+							$status_online_changetime_tooltip = NULL;
+						} ?>
+						
+						<? if ($device_info['status_online'] == '1'): ?>
+							<span class="badge bg-success w-100" <?=$status_online_changetime_tooltip;?>><i class="fa fa-globe"></i> <?=lang('devices_info_panel_status_online_on'); ?></span>
+						<? else: ?>
+							<span class="badge bg-danger w-100" <?=$status_online_changetime_tooltip;?>><i class="fa fa-globe"></i> <?=lang('devices_info_panel_status_online_off'); ?></span>
+						<? endif; ?>
+					</td>
+				</tr>
+				<? endif; ?>
+				<!-- Active state -->
+				<tr>
+					<th class="ps-2"><?=lang('devices_info_panel_status_active_title');?></th>
+					<td class="pe-2">
+						<? if ($device_info['status_active'] == '1'): ?>
+							<span class="badge bg-success w-100"><i class="fa fa-check"></i> <?=lang('devices_info_panel_status_active_on'); ?></span>
+						<? else: ?>
+							<span class="badge bg-danger w-100"><i class="fa fa-ban"></i> <?=lang('devices_info_panel_status_active_off'); ?></span>
+						<? endif;?>
+					</td>
+				</tr>
+				<!-- Private params -->
+				<tr>
+					<th class="ps-2"><?=lang('devices_info_panel_status_privateparams_title');?></th>
+					<td class="pe-2">
+						<? if ($device_info['params_json_data'] != '' AND $device_info['params_json_data'] !== NULL): ?>
+							<span class="badge bg-success w-100"><i class="fa fa-user-cog"></i> <?=lang('devices_info_panel_status_privateparams_yes'); ?></span>
+						<? else: ?>
+							<span class="badge bg-secondary w-100"><i class="fa fa-user-cog"></i> <?=lang('devices_info_panel_status_privateparams_no'); ?></span>
+						<? endif;?>
+					</td>
+				</tr>
+				<!-- Firmware -->
+				<tr>
+					<th class="ps-2"><?=lang('devices_info_panel_status_fw_title');?></th>
+					<td class="pe-2">
+						<?=$device_info['fw_version']; ?>
+						<? if (isset($device_info['fw_version_pinned']) AND $device_info['fw_version_pinned'] != '0'): ?>
+							<span data-bs-toggle="tooltip" title="<?=lang('devices_info_panel_status_fw_pinned');?>">(<i class="fa fa-user-lock"></i> <?=$device_info['fw_version_pinned'];?>)</span>
+						<? endif; ?>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </div>
