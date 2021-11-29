@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral v0.3
+	GRCentral v0.4
 	File:			application\config\grcentral.php
 	Description:	System settings config
 	
-	2021 (c) Copyright GRCentral
+	2020-2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -23,7 +23,7 @@ $config['system_installed'] = FALSE;
 $config['grcentral']['site_title'] 				= 'GRCentral';
 // ENG: GRCentral version
 // RUS: Версия GRCentral
-$config['grcentral']['version'] 				= '0.3';
+$config['grcentral']['version'] 				= '0.4';
 // ENG: Path to the file storage
 // RUS: Путь к хранилищу файлов
 $config['grcentral']['storage_path']			= './storage/';
