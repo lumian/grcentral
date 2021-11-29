@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /****************************************************************
-	GRCentral v0.3
+	GRCentral v0.4
 	File:			application\language\english\settings_lang.php
 	Description:	Language file for "Settings" controller.
 	Laguage:		English
 	
-	2021 (c) Copyright GRCentral
+	2020-2021 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
