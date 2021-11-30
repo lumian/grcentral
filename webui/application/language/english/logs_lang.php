@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //
 $lang['logs_tabs_title_provisioning']							= "Provisioning";
 $lang['logs_tabs_title_api']									= "API query";
-$lang['logs_tabs_title_system']									= "System";
+$lang['logs_tabs_title_monitoring']								= "Monitoring";
 //
 // Page "Provisioning"
 //
@@ -31,14 +31,23 @@ $lang['logs_provisioning_table_type_device_get_fw']				= "Firmware request";
 $lang['logs_provisioning_table_type_device_get_pb']				= "Phonebook request";
 $lang['logs_provisioning_table_fwversion']						= "Firmware version";
 //
-// Page "System"
+// Page "Monitoring"
 //
-$lang['logs_system_description_text']							= "In this section there are logs of system operation.";
-$lang['logs_system_underconstruction']							= "This section is under development.";
+$lang['logs_monitoring_description_text']						= "This section contains device monitoring logs.";
+$lang['logs_monitoring_disabled']								= "Device monitoring is disabled. To view the monitoring logs, activate the device monitoring function in the system settings.";
+// Page "Monitoring": Table
+$lang['logs_monitoring_table_datetime']							= "Date and time";
+$lang['logs_monitoring_table_device']							= "Device";
+$lang['logs_monitoring_table_device_linkdescr']					= "Go to view device information";
+$lang['logs_monitoring_table_device_ip']						= "IP address";
+$lang['logs_monitoring_table_device_ip_linkdescr']				= "Go to the web interface of the device";
+$lang['logs_monitoring_table_result']							= "Result";
+$lang['logs_monitoring_table_result_ok']						= "The device is online";
+$lang['logs_monitoring_table_result_error']						= "The device is offline.";
 //
 // Page "API query"
 //
-$lang['logs_api_description_text']								= "В данном разделе расположены логи запросов к API.";
+$lang['logs_api_description_text']								= "This section contains logs of API requests.";
 // Page "API query": Table
 $lang['logs_api_table_datetime']								= "Date and time";
 $lang['logs_api_table_user']									= "User";

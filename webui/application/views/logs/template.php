@@ -18,6 +18,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-database"></i> <?=lang('logs_tabs_title_api');?>
 					</a>
 				</li>
+				<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
+				<li class="nav-item">
+					<? if ($current_tab == 'monitoring'): ?><a class="nav-link active" href=""><?else:?>
+					<a class="nav-link" href="<?=site_url('logs/monitoring');?>"><?endif;?>
+						<i class="fa fa-wifi"></i> <?=lang('logs_tabs_title_monitoring');?>
+					</a>
+				</li>
+				<? endif; ?>
 			</ul>
 		</div>
 	</div>

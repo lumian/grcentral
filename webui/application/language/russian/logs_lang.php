@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //
 $lang['logs_tabs_title_provisioning']							= "Распространение";
 $lang['logs_tabs_title_api']									= "Запросы к API";
-$lang['logs_tabs_title_system']									= "Система";
+$lang['logs_tabs_title_monitoring']								= "Мониторинг";
 //
 // Страница "Распространение"
 //
@@ -31,10 +31,19 @@ $lang['logs_provisioning_table_type_device_get_fw']				= "Запрос прош�
 $lang['logs_provisioning_table_type_device_get_pb']				= "Запрос справочника";
 $lang['logs_provisioning_table_fwversion']						= "Версия прошивки";
 //
-// Страница "Система"
+// Страница "Мониторинг"
 //
-$lang['logs_system_description_text']							= "В данном разделе расположены логи работы системы.";
-$lang['logs_system_underconstruction']							= "Раздел находится в разработке.";
+$lang['logs_monitoring_description_text']						= "В данном разделе расположены логи мониторинга устройств.";
+$lang['logs_monitoring_disabled']								= "Мониторинг устройств отключен. Для просмотра логов мониторинга, активируйте функцию мониторинга устройств в системных настройках.";
+// Страница "Мониторинг": Таблица
+$lang['logs_monitoring_table_datetime']							= "Дата и время";
+$lang['logs_monitoring_table_device']							= "Устройство";
+$lang['logs_monitoring_table_device_linkdescr']					= "Перейти к просмотру информации об устройстве";
+$lang['logs_monitoring_table_device_ip']						= "IP адрес";
+$lang['logs_monitoring_table_device_ip_linkdescr']				= "Перейти к web-интерфейсу устройства";
+$lang['logs_monitoring_table_result']							= "Результат";
+$lang['logs_monitoring_table_result_ok']						= "Устройство онлайн";
+$lang['logs_monitoring_table_result_error']						= "Устройство оффлайн";
 //
 // Страница "Запросы к API"
 //

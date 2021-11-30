@@ -515,6 +515,13 @@ class Cron extends CI_Controller {
 						}
 					}
 					$this->devices_model->update_monitoring_status($device['id'], $status_online);
+					$log_data = array(
+						'type'		=> 'monitoring',
+						'log_data'	=> $status_online,
+						'datetime'	=> date('Y-m-d H:i:s'),
+						'unit_id'	=> $device['id']
+					);
+					$this->logger_model->add_log($log_data);
 				}
 				return TRUE;
 			}

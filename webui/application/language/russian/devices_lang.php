@@ -106,6 +106,11 @@ $lang['devices_info_panel_status_privateparams_yes']		= "Установлены"
 $lang['devices_info_panel_status_privateparams_no']			= "Не установлены";
 $lang['devices_info_panel_status_fw_title']					= "Прошивка";
 $lang['devices_info_panel_status_fw_pinned']				= "Прошивка закреплена";
+// Страница "Информация об устройстве": Панель "Мониторинг устройства"
+$lang['devices_info_panel_monitoring_title']				= "Мониторинг устройства";
+$lang['devices_info_panel_monitoring_online']				= "в сети";
+$lang['devices_info_panel_monitoring_offline']				= "не в сети";
+$lang['devices_info_panel_monitoring_available_descr']		= "Доступность устройства";
 // Страница "Информация об устройстве": Панель "SIP аккаунты"
 $lang['devices_info_panel_accounts_title']					= "SIP аккаунты";
 $lang['devices_info_panel_accounts_description']			= "Кол-во аккаунтов ограничено 4 штуками, в зависимости от модели устройства, будет использоваться от 1 до 4 штук.";
