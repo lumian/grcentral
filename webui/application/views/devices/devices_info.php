@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 	
-	<div class="col-9">
+	<div class="col-6">
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-info-circle"></i> <?=lang('devices_info_panel_about_title')?></div>
 			<table class="table table-sm">
@@ -63,25 +63,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-wifi"></i> <?=lang('devices_info_panel_status_title')?></div>
 			<table class="table table-sm">
-				<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
-				<!-- Monitoring status -->
-				<tr>
-					<th class="ps-2"><?=lang('devices_info_panel_status_online_title');?></th>
-					<td class="pe-2">
-						<? if (!is_null($device_info['status_online_changetime'])) {
-							$status_online_changetime_tooltip = 'data-bs-toggle="tooltip" title="'.lang('devices_info_panel_status_online_changetime').' '.date('H:i:s d-m-Y', strtotime($device_info['status_online_changetime'])).'"';
-						} else {
-							$status_online_changetime_tooltip = NULL;
-						} ?>
-						
-						<? if ($device_info['status_online'] == '1'): ?>
-							<span class="badge bg-success w-100" <?=$status_online_changetime_tooltip;?>><i class="fa fa-globe"></i> <?=lang('devices_info_panel_status_online_on'); ?></span>
-						<? else: ?>
-							<span class="badge bg-danger w-100" <?=$status_online_changetime_tooltip;?>><i class="fa fa-globe"></i> <?=lang('devices_info_panel_status_online_off'); ?></span>
-						<? endif; ?>
-					</td>
-				</tr>
-				<? endif; ?>
 				<!-- Active state -->
 				<tr>
 					<th class="ps-2"><?=lang('devices_info_panel_status_active_title');?></th>
@@ -117,6 +98,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</table>
 		</div>
 	</div>
+	<? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>
+		<div class="col-3">
+			<div class="card mt-2">
+				<div class="card-header"><i class="fa fa-wifi"></i> <?=lang('devices_info_panel_monitoring_title')?></div>
+				
+				<table class="table table-sm mb-2">
+					<!-- Monitoring status -->
+					<tr>
+						<th class="ps-2"><?=lang('devices_info_panel_status_online_title');?></th>
+						<td class="pe-2">
+							<? if ($device_info['status_online'] == '1'): ?>
+								<span class="badge bg-success w-100"><i class="fa fa-globe"></i> <?=lang('devices_info_panel_status_online_on'); ?></span>
+							<? else: ?>
+								<span class="badge bg-danger w-100"><i class="fa fa-globe"></i> <?=lang('devices_info_panel_status_online_off'); ?></span>
+							<? endif; ?>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><?=lang('devices_info_panel_status_online_changetime').' '.date('H:i:s d-m-Y', strtotime($device_info['status_online_changetime']));?></td>
+					</tr>
+					
+				</table>
+				
+				<div class="progress mx-2 mb-2" style="height: 33px;">
+					<div class="progress-bar bg-success" role="progressbar" style="width: <?=$device_available;?>%" aria-valuenow="<?=$device_available;?>" aria-valuemin="0" aria-valuemax="100"><?=($device_available >= 50) ? $device_available.'% '.lang('devices_info_panel_monitoring_online') : NULL;?></div>
+					<div class="progress-bar bg-danger" role="progressbar" style="width: <?=100 - $device_available;?>%" aria-valuenow="<?=100 - $device_available;?>" aria-valuemin="0" aria-valuemax="100"><?=($device_available < 50) ? 100 - $device_available.'% '.lang('devices_info_panel_monitoring_offline') : NULL;?></div>
+				</div>
+			</div>
+		</div>
+	<? endif; ?>
 </div>
 
 <div class="card mt-2">

@@ -32,6 +32,11 @@ class Logger_model extends CI_Model {
 					$types = array('device_get_cfg', 'device_get_fw', 'device_get_pb');
 					$this->db->where_in('type', $types);
 				}
+				elseif ($params['type'] == 'monitoring')
+				{
+					$types = array('monitoring');
+					$this->db->where_in('type', $types);
+				}
 				elseif ($params['type'] == 'api')
 				{
 					$types = array('api_get');
@@ -98,9 +103,13 @@ class Logger_model extends CI_Model {
 			{
 				$where_type_array = array('api_get');
 			}
+			elseif ($params['type'] == 'monitoring')
+			{
+				$where_type_array = array('monitoring');
+			}
 			elseif ($params['type'] == 'all')
 			{
-				$where_type_array = array('device_get_pb', 'device_get_fw', 'device_get_cfg', 'api_get');
+				$where_type_array = array('device_get_pb', 'device_get_fw', 'device_get_cfg', 'api_get', 'monitoring');
 			}
 			else
 			{

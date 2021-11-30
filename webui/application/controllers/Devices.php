@@ -185,6 +185,35 @@ class Devices extends CI_Controller {
 				$servers_list = $this->settings_model->servers_getlist();
 				$device_info['model_info'] = $this->settings_model->models_get(array('id'=>$device_info['model_id']));
 				
+				if ($this->settings_model->syssettings_get('monitoring_enable') == 'on')
+				{
+					$monitoring_data = $query = $this->logger_model->get_logs(array('unit_id'=>$param, 'type'=>'monitoring'));
+					$monitoring['count_ok'] = 0;
+					$monitoring['count_error'] = 0;
+					$monitoring['all'] = count($monitoring_data);
+					
+					if ($monitoring_data != FALSE AND is_array($monitoring_data) AND count($monitoring_data) > 0)
+					{
+						foreach($monitoring_data as $row)
+						{
+							if ($row['log_data'] === '1')
+							{
+								++$monitoring['count_ok'];
+							}
+							else
+							{
+								++$monitoring['count_error'];
+							}
+						}
+					}
+					
+					$device_available = round($monitoring['count_ok'] / ($monitoring['all'] / 100), 0, PHP_ROUND_HALF_UP);
+				}
+				else
+				{
+					$device_available = '0';
+				}
+				
 				// accounts:
 				if ($device_info['accounts_data'] != NULL)
 				{
@@ -199,7 +228,8 @@ class Devices extends CI_Controller {
 					'device_info'		=> $device_info,
 					'accounts_list'		=> $accounts_list,
 					'servers_list'		=> $servers_list,
-					'models_list'		=> $this->settings_model->models_getlist()
+					'models_list'		=> $this->settings_model->models_getlist(),
+					'device_available'	=> $device_available
 				);
 			}
 			else

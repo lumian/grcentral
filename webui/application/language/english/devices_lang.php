@@ -106,6 +106,11 @@ $lang['devices_info_panel_status_privateparams_yes']		= "Set";
 $lang['devices_info_panel_status_privateparams_no']			= "Not set";
 $lang['devices_info_panel_status_fw_title']					= "Firmware";
 $lang['devices_info_panel_status_fw_pinned']				= "Pinned firmware";
+// Page "Device information": Panel "Device monitoring"
+$lang['devices_info_panel_monitoring_title']				= "Device monitoring";
+$lang['devices_info_panel_monitoring_online']				= "online";
+$lang['devices_info_panel_monitoring_offline']				= "offline";
+$lang['devices_info_panel_monitoring_available_descr']		= "Device availability";
 // Page "Device information": Panel "SIP accounts"
 $lang['devices_info_panel_accounts_title']					= "SIP accounts";
 $lang['devices_info_panel_accounts_description']			= "The number of accounts is limited to 4 pieces, depending on the device model, from 1 to 4 pieces will be used.";
