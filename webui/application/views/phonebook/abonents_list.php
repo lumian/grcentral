@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?=lang('phonebook_abonents_table_datasource_'.$abonent['data_source']);?>
 					<? if ($abonent['data_source'] != 'manual'): ?>
 						&nbsp;
-						<span data-toggle="tooltip" title="<?=lang('phonebook_abonents_table_datasource_transform');?> <?=lang('phonebook_abonents_table_datasource_manual');?>">
+						<span data-bs-toggle="tooltip" title="<?=lang('phonebook_abonents_table_datasource_transform');?> <?=lang('phonebook_abonents_table_datasource_manual');?>">
 							<a href="#" data-bs-toggle="modal" data-bs-target="#ModalTransformSource" data-bs-id="<?=$abonent['id'];?>">
 								<i class="fa fa-random"></i>
 							</a>

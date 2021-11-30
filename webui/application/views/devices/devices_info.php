@@ -179,9 +179,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td>
 					<td>
 						<? if ($account['active'] === "1"): ?>
-							<div class="badge bg-success" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_on');?>"><i class="fa fa-phone"></i></div>
+							<div class="badge bg-success" style="width: 2rem;" data-bs-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_on');?>"><i class="fa fa-phone"></i></div>
 						<? else: ?>
-							<div class="badge bg-danger" style="width: 2rem;" data-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_off');?>"><i class="fa fa-phone-slash"></i></div>
+							<div class="badge bg-danger" style="width: 2rem;" data-bs-toggle="tooltip" title="<?=lang('devices_info_table_accounts_status_off');?>"><i class="fa fa-phone-slash"></i></div>
 						<? endif;?>
 					</td>
 				</tr>
