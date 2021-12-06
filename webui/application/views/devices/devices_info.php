@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-6">
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-info-circle"></i> <?=lang('devices_info_panel_about_title')?></div>
-			<table class="table table-sm">
+			<table class="table table-sm m-0">
 				<tr>
 					<th class="ps-2" width="50%"><?=lang('devices_info_panel_about_model');?></th>
 					<td class="pe-2" width="50%"><?=$device_info['model_info']['friendly_name']; ?></td>
@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-3">
 		<div class="card mt-2">
 			<div class="card-header"><i class="fa fa-wifi"></i> <?=lang('devices_info_panel_status_title')?></div>
-			<table class="table table-sm">
+			<table class="table table-sm m-0">
 				<!-- Active state -->
 				<tr>
 					<th class="ps-2"><?=lang('devices_info_panel_status_active_title');?></th>
@@ -103,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="card mt-2">
 				<div class="card-header"><i class="fa fa-wifi"></i> <?=lang('devices_info_panel_monitoring_title')?></div>
 				
-				<table class="table table-sm mb-2">
+				<table class="table table-sm m-0">
 					<!-- Monitoring status -->
 					<tr>
 						<th class="ps-2"><?=lang('devices_info_panel_status_online_title');?></th>
@@ -116,15 +116,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><?=lang('devices_info_panel_status_online_changetime').' '.date('H:i:s d-m-Y', strtotime($device_info['status_online_changetime']));?></td>
+						<td colspan="2" class="ps-2"><?=lang('devices_info_panel_status_online_changetime').' '.date('H:i:s d-m-Y', strtotime($device_info['status_online_changetime']));?></td>
 					</tr>
-					
+					<tr>
+						<td colspan="2" class="p-1">
+							<div class="progress" style="height: 24px">
+								<div class="progress-bar bg-success" role="progressbar" style="width: <?=$device_available;?>%" aria-valuenow="<?=$device_available;?>" aria-valuemin="0" aria-valuemax="100"><?=($device_available >= 50) ? $device_available.'% '.lang('devices_info_panel_monitoring_online') : NULL;?></div>
+								<div class="progress-bar bg-danger" role="progressbar" style="width: <?=100 - $device_available;?>%" aria-valuenow="<?=100 - $device_available;?>" aria-valuemin="0" aria-valuemax="100"><?=($device_available < 50) ? 100 - $device_available.'% '.lang('devices_info_panel_monitoring_offline') : NULL;?></div>
+							</div>
+						</td>
+					</tr>
 				</table>
-				
-				<div class="progress mx-2 mb-2" style="height: 33px;">
-					<div class="progress-bar bg-success" role="progressbar" style="width: <?=$device_available;?>%" aria-valuenow="<?=$device_available;?>" aria-valuemin="0" aria-valuemax="100"><?=($device_available >= 50) ? $device_available.'% '.lang('devices_info_panel_monitoring_online') : NULL;?></div>
-					<div class="progress-bar bg-danger" role="progressbar" style="width: <?=100 - $device_available;?>%" aria-valuenow="<?=100 - $device_available;?>" aria-valuemin="0" aria-valuemax="100"><?=($device_available < 50) ? 100 - $device_available.'% '.lang('devices_info_panel_monitoring_offline') : NULL;?></div>
-				</div>
 			</div>
 		</div>
 	<? endif; ?>
