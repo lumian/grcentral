@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? if ($row['items'] != FALSE): ?>
 			<? foreach($row['items'] as $model): ?>
 				<tr>
-					<td><?=$model['tech_name'];?></td>
+					<td class="ps-4"><i class="fa fa-chevron-right text-muted"></i> <?=$model['tech_name'];?></td>
 					<td><?=$model['friendly_name'];?></td>
 					<td>
 						<div class="btn-group w-100" role="group">
@@ -228,7 +228,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h5 class="modal-title" id="ModalGroupDeleteLabel"><?=lang('settings_models_modal_delgroup_title');?></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body text-center">
 				<?=lang('settings_models_modal_delgroup_confirm');?>
 			</div>
 			<div class="modal-footer">
@@ -327,7 +327,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h5 class="modal-title" id="ModalModelDeleteLabel"><?=lang('settings_models_modal_del_title');?></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body text-center">
 				<?=lang('settings_models_modal_del_confirm');?>
 			</div>
 			<div class="modal-footer">
