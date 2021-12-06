@@ -371,7 +371,7 @@ class Devices extends CI_Controller {
 				
 				if ($query != FALSE)
 				{
-					$this->logger_model->clean_logs(array('type'=>'provisioning','unit_id'=>$param));
+					$this->logger_model->clean_logs(array('type'=>'all','unit_id'=>$param));
 					
 					$this->grcentral->set_cfg_need_apply();
 					$this->session->set_flashdata('success_result', lang('devices_index_flashdata_delsuccess'));
