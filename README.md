@@ -51,7 +51,7 @@
 
 ## Полезные ссылки
 * Скриншоты [смотри на github](https://github.com/lumian/grcentral/tree/master/docs/screenshots/v.0.3)
-* Демоверсия интерфейса доступна на сайте [demo.grcentral.it-35.ru](http://demo.grcentral.it-35.ru/)
+* Демоверсия интерфейса доступна на сайте [grc-demo.hionline.ru](http://grc-demo.hionline.ru/)
 * Любые обсуждения можно вести на github в [разделе Discussions](https://github.com/lumian/grcentral/discussions)
 
 ## Авторские права
