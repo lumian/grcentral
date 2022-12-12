@@ -125,7 +125,7 @@ class Devices_model extends CI_Model {
 	
 	function del($id=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id['id']))
+		if (!is_null($id) AND is_numeric($id))
 		{
 			$this->db->where('id', $id);
 			$query = $this->db->delete('devices_data');
