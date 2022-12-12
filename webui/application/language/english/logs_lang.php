@@ -38,7 +38,7 @@ $lang['logs_system_underconstruction']							= "This section is under developmen
 //
 // Page "API query"
 //
-$lang['logs_api_description_text']								= "В данном разделе расположены логи запросов к API.";
+$lang['logs_api_description_text']								= "This section contains logs of API requests.";
 // Page "API query": Table
 $lang['logs_api_table_datetime']								= "Date and time";
 $lang['logs_api_table_user']									= "User";
