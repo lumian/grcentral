@@ -98,16 +98,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('[data-bs-toggle="tooltip"]').tooltip()
 		})
 	</script>
-	
-	<script> 
-		var $buoop = {required:{e:17,f:60,o:71,s:12,c:60},insecure:true,style:"bottom",api:2021.11 }; 
-		function $buo_f(){ 
-		 var e = document.createElement("script"); 
-		 e.src = "//browser-update.org/update.min.js"; 
-		 document.body.appendChild(e);
-		};
-		try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-		catch(e){window.attachEvent("onload", $buo_f)}
-	</script>
 </body>
 </html>
