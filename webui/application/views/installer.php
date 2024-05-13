@@ -111,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-sm-9">
 										<select name="system_language" class="form-select" id="system_language" required>
 											<? foreach($content['language_list'] as $lang): ?>
-												<option value="<?=$lang;?>"<? if ($lang == $content['post_data']['system_language']): ?> selected<? endif;?>><?=$lang;?></option>
+												<option value="<?=$lang;?>"<? if ($lang == $content['post_data']['system_language']): ?> selected<? endif;?>><?=ucfirst($lang);?></option>
 											<? endforeach; ?>
 										</select>
 									</div>
@@ -236,7 +236,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		</main>
 		<footer class="pt-5 my-5 text-muted border-top">
-			<small class="text-muted">2020-2021 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank"><?=$this->config->item('site_title', 'grcentral');?></a> v.<?=$this->config->item('version', 'grcentral');?></small>
+			<small class="text-muted">2020-2024 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank"><?=$this->config->item('site_title', 'grcentral');?></a> v.<?=$this->config->item('version', 'grcentral');?></small>
 		</footer>
 	</div>
 	<script src="<?=base_url("style/bootstrap/js/bootstrap.bundle.min.js");?>"></script>

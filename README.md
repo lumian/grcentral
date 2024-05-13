@@ -2,9 +2,9 @@
 Система управления VoIP устройствами Grandstream в удобном Web интерфейсе.
 
 ## Основа:
-* Code language: PHP 7.3
-* PHP framework: Codeigniter 3.1.11
-* WebUI: Bootstrap 5.1 + jQuery 3.6.0 + Font Awesome icons 5.15.4
+* Code language: PHP 7.4
+* PHP framework: Codeigniter 3.1.13
+* WebUI: Bootstrap 5.1.3 + jQuery 3.6.0 + Font Awesome icons 5.15.4
 * UI Languages: Russian, English.
 
 ## Примечание:

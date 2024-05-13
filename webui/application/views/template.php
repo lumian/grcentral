@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?=$content;?>
 		<hr class="my-2">
 		<footer class="mb-4">
-			<small class="text-muted">2020-2021 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank">GRCentral</a> v.<?=$this->config->item('version', 'grcentral');?></small>
+			<small class="text-muted">2020-2024 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank">GRCentral</a> v.<?=$this->config->item('version', 'grcentral');?></small>
 		</footer>
 	</main>
 	<? if (!$this->grcentral->is_user()): ?>
