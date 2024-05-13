@@ -10,10 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<title><?=$title;?></title>
 	
-	<link href="/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link href="/style/icons/css/all.css" rel="stylesheet">
-	<link href="/style/installer.css" rel="stylesheet">
-	<link rel="icon" href="/style/favicon.ico">
+	<link href="<?=base_url("style/bootstrap/css/bootstrap.min.css");?>" rel="stylesheet">
+	<link href="<?=base_url("style/icons/css/all.css");?>" rel="stylesheet">
+	<link rel="icon" href="<?=base_url("style/favicon.ico");?>">
 	<meta name="theme-color" content="#7952b3">
 
 	<style>
@@ -240,6 +239,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<small class="text-muted">2020-2021 &copy; Powered by <a href="https://github.com/lumian/grcentral" target="_blank"><?=$this->config->item('site_title', 'grcentral');?></a> v.<?=$this->config->item('version', 'grcentral');?></small>
 		</footer>
 	</div>
-	<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="<?=base_url("style/bootstrap/js/bootstrap.bundle.min.js");?>"></script>
 </body>
 </html>

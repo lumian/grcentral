@@ -19,7 +19,7 @@ class Installer extends CI_Controller {
 		{
 			show_404();
 		}
-		
+		$this->check_baseurl();
 		$this->content = FALSE;
 	}
 	
@@ -278,5 +278,19 @@ class Installer extends CI_Controller {
 			}
 		}
 		return $result_text;
+	}
+	
+	private function check_baseurl()
+	{
+		if (is_https())
+		{
+			$scheme = 'https';
+		}
+		else
+		{
+			$scheme = 'http';
+		}
+		$base_url = $scheme.'://'.$_SERVER['HTTP_HOST'].'/';
+		$this->config->set_item('base_url', $base_url);
 	}
 }
