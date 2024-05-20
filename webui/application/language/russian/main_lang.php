@@ -28,6 +28,7 @@ $lang['main_btn_del']							= "Удалить";
 $lang['main_btn_login']							= "Войти";
 $lang['main_btn_logout']						= "Выйти";
 $lang['main_btn_cfg_apply']						= "Применить настройки";
+$lang['main_btn_import']						= "Импортировать";
 // Стандартные имена столбцов таблиц
 $lang['main_table_actions']						= "Действия";
 // Стандартные сообщения

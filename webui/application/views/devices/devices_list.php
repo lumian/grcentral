@@ -126,14 +126,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col">
 							<label for="ModalImportForm_CSV"><?=lang('devices_index_modalimport_csv');?></label>
 							<textarea name="csv_data" class="form-control" id="ModalImportForm_CSV" rows="10"></textarea>
-							<small id="ModalAddEditForm_ParamsHelp" class="form-text text-muted"><?=lang('devices_index_modalimport_csv_help');?></small>
+							<small id="ModalImportForm_CSVHelp" class="form-text text-muted"><?=lang('devices_index_modalimport_csv_help');?></small>
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
-				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalImportForm"><?=lang('main_btn_save');?></button>
+				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalImportForm"><?=lang('main_btn_import');?></button>
 			</div>
 		</div>
 	</div>
