@@ -187,27 +187,17 @@ class Devices extends CI_Controller {
 				
 				if ($this->settings_model->syssettings_get('monitoring_enable') == 'on')
 				{
-					$monitoring_data = $query = $this->logger_model->get_logs(array('unit_id'=>$param, 'type'=>'monitoring'));
-					$monitoring['count_ok'] = 0;
-					$monitoring['count_error'] = 0;
-					$monitoring['all'] = count($monitoring_data);
+					$monitoring['count_ok'] = $this->logger_model->get_logs(array('unit_id'=>$param, 'type'=>'monitoring', 'log_data'=> '1', 'get_total' => TRUE));
+					$monitoring['all'] = $this->logger_model->get_logs(array('unit_id'=>$param, 'type'=>'monitoring', 'get_total' => TRUE));
 					
-					if ($monitoring_data != FALSE AND is_array($monitoring_data) AND count($monitoring_data) > 0)
+					if ($monitoring['count_ok'] !== FALSE AND $monitoring['all'] !== FALSE)
 					{
-						foreach($monitoring_data as $row)
-						{
-							if ($row['log_data'] === '1')
-							{
-								++$monitoring['count_ok'];
-							}
-							else
-							{
-								++$monitoring['count_error'];
-							}
-						}
+						$device_available = round($monitoring['count_ok'] / ($monitoring['all'] / 100), 0, PHP_ROUND_HALF_UP);
 					}
-					
-					$device_available = round($monitoring['count_ok'] / ($monitoring['all'] / 100), 0, PHP_ROUND_HALF_UP);
+					else
+					{
+						$device_available = '0';
+					}
 				}
 				else
 				{

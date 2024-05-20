@@ -24,6 +24,12 @@ class Logger_model extends CI_Model {
 				$this->db->where('unit_id', $params['unit_id']);
 			}
 			
+			// Set log data
+			if (isset($params['log_data']))
+			{
+				$this->db->where('log_data', $params['log_data']);
+			}
+			
 			// Set type
 			if (isset($params['type']) AND is_string($params['type']))
 			{
