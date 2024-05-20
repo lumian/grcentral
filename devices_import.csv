@@ -1,0 +1,4 @@
+Device Status;Device Model;Device Description;Device IP Address;Device MAC Address;Acc1 status;Acc1 Name;Acc1 UserID;Acc1 AuthID;Acc1 Password;Acc1 VoipSrv1 ID;Acc1 VoipSrv2 ID;Acc2 status;Acc2 Name;Acc2 UserID;Acc2 AuthID;Acc2 Password;Acc2 VoipSrv1 ID;Acc2 VoipSrv2 ID;Acc3 status;Acc3 Name;Acc3 UserID;Acc3 AuthID;Acc3 Password;Acc3 VoipSrv1 ID;Acc3 VoipSrv2 ID;Acc4 status;Acc4 Name;Acc4 UserID;Acc4 AuthID;Acc4 Password;Acc4 VoipSrv1 ID;Acc4 VoipSrv2 ID
+1;GXP1610;PhoneTest;192.168.3.250;000b82964431;1;Secretary;100;100;testpassword;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0
+1;GXP1610;PhoneTest;192.168.3.250;000b82964432;1;Secretary;100;100;testpassword;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0
+1;GXP1610;PhoneTest;192.168.3.250;000b82964433;1;Secretary;100;100;testpassword;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0

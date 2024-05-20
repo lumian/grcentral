@@ -38,7 +38,12 @@ $lang['devices_index_table_fwversion_na']					= "N/A";
 $lang['devices_index_table_fwversionpinned_help']			= "Pinned firmware";
 // Main page: Buttons
 $lang['devices_index_btn_new']								= "New device";
+$lang['devices_index_btn_import']							= "Import devices";
 $lang['devices_index_btn_infotitle']						= "Info";
+// Главная страница: Модальное окно "Импорт устройств"
+$lang['devices_index_modalimport_title']					= "Import devices";
+$lang['devices_index_modalimport_csv']						= "CSV body";
+$lang['devices_index_modalimport_csv_help']					= "Information about devices in CSV format. <br />For more information about the data format, see the project wiki on github.";
 // Main page: A modal window "Add/Edit" device
 $lang['devices_index_modaladdedit_titleadd']				= "Creating a new device";
 $lang['devices_index_modaladdedit_titleedit']				= "Editing a device";
@@ -77,6 +82,14 @@ $lang['devices_index_flashdata_adderror']					= "The device is not created.";
 $lang['devices_index_flashdata_editsuccess']				= "The device was successfully edited.";
 $lang['devices_index_flashdata_editerror']					= "The device is not edited.";
 $lang['devices_index_flashdata_delsuccess']					= "The device was successfully deleted.";
+$lang['devices_index_flashdata_import_title_error']			= "Import error";
+$lang['devices_index_flashdata_import_1ststring_error']		= "the title bar does not match the reference one, check the template and try again.";
+$lang['devices_index_flashdata_import_1staccdis_error']		= "account №1 on the device is disabled in line";
+$lang['devices_index_flashdata_import_collectdata_error']	= "failed to collect account data for the device in line";
+$lang['devices_index_flashdata_import_model_error']			= "the device model could not be determined in the line";
+$lang['devices_index_flashdata_import_convert_error']		= "it was not possible to convert data from CSV to a data array. Check the correctness of the entered data.";
+$lang['devices_index_flashdata_import_form_error']			= "no data was received from the form.";
+$lang['devices_index_flashdata_import_success']				= "The device import was successful. Imported devices:";
 //
 // Page "Device information"
 //

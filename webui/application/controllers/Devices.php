@@ -478,6 +478,201 @@ class Devices extends CI_Controller {
 			}
 			redirect('/devices/info/'.$param);
 		}
+		elseif ($action == 'import_csv' AND is_null($param))
+		{
+			$post_data = htmlspecialchars(trim($this->input->post('csv_data')));
+			if (is_string($post_data))
+			{
+				$array_data = array_map('trim', explode("\n", $post_data));
+				
+				if (is_array($array_data) AND count($array_data) > 1)
+				{
+					$import_devices_data = FALSE;
+					
+					foreach($array_data as $str_num => $import_data)
+					{
+						if ($str_num === 0)
+						{
+							if ($import_data == 'Device Status;Device Model;Device Description;Device IP Address;Device MAC Address;Acc1 status;Acc1 Name;Acc1 UserID;Acc1 AuthID;Acc1 Password;Acc1 VoipSrv1 ID;Acc1 VoipSrv2 ID;Acc2 status;Acc2 Name;Acc2 UserID;Acc2 AuthID;Acc2 Password;Acc2 VoipSrv1 ID;Acc2 VoipSrv2 ID;Acc3 status;Acc3 Name;Acc3 UserID;Acc3 AuthID;Acc3 Password;Acc3 VoipSrv1 ID;Acc3 VoipSrv2 ID;Acc4 status;Acc4 Name;Acc4 UserID;Acc4 AuthID;Acc4 Password;Acc4 VoipSrv1 ID;Acc4 VoipSrv2 ID')
+							{
+								continue;
+							}
+							else
+							{
+								$error_array[] = lang("devices_index_flashdata_import_1ststring_error");
+								break;
+							}
+						}
+						else
+						{
+							$import_array = str_getcsv($import_data,';');
+							
+							// 0 Device Status
+							// 1 Device Model
+							// 2 Device Description
+							// 3 Device IP Address
+							// 4 Device MAC Address
+							// 5 Acc1 status
+							// 6 Acc1 Name
+							// 7 Acc1 UserID
+							// 8 Acc1 AuthID
+							// 9 Acc1 Password
+							// 10 Acc1 VoipSrv1 ID
+							// 11 Acc1 VoipSrv2 ID
+							// 12 Acc2 status
+							// 13 Acc2 Name
+							// 14 Acc2 UserID
+							// 15 Acc2 AuthID
+							// 16 Acc2 Password
+							// 17 Acc2 VoipSrv1 ID
+							// 18 Acc2 VoipSrv2 ID
+							// 19 Acc3 status
+							// 20 Acc3 Name
+							// 21 Acc3 UserID
+							// 22 Acc3 AuthID
+							// 23 Acc3 Password
+							// 24 Acc3 VoipSrv1 ID
+							// 25 Acc3 VoipSrv2 ID
+							// 26 Acc4 status
+							// 27 Acc4 Name
+							// 28 Acc4 UserID
+							// 29 Acc4 AuthID
+							// 30 Acc4 Password
+							// 31 Acc4 VoipSrv1 ID
+							// 32 Acc4 VoipSrv2 ID
+							
+							$model_info = $this->settings_model->models_get(array('tech_name' => $import_array[1]));
+							
+							if ($model_info != FALSE AND is_array($model_info))
+							{
+								if ($import_array[5] === '1')
+								{
+									$accounts_data['1'] = array(
+										'active'		=> $import_array[5],
+										'name'			=> $import_array[6],
+										'voipsrv1'		=> $import_array[10],
+										'voipsrv2'		=> $import_array[11],
+										'userid'		=> $import_array[7],
+										'authid'		=> $import_array[8],
+										'password'		=> $import_array[9],
+									);
+								}
+								else
+								{
+									$error_array[] = lang("devices_index_flashdata_import_1staccdis_error").' '.$str_num;
+									break;
+								}
+								if ($import_array[12] === '1')
+								{
+									$accounts_data['2'] = array(
+										'active'		=> $import_array[12],
+										'name'			=> $import_array[13],
+										'voipsrv1'		=> $import_array[17],
+										'voipsrv2'		=> $import_array[18],
+										'userid'		=> $import_array[14],
+										'authid'		=> $import_array[15],
+										'password'		=> $import_array[16],
+									);
+								}
+								if ($import_array[19] === '1')
+								{
+									$accounts_data['3'] = array(
+										'active'		=> $import_array[19],
+										'name'			=> $import_array[20],
+										'voipsrv1'		=> $import_array[24],
+										'voipsrv2'		=> $import_array[25],
+										'userid'		=> $import_array[21],
+										'authid'		=> $import_array[22],
+										'password'		=> $import_array[23],
+									);
+								}
+								if ($import_array[26] === '1')
+								{
+									$accounts_data['4'] = array(
+										'active'		=> $import_array[26],
+										'name'			=> $import_array[27],
+										'voipsrv1'		=> $import_array[31],
+										'voipsrv2'		=> $import_array[32],
+										'userid'		=> $import_array[28],
+										'authid'		=> $import_array[29],
+										'password'		=> $import_array[30],
+									);
+								}
+								
+								if (isset($accounts_data) AND is_array($accounts_data))
+								{
+									$accounts_json = json_encode($accounts_data);
+									
+									$import_devices_data[] = array(
+										'mac_addr'			=> $import_array[4],
+										'ip_addr'			=> $import_array[3],
+										'model_id'			=> $model_info['id'],
+										'status_active'		=> $import_array[0],
+										'descr'				=> $import_array[2],
+										'accounts_data'		=> $accounts_json,
+									);
+								}
+								else
+								{
+									$error_array[] = lang("devices_index_flashdata_import_collectdata_error").' '.$str_num;
+									break;
+								}
+							}
+							else
+							{
+								$error_array[] = lang("devices_index_flashdata_import_model_error").' '.$str_num.' ('.$import_array[1].').';
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					$error_array[] = lang("devices_index_flashdata_import_convert_error");
+				}
+			}
+			else
+			{
+				$error_array[] = lang("devices_index_flashdata_import_form_error");
+			}
+			
+			if (isset($error_array) AND is_array($error_array))
+			{
+				$error_text = '<strong>'.lang("devices_index_flashdata_import_title_error").'</strong><ul>';
+				foreach($error_array as $error)
+				{
+					$error_text .= '<li>'.$error.'</li>';
+				}
+				$error_text .= '</ul>';
+				$this->session->set_flashdata('error_result', $error_text);
+			}
+			
+			if (isset($import_devices_data) AND is_array($import_devices_data))
+			{
+				foreach($import_devices_data as $device)
+				{
+					$device_info = array(
+						'mac_addr'			=> $device['mac_addr'],
+						'ip_addr'			=> $device['ip_addr'],
+						'model_id'			=> $device['model_id'],
+						'status_active'		=> $device['status_active'],
+						'descr'				=> $device['descr'],
+					);
+					$device_id = $this->devices_model->add($device_info);
+					
+					$acc_info['accounts_data'] = $device['accounts_data'];
+					
+					if ($device_id != FALSE)
+					{
+						$this->devices_model->edit_accounts($device_id, $acc_info);
+					}
+				}
+				
+				$this->grcentral->set_cfg_need_apply();
+				$this->session->set_flashdata('success_result', lang('devices_index_flashdata_import_success').' '.count($import_devices_data));
+			}
+			redirect('/devices/');
+		}
 		else
 		{
 			show_404(current_url());

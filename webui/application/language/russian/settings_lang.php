@@ -180,6 +180,7 @@ $lang['settings_servers_description_text']					= "В данном разделе
 // Страница "Серверы": Кнопки
 $lang['settings_servers_btn_new']							= "Новый сервер";
 // Страница "Серверы": Таблица
+$lang['settings_servers_table_id']							= "ИД";
 $lang['settings_servers_table_name']						= "Имя сервера";
 $lang['settings_servers_table_description']					= "Описание";
 $lang['settings_servers_table_server']						= "Сервер";

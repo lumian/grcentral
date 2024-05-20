@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <table class="table table-hover table-bordered table-sm mt-2">
 	<thead>
+		<th><?=lang('settings_servers_table_id');?></th>
 		<th><?=lang('settings_servers_table_name');?></th>
 		<th><?=lang('settings_servers_table_description');?></th>
 		<th><?=lang('settings_servers_table_server');?></th>
@@ -35,6 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? if ($servers_list != FALSE): ?>
 		<? foreach($servers_list as $server): ?>
 		<tr>
+			<td><?=$server['id'];?></td>
 			<td><?=$server['name'];?></td>
 			<td><?=$server['description'];?></td>
 			<td><?=$server['server'];?></td>

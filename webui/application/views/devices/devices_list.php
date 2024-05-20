@@ -11,9 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="btn-group btn-group-sm mt-2" role="group">
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('devices_index_btn_new');?></button>
+	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalImport"><i class="fa fa-file-import"></i> <?=lang('devices_index_btn_import');?></button>
 	<a href="<?=lang('main_helpurl_devices');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
-
 
 <? if ($this->session->flashdata('success_result')): ?>
 	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
@@ -111,5 +111,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<? endif; ?>
 	</tbody>
 </table>
+
+<!-- ModalImport -->
+<div class="modal fade" id="ModalImport" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalImportLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalImportLabel"><?=lang('devices_index_modalimport_title');?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="ModalImportForm" method="post" action="<?=site_url('devices/actions/import_csv');?>">
+					<div class="row">
+						<div class="col">
+							<label for="ModalImportForm_CSV"><?=lang('devices_index_modalimport_csv');?></label>
+							<textarea name="csv_data" class="form-control" id="ModalImportForm_CSV" rows="10"></textarea>
+							<small id="ModalAddEditForm_ParamsHelp" class="form-text text-muted"><?=lang('devices_index_modalimport_csv_help');?></small>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><?=lang('main_btn_cancel');?></button>
+				<button type="submit" class="btn btn-outline-success btn-sm" form="ModalImportForm"><?=lang('main_btn_save');?></button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <?=$this->load->view('devices/devices_actions', NULL, TRUE); ?>

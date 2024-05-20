@@ -180,6 +180,7 @@ $lang['settings_servers_description_text']					= "This section configures the Vo
 // Page "VoIP Servers": Buttons
 $lang['settings_servers_btn_new']							= "New server";
 // Page "VoIP Servers": Table
+$lang['settings_servers_table_id']							= "ID";
 $lang['settings_servers_table_name']						= "Server name";
 $lang['settings_servers_table_description']					= "Description";
 $lang['settings_servers_table_server']						= "Server address";
