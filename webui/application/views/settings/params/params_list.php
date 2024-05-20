@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <? if ($this->settings_model->syssettings_get('hide_help_header_msg') != 'on'): ?>
-<div class="card mt-2">
+<div class="card mt-2 shadow-sm">
   <div class="card-body">
     <?=lang('settings_params_description_text');?>
   </div>
@@ -16,11 +16,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <? if ($this->session->flashdata('success_result')): ?>
-<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
+<div class="alert alert-success mt-2 shadow-sm" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
 
 <? if ($this->session->flashdata('error_result')): ?>
-<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
+<div class="alert alert-danger mt-2 shadow-sm" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
 <table class="table table-hover table-bordered table-sm mt-2">

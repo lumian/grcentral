@@ -1,16 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
-<div class="card mt-2">
+<? if ($this->settings_model->syssettings_get('hide_help_header_msg') != 'on'): ?>
+<div class="card mt-2 shadow-sm">
 	<div class="card-body">
 		<?=lang('settings_index_text');?>
 	</div>
 </div>
+<?endif;?>
 
 <div class="row">
 	<div class="col-8">
-		<div class="card mt-2">
+		<div class="card mt-2 shadow-sm">
 			<div class="card-header">
 				<?=lang('settings_index_service_state');?>
 			</div>
@@ -41,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 	<div class="col-4">
-		<div class="card mt-2">
+		<div class="card mt-2 shadow-sm">
 			<div class="card-header">
 				<?=lang('settings_index_update_title');?>
 			</div>
