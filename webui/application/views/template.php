@@ -10,10 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<title><?=$title;?></title>
 
-	<link href="/style/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link href="/style/icons/css/all.css" rel="stylesheet">
+	<link href="<?=base_url('style/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
+	<link href="<?=base_url('style/icons/css/all.css');?>" rel="stylesheet">
 
-	<link rel="icon" href="/style/favicon.ico">
+	<link rel="icon" href="<?=base_url('style/favicon.ico');?>">
 	<meta name="theme-color" content="#7952b3">
 
 	<style>
@@ -33,15 +33,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 	
 	<!-- Custom styles for this template -->
-	<link href="/style/style.css" rel="stylesheet">
-	<script src="/style/bootstrap/js/jquery-3.6.0.min.js"></script>
-	<script src="/style/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<link href="<?=base_url('style/style.css');?>" rel="stylesheet">
+	<script src="<?=base_url('style/bootstrap/js/jquery-3.6.0.min.js');?>"></script>
+	<script src="<?=base_url('style/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-6">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/"><?=$this->config->item('site_title', 'grcentral');?></a>
+			<a class="navbar-brand" href="<?=site_url();?>"><?=$this->config->item('site_title', 'grcentral');?></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<? if ($this->grcentral->check_cfg_need_apply()):?>
 						<button type="button" class="btn btn-warning my-2 my-sm-0" data-bs-toggle="modal" data-bs-target="#ModalNeedApply"><i class="fa fa-exclamation-circle"></i> <?=lang('main_btn_cfg_apply');?></button>
 					<? endif; ?>
-					<a href="/auth/logout" type="button" class="btn btn-danger my-2 mx-2 my-sm-0" ><i class="fa fa-sign-out-alt"></i> <?=lang('main_btn_logout');?></a>
+					<a href="<?=site_url('auth/logout');?>" type="button" class="btn btn-danger my-2 mx-2 my-sm-0" ><i class="fa fa-sign-out-alt"></i> <?=lang('main_btn_logout');?></a>
 				<? endif; ?>
 			</div>
 		</div>
