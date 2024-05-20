@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<div class="mb-5 mt-4">
 				<hr>
-				<a href="/installer/step/1" class="btn btn-success btn-lg px-4">Start <i class="fa fa-angle-double-right"></i></a>
+				<a href="<?=site_url('installer/step/1');?>" class="btn btn-success btn-lg px-4">Start <i class="fa fa-angle-double-right"></i></a>
 			</div>
 			
 		<? elseif ($step == '1'): ?>
@@ -81,9 +81,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<div class="mb-5 mt-4">
 				<hr>
-				<a href="/installer/" class="btn btn-secondary btn-lg px-4"><i class="fa fa-angle-double-left"></i> Previous</a>
-				<? if (!$content['status_ok']): ?><a href="/installer/step/1" class="btn btn-warning btn-lg px-4"><i class="fa fa-sync"></i> Restart check</a><? endif; ?>
-				<a href="/installer/step/2" class="btn btn-success btn-lg px-4<? if (!$content['status_ok']): ?> disabled<? endif; ?>">Next <i class="fa fa-angle-double-right"></i></a>
+				<a href="<?=site_url('installer');?>" class="btn btn-secondary btn-lg px-4"><i class="fa fa-angle-double-left"></i> Previous</a>
+				<? if (!$content['status_ok']): ?><a href="<?=site_url('installer/step/1');?>" class="btn btn-warning btn-lg px-4"><i class="fa fa-sync"></i> Restart check</a><? endif; ?>
+				<a href="<?=site_url('installer/step/2');?>" class="btn btn-success btn-lg px-4<? if (!$content['status_ok']): ?> disabled<? endif; ?>">Next <i class="fa fa-angle-double-right"></i></a>
 			</div>
 			
 		<? elseif ($step == '2'): ?>
@@ -92,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<p class="fs-5 col-md-8">Fill in all the fields in the form below. Some fields were filled in automatically based on the current configuration files or environment variables.<br /><i>All fields are required to be filled in.</i></p>
 			
-			<form id="Settings" method="post" action="/installer/step/2">
+			<form id="Settings" method="post" action="<?=site_url('installer/step/2');?>">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card">
@@ -208,8 +208,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<div class="mb-5 mt-4">
 				<hr>
-				<a href="/installer/step/1" class="btn btn-secondary btn-lg px-4"><i class="fa fa-angle-double-left"></i> Previous</a>
-				<a href="/installer/step/3" class="btn btn-success btn-lg px-4<? if (!$content['status_ok']): ?> disabled<? endif; ?>">Next <i class="fa fa-angle-double-right"></i></a>
+				<a href="<?=site_url('installer/step/1');?>" class="btn btn-secondary btn-lg px-4"><i class="fa fa-angle-double-left"></i> Previous</a>
+				<a href="<?=site_url('installer/step/3');?>" class="btn btn-success btn-lg px-4<? if (!$content['status_ok']): ?> disabled<? endif; ?>">Next <i class="fa fa-angle-double-right"></i></a>
 			</div>
 		
 		<? elseif ($step == '3'): ?>
@@ -219,7 +219,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<div class="mb-5 mt-4 ">
 				<hr>
-				<a href="/" class="btn btn-success btn-lg px-4">Go to the web interface <i class="fa fa-angle-double-right"></i></a>
+				<a href="<?=site_url();?>" class="btn btn-success btn-lg px-4">Go to the web interface <i class="fa fa-angle-double-right"></i></a>
 			</div>
 		
 		<? else:?>
@@ -229,7 +229,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<div class="mb-5 mt-4 ">
 				<hr>
-				<a href="/installer/" class="btn btn-secondary btn-lg px-4"><i class="fa fa-angle-double-left"></i> Go to insaller start page</a>
+				<a href="<?=site_url('installer');?>" class="btn btn-secondary btn-lg px-4"><i class="fa fa-angle-double-left"></i> Go to insaller start page</a>
 			</div>
 			
 		<? endif;?>
