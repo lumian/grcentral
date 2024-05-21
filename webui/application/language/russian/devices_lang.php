@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	Description:	Language file for "Devices" controller.
 	Laguage:		Russian
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -19,7 +19,7 @@ $lang['devices_tabs_title_info']							= "Информация об устрой
 //
 // Главная страница
 //
-$lang['devices_index_description_text']						= "В данном разделе осуществляется управление устройствами. Управление SIP аккаунтами производится по кнопке \"Инфо\".<br />Примечание: Отключенные устройства не получают настроек/прошивок от сервера.";
+$lang['devices_index_description_text']						= "В данном разделе осуществляется управление устройствами. Управление SIP аккаунтами производится по кнопке \"Инфо\".<br />Примечание: Отключенные устройства не получают настроек/прошивок от сервера.<br />Для использования, сначала добавьте модели устройств в разделе <a href='".site_url('settings/models')."'>Настройки -> Модели</a>.";
 // Главная страница: Таблица
 $lang['devices_index_table_descr']							= "Описание";
 $lang['devices_index_table_macaddr']						= "MAC адрес";

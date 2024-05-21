@@ -10,8 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif; ?>
 
 <div class="btn-group btn-group-sm mt-2" role="group">
+	<? if ($models_list != FALSE): ?>
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('devices_index_btn_new');?></button>
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalImport"><i class="fa fa-file-import"></i> <?=lang('devices_index_btn_import');?></button>
+	<? endif; ?>
 	<a href="<?=lang('main_helpurl_devices');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
 
