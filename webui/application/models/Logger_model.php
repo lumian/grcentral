@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\models\Logger_model.php
 	Description:	Database queries for logging
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 

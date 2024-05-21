@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\controllers\Provisioning.php
 	Description:	Processing requests from the devices. Returns configs and firmware.
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
