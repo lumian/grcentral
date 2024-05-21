@@ -107,6 +107,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 								<div class="row mt-2">
+									<label for="system_path" class="col-sm-3 col-form-label">URL Path</label>
+									<div class="col-sm-9">
+										<input type="text" name="system_path" class="form-control" id="system_path" value="<?=$content['post_data']['system_path'];?>" required>
+									</div>
+								</div>
+								<div class="row mt-2">
 									<label for="system_language" class="col-sm-3 col-form-label">Language</label>
 									<div class="col-sm-9">
 										<select name="system_language" class="form-select" id="system_language" required>
@@ -154,10 +160,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								Database settings
 							</div>
 							<div class="card-body">
-								<div class="row">
+								<div class="row ">
+									<label for="database_dbdriver" class="col-sm-3 col-form-label">Type</label>
+									<div class="col-sm-9">
+										<select name="database_dbdriver" class="form-select" id="database_dbdriver" required>
+											<option value="mysqli"<? if ($content['post_data']['database_dbdriver'] == 'mysqli'): ?> selected<? endif;?>>MySQL / MariaDB</option>
+											<option value="postgre"<? if ($content['post_data']['database_dbdriver'] == 'postgre'): ?> selected<? endif;?>>Postgre</option>
+										</select>
+									</div>
+								</div>
+								<div class="row mt-2">
 									<label for="database_hostname" class="col-sm-3 col-form-label">Hostname</label>
 									<div class="col-sm-9">
 										<input type="text" name="database_hostname" class="form-control" id="database_hostname" value="<?=$content['post_data']['database_hostname'];?>" required>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<label for="database_port" class="col-sm-3 col-form-label">Port</label>
+									<div class="col-sm-9">
+										<input type="text" name="database_port" class="form-control" id="database_port" value="<?=$content['post_data']['database_port'];?>" required>
 									</div>
 								</div>
 								<div class="row mt-2">

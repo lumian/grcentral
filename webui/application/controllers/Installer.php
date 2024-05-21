@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\controllers\Installer.php
 	Description:	Installer
 	
-	2020-2021 (c) Copyright GRCentral
+	2021-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -97,11 +97,14 @@ class Installer extends CI_Controller {
 			
 			// System settings
 			$default_value['system_domain']			= $this->input->server('HTTP_HOST', TRUE);
+			$default_value['system_path']			= $this->grcentral->get_system_path();
 			$default_value['system_language']		= $this->config->item('language');
 			$default_value['system_keep_logs']		= $this->config->item('keep_logs', 'cron');
 			
 			// Database settings
+			$default_value['database_dbdriver']		= 'mysqli';
 			$default_value['database_hostname']		= 'localhost';
+			$default_value['database_port']			= '3306';
 			$default_value['database_username']		= 'root';
 			$default_value['database_password']		= '';
 			$default_value['database_name']			= 'grcentral';
@@ -140,8 +143,9 @@ class Installer extends CI_Controller {
 					// Config main replace:
 					$config_main_array = file($check_files['config_main']);
 					$config_main_replace = array(
-						'base_url'			=> 'http://'.$input_settings['system_domain'].'/',
+						'base_url'			=> $this->grcentral->get_system_protocol().'://'.$input_settings['system_domain'].$input_settings['system_path'],
 						'cookie_domain'		=> $input_settings['system_domain'],
+						'cookie_path'		=> $input_settings['system_path'],
 						'language'			=> $input_settings['system_language']
 					);
 					
@@ -162,31 +166,48 @@ class Installer extends CI_Controller {
 					// Config database replace:
 					$config_database_array = file($check_files['config_database']);
 					$config_database_replace = array(
+						'dbdriver'			=> $input_settings['database_dbdriver'],
 						'hostname'			=> $input_settings['database_hostname'],
+						'port'				=> $input_settings['database_port'],
 						'username'			=> $input_settings['database_username'],
 						'password'			=> $input_settings['database_password'],
 						'database'			=> $input_settings['database_name']
 					);
 					
-					$connect_mysql = @mysqli_connect($input_settings['database_hostname'], $input_settings['database_username'], $input_settings['database_password'], $input_settings['database_name']);
+					$connect_db = FALSE;
+					$status_db_ok = FALSE;
+					$status_ok = FALSE;
 					
-					if ($connect_mysql === FALSE)
+					if ($input_settings['database_dbdriver'] == 'mysqli')
 					{
-						$status_db_ok = FALSE;
-						$status_ok = FALSE;
+						$connect_db = @mysqli_connect($input_settings['database_hostname'], $input_settings['database_username'], $input_settings['database_password'], $input_settings['database_name']);
 					}
-					else
+					elseif ($input_settings['database_dbdriver'] == 'postgre')
+					{
+						$connect_db = @pg_connect('host='.$input_settings['database_hostname'].' port='.$input_settings['database_port'].' dbname='.$input_settings['database_name'].' user='.$input_settings['database_username'].' password='.$input_settings['database_password']);
+					}
+					
+					if ($connect_db !== FALSE)
 					{
 						$config_database_result = $this->config_strings_replace($config_database_array, $config_database_replace, '=>');
 						$config_database_put = file_put_contents($check_files['config_database'], $config_database_result);
 						
-						// Fill database:
-						$db_dump = file_get_contents('./storage/installer/mysql_install.sql');
-						mysqli_multi_query($connect_mysql, $db_dump);
-						mysqli_close($connect_mysql);
-						
-						$status_db_ok = TRUE;
-						$status_ok = TRUE;
+						if ($input_settings['database_dbdriver'] == 'mysqli')
+						{
+							$db_dump = file_get_contents('./storage/installer/mysql_install.sql');
+							mysqli_multi_query($connect_db, $db_dump);
+							mysqli_close($connect_db);
+							$status_db_ok = TRUE;
+							$status_ok = TRUE;
+						}
+						elseif ($input_settings['database_dbdriver'] == 'postgre')
+						{
+							$db_dump = file_get_contents('./storage/installer/postgre_install.sql');
+							pg_query($connect_db, $db_dump);
+							pg_close($connect_db);
+							$status_db_ok = TRUE;
+							$status_ok = TRUE;
+						}
 					}
 				}
 				else

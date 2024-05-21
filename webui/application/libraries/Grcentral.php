@@ -188,6 +188,21 @@ class Grcentral {
 	
 	public function correct_baseurl()
 	{
+		$scheme = $this->get_system_protocol();
+		$system_path = $this->get_system_path();
+		$base_url = $scheme.'://'.$_SERVER['HTTP_HOST'].$system_path;
+		$this->CI->config->set_item('base_url', $base_url);
+	}
+	
+	public function get_system_path()
+	{
+		$script_name = $this->CI->input->server('SCRIPT_NAME');
+		$system_path = mb_substr($script_name,0,mb_stripos($script_name,'index.php'));
+		return $system_path;
+	}
+	
+	public function get_system_protocol()
+	{
 		if (is_https())
 		{
 			$scheme = 'https';
@@ -196,9 +211,6 @@ class Grcentral {
 		{
 			$scheme = 'http';
 		}
-		$script_name = $this->CI->input->server('SCRIPT_NAME');
-		$request_url = mb_substr($script_name,0,mb_stripos($script_name,'index.php'));
-		$base_url = $scheme.'://'.$_SERVER['HTTP_HOST'].$request_url;
-		$this->CI->config->set_item('base_url', $base_url);
+		return $scheme;
 	}
 }
