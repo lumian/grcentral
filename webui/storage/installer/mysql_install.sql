@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- Хост:                         127.0.0.1
--- Версия сервера:               10.5.12-MariaDB-0+deb11u1 - Debian 11
--- Операционная система:         debian-linux-gnu
--- HeidiSQL Версия:              11.3.0.6365
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -14,20 +7,14 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Дамп структуры для таблица grcentral_demo_v03.ci_sessions
-DROP TABLE IF EXISTS `ci_sessions`;
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
   `id` varchar(128) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `timestamp` int(10) unsigned NOT NULL DEFAULT 0,
   `data` blob NOT NULL,
   KEY `ci_sessions_timestamp` (`timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.devices_data
-DROP TABLE IF EXISTS `devices_data`;
 CREATE TABLE IF NOT EXISTS `devices_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mac_addr` varchar(12) DEFAULT NULL,
@@ -46,12 +33,8 @@ CREATE TABLE IF NOT EXISTS `devices_data` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `mac_addr` (`mac_addr`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.logs_data
-DROP TABLE IF EXISTS `logs_data`;
 CREATE TABLE IF NOT EXISTS `logs_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) DEFAULT NULL,
@@ -59,12 +42,8 @@ CREATE TABLE IF NOT EXISTS `logs_data` (
   `datetime` datetime DEFAULT NULL,
   `unit_id` int(11) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.phonebook_data
-DROP TABLE IF EXISTS `phonebook_data`;
 CREATE TABLE IF NOT EXISTS `phonebook_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) DEFAULT NULL,
@@ -74,12 +53,8 @@ CREATE TABLE IF NOT EXISTS `phonebook_data` (
   `external_id` varchar(50) DEFAULT NULL,
   `status` int(5) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.settings_fw
-DROP TABLE IF EXISTS `settings_fw`;
 CREATE TABLE IF NOT EXISTS `settings_fw` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(50) DEFAULT NULL,
@@ -89,12 +64,8 @@ CREATE TABLE IF NOT EXISTS `settings_fw` (
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.settings_models
-DROP TABLE IF EXISTS `settings_models`;
 CREATE TABLE IF NOT EXISTS `settings_models` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tech_name` varchar(100) DEFAULT NULL,
@@ -103,12 +74,8 @@ CREATE TABLE IF NOT EXISTS `settings_models` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `tech_name` (`tech_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.settings_models_group
-DROP TABLE IF EXISTS `settings_models_group`;
 CREATE TABLE IF NOT EXISTS `settings_models_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
@@ -125,12 +92,8 @@ CREATE TABLE IF NOT EXISTS `settings_models_group` (
   `params_conf_voicemail` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.settings_params
-DROP TABLE IF EXISTS `settings_params`;
 CREATE TABLE IF NOT EXISTS `settings_params` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
@@ -139,12 +102,8 @@ CREATE TABLE IF NOT EXISTS `settings_params` (
   `params_json_data` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.settings_servers
-DROP TABLE IF EXISTS `settings_servers`;
 CREATE TABLE IF NOT EXISTS `settings_servers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) DEFAULT NULL,
@@ -153,19 +112,13 @@ CREATE TABLE IF NOT EXISTS `settings_servers` (
   `voicemail_number` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Экспортируемые данные не выделены.
-
--- Дамп структуры для таблица grcentral_demo_v03.settings_system
-DROP TABLE IF EXISTS `settings_system`;
 CREATE TABLE IF NOT EXISTS `settings_system` (
   `key` varchar(250) DEFAULT NULL,
   `value` varchar(250) DEFAULT NULL,
   UNIQUE KEY `variable` (`key`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Экспортируемые данные не выделены.
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
