@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	Description:	API for GRCentral.
 	API version:	v1
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -111,7 +111,7 @@ class Api extends CI_Controller {
 				// RU: Получение информации о моделях устройств
 				if (!is_null($param1) AND $param1 != FALSE AND !is_null($param2) AND $param2 != FALSE)
 				{
-					$query_result = $this->v1_device_models_get($param1, $param2);
+					$query_result = $this->_v1_device_models_get($param1, $param2);
 				}
 			}
 		}
@@ -288,7 +288,7 @@ class Api extends CI_Controller {
 		return $result;
 	}
 	
-	private function v1_device_models_get($type=NULL, $subtype=NULL)
+	private function _v1_device_models_get($type=NULL, $subtype=NULL)
 	{
 		$this->load->model('settings_model');
 		

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\libraries\Grcentral.php
 	Description:	Small but necessary functions that are used in different system controllers.
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -161,7 +161,7 @@ class Grcentral {
 	
 	public function installed_check($action = 'redirect')
 	{
-		if ($this->CI->config->item('system_installed') != TRUE)
+		if ($this->CI->config->item('system_installed') !== TRUE)
 		{
 			$this->correct_baseurl();
 			
@@ -188,9 +188,10 @@ class Grcentral {
 	
 	public function correct_baseurl()
 	{
+		$hostname = $this->CI->input->server('HTTP_HOST');
 		$scheme = $this->get_system_protocol();
 		$system_path = $this->get_system_path();
-		$base_url = $scheme.'://'.$_SERVER['HTTP_HOST'].$system_path;
+		$base_url = $scheme.'://'.$hostname.$system_path;
 		$this->CI->config->set_item('base_url', $base_url);
 	}
 	

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\controllers\Auth.php
 	Description:	Controller for user authorization
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -30,7 +30,7 @@ class Auth extends CI_Controller {
 		
 		if ($is_user == TRUE) 
 		{
-			$this->_back_redirect();
+			redirect(index_page());
 		}
 		
 		if (!is_null($this->input->post('login')) AND !is_null($this->input->post('password')))
@@ -47,7 +47,7 @@ class Auth extends CI_Controller {
 				$this->session->set_flashdata('error_result', lang('main_message_autherror'));
 			}
 			
-			$this->_back_redirect();
+			redirect(index_page());
 		}
 		else
 		{
@@ -59,19 +59,7 @@ class Auth extends CI_Controller {
 	{
 		$this->session->unset_userdata('logged_in');
 		$this->session->set_flashdata('success_result', lang('main_message_authlogout'));
-		$this->_back_redirect();
-	}
-	
-	private function _back_redirect()
-	{
-		if (isset($_SERVER["HTTP_REFERER"]) AND mb_stripos($_SERVER["HTTP_REFERER"],base_url()) == '0')
-		{
-			redirect($_SERVER["HTTP_REFERER"]);
-		}
-		else
-		{
-			redirect(index_page());
-		}
+		redirect(index_page());
 	}
 	
 	private function _check_credentials($login=NULL, $password=NULL)
