@@ -163,9 +163,11 @@ class Grcentral {
 	{
 		if ($this->CI->config->item('system_installed') != TRUE)
 		{
+			$this->correct_baseurl();
+			
 			if ($action == 'redirect')
 			{
-				redirect('/installer/', 'refresh');
+				redirect(site_url('installer'), 'refresh');
 			}
 			elseif ($action == '404')
 			{
@@ -182,5 +184,21 @@ class Grcentral {
 			$this->CI->load->library('session');
 			$this->CI->load->database();
 		}
+	}
+	
+	public function correct_baseurl()
+	{
+		if (is_https())
+		{
+			$scheme = 'https';
+		}
+		else
+		{
+			$scheme = 'http';
+		}
+		$script_name = $this->CI->input->server('SCRIPT_NAME');
+		$request_url = mb_substr($script_name,0,mb_stripos($script_name,'index.php'));
+		$base_url = $scheme.'://'.$_SERVER['HTTP_HOST'].$request_url;
+		$this->CI->config->set_item('base_url', $base_url);
 	}
 }
