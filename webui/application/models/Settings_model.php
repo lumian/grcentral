@@ -340,10 +340,6 @@ class Settings_model extends CI_Model {
 	function params_getlist($params=NULL)
 	{
 		$this->db->select('*')->from('settings_params')->order_by('name', 'ASC');
-		if (!is_null($params) AND isset($params['parent_id']) AND is_numeric($params['parent_id']))
-		{
-			$this->db->where('parent_id', $params['parent_id']);
-		}
 		$result_query = $this->db->get()->result_array();
 		if (count($result_query) > 0)
 		{

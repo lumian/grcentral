@@ -42,6 +42,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<i class="fa fa-cogs"></i> <?=lang('settings_tabs_title_syssettings');?>
 					</a>
 				</li>
+				<li class="nav-item">
+					<? if ($current_tab == 'importexport'): ?><a class="nav-link active" href=""><?else:?>
+					<a class="nav-link" href="<?=site_url('settings/importexport');?>"><?endif;?>
+						<i class="fa fa-file-import"></i> <?=lang('settings_tabs_title_importexport');?>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>

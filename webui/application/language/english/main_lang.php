@@ -29,6 +29,7 @@ $lang['main_btn_login']							= "Login";
 $lang['main_btn_logout']						= "Logout";
 $lang['main_btn_cfg_apply']						= "Apply the settings.";
 $lang['main_btn_import']						= "Import";
+$lang['main_btn_export']						= "Export";
 // The standard column names of tables
 $lang['main_table_actions']						= "Actions";
 // Standard message

@@ -18,6 +18,7 @@ $lang['settings_tabs_title_fw']								= "Firmware";
 $lang['settings_tabs_title_params']							= "Parameters";
 $lang['settings_tabs_title_servers']						= "VoIP servers";
 $lang['settings_tabs_title_syssettings']					= "System";
+$lang['settings_tabs_title_importexport']					= "Import/Export";
 //
 // Main page
 //
@@ -251,3 +252,29 @@ $lang['settings_syssettings_btn_reset_settings']			= "Reset settings";
 // Page "System settings": Modal window "Reset settings"
 $lang['settings_syssettings_modal_reset_title']				= "Reset settings to \"Default\" mode";
 $lang['settings_syssettings_modal_reset_confirm']			= "Confirm the reset. All system settings will be reset to \"Default\" mode.";
+//
+// Page: "Import/Export"
+//
+$lang['settings_importexport_pagetitle']					= "Importing/Exporting settings";
+$lang['settings_importexport_description_text']				= "In this section, you can import or export GRCentral system settings.";
+$lang['settings_importexport_models_title']					= "Models / Groups of models";
+$lang['settings_importexport_models_descr']					= "Import/Export settings of models and groups of device models.";
+$lang['settings_importexport_models_export_title']			= "Export";
+$lang['settings_importexport_models_export_descr']			= "Exporting models and groups of models already configured in the system.<br />Share this file with the community at <a href='https://github.com/lumian/grcentral/discussions 'target='_blank'>Github</a>.<br />The upload takes place in JSON format.";
+$lang['settings_importexport_models_import_title']			= "Import";
+$lang['settings_importexport_models_import_descr']			= "Models and groups of models are imported into the system from ready-made templates or received from another GRCentral server.<br />The download takes place in JSON format.";
+// Page "Import/Export": Modal window "Models import"
+$lang['settings_importexport_modal_importmodel_title']		= "Importing models and model groups";
+$lang['settings_importexport_modal_importmodel_json']		= "JSON data";
+$lang['settings_importexport_modal_importmodel_json_descr']	= "Insert JSON data into this field to import information about models and groups of device models.";
+// Page "Import/Export": Messages
+$lang['settings_importexport_flashdata_error_dataformatgroup']	= "Data format error (incorrect information about the device group). Please check the correctness of the data and try again.";
+$lang['settings_importexport_flashdata_error_dataformatmodel']	= "Data format error (incorrect information about models in the device group). Please check the correctness of the data and try again.";
+$lang['settings_importexport_flashdata_error_dbparams']		= "DB error. Failed to create a parameter template";
+$lang['settings_importexport_flashdata_error_dbgroups']		= "DB error. Failed to create a device group";
+$lang['settings_importexport_flashdata_error_dbmodel']		= "DB error. Failed to create a device model";
+$lang['settings_importexport_flashdata_error_jsonformat']	= "JSON format error. Please check the correctness of the data and try again.";
+$lang['settings_importexport_flashdata_success']			= "The import was completed successfully. <br />Import results:";
+$lang['settings_importexport_flashdata_result_addparams']	= "Added parameter templates";
+$lang['settings_importexport_flashdata_result_addgroups']	= "Device groups added";
+$lang['settings_importexport_flashdata_result_addmodels']	= "Added device models";

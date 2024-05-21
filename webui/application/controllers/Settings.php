@@ -1002,4 +1002,255 @@ class Settings extends CI_Controller {
 		$this->content = $this->load->view('settings/syssettings/syssettings_list', $page_data, TRUE);
 		$this->_RenderPage();
 	}
+	
+	// Import/Export
+	public function importexport($action=NULL, $param=NULL)
+	{
+		if (!is_null($action) AND $action == 'export_models')
+		{
+			$model_groups_list = $this->settings_model->models_group_getlist();
+			if ($model_groups_list != FALSE AND is_array($model_groups_list))
+			{
+				$count = 0;
+				foreach($model_groups_list as $group)
+				{
+					$export_data[$count]['group_info'] = array(
+						'name'						=> $group['name'],
+						'params_conf_acc_atatus'	=> $group['params_conf_acc_atatus'],
+						'params_conf_acc_name'		=> $group['params_conf_acc_name'],
+						'params_conf_srv_main'		=> $group['params_conf_srv_main'],
+						'params_conf_srv_reserve'	=> $group['params_conf_srv_reserve'],
+						'params_conf_sip_userid'	=> $group['params_conf_sip_userid'],
+						'params_conf_sip_authid'	=> $group['params_conf_sip_authid'],
+						'params_conf_sip_passwd'	=> $group['params_conf_sip_passwd'],
+						'params_conf_show_name'		=> $group['params_conf_show_name'],
+						'params_conf_acc_display'	=> $group['params_conf_show_name'],
+						'params_conf_voicemail'		=> $group['params_conf_voicemail']
+					);
+					
+					$models_list = $this->settings_model->models_getlist(['group_id' => $group['id']]);
+					if ($models_list != FALSE AND is_array($models_list))
+					{
+						foreach($models_list as $model)
+						{
+							$export_data[$count]['group_models'][] = array(
+								'tech_name'		=> $model['tech_name'],
+								'friendly_name'	=> $model['friendly_name']
+							);
+						}
+					}
+					++$count;
+				}
+				$this->output
+					->set_content_type('application/json')
+					->set_output(json_encode($export_data, JSON_PRETTY_PRINT))
+					->_display();
+				exit;
+			}
+		}
+		elseif (!is_null($action) AND $action == 'import_models')
+		{
+			//
+			// Import models data
+			//
+			if (!is_null($this->input->post('json_data')))
+			{
+				// get import data from POST
+				$import_data = @json_decode($this->input->post('json_data'), TRUE);
+				// get params list from DB
+				$params_list_db = $this->settings_model->params_getlist();
+				// get models group from DB
+				$models_group_list_db = $this->settings_model->models_group_getlist();
+				
+				if (is_array($import_data))
+				{
+					// Processing the import data
+					foreach($import_data as $data)
+					{
+						// Checking the structure of the array (group info)
+						if (isset($data['group_info']) AND is_array($data['group_info']) AND count($data['group_info']) == 11)
+						{
+							if (isset($data['group_info']['name']) AND isset($data['group_info']['params_conf_acc_atatus']) AND isset($data['group_info']['params_conf_acc_name']) AND isset($data['group_info']['params_conf_srv_main']) AND isset($data['group_info']['params_conf_srv_reserve']) AND isset($data['group_info']['params_conf_sip_userid']) AND isset($data['group_info']['params_conf_sip_authid']) AND isset($data['group_info']['params_conf_sip_passwd']) AND isset($data['group_info']['params_conf_show_name']) AND isset($data['group_info']['params_conf_acc_display']) AND isset($data['group_info']['params_conf_voicemail']))
+							{
+								$group_info = $data['group_info'];
+							}
+							else
+							{
+								$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_dataformatgroup"));
+								break;
+							}
+						}
+						else
+						{
+							$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_dataformatgroup"));
+							break;
+						}
+						
+						// Checking the structure of the array (device models in the group)
+						if (isset($data['group_models']) AND is_array($data['group_models']))
+						{
+							foreach($data['group_models'] as $model)
+							{
+								if (is_array($model) AND count($model) == 2 AND isset($model['tech_name']) AND isset($model['friendly_name']))
+								{
+									$models_info[] = $model;
+								}
+								else
+								{
+									$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_dataformatmodel"));
+									break;
+								}
+							}
+						}
+						else
+						{
+							$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_dataformatmodel"));
+							break;
+						}
+						
+						// We form a dummy template for the parameters, or we cling to an existing one in the database (we search by name)
+						if (isset($group_info) AND isset($models_info))
+						{
+							// We are looking for a template of parameters in the current database
+							if ($params_list_db != FALSE AND is_array($params_list_db))
+							{
+								foreach($params_list_db as $params_db)
+								{
+									if ($params_db['name'] == $group_info['name'])
+									{
+										$params_id = $params_db['id'];
+										break;
+									}
+								}
+							}
+							
+							// If you couldn't find a template, then create a dummy template.
+							if (!isset($params_id))
+							{
+								$params_template = array(
+									'name'					=> $group_info['name'],
+									'description'			=> 'Autocreated template for '.$group_info['name'],
+									'params_source_data'	=> '# This template is created automatically during the import of settings. Please fill it out according to your wishes.',
+									'params_json_data'		=> '[]'
+								);
+								
+								
+								$params_id = $this->settings_model->params_add($params_template);
+								if ($params_id === FALSE)
+								{
+									$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_dbparams").' ('.$group_info['name'].')');
+									break;
+								}
+								else
+								{
+									$result_add_params[] = $params_template['name'];
+								}
+							}
+							
+							if ($params_id !== FALSE)
+							{
+								// We have decided on the parameters. We are checking the device group.
+								if ($models_group_list_db != FALSE AND is_array($models_group_list_db))
+								{
+									foreach($models_group_list_db as $model_group_db)
+									{
+										if ($model_group_db['name'] == $group_info['name'])
+										{
+											$group_id == $model_group_db['id'];
+											break;
+										}
+									}
+								}
+								if (!isset($group_id))
+								{
+									$group_info['params_group_id'] = $params_id;
+									$group_id = $this->settings_model->models_group_add($group_info);
+									
+									if ($group_id === FALSE)
+									{
+										$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_dbgroups").' ('.$group_info['name'].')');
+										break;
+									}
+									else
+									{
+										$result_add_groups[] = $group_info['name'];
+									}
+								}
+							}
+							
+							if ($group_id !== FALSE)
+							{
+								// We have decided on a group. We check the device models.
+								foreach($models_info as $model)
+								{
+									$model_db = $this->settings_model->models_get(['tech_name'=>$model['tech_name']]);
+									if ($model_db === FALSE)
+									{
+										$model['group_id'] = $group_id;
+										$model_id = $this->settings_model->models_add($model);
+										if ($model_id === FALSE)
+										{
+											$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_dbmodel").' ('.$model['tech_name'].')');
+											break;
+										}
+										else
+										{
+											$result_add_models[] = $model['tech_name'];
+										}
+									}
+								}
+								
+							}
+						}
+						unset($data, $group_info, $models_info, $model, $params_db, $params_id, $params_template, $model_group_db, $group_id, $model_db);
+					}
+					
+					if (isset($result_add_params) OR isset($result_add_groups) OR isset($result_add_models))
+					{
+						$result = '<ul>';
+						if (is_array($result_add_params))
+						{
+							$result .= '<li>'.lang("settings_importexport_flashdata_result_addparams").':';
+							foreach($result_add_params as $add_param)
+							{
+								$result .= ' '.$add_param;
+							}
+							$result .= '</li>';
+						}
+						if (is_array($result_add_groups))
+						{
+							$result .= '<li>'.lang("settings_importexport_flashdata_result_addgroups").':';
+							foreach($result_add_groups as $add_group)
+							{
+								$result .= ' '.$add_group;
+							}
+							$result .= '</li>';
+						}
+						if (is_array($result_add_models))
+						{
+							$result .= '<li>'.lang("settings_importexport_flashdata_result_addmodels").':';
+							foreach($result_add_models as $add_model)
+							{
+								$result .= ' '.$add_model;
+							}
+							$result .= '</li>';
+						}
+						$result .= '</ul>';
+						$this->session->set_flashdata('success_result', lang("settings_importexport_flashdata_success").$result);
+					}
+				}
+				else
+				{
+					$this->session->set_flashdata('error_result', lang("settings_importexport_flashdata_error_jsonformat"));
+				}
+			}
+			redirect('/settings/importexport');
+		}
+		else
+		{
+			$this->title = " - ".lang('settings_importexport_pagetitle');
+			$this->content = $this->load->view('settings/importexport/importexport', NULL, TRUE);
+			$this->_RenderPage();
+		}
+	}
 }
