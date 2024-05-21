@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\models\Phonebook_model.php
 	Description:	Database queries for the Phonebook controller
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -129,7 +129,7 @@ class Phonebook_model extends CI_Model {
 	
 	function abonent_del($id=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id['id']))
+		if (!is_null($id) AND is_numeric($id))
 		{
 			$this->db->where('id', $id);
 			$query = $this->db->delete('phonebook_data');

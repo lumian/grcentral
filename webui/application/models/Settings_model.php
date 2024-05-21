@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\models\Settings_model.php
 	Description:	Database queries for the Settings controller
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -119,7 +119,7 @@ class Settings_model extends CI_Model {
 	
 	function models_del($id=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id['id']))
+		if (!is_null($id) AND is_numeric($id))
 		{
 			$this->db->where('id', $id);
 			$query = $this->db->delete('settings_models');
@@ -218,7 +218,7 @@ class Settings_model extends CI_Model {
 	
 	function models_group_del($id=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id['id']))
+		if (!is_null($id) AND is_numeric($id))
 		{
 			$this->db->where('id', $id);
 			$query = $this->db->delete('settings_models_group');
@@ -388,7 +388,7 @@ class Settings_model extends CI_Model {
 	
 	function params_del($id=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id['id']))
+		if (!is_null($id) AND is_numeric($id))
 		{
 			$this->db->where('id', $id);
 			$query = $this->db->delete('settings_params');
@@ -478,7 +478,7 @@ class Settings_model extends CI_Model {
 	
 	function servers_del($id=NULL)
 	{
-		if (!is_null($id) AND is_numeric($id['id']))
+		if (!is_null($id) AND is_numeric($id))
 		{
 			$this->db->where('id', $id);
 			$query = $this->db->delete('settings_servers');
