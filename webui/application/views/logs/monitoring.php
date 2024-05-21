@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <? if ($this->settings_model->syssettings_get('hide_help_header_msg') != 'on'): ?>
 <div class="card mt-2">
-	<div class="card-body">
+	<div class="card-body shadow-sm">
 		<?=lang('logs_monitoring_description_text');?>
 	</div>
 </div>
@@ -14,11 +14,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <? if ($this->session->flashdata('success_result')): ?>
-	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
+	<div class="alert alert-success mt-2 shadow-sm" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
 
 <? if ($this->session->flashdata('error_result')): ?>
-	<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
+	<div class="alert alert-danger mt-2 shadow-sm" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
 <? if ($this->settings_model->syssettings_get('monitoring_enable') == 'on'): ?>

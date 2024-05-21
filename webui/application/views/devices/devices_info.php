@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <? if ($this->session->flashdata('success_result')): ?>
-	<div class="alert alert-success mt-2" role="alert"><?=$this->session->flashdata('success_result');?></div>
+	<div class="alert alert-success mt-2 shadow-sm" role="alert"><?=$this->session->flashdata('success_result');?></div>
 <? endif;?>
 
 <? if ($this->session->flashdata('error_result')): ?>
-	<div class="alert alert-danger mt-2" role="alert"><?=$this->session->flashdata('error_result');?></div>
+	<div class="alert alert-danger mt-2 shadow-sm" role="alert"><?=$this->session->flashdata('error_result');?></div>
 <? endif;?>
 
 <div class="row">
@@ -543,7 +543,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h5 class="modal-title" id="ModalLogsLabel"><?=lang('devices_index_modallogs_title');?></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body text-center">
 				<p><?=lang('devices_index_modallogs_descr');?></p>
 				<table class="table table-hover table-sm mt-2">
 					<thead>
