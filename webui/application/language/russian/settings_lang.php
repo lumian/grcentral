@@ -7,11 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	Description:	Language file for "Settings" controller.
 	Laguage:		Russian
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
+//
 // Табы
+//
 $lang['settings_tabs_title_main']							= "Главная";
 $lang['settings_tabs_title_models']							= "Модели";
 $lang['settings_tabs_title_fw']								= "Прошивки";
@@ -47,7 +49,7 @@ $lang['settings_index_update_alert_error']					= "Ошибка проверки 
 // Страница "Модели"
 //
 $lang['settings_models_pagetitle']							= "Модели устройств";
-$lang['settings_models_description_text']					= "Модели устройств формируются в группы и используются для более точной настройки, а так же для привязки к ним файлов обновлений, доступных на сервере. Для использования, сначала создайте группу, а затем модель.";
+$lang['settings_models_description_text']					= "Модели устройств формируются в группы и используются для более точной настройки, а так же для привязки к ним файлов обновлений, доступных на сервере. <br />Для использования, сначала создайте <a href='".site_url('/settings/params/')."'>шаблон параметров</a>, затем группу, а затем модель.";
 // Страница "Модели": Кнопки
 $lang['settings_models_btn_new']							= "Добавить модель";
 $lang['settings_models_btn_newgroup']						= "Добавить группу";

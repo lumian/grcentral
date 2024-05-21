@@ -13,7 +13,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? if ($group_list != FALSE): ?>
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalModelAddEdit" data-bs-actiontype="new"><i class="fa fa-plus-square"></i> <?=lang('settings_models_btn_new');?></button>
 	<? endif; ?>
+	<? if ($params_group != FALSE): ?>
 	<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ModalGroupAddEdit" data-bs-actiontype="new"><i class="fa fa-folder-plus"></i> <?=lang('settings_models_btn_newgroup');?></button>
+	<? endif; ?>
 	<a href="<?=lang('main_helpurl_settings_models');?>" target="_blank" title="<?=lang('main_helpurl_urltitle');?>" type="button" class="btn btn-outline-secondary"><i class="fa fa-question-circle"></i></a>
 </div>
 

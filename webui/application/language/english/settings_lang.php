@@ -7,11 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	Description:	Language file for "Settings" controller.
 	Laguage:		English
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
+//
 // Tabs
+//
 $lang['settings_tabs_title_main']							= "Main";
 $lang['settings_tabs_title_models']							= "Models";
 $lang['settings_tabs_title_fw']								= "Firmware";
@@ -47,7 +49,7 @@ $lang['settings_index_update_alert_error']					= "Error checking for updates.<br
 // Page "Models"
 //
 $lang['settings_models_pagetitle']							= "Device model";
-$lang['settings_models_description_text']					= "Device models are grouped and used for more precise configuration, as well as for linking upgrade files available on the server to them. To use it, first create a group and then a model.";
+$lang['settings_models_description_text']					= "Device models are grouped and used for more precise configuration, as well as for linking upgrade files available on the server to them. To use, first create a <a href='".site_url('/settings/params/')."'>parameter template</a>, then a group, and then a model.";
 // Page "Models": Buttons
 $lang['settings_models_btn_new']							= "New model";
 $lang['settings_models_btn_newgroup']						= "New group";
