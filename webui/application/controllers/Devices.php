@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	File:			application\controllers\Devices.php
 	Description:	Controller for devices management
 	
-	2020-2021 (c) Copyright GRCentral
+	2020-2024 (c) Copyright GRCentral
 	Get this on Github: http://github.com/lumian/grcentral
 ****************************************************************/
 
@@ -190,7 +190,7 @@ class Devices extends CI_Controller {
 					$monitoring['count_ok'] = $this->logger_model->get_logs(array('unit_id'=>$param, 'type'=>'monitoring', 'log_data'=> '1', 'get_total' => TRUE));
 					$monitoring['all'] = $this->logger_model->get_logs(array('unit_id'=>$param, 'type'=>'monitoring', 'get_total' => TRUE));
 					
-					if ($monitoring['count_ok'] !== FALSE AND $monitoring['all'] !== FALSE)
+					if ($monitoring['count_ok'] !== FALSE AND $monitoring['all'] !== FALSE AND $monitoring['all'] != 0)
 					{
 						$device_available = round($monitoring['count_ok'] / ($monitoring['all'] / 100), 0, PHP_ROUND_HALF_UP);
 					}
