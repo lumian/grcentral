@@ -18,8 +18,11 @@ RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rew
 
 COPY webui/ /var/www/html
 
+# Задаем права доступа и владельца
+# Файлы - 644
+# Директории - 755
 RUN find -type f -exec chmod -R 644 {} \; \
     && find -type d -exec chmod -R 755 {} \; \
     && chown -R www-data:www-data . .*
 
-CMD /usr/bin/supervisord
+CMD ["/usr/bin/supervisord"]
