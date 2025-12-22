@@ -1,0 +1,8 @@
+# Автоматическая перегенерация конфигурационных файлов с изменениями (в т.ч. интеграция данных из SIP аккаунтов в телефонную книгу, если включено) - необязательно. Данная функция доступна в интерфейсе по нажатию на кнопку "Применить настройки":
+*/30 * * * * www-data /usr/local/bin/php /var/www/html/index.php cron clicron gencfg >/dev/null
+# Автоматическая перегенерация XML файла справочника на основе данных, введенных в интерфейсе - обязательно, если используется справочник:
+5    * * * * www-data /usr/local/bin/php /var/www/html/index.php cron clicron genpb >/dev/null
+# Автоматическая очистка логов распространения - обязательно, иначе может скопиться слишком много логов:
+10   1 * * * www-data /usr/local/bin/php /var/www/html/index.php cron clicron clean_logs >/dev/null
+# Проверка доступности устройств - обязательно, если используете мониторинг устройств:
+*/5  * * * * www-data /usr/local/bin/php /var/www/html/index.php cron clicron ping_devices >/dev/null
